@@ -230,9 +230,15 @@ public class AssetManager : MonoBehaviour
         UIBoot.Instance.SetLabel("正在载入设置...");
         UIBoot.Instance.SetProgress(0);
 
+        string[] keys = new string[settingNames.Length];
+        for (var i = 0; i < settingNames.Length; i++)
+        {
+            keys[i] = "Setting/"+settingNames[i];
+        }
+
         int completeCount = 0;
 
-        GameAsset.LoadObjects(settingNames, (sort, obj) =>
+        GameAsset.LoadObjects(keys, (sort, obj) =>
         {
             completeCount++;
             UIBoot.Instance.SetProgress((float)completeCount / (float)settingNames.Length);
