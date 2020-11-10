@@ -1,0 +1,378 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80b253957c6ee5e41965bb025fcd9e5f, type: 3}
+  m_Name: UIStyleSet
+  m_EditorClassIdentifier: 
+  fontOrder: 22
+  buttonOrder: 9
+  fonts:
+  - id: 0
+    name: "\u666E\u901A\u6587\u672C\uFF08\u6DF1\uFF09"
+    fontFamily: {fileID: 12800000, guid: e7ef46cbea538014085af6212ad185d1, type: 3}
+    fontStyle: 0
+    fontSize: 24
+    fontColor: {r: 0.03529412, g: 0.03529412, b: 0.039215688, a: 1}
+    useShadow: 0
+    shadowColor: {r: 1, g: 1, b: 1, a: 1}
+    shadowDistance: {x: 1, y: -1}
+    useOutline: 0
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineDistance: {x: 1, y: -1}
+    alignByGeometry: 1
+    raycastTarget: 0
+  - id: 11
+    name: "\u666E\u901A\u6587\u672C\uFF08\u6D45\uFF09"
+    fontFamily: {fileID: 12800000, guid: e7ef46cbea538014085af6212ad185d1, type: 3}
+    fontStyle: 0
+    fontSize: 24
+    fontColor: {r: 1, g: 1, b: 1, a: 1}
+    useShadow: 0
+    shadowColor: {r: 1, g: 1, b: 1, a: 1}
+    shadowDistance: {x: 1, y: -1}
+    useOutline: 0
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineDistance: {x: 1, y: -1}
+    alignByGeometry: 1
+    raycastTarget: 0
+  - id: 1
+    name: "\u666E\u901A\u6309\u94AE\u6587\u672C\uFF08\u6DF1\uFF09"
+    fontFamily: {fileID: 12800000, guid: 9e186417694cabf41b32c660db248f04, type: 3}
+    fontStyle: 0
+    fontSize: 30
+    fontColor: {r: 0.03529412, g: 0.03529412, b: 0.039215688, a: 1}
+    useShadow: 0
+    shadowColor: {r: 1, g: 1, b: 1, a: 1}
+    shadowDistance: {x: 1, y: -1}
+    useOutline: 0
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineDistance: {x: 1, y: -1}
+    alignByGeometry: 1
+    raycastTarget: 0
+  - id: 9
+    name: "\u666E\u901A\u6309\u94AE\u6587\u672C\uFF08\u6D45\uFF09"
+    fontFamily: {fileID: 12800000, guid: 9e186417694cabf41b32c660db248f04, type: 3}
+    fontStyle: 0
+    fontSize: 30
+    fontColor: {r: 1, g: 1, b: 1, a: 1}
+    useShadow: 0
+    shadowColor: {r: 1, g: 1, b: 1, a: 1}
+    shadowDistance: {x: 1, y: -1}
+    useOutline: 0
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineDistance: {x: 1, y: -1}
+    alignByGeometry: 1
+    raycastTarget: 0
+  - id: 2
+    name: "\u666E\u901A\u6309\u94AE\u6587\u672C\uFF08\u7981\u7528\uFF09"
+    fontFamily: {fileID: 12800000, guid: 9e186417694cabf41b32c660db248f04, type: 3}
+    fontStyle: 0
+    fontSize: 30
+    fontColor: {r: 1, g: 1, b: 1, a: 0.6}
+    useShadow: 0
+    shadowColor: {r: 1, g: 1, b: 1, a: 1}
+    shadowDistance: {x: 1, y: -1}
+    useOutline: 0
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineDistance: {x: 1, y: -1}
+    alignByGeometry: 1
+    raycastTarget: 0
+  - id: 5
+    name: "\u4E00\u7EA7\u6807\u9898"
+    fontFamily: {fileID: 12800000, guid: 9e186417694cabf41b32c660db248f04, type: 3}
+    fontStyle: 0
+    fontSize: 34
+    fontColor: {r: 1, g: 1, b: 1, a: 1}
+    useShadow: 0
+    shadowColor: {r: 1, g: 1, b: 1, a: 1}
+    shadowDistance: {x: 1, y: -1}
+    useOutline: 0
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineDistance: {x: 1, y: -1}
+    alignByGeometry: 1
+    raycastTarget: 0
+  - id: 6
+    name: "\u4E8C\u7EA7\u6807\u9898(\u6DF1)"
+    fontFamily: {fileID: 12800000, guid: e7ef46cbea538014085af6212ad185d1, type: 3}
+    fontStyle: 1
+    fontSize: 26
+    fontColor: {r: 0.03529412, g: 0.03529412, b: 0.039215688, a: 1}
+    useShadow: 0
+    shadowColor: {r: 1, g: 1, b: 1, a: 1}
+    shadowDistance: {x: 1, y: -1}
+    useOutline: 0
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineDistance: {x: 1, y: -1}
+    alignByGeometry: 1
+    raycastTarget: 0
+  - id: 21
+    name: "\u4E8C\u7EA7\u6807\u9898(\u6D45)"
+    fontFamily: {fileID: 12800000, guid: e7ef46cbea538014085af6212ad185d1, type: 3}
+    fontStyle: 1
+    fontSize: 26
+    fontColor: {r: 1, g: 1, b: 1, a: 1}
+    useShadow: 0
+    shadowColor: {r: 1, g: 1, b: 1, a: 1}
+    shadowDistance: {x: 1, y: -1}
+    useOutline: 0
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineDistance: {x: 1, y: -1}
+    alignByGeometry: 1
+    raycastTarget: 0
+  - id: 19
+    name: "\u4E09\u7EA7\u6807\u9898"
+    fontFamily: {fileID: 12800000, guid: e7ef46cbea538014085af6212ad185d1, type: 3}
+    fontStyle: 0
+    fontSize: 29
+    fontColor: {r: 0, g: 0, b: 0, a: 1}
+    useShadow: 0
+    shadowColor: {r: 1, g: 1, b: 1, a: 1}
+    shadowDistance: {x: 1, y: -1}
+    useOutline: 0
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineDistance: {x: 1, y: -1}
+    alignByGeometry: 1
+    raycastTarget: 0
+  - id: 3
+    name: "\u4E3B\u754C\u9762\u529F\u80FD\u6309\u94AE\u6587\u672C"
+    fontFamily: {fileID: 12800000, guid: 9e186417694cabf41b32c660db248f04, type: 3}
+    fontStyle: 0
+    fontSize: 26
+    fontColor: {r: 1, g: 1, b: 1, a: 1}
+    useShadow: 0
+    shadowColor: {r: 1, g: 1, b: 1, a: 1}
+    shadowDistance: {x: 1, y: -1}
+    useOutline: 0
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineDistance: {x: 1, y: -1}
+    alignByGeometry: 1
+    raycastTarget: 0
+  - id: 4
+    name: "\u4E3B\u9009\u9879\u5361\u6587\u672C\uFF08\u6D45\uFF09"
+    fontFamily: {fileID: 12800000, guid: 9e186417694cabf41b32c660db248f04, type: 3}
+    fontStyle: 0
+    fontSize: 26
+    fontColor: {r: 1, g: 1, b: 1, a: 1}
+    useShadow: 0
+    shadowColor: {r: 1, g: 1, b: 1, a: 1}
+    shadowDistance: {x: 1, y: -1}
+    useOutline: 0
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineDistance: {x: 1, y: -1}
+    alignByGeometry: 1
+    raycastTarget: 0
+  - id: 20
+    name: "\u4E3B\u9009\u9879\u5361\u6587\u672C\uFF08\u6DF1\uFF09"
+    fontFamily: {fileID: 12800000, guid: 9e186417694cabf41b32c660db248f04, type: 3}
+    fontStyle: 0
+    fontSize: 26
+    fontColor: {r: 0, g: 0, b: 0, a: 1}
+    useShadow: 0
+    shadowColor: {r: 1, g: 1, b: 1, a: 1}
+    shadowDistance: {x: 1, y: -1}
+    useOutline: 0
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineDistance: {x: 1, y: -1}
+    alignByGeometry: 1
+    raycastTarget: 0
+  - id: 7
+    name: "\u7279\u6B8A\u5C0F\u6309\u94AE\u6587\u672C"
+    fontFamily: {fileID: 12800000, guid: 9e186417694cabf41b32c660db248f04, type: 3}
+    fontStyle: 0
+    fontSize: 18
+    fontColor: {r: 1, g: 1, b: 1, a: 1}
+    useShadow: 0
+    shadowColor: {r: 1, g: 1, b: 1, a: 1}
+    shadowDistance: {x: 1, y: -1}
+    useOutline: 0
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineDistance: {x: 1, y: -1}
+    alignByGeometry: 1
+    raycastTarget: 0
+  - id: 17
+    name: "\u5F39\u6846\u5B57\u4F53"
+    fontFamily: {fileID: 12800000, guid: e7ef46cbea538014085af6212ad185d1, type: 3}
+    fontStyle: 1
+    fontSize: 26
+    fontColor: {r: 1, g: 1, b: 1, a: 1}
+    useShadow: 0
+    shadowColor: {r: 1, g: 1, b: 1, a: 1}
+    shadowDistance: {x: 1, y: -1}
+    useOutline: 0
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineDistance: {x: 1, y: -1}
+    alignByGeometry: 1
+    raycastTarget: 0
+  - id: 18
+    name: "\u7279\u5927\u53F7\u62E5\u6709\u6570\u91CF"
+    fontFamily: {fileID: 12800000, guid: e7ef46cbea538014085af6212ad185d1, type: 3}
+    fontStyle: 0
+    fontSize: 36
+    fontColor: {r: 0, g: 0, b: 0, a: 1}
+    useShadow: 0
+    shadowColor: {r: 1, g: 1, b: 1, a: 1}
+    shadowDistance: {x: 1, y: -1}
+    useOutline: 0
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineDistance: {x: 1, y: -1}
+    alignByGeometry: 1
+    raycastTarget: 0
+  - id: 22
+    name: "\u9053\u5177\u540D\u5B57(\u6DF1)"
+    fontFamily: {fileID: 12800000, guid: e7ef46cbea538014085af6212ad185d1, type: 3}
+    fontStyle: 0
+    fontSize: 28
+    fontColor: {r: 0, g: 0, b: 0, a: 1}
+    useShadow: 0
+    shadowColor: {r: 1, g: 1, b: 1, a: 1}
+    shadowDistance: {x: 1, y: -1}
+    useOutline: 0
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineDistance: {x: 1, y: -1}
+    alignByGeometry: 1
+    raycastTarget: 0
+  buttons:
+  - id: 0
+    name: "\u901A\u7528\u6309\u94AE\uFF08\u84DD\uFF09"
+    useClickScale: 1
+    spriteNormal: {fileID: 21300000, guid: 96af9836c29c3d741bebf98b886f8596, type: 3}
+    spriteDisable: {fileID: 21300000, guid: 96af9836c29c3d741bebf98b886f8596, type: 3}
+    normalStates: []
+    normalSelect: -1
+    textLineSpacing: 1
+    textBestFit: 0
+    textMinSize: 0
+    textMaxSize: 0
+    textAnchorMin: {x: 0, y: 0}
+    textAnchorMax: {x: 1, y: 1}
+    textOffsetMin: {x: 0, y: 0}
+    textOffsetMax: {x: 0, y: 0}
+    normalFontStyle: 9
+    disabledFontStyle: 2
+  - id: 2
+    name: "\u901A\u7528\u6309\u94AE(\u9EC4)"
+    useClickScale: 1
+    spriteNormal: {fileID: 21300000, guid: c1496fd190061d14b94ee15674922716, type: 3}
+    spriteDisable: {fileID: 21300000, guid: c1496fd190061d14b94ee15674922716, type: 3}
+    normalStates: []
+    normalSelect: -1
+    textLineSpacing: 1
+    textBestFit: 0
+    textMinSize: 0
+    textMaxSize: 0
+    textAnchorMin: {x: 0, y: 0}
+    textAnchorMax: {x: 1, y: 1}
+    textOffsetMin: {x: 0, y: 0}
+    textOffsetMax: {x: 0, y: 0}
+    normalFontStyle: 9
+    disabledFontStyle: 2
+  - id: 1
+    name: "\u4E3B\u9009\u9879\u5361\u6309\u94AE"
+    useClickScale: 1
+    spriteNormal: {fileID: 21300000, guid: 5e0a601b89a9ab042865c01c669c9fe4, type: 3}
+    spriteDisable: {fileID: 21300000, guid: e3afbb52fddc8a248bac10e28c3f1b59, type: 3}
+    normalStates: []
+    normalSelect: -1
+    textLineSpacing: 1
+    textBestFit: 0
+    textMinSize: 0
+    textMaxSize: 0
+    textAnchorMin: {x: 0, y: 0}
+    textAnchorMax: {x: 1, y: 1}
+    textOffsetMin: {x: 0, y: 0}
+    textOffsetMax: {x: 0, y: 0}
+    normalFontStyle: 4
+    disabledFontStyle: 4
+  - id: 3
+    name: "\u7279\u6B8A\u5C0F\u6309\u94AE"
+    useClickScale: 1
+    spriteNormal: {fileID: 21300000, guid: d7d7ff770ecc433488302e12c64c179c, type: 3}
+    spriteDisable: {fileID: 21300000, guid: d7d7ff770ecc433488302e12c64c179c, type: 3}
+    normalStates: []
+    normalSelect: -1
+    textLineSpacing: 1
+    textBestFit: 0
+    textMinSize: 0
+    textMaxSize: 0
+    textAnchorMin: {x: 0, y: 0}
+    textAnchorMax: {x: 1, y: 1}
+    textOffsetMin: {x: 0, y: 5}
+    textOffsetMax: {x: 0, y: 0}
+    normalFontStyle: 7
+    disabledFontStyle: 7
+  - id: 5
+    name: "\u9009\u62E9\u5206\u9875\uFF08\u9EC4\uFF09"
+    useClickScale: 1
+    spriteNormal: {fileID: 21300000, guid: 5023504210b29394b8eab4f2882233d1, type: 3}
+    spriteDisable: {fileID: 21300000, guid: 5023504210b29394b8eab4f2882233d1, type: 3}
+    normalStates: []
+    normalSelect: -1
+    textLineSpacing: 1
+    textBestFit: 0
+    textMinSize: 0
+    textMaxSize: 0
+    textAnchorMin: {x: 0, y: 0}
+    textAnchorMax: {x: 1, y: 1}
+    textOffsetMin: {x: 0, y: 0}
+    textOffsetMax: {x: 0, y: 0}
+    normalFontStyle: 0
+    disabledFontStyle: 0
+  - id: 6
+    name: "\u9009\u62E9\u5206\u9875\uFF08\u7070\uFF09"
+    useClickScale: 1
+    spriteNormal: {fileID: 21300000, guid: 606ce5e2d14f6a847b6ae01dbeb92354, type: 3}
+    spriteDisable: {fileID: 21300000, guid: 606ce5e2d14f6a847b6ae01dbeb92354, type: 3}
+    normalStates: []
+    normalSelect: -1
+    textLineSpacing: 1
+    textBestFit: 0
+    textMinSize: 0
+    textMaxSize: 0
+    textAnchorMin: {x: 0, y: 0}
+    textAnchorMax: {x: 1, y: 1}
+    textOffsetMin: {x: 0, y: 0}
+    textOffsetMax: {x: 0, y: 0}
+    normalFontStyle: 0
+    disabledFontStyle: 0
+  - id: 8
+    name: "\u53EF\u6FC0\u6D3B\u6309\u94AE\uFF08\u84DD\uFF09"
+    useClickScale: 1
+    spriteNormal: {fileID: 21300000, guid: f1d443171854b8e439a3c87bb8f5e587, type: 3}
+    spriteDisable: {fileID: 0}
+    normalStates: []
+    normalSelect: -1
+    textLineSpacing: 1
+    textBestFit: 0
+    textMinSize: 0
+    textMaxSize: 0
+    textAnchorMin: {x: 0, y: 0}
+    textAnchorMax: {x: 1, y: 1}
+    textOffsetMin: {x: 0, y: 0}
+    textOffsetMax: {x: 0, y: 0}
+    normalFontStyle: 11
+    disabledFontStyle: 11
+  - id: 9
+    name: "\u4E0D\u53EF\u6FC0\u6D3B\u6309\u94AE\uFF08\u7070\uFF09"
+    useClickScale: 1
+    spriteNormal: {fileID: 21300000, guid: f47870e31dc28944bb5c21f038666b26, type: 3}
+    spriteDisable: {fileID: 0}
+    normalStates: []
+    normalSelect: -1
+    textLineSpacing: 1
+    textBestFit: 0
+    textMinSize: 0
+    textMaxSize: 0
+    textAnchorMin: {x: 0, y: 0}
+    textAnchorMax: {x: 1, y: 1}
+    textOffsetMin: {x: 0, y: 0}
+    textOffsetMax: {x: 0, y: 0}
+    normalFontStyle: 11
+    disabledFontStyle: 11

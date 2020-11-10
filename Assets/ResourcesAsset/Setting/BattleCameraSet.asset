@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ae71d204cdb5845b83298396c04572, type: 3}
+  m_Name: BattleCameraSet
+  m_EditorClassIdentifier: 
+  normalEnable: 1
+  normalParams:
+    normalPosition: {x: 0, y: 0.5, z: -2.5}
+    normalAngle: {x: 5, y: 0, z: 0}
+    normalSmooth: 3
+    battlePosition: {x: 0, y: 1, z: -4}
+    battleAngle: {x: 5, y: 0, z: 0}
+    battleSmooth: 6
+    clearPosition: {x: 0, y: 0.9, z: -2.4}
+    clearAngle: {x: 0, y: -60, z: 0}
+    clearSmooth: 6
+    relaxPosition: {x: 0, y: 0.5, z: -2.5}
+    relaxAngle: {x: 5, y: 0, z: 0}
+    relaxSmooth: 3
+    wallFixPosition: {x: 0, y: 0.4, z: -1}
+    wallFixSmooth: 4
+    minRotateY: -5
+    maxRotateY: 35
+    moveRotateSpeed: 0.5
+    attackFixSpeed: 0.35
+  sideEnable: 1
+  sideParams:
+    followSpeed: 5
+    defaultDistance: 10
+  topEnable: 1
+  topParams:
+    followSpeed: 1.75
+    defaultHeight: 10

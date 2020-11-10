@@ -1,0 +1,532 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d98a47ef937244642acfe6cdb90b633c, type: 3}
+  m_Name: CameraEffectSet
+  m_EditorClassIdentifier: 
+  templates:
+  - id: 2001
+    name: "\u5F84\u5411\u6A21\u7CCA.\u666E\u901A.\u4F4E"
+    type: 5
+    time: 0.3
+    range: 0
+    count: 0
+    random: 0
+    intensity: 0.3
+    offset: 0.1
+    mode: Normal
+    filter: 0
+  - id: 2101
+    name: "\u5F84\u5411\u6A21\u7CCA.\u8272\u504F.\u4F4E"
+    type: 5
+    time: 0.5
+    range: 0
+    count: 0
+    random: 0
+    intensity: 0.9
+    offset: 0.2
+    mode: ChromaticAberration
+    filter: 0
+  - id: 2201
+    name: "\u5F84\u5411\u6A21\u7CCA.\u8FC7\u6EE4 .\u4F4E"
+    type: 5
+    time: 0.5
+    range: 0
+    count: 0
+    random: 0
+    intensity: 0.5
+    offset: 0.4
+    mode: Filter
+    filter: 1
+  - id: 1000
+    name: H0.1M0
+    type: 2
+    time: 0.1
+    range: 0.1
+    count: 1
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1001
+    name: H0.1M1
+    type: 2
+    time: 0.1
+    range: 0.1
+    count: 3
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1002
+    name: H0.1L0
+    type: 2
+    time: 0.1
+    range: 0.2
+    count: 1
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1003
+    name: H0.1L1
+    type: 2
+    time: 0.1
+    range: 0.2
+    count: 3
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1004
+    name: H0.1X0
+    type: 2
+    time: 0.1
+    range: 0.3
+    count: 1
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1005
+    name: H0.1X1
+    type: 2
+    time: 0.1
+    range: 0.3
+    count: 3
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1006
+    name: H0.2M0
+    type: 2
+    time: 0.2
+    range: 0.1
+    count: 1
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1007
+    name: H0.2M1
+    type: 2
+    time: 0.2
+    range: 0.1
+    count: 6
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1008
+    name: H0.2L0
+    type: 2
+    time: 0.2
+    range: 0.2
+    count: 1
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1009
+    name: H0.2L1
+    type: 2
+    time: 0.2
+    range: 0.2
+    count: 9
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1010
+    name: H0.2X0
+    type: 2
+    time: 0.2
+    range: 0.3
+    count: 1
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1011
+    name: H0.2X1
+    type: 2
+    time: 0.2
+    range: 0.3
+    count: 6
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1012
+    name: H0.3M0
+    type: 2
+    time: 0.3
+    range: 0.1
+    count: 1
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1013
+    name: H0.3L0
+    type: 2
+    time: 0.3
+    range: 0.2
+    count: 1
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1100
+    name: V0.1M0
+    type: 3
+    time: 0.1
+    range: 0.1
+    count: 1
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1101
+    name: V0.1X1
+    type: 3
+    time: 0.1
+    range: 0.3
+    count: 3
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1102
+    name: V0.2M0
+    type: 3
+    time: 0.2
+    range: 0.1
+    count: 1
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1103
+    name: V0.2L0
+    type: 3
+    time: 0.2
+    range: 0.2
+    count: 3
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1104
+    name: V0.2L1
+    type: 3
+    time: 0.2
+    range: 0.2
+    count: 6
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1105
+    name: V0.2X0
+    type: 3
+    time: 0.2
+    range: 0.3
+    count: 1
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1106
+    name: V0.3M0
+    type: 3
+    time: 0.3
+    range: 0.1
+    count: 1
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1107
+    name: V0.3M1
+    type: 3
+    time: 0.3
+    range: 0.1
+    count: 9
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1108
+    name: V0.3L0
+    type: 3
+    time: 0.3
+    range: 0.2
+    count: 1
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1109
+    name: V0.3L1
+    type: 3
+    time: 0.3
+    range: 0.2
+    count: 9
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1110
+    name: V0.3X0
+    type: 3
+    time: 0.3
+    range: 0.3
+    count: 9
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1111
+    name: V0.3XL0
+    type: 3
+    time: 0.3
+    range: 0.4
+    count: 1
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1200
+    name: Z0.1M0
+    type: 1
+    time: 0.1
+    range: 0.6
+    count: 3
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1201
+    name: Z0.2M0
+    type: 1
+    time: 0.2
+    range: 0.6
+    count: 1
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1202
+    name: Z0.3M0
+    type: 1
+    time: 0.3
+    range: 0.1
+    count: 1
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1203
+    name: Z0.3M1
+    type: 1
+    time: 0.3
+    range: 0.1
+    count: 3
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1204
+    name: Z0.3L0
+    type: 1
+    time: 0.3
+    range: 0.2
+    count: 9
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1205
+    name: Z0.3X0
+    type: 1
+    time: 0.3
+    range: 0.4
+    count: 1
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1206
+    name: Z0.3X1
+    type: 1
+    time: 0.3
+    range: 0.4
+    count: 9
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1207
+    name: Z0.3XL0
+    type: 1
+    time: 0.3
+    range: 0.6
+    count: 1
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1208
+    name: Z0.4M0
+    type: 1
+    time: 0.4
+    range: 0.1
+    count: 1
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1209
+    name: Z0.4L0
+    type: 1
+    time: 0.4
+    range: 0.2
+    count: 3
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1210
+    name: Z0.4X0
+    type: 1
+    time: 0.4
+    range: 0.3
+    count: 1
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1211
+    name: Z0.4XL0
+    type: 1
+    time: 0.4
+    range: 0.5
+    count: 1
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1212
+    name: Z0.5M0
+    type: 1
+    time: 0.5
+    range: 0.2
+    count: 1
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1213
+    name: Z0.5L0
+    type: 1
+    time: 0.5
+    range: 0.3
+    count: 15
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1214
+    name: Z0.5XL0
+    type: 1
+    time: 0.5
+    range: 0.5
+    count: 15
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1300
+    name: A0.4M0
+    type: 4
+    time: 0.4
+    range: 0.1
+    count: 1
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1301
+    name: A0.4L0
+    type: 4
+    time: 0.4
+    range: 0.2
+    count: 3
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
+  - id: 1302
+    name: A0.5M0
+    type: 4
+    time: 0.5
+    range: 0.1
+    count: 1
+    random: 0
+    intensity: 0
+    offset: 0
+    mode: 
+    filter: 0
