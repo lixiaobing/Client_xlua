@@ -53,7 +53,6 @@ namespace MaybeInside
 			};
 
 		public PlatformSymbols[] PlatformSymbolContainer;
-		public SymbolItem[] GeneralSymbols;
 
 		private static readonly DefineSymbols _instance;
 		
