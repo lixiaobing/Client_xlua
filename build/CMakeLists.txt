@@ -112,6 +112,12 @@ else ( )
     list (APPEND LUA_SOCKET luasocket/usocket.c)
 endif ( )
 
+# lua-protobuf begin
+set ( LUA_PROTOBUF
+    lua-protobuf/pb.c
+)
+# lua-protobuf end
+
 set ( XLUA_CORE
     i64lib.c
     xlua.c
@@ -139,6 +145,7 @@ macro(source_group_by_dir proj_dir source_files)
 endmacro(source_group_by_dir)
 
 source_group_by_dir(${CMAKE_CURRENT_SOURCE_DIR} LUA_SOCKET)
+source_group_by_dir(${CMAKE_CURRENT_SOURCE_DIR} LUA_PROTOBUF)
 source_group_by_dir(${CMAKE_CURRENT_SOURCE_DIR} LUA_CORE)
 source_group_by_dir(${CMAKE_CURRENT_SOURCE_DIR} LUA_LIB)
 source_group_by_dir(${CMAKE_CURRENT_SOURCE_DIR} XLUA_CORE)
@@ -150,6 +157,7 @@ if (APPLE)
            ${LUA_CORE}
            ${LUA_LIB}
            ${LUA_SOCKET}
+           ${LUA_PROTOBUF}
            ${XLUA_CORE}
            ${THIRDPART_SRC}
         )
@@ -161,6 +169,7 @@ if (APPLE)
             ${LUA_CORE}
             ${LUA_LIB}
             ${LUA_SOCKET}
+            ${LUA_PROTOBUF}
             ${XLUA_CORE}
             ${THIRDPART_SRC}
         )
@@ -181,6 +190,7 @@ else ( )
         ${LUA_CORE}
         ${LUA_LIB}
         ${LUA_SOCKET}
+        ${LUA_PROTOBUF}
         ${XLUA_CORE}
         ${THIRDPART_SRC}
     )
@@ -200,6 +210,7 @@ endif ()
 
 set_property(
 	SOURCE ${LUA_SOCKET}
+    SOURCE ${LUA_PROTOBUF}
 	APPEND
 	PROPERTY COMPILE_DEFINITIONS
 	LUA_COMPAT_APIINTCASTS LUA_LIB _CRT_SECURE_NO_WARNINGS _WINSOCK_DEPRECATED_NO_WARNINGS

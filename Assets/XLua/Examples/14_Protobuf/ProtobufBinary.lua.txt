@@ -1,0 +1,39 @@
+function main()
+    -- load schema from text (just for demo, use protoc.new() in real world)
+    local pb = require "pb"
+
+    local protoPath = 'Assets/XLua/Examples/14_Protobuf/test.pb.bytes'
+    local msgFile = io.open(protoPath)
+    if not msgFile then
+        print(string.format('%s 不存在', protoPath))
+        return
+    end
+    local msg = msgFile:read('a')
+    msgFile:close()
+    local isSuccess, length = pb.load(msg)
+
+    if not isSuccess then
+        print(string.format('%s %s', tostring(isSuccess), tostring(length)))
+        return
+    end
+
+    -- lua table data
+    local data = {
+        name = "ilse",
+        age = 18,
+        contacts = {
+            { name = "alice", phonenumber = 12312341234 },
+            { name = "bob", phonenumber = 45645674567 }
+        }
+    }
+
+    -- encode lua table data into binary format in lua string and return
+    local bytes = assert(pb.encode("Person", data))
+    print(pb.tohex(bytes))
+
+    -- and decode the binary data back into lua table
+    local data2 = assert(pb.decode("Person", bytes))
+    print(require "serpent".block(data2))
+end
+
+main()

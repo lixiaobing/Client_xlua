@@ -651,6 +651,12 @@ namespace XLua
             LuaAPI.lua_rawget(L, LuaIndexes.LUA_REGISTRYINDEX);
             return 1;
         }
+        
+        [MonoPInvokeCallback(typeof(LuaCSFunction))]
+        internal static int LoadPb(RealStatePtr L)
+        {
+            return LuaAPI.luaopen_pb(L);
+        }
 
         [MonoPInvokeCallback(typeof(LuaCSFunction))]
         internal static int LoadBuiltinLib(RealStatePtr L)
