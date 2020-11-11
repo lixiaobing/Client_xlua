@@ -4,4 +4,5 @@ popd
 cmake --build build64 --config Release
 md plugin_lua53\Plugins\x86_64
 copy /Y build64\Release\xlua.dll plugin_lua53\Plugins\x86_64\xlua.dll
+copy /Y build64\Release\xlua.dll ..\Assets\Plugins\x86_64\xlua.dll
 pause

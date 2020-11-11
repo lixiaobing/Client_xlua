@@ -61,7 +61,8 @@ namespace XLua.LuaDLL
 		{
 			return lua_type(L, stackPos) == LuaTypes.LUA_TFUNCTION;
 		}
-
+		[DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int luaopen_pb(System.IntPtr L);
 		public static bool lua_islightuserdata(IntPtr L, int stackPos)
 		{
 			return lua_type(L, stackPos) == LuaTypes.LUA_TLIGHTUSERDATA;
