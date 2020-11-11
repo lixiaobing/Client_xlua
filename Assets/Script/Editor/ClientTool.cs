@@ -20,27 +20,94 @@ public class ClientTool
         PlayerPrefs.DeleteAll();
     }
 
-    [MenuItem("Addressables/Reset All")]
-    public static void AddressablesReset()
+    [MenuItem("Addressables/Generate")]
+    public static void AddressablesGenerate()
     {
-        ClearMissFile();
-
+        /*
         string folderPath = Application.dataPath + "/AddressableAssetsData";
 
-        AddressableAssetSettingsDefaultObject.Settings = AddressableAssetSettings.Create(AddressableAssetSettingsDefaultObject.kDefaultConfigFolder, AddressableAssetSettingsDefaultObject.kDefaultConfigAssetName, true, true);
+        if (Directory.Exists(folderPath))
+        {
+            Directory.Delete(folderPath, true);
+            File.Delete(folderPath + ".meta");
 
-        string[] folders = { "Assets/ResourcesAsset", "Assets/Scenes", "Assets/Shaders" };
+            AddressableAssetSettingsDefaultObject.Settings = null;
+
+            AssetDatabase.Refresh();
+            AssetDatabase.SaveAssets();
+        }
+        */
+
+        var settings = AddressableAssetSettings.Create(AddressableAssetSettingsDefaultObject.kDefaultConfigFolder, AddressableAssetSettingsDefaultObject.kDefaultConfigAssetName, true, true);
+        AddressableAssetSettingsDefaultObject.Settings = settings;
+        EditorUtility.SetDirty(AddressableAssetSettingsDefaultObject.Settings);
+
+        var bundleList = AssetDatabase.GetAllAssetBundleNames();
+        if (settings != null && bundleList.Length > 0)
+        {
+            AssetDatabase.RemoveUnusedAssetBundleNames();
+            float fullCount = bundleList.Length;
+            int currCount = 0;
+
+            foreach (var bundle in bundleList)
+            {
+                if (EditorUtility.DisplayCancelableProgressBar("Converting Legacy Asset Bundles", bundle, currCount / fullCount))
+                    break;
+
+                currCount++;
+                var group = settings.CreateGroup(bundle, false, false, false, null);
+                var schema = group.AddSchema<BundledAssetGroupSchema>();
+                schema.BuildPath.SetVariableByName(settings, AddressableAssetSettings.kLocalBuildPath);
+                schema.LoadPath.SetVariableByName(settings, AddressableAssetSettings.kLocalLoadPath);
+                schema.BundleMode = BundledAssetGroupSchema.BundlePackingMode.PackTogether;
+                group.AddSchema<ContentUpdateGroupSchema>().StaticContent = true;
+
+                var assetList = AssetDatabase.GetAssetPathsFromAssetBundle(bundle);
+
+                foreach (var asset in assetList)
+                {
+                    var guid = AssetDatabase.AssetPathToGUID(asset);
+                    settings.CreateOrMoveEntry(guid, group, false, false);
+                    var imp = AssetImporter.GetAtPath(asset);
+                    if (imp != null)
+                        imp.SetAssetBundleNameAndVariant(string.Empty, string.Empty);
+                }
+            }
+
+            if (fullCount > 0)
+                settings.SetDirty(AddressableAssetSettings.ModificationEvent.BatchModification, null, true, true);
+            EditorUtility.ClearProgressBar();
+            AssetDatabase.RemoveUnusedAssetBundleNames();
+        }
+
+        AddressablesReimport();
+    }
+
+    [MenuItem("Addressables/Reimport")]
+    public static void AddressablesReimport()
+    {
         List<string> paths = new List<string>();
 
-        foreach (string folder in folders)
+        string path1 = Path.Combine(Application.dataPath, "ResourcesAsset");
+        foreach (string subFile in Directory.GetFiles(path1, "*.*", SearchOption.AllDirectories))
         {
-            foreach (string subFile in Directory.GetFiles(folder, "*.*", SearchOption.AllDirectories))
+            if (!subFile.EndsWith(".meta"))
             {
-                if (!subFile.EndsWith(".meta"))
-                {
-                    var newPath = subFile.Replace("\\", "/");
-                    paths.Add(newPath);
-                }
+                var newPath = subFile.Replace(Application.dataPath, "");
+                newPath = "Assets" + newPath.Replace("\\","/");
+                paths.Add(newPath);
+            }
+        }
+
+        string path2 = Path.Combine(Application.dataPath, "Scenes");
+
+        foreach (string subFile in Directory.GetFiles(path2, "*.unity", SearchOption.AllDirectories))
+        {
+            if (!subFile.EndsWith(".meta"))
+            {
+                var newPath = subFile.Replace(Application.dataPath, "");
+                newPath = "Assets" + newPath.Replace("\\", "/");
+                paths.Add(newPath);
             }
         }
 
@@ -52,7 +119,7 @@ public class ClientTool
     }
 
 
-    [MenuItem("Addressables/Clear Miss File")]
+    [MenuItem("Addressables/ClearMiss")]
     public static void ClearMissFile()
     {
         var setting = AssetDatabase.LoadAssetAtPath<AddressableAssetSettings>("Assets/AddressableAssetsData/AddressableAssetSettings.asset");

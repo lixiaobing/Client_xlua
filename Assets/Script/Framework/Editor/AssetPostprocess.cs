@@ -178,7 +178,10 @@ namespace Framework
                 }
                 else
                 {
-                    setting.RemoveAssetEntry(guid);
+                    if (setting)
+                    {
+                        setting.RemoveAssetEntry(guid);
+                    }
                 }
             }
 
