@@ -3,38 +3,21 @@ function Log(info)
 	if type(info) == "table" then
 		info = dumpTable(info)
 	end
-	GameLog.Log(string.format("[%s]%s\n%s",Time.frameCount, info, debug.traceback()))
+	CS.GameLog.Log(string.format("[%s]%s\n%s",Time.frameCount, info, debug.traceback()))
 end
 
 function LogError(info)
 	if type(info) == "table" then
 		info = dumpTable(info)
 	end
-	GameLog.LogError(string.format("[%s]%s\n%s",Time.frameCount, info, debug.traceback()))
+	CS.GameLog.LogError(string.format("[%s]%s\n%s",Time.frameCount, info, debug.traceback()))
 end
 
 function LogWarning(info)
 	if type(info) == "table" then
 		info = dumpTable(info)
 	end
-	GameLog.LogWarning(string.format("[%s]%s\n%s",Time.frameCount, info, debug.traceback()))
-end
-
-function BattleLog(info, colorType)
-	if type(info) == "table" then
-		info = dumpTable(info)
-    end
-    local colorStr = "white"
-    if colorType == 1 then
-        colorStr = "blue"
-    elseif colorType == 2 then
-        colorStr = "green"
-    elseif colorType == 3 then
-        colorStr = "yellow"
-    elseif colorType == 4 then
-        colorStr = "red"
-    end
-	GameLog.BattleLog(string.format("[%s]-- <color=%s>%s</color>", Time.frameCount, colorStr, info), debug.traceback())
+	CS.GameLog.LogWarning(string.format("[%s]%s\n%s",Time.frameCount, info, debug.traceback()))
 end
 
 function dumpTable(value, desciption, nesting)

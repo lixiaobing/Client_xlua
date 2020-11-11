@@ -1,5 +1,12 @@
-addRequire("AutoRequireConfig")
-addRequire("RequireConfig")
+require("RequireUnity")
+require("framework/utility/Coroutine")
+require("framework/utility/Class")
+require("framework/utility/Global")
+require("framework/utility/TableExtend")
+
+
+require("AutoRequireConfig")
+require("RequireConfig")
 addRequire("RequireUI")
 
 --框架
@@ -14,12 +21,4 @@ addRequire("framework/ui/UIUtil")
 addRequire("framework/messager/Msg")
 addRequire("framework/messager/MsgCenter")
 addRequire("framework/messager/Messager")
-addRequire("framework/utility/TableExtend")
 
---基础
-addRequire("EngineDefine")
-addRequire("Class")
-addRequire("Global")
-addRequire("Prefab")
-addRequire("ObjectManager")
-addRequire("Define")
