@@ -129,8 +129,6 @@ public class ClientTool
         AssetDatabase.SaveAssets();
     }
 
-
-    [MenuItem("Addressables/ClearMiss")]
     public static void ClearMissFile()
     {
         var setting = AssetDatabase.LoadAssetAtPath<AddressableAssetSettings>("Assets/AddressableAssetsData/AddressableAssetSettings.asset");

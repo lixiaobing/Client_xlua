@@ -1,11 +1,10 @@
-function test(id)
-    print("test! "..id)
-end
-
-function gettest()
-    return "11234124", 1241253, true
-end
+local breakSocketHandle,debugXpCall = require("LuaDebugjit")("localhost",7003)
+local timer = Timer.New(function() 
+breakSocketHandle() end, 1, -1, false)
+timer:Start();
 
 function main()
     print("Game Start!")
+
+    
 end
