@@ -7,6 +7,7 @@
 */
 
 #if !XLUA_GENERAL
+using GameEditor;
 using UnityEngine;
 using UnityEditor;
 #endif
@@ -28,6 +29,8 @@ namespace CSObjectWrapEditor
 #else
         public static string common_path = Application.dataPath + "/XLua/Gen/";
 #endif
+        public const string LuaWorkDirectory = "Assets/Lua";
+        public const string LuaOutputDirectory = "Assets/ResourcesAsset/Lua";
 
         static GeneratorConfig()
         {
@@ -1733,6 +1736,14 @@ namespace CSObjectWrapEditor
         public static void ClearAll()
         {
             clear(GeneratorConfig.common_path);
+        }
+        
+        [MenuItem("XLua/Sync Lua Scripts(同步lua文件)", false, 3)]
+        public static void SyncLuaScripts()
+        {
+            GameEditorUtils.CopyFileOrDirectory(GeneratorConfig.LuaWorkDirectory,
+                GeneratorConfig.LuaOutputDirectory, true);
+            AssetDatabase.Refresh();
         }
 
         public delegate IEnumerable<CustomGenTask> GetTasks(LuaEnv lua_env, UserConfig user_cfg);
