@@ -40,7 +40,6 @@ public class ClientTool
 
         var settings = AddressableAssetSettings.Create(AddressableAssetSettingsDefaultObject.kDefaultConfigFolder, AddressableAssetSettingsDefaultObject.kDefaultConfigAssetName, true, true);
         AddressableAssetSettingsDefaultObject.Settings = settings;
-        EditorUtility.SetDirty(AddressableAssetSettingsDefaultObject.Settings);
 
         var bundleList = AssetDatabase.GetAllAssetBundleNames();
         if (settings != null && bundleList.Length > 0)
@@ -81,11 +80,23 @@ public class ClientTool
         }
 
         AddressablesReimport();
+        ClearMissFile();
     }
 
     [MenuItem("Addressables/Reimport")]
     public static void AddressablesReimport()
     {
+        var setting = AssetDatabase.LoadAssetAtPath<AddressableAssetSettings>("Assets/AddressableAssetsData/AddressableAssetSettings.asset");
+        for(var i=setting.groups.Count-1; i >= 0; i--)
+        {
+            var group = setting.groups[i];
+            if (group.name != "Built In Data" && group.name != "Default Local Group")
+            {
+                setting.RemoveGroup(group);
+            }
+        }
+        EditorUtility.SetDirty(setting);
+
         List<string> paths = new List<string>();
 
         string path1 = Path.Combine(Application.dataPath, "ResourcesAsset");
@@ -118,8 +129,6 @@ public class ClientTool
         AssetDatabase.SaveAssets();
     }
 
-
-    [MenuItem("Addressables/ClearMiss")]
     public static void ClearMissFile()
     {
         var setting = AssetDatabase.LoadAssetAtPath<AddressableAssetSettings>("Assets/AddressableAssetsData/AddressableAssetSettings.asset");
