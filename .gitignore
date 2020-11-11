@@ -36,3 +36,4 @@ build/luajit-2.1.0b2/src/luajit.lib
 
 Assets/AddressableAssetsData/
 Assets/AddressableAssetsData.meta
+.idea/
