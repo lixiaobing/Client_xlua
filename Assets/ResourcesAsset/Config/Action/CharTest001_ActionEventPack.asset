@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 028d66e21e743fa4dabf87a7be6c4175, type: 3}
+  m_Name: ActionEventPack
+  m_EditorClassIdentifier: 
+  statePacks:
+  - stateName: 
+    clip: {fileID: 0}
+    frameLength: 0
+    events:
+    - {fileID: 11400000, guid: 2cb22c48347811640a180f4e9a251edf, type: 2}
+    - {fileID: 11400000, guid: 30ecad22cd2ce7142923df947fb3bac2, type: 2}
