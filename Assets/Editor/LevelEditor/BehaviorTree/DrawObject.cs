@@ -9,7 +9,7 @@ using System.Runtime.Serialization;
 namespace hjcd.level.BehaviorTree
 {
     [Serializable]
-    public class DrawObject : IExport//: ScriptableObject
+    public class DrawObject : ScriptableObject ,IExport//: ScriptableObject
     {
         public string uuid = Utils.GetUUID(); //唯一标识
         public virtual string Type { get { return this.GetType().Name; } }

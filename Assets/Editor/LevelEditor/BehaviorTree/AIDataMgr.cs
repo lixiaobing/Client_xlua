@@ -74,7 +74,7 @@ namespace hjcd.level.BehaviorTree
     [XmlInclude(typeof(TriggerBuff))]
     [XmlInclude(typeof(BackRoot))]
     [XmlInclude(typeof(WillBeHit))]
-    public class AIDataMgr : IExport //: ScriptableObject
+    public class AIDataMgr : ScriptableObject,IExport 
     {
         //行为树编号
         public int id = 0;
@@ -316,6 +316,9 @@ namespace hjcd.level.BehaviorTree
             System.IO.File.WriteAllText(exportPath, content);
             AssetDatabase.Refresh();
             Utils.Log("导出成功:", exportPath);
+
+            //导出AI到asset
+            Test.ExportAI(this);
 
         }
 
