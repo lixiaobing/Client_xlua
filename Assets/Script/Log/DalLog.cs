@@ -76,11 +76,6 @@ namespace Dal
 			_logger.Init(LogDirectory);
 		}
 
-		private void Start()
-		{
-			Error("hello logger");
-		}
-
 		private void OnDestroy()
 		{
 			_logger.Dispose();
