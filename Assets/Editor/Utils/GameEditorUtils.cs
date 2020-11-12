@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace GameEditor
 {
-	public class GameEditorUtils
+	public static class GameEditorUtils
 	{
 		public static System.Diagnostics.Process CreateShellExProcess(string cmd, string args, string workingDir = "")
 		{
@@ -77,11 +77,11 @@ namespace GameEditor
 				return;
 			}
 
+			EnsurePath(Path.GetDirectoryName(dst));
 			if (isDeleteDst)
 			{
 				FileUtil.DeleteFileOrDirectory(dst);
 			}
-			EnsurePath(Path.GetDirectoryName(dst));
 			FileUtil.CopyFileOrDirectory(src, dst);
 		}
 	}

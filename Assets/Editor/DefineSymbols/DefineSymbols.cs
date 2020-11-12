@@ -13,27 +13,36 @@ using UnityEngine;
 
 namespace MaybeInside
 {
+	public static class DefineSymbolsLoader
+	{
+		static DefineSymbolsLoader()
+		{
+			const string path = "Assets/Editor/DefineSymbols/DefineSymbols.asset";
+			var instance = AssetDatabase.LoadAssetAtPath<DefineSymbols>(path);
+			if (instance == null)
+			{
+				throw new Exception($"加载失败:{path}");
+			}
+
+			DefineSymbols.Init(instance);
+		}
+	}
+
 	public class DefineSymbols : ScriptableObject
 	{
 		[Flags]
 		public enum Platform
 		{
-			Pc,
-			Ios,
-			Android,
+			Pc = 1 << 0,
+			Ios = 1 << 1,
+			Android = 1 << 2,
 		}
 
 		[Serializable]
-		public struct SymbolItem
+		public class SymbolItem
 		{
 			public string SymbolContent;
-			public bool IsEnable;
-		}
-
-		[Serializable]
-		public struct PlatformSymbols
-		{
-			public SymbolItem[] Symbols;
+			public Platform Platforms;
 		}
 
 		private static readonly Dictionary<Platform, BuildTargetGroup> Platform2BuildTarget =
@@ -52,15 +61,91 @@ namespace MaybeInside
 				{BuildTargetGroup.Android, Platform.Android},
 			};
 
-		public PlatformSymbols[] PlatformSymbolContainer;
+		private static DefineSymbols _instance;
 
-		private static readonly DefineSymbols _instance;
-		
-		static DefineSymbols()
+		public List<SymbolItem> Symbols;
+
+		public static void Init(DefineSymbols instance)
 		{
-			// const string path = "";
-			// _instance = AssetDatabase.LoadAssetAtPath<DefineSymbols>(path);
-			Debug.LogError("load");
+			_instance = instance;
+			foreach (var symbol in _instance.Symbols)
+			{
+				if (_instance.IsContainsDuplicate(symbol.SymbolContent))
+				{
+					throw new Exception("重复的宏定义");
+				}
+			}
+		}
+
+		private bool IsContainsDuplicate(string symbol)
+		{
+			foreach (var symbolItem in Symbols)
+			{
+				if (symbolItem.SymbolContent == symbol)
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
+		
+		private SymbolItem GetSymbolItem(string symbol)
+		{
+			foreach (var symbolItem in Symbols)
+			{
+				if (symbolItem.SymbolContent == symbol)
+				{
+					return symbolItem;
+				}
+			}
+
+			return null;
+		}
+
+		public void Reset()
+		{
+			Symbols.Clear();
+			foreach (var platform in BuildTarget2Platform)
+			{
+				var symbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(platform.Key);
+				var defines = symbols.Split(new[] {';'}, StringSplitOptions.RemoveEmptyEntries);
+				foreach (var def in defines)
+				{
+					var symbolItem = GetSymbolItem(def);
+					if (symbolItem == null)
+					{
+						symbolItem = new SymbolItem
+						{
+							SymbolContent = def,
+							Platforms = platform.Value
+						};
+						Symbols.Add(symbolItem);
+					}
+					else
+					{
+						symbolItem.Platforms |= platform.Value;
+					}
+				}
+			}
+		}
+
+		public void Apply()
+		{
+			foreach (var platform in BuildTarget2Platform)
+			{
+				var defines = string.Empty;
+				foreach (var symbol in Symbols)
+				{
+					if ((symbol.Platforms & platform.Value) == 0)
+					{
+						continue;
+					}
+					defines = $"{symbol.SymbolContent};{defines}";
+				}
+			
+				PlayerSettings.SetScriptingDefineSymbolsForGroup(platform.Key, defines);
+			}
 		}
 	}
 }
