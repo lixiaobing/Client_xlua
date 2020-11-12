@@ -1,4 +1,4 @@
-﻿---@class EquipGrow_AwakenSuccess
+---@class EquipGrow_AwakenSuccess
 ---@field curEquipData EquipMgr_EquipData 当前质点信息
 local EquipGrow_AwakenSuccess = DClass("EquipGrow_AwakenSuccess", BaseComponent)
 _G.EquipGrow_AwakenSuccess = EquipGrow_AwakenSuccess

@@ -1,4 +1,4 @@
-﻿---@class LoginWindow:BaseWindow
+---@class LoginWindow:BaseWindow
 local LoginWindow = DClass("LoginWindow", BaseWindow)
 _G.LoginWindow = LoginWindow
 

@@ -1,4 +1,4 @@
-﻿---@class EquipSuit_Equip 显示已经装备的
+---@class EquipSuit_Equip 显示已经装备的
 local EquipSuit_Equip = DClass("EquipSuit_Equip", BaseComponent)
 _G.EquipSuit_Equip = EquipSuit_Equip
 

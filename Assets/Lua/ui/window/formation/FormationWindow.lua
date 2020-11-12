@@ -1,4 +1,4 @@
-﻿---@class FormationWindow
+---@class FormationWindow
 local UIModelGroup = require("ui/window/formation/UIModelGroup")
 local FormationWindow = DClass("FormationWindow", BaseWindow)
 _G.FormationWindow = FormationWindow

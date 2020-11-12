@@ -16,11 +16,14 @@ namespace Framework
         }
 
         public LuaEnv luaEnv = null;
+        public LuaLooper looper = null;
 
         void Awake()
         {
             luaEnv = new LuaEnv();
             luaEnv.AddLoader(CustomLoader);
+
+            looper = this.gameObject.AddComponent<LuaLooper>();
         }
 
         public void Init()
@@ -65,6 +68,10 @@ namespace Framework
 
             if (GameConst.isDevelop)
             {
+                if (filePath.IndexOf("LoginWindow")>-1)
+                {
+                    var X = path;
+                }
                 path = Path.Combine(Application.dataPath, GameConst.luaCodePath);
                 path = Path.Combine(path, filePath);
                 path = path + ".lua";

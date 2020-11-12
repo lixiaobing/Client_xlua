@@ -51,7 +51,8 @@ public static class XLuaConfig
             typeof(Action<string>),
             typeof(Action<double>),
             typeof(UnityEngine.Events.UnityAction),
-            typeof(System.Collections.IEnumerator)
+            typeof(System.Collections.IEnumerator),
+            typeof(Action<int, UnityEngine.Object>)
         };
 
     //黑名单

@@ -1,4 +1,4 @@
-﻿---@class EquipOwn_ChangePlace 显示当前拥有的质点
+---@class EquipOwn_ChangePlace 显示当前拥有的质点
 local EquipOwn_ChangePlace = DClass("EquipOwn_ChangePlace", BaseComponent)
 _G.EquipOwn_ChangePlace = EquipOwn_ChangePlace
 

@@ -1,4 +1,4 @@
-﻿---@class EquipGrow_BaseInfo
+---@class EquipGrow_BaseInfo
 ---@field curEquipData EquipMgr_EquipData 当前质点信息
 local EquipGrow_BaseInfo = DClass("EquipGrow_BaseInfo", BaseComponent)
 _G.EquipGrow_BaseInfo = EquipGrow_BaseInfo

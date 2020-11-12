@@ -1,4 +1,4 @@
-﻿---@class EquipSuit_Details 显示当前选中套装的详细信息
+---@class EquipSuit_Details 显示当前选中套装的详细信息
 local EquipSuit_Details = DClass("EquipSuit_Details", BaseComponent)
 _G.EquipSuit_Details = EquipSuit_Details
 

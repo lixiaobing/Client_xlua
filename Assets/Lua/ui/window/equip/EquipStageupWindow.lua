@@ -1,4 +1,4 @@
-﻿---@class EquipStageupWindow
+---@class EquipStageupWindow
 local EquipStageupWindow = DClass("EquipStageupWindow", BaseWindow)
 _G.EquipStageupWindow = EquipStageupWindow
 

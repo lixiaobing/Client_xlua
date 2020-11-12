@@ -1,4 +1,4 @@
-﻿---@class GMWindow
+---@class GMWindow
 ---@field tabSelect number 当前选中的页签
 local GMWindow = DClass("GMWindow", BaseWindow)
 _G.GMWindow = GMWindow

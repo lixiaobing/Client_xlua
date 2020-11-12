@@ -1,4 +1,4 @@
-﻿---@class EquipGrow_Awaken
+---@class EquipGrow_Awaken
 ---@field curEquipData EquipMgr_EquipData 当前质点信息
 ---@field openedFold EquipGrow_Awaken_FoldData 当前打开的折叠框
 local EquipGrow_Awaken = DClass("EquipGrow_Awaken", BaseComponent)

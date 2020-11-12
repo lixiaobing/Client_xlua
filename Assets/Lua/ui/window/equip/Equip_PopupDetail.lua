@@ -1,4 +1,4 @@
-﻿---@class Equip_PopupDetail 质点信息对比
+---@class Equip_PopupDetail 质点信息对比
 local Equip_PopupDetail = DClass("Equip_PopupDetail", BaseComponent)
 _G.Equip_PopupDetail = Equip_PopupDetail
 

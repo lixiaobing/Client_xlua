@@ -1,5 +1,5 @@
----@class BaseComponent : LuaComponentBase
-local BaseComponent = DClass("BaseComponent", LuaComponentBase)
+---@class BaseComponent : MonoComponent
+local BaseComponent = DClass("BaseComponent", MonoComponent)
 _G.BaseComponent = BaseComponent
 
 function BaseComponent:ctor(data)

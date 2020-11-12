@@ -3,13 +3,15 @@ require("framework/utility/Coroutine")
 require("framework/utility/Class")
 require("framework/utility/Global")
 require("framework/utility/TableExtend")
-
+require("framework/utility/PlayerPrefsUtils")
 
 require("AutoRequireConfig")
 require("RequireConfig")
 addRequire("RequireUI")
 
 --框架
+addRequire("framework/MonoComponent")
+addRequire("framework/ui/BaseComponent")
 addRequire("framework/ui/BaseComponent")
 addRequire("framework/ui/BaseWindow")
 addRequire("framework/ui/BaseWindowExtend")

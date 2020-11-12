@@ -1,4 +1,4 @@
-﻿---@class EquipOwn_Change
+---@class EquipOwn_Change
 local EquipOwn_Change = DClass("EquipOwn_Change", BaseComponent)
 _G.EquipOwn_Change = EquipOwn_Change
 

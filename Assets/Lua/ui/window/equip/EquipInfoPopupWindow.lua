@@ -1,4 +1,4 @@
-﻿---@class EquipInfoPopupWindow 质点信息对比
+---@class EquipInfoPopupWindow 质点信息对比
 local EquipInfoPopupWindow = DClass("EquipInfoPopupWindow", BaseWindow)
 _G.EquipInfoPopupWindow = EquipInfoPopupWindow
 

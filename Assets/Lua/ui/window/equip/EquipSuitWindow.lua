@@ -1,4 +1,4 @@
-﻿---@class EquipSuitWindow
+---@class EquipSuitWindow
 local EquipSuitWindow = DClass("EquipSuitWindow", BaseWindow)
 _G.EquipSuitWindow = EquipSuitWindow
 

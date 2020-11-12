@@ -36,7 +36,8 @@ function loadRequire()
 		for idx, mod in ipairs(requireList) do
 			local ret, msg = pcall(require, mod)
 
-			if not ret then
+            print(mod)
+            if not ret then
 				LogError(string.format("load require failed: %s\n%s", mod, msg))
 			end
 			

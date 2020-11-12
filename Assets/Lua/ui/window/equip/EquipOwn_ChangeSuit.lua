@@ -1,4 +1,4 @@
-﻿---@class EquipOwn_ChangeSuit 筛选显示的套装
+---@class EquipOwn_ChangeSuit 筛选显示的套装
 local EquipOwn_ChangeSuit = DClass("EquipOwn_ChangeSuit", BaseComponent)
 _G.EquipOwn_ChangeSuit = EquipOwn_ChangeSuit
 

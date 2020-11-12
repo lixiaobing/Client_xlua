@@ -1,4 +1,4 @@
-﻿---@class UIModelGroup
+---@class UIModelGroup
 local Model = DClass("Model")
 
 function Model:bind(gameObject)

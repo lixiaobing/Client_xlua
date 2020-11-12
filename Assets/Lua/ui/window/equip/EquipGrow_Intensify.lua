@@ -1,4 +1,4 @@
-﻿---@class EquipGrow_Intensify 强化 非满级
+---@class EquipGrow_Intensify 强化 非满级
 ---@field curEquipData EquipMgr_EquipData 当前质点信息
 ---@field curCostGold number 当前消耗金币数量
 ---@field isMaxLv boolean 已经达到最高级

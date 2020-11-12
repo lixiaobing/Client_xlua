@@ -20,6 +20,22 @@ public class ClientTool
         PlayerPrefs.DeleteAll();
     }
 
+
+    [MenuItem("Tools/Trans Code To UTF8(No BOM)", false, 100)]
+    public static void TransCodeUTF8()
+    {
+        string luaPath = Application.dataPath + "/Lua";
+        string[] files = Directory.GetFiles(luaPath, "*.lua", SearchOption.AllDirectories);
+
+        foreach (var path in files)
+        {
+            string content = File.ReadAllText(path, Encoding.Default);
+
+            var encoding = new UTF8Encoding(false);
+            File.WriteAllText(path, content, encoding);
+        }
+    }
+
     [MenuItem("Addressables/Generate")]
     public static void AddressablesGenerate()
     {

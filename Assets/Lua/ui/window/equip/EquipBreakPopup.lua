@@ -1,4 +1,4 @@
-﻿---@class EquipBreakPopup
+---@class EquipBreakPopup
 local EquipBreakPopup = DClass("EquipBreakPopup", BaseWindow)
 _G.EquipBreakPopup = EquipBreakPopup
 

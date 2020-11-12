@@ -1,4 +1,4 @@
-﻿---@class Equip_ItemCell 质点信息
+---@class Equip_ItemCell 质点信息
 local Equip_ItemCell = DClass("Equip_ItemCell", BaseComponent)
 _G.Equip_ItemCell = Equip_ItemCell
 

@@ -1,4 +1,4 @@
-﻿---@class EquipSuit_Suit 显示所有的方案
+---@class EquipSuit_Suit 显示所有的方案
 local EquipSuit_Suit = DClass("EquipSuit_Suit", BaseComponent)
 _G.EquipSuit_Suit = EquipSuit_Suit
 

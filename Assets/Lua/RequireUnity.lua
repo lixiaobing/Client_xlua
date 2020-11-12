@@ -61,8 +61,15 @@ HorizontalLayoutGroup = CS.UnityEngine.UI.HorizontalLayoutGroup
 UIInput   = CS.UnityEngine.UI.InputField
 Toggle   = CS.UnityEngine.UI.Toggle
 
+
+--Custom
 GameManager = CS.Framework.GameManager
 AssetManager = CS.Framework.AssetManager
+LuaManager = CS.Framework.LuaManager
+LuaComponent = CS.Framework.LuaComponent
+GameTween = CS.GameTween
+GameAsset = CS.GameAsset
+
 
 --AI
 -- NavMesh = UnityEngine.AI.NavMesh

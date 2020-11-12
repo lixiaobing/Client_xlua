@@ -1,4 +1,4 @@
-﻿---@class EquipGrowWindow 质点成长界面
+---@class EquipGrowWindow 质点成长界面
 ---@field nodeState number 当前节点状态
 ---@field tabState number 当前分页状态
 ---@field rawModelState number 当前模型显示状态
