@@ -10,12 +10,20 @@ using System;
 using Dal;
 using UnityEditor;
 using UnityEngine;
-using LogOption = Dal.LogOption;
 
 namespace GameEditor
 {
 	public class LogSetting : ScriptableObject
 	{
+		[Flags]
+		public enum LogOption
+		{
+			Console = 1 << 0,
+			File = 1 << 1,
+			Date = 1 << 2,
+			Stack = 1 << 3,
+		}
+		
 		[Serializable]
 		public class LogItem
 		{
@@ -26,9 +34,10 @@ namespace GameEditor
 		}
 
 		private static LogSetting _instance;
-		
+
+		public string[] ScriptsDir;
 		public LogItem[] LogItems;
-		
+
 		[UnityEditor.Callbacks.DidReloadScripts(2)]
 		private static void LogSettingLoader()
 		{
@@ -40,6 +49,21 @@ namespace GameEditor
 			}
 
 			_instance = instance;
+		}
+
+		public void Refresh()
+		{
+		}
+
+		public void Apply()
+		{
+			foreach (var dir in ScriptsDir)
+			{
+				foreach (var logItem in LogItems)
+				{
+					
+				}
+			}
 		}
 	}
 }

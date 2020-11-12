@@ -8,6 +8,7 @@
 
 
 using UnityEditor;
+using UnityEngine;
 
 namespace GameEditor
 {
@@ -29,7 +30,19 @@ namespace GameEditor
 		public override void OnInspectorGUI()
 		{
 			base.OnInspectorGUI();
+			GUILayout.BeginHorizontal();
+
+			if (GUILayout.Button("Refresh"))
+			{
+				_owner.Refresh();
+			}
 			
+			if (GUILayout.Button("Apply"))
+			{
+				_owner.Apply();
+			}
+			
+			GUILayout.EndHorizontal();
 		}
 
 //		private void OnSceneGUI()

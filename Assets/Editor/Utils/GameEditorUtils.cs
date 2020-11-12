@@ -6,6 +6,7 @@
 *******************************************
 ** ************************************* */
 
+using System;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -83,6 +84,25 @@ namespace GameEditor
 				FileUtil.DeleteFileOrDirectory(dst);
 			}
 			FileUtil.CopyFileOrDirectory(src, dst);
+		}
+		
+		public interface IWalkDirectory
+		{
+			string SearchPattern { get; }
+		}
+
+		public static void WalkDirectory(string path, string searchPattern, SearchOption searchOption)
+		{
+			if (!IsExist(path))
+			{
+				return;
+			}
+
+			var files = Directory.GetFiles(path, searchPattern, SearchOption.AllDirectories);
+			foreach (var file in files)
+			{
+				Debug.LogError($"{file}");
+			}
 		}
 	}
 }
