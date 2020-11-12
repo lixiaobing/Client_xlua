@@ -1,4 +1,4 @@
-﻿---@class HeroSelectWindow
+---@class HeroSelectWindow
 local HeroSelectWindow = DClass("HeroSelectWindow", BaseWindow)
 _G.HeroSelectWindow = HeroSelectWindow
 

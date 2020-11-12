@@ -1,4 +1,4 @@
-﻿---@class EquipUsedWindow ---提示装备在其他英雄身上装备着
+---@class EquipUsedWindow ---提示装备在其他英雄身上装备着
 local EquipUsedWindow = DClass("EquipUsedWindow", BaseWindow)
 _G.EquipUsedWindow = EquipUsedWindow
 

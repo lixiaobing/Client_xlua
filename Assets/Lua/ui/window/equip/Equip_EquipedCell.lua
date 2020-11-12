@@ -1,4 +1,4 @@
-﻿---@class Equip_EquipedCell 装备的质点信息
+---@class Equip_EquipedCell 装备的质点信息
 local Equip_EquipedCell = DClass("Equip_EquipedCell", BaseComponent)
 _G.Equip_EquipedCell = Equip_EquipedCell
 

@@ -8,9 +8,9 @@ UIGlobal.loading = nil
 UIGlobal.topBanner = nil
 
 function UIGlobal.init()
-    if this.onUpdate then
-        UpdateBeat:Add(this.onUpdate, this)
-    end
+    -- if this.onUpdate then
+    --     UpdateBeat:Add(this.onUpdate, this)
+    -- end
 
     this.readyAsset()
 

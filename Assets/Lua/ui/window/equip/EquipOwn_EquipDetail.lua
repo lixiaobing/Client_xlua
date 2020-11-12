@@ -1,4 +1,4 @@
-﻿---@class EquipOwn_EquipDetail
+---@class EquipOwn_EquipDetail
 local EquipOwn_EquipDetail = DClass("EquipOwn_EquipDetail", BaseComponent)
 _G.EquipOwn_EquipDetail = EquipOwn_EquipDetail
 

@@ -1,4 +1,4 @@
-﻿---@class EquipOwnChangeSuitPopup 筛选显示的套装
+---@class EquipOwnChangeSuitPopup 筛选显示的套装
 local EquipOwnChangeSuitPopup = DClass("EquipOwnChangeSuitPopup", BaseWindow)
 _G.EquipOwnChangeSuitPopup = EquipOwnChangeSuitPopup
 

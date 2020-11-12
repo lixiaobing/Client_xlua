@@ -18,3 +18,5 @@ Config.FuncCombine = function(name)
 	end
 	return configCombine[1]
 end
+
+Config.Language = {}

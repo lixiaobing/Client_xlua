@@ -1,4 +1,4 @@
-﻿---@class EquipGrow_Break 突破 满级
+---@class EquipGrow_Break 突破 满级
 ---@field curEquipData EquipMgr_EquipData 当前质点信息
 local EquipGrow_Break = DClass("EquipGrow_Break", BaseComponent)
 _G.EquipGrow_Break = EquipGrow_Break

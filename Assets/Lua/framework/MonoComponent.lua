@@ -3,7 +3,7 @@
 -- @author lanqibo
 -- @date: 8/8/2019
 -- All rights reserved
----@class LuaComponentBase
+---@class MonoComponent
 local MonoComponent = DClass("MonoComponent")
 _G.MonoComponent = MonoComponent
 

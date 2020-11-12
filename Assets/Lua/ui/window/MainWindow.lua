@@ -1,4 +1,4 @@
-﻿---@class MainWindow:BaseWindow
+---@class MainWindow:BaseWindow
 local MainWindow = DClass("MainWindow", BaseWindow)
 _G.MainWindow = MainWindow
 

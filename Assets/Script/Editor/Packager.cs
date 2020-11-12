@@ -90,17 +90,15 @@ public class Packager
 
     static void HandleLuaFile()
     {
-        /*
-
         string luaPath = AppDataPath + "/ResourcesAsset/Lua/";
-
         if (Directory.Exists(luaPath))
         {
             Directory.Delete(luaPath, true);
         }
         Directory.CreateDirectory(luaPath);
 
-        string[] luaPaths = { LuaConst.luaDir, LuaConst.toluaDir };
+        string path1 = Path.Combine(Application.dataPath, GameConst.luaCodePath);
+        string[] luaPaths = { path1 };
         string luaList = string.Empty;
 
         for (int i = 0; i < luaPaths.Length; i++)
@@ -116,26 +114,7 @@ public class Packager
                 if (f.EndsWith(".meta")) continue;
 
                 string newfile = f.Replace(luaDataPath, "");
-                string newpath = luaPath + newfile;
-
-                if (f.IndexOf("lua/proto/C2S") > -1 || (f.IndexOf("lua/proto/S2C") > -1))
-                {
-
-                }
-                else
-                {
-                    if (GameConst.LuaByteMode)
-                    {
-                        newfile = newfile.Replace(".lua", ".bytes");
-                        newpath = newpath.Replace(".lua", ".bytes");
-                    }
-                    else
-                    {
-                        newfile = newfile.Replace(".lua", ".txt");
-                        newpath = newpath.Replace(".lua", ".txt");
-                    }
-                }
-
+                string newpath = luaPath + newfile + ".txt";
 
                 string path = Path.GetDirectoryName(newpath);
 
@@ -146,19 +125,12 @@ public class Packager
                 {
                     File.Delete(newpath);
                 }
-                if (GameConst.LuaByteMode)
-                {
-                    EncodeLuaFile(f, newpath);
-                }
-                else
-                {
-                    File.Copy(f, newpath, true);
-                }
+                File.Copy(f, newpath, true);
 
                 n++;
                 EditorUtility.DisplayProgressBar("Build Lua Files", newpath, (float)n / (float)files.Count);
 
-                luaList += "Lua/" + newfile.Replace(".bytes", "").Replace(".txt", "") + "\r\n";
+                luaList += "Lua/" + newfile.Replace(".txt", "") + "\r\n";
             }
         }
 
@@ -169,8 +141,6 @@ public class Packager
 
         EditorUtility.ClearProgressBar();
         AssetDatabase.Refresh();
-
-    */
     }
 
     static public void HandleAkAudioFile(bool isWindows = false)

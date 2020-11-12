@@ -1,4 +1,4 @@
-﻿---@class EquipSuit_Rename 改名弹框
+---@class EquipSuit_Rename 改名弹框
 local EquipSuit_Rename = DClass("EquipSuit_Rename", BaseComponent)
 _G.EquipSuit_Rename = EquipSuit_Rename
 
