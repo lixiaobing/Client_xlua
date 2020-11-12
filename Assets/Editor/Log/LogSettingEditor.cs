@@ -1,25 +1,24 @@
 ﻿/* ****************************************
 *******************************************
 * author : kaka
-* create time : 2020-11-12 10:18:38
+* create time : 2020-11-12 11:44:12
 * description : 
 *******************************************
 ** ************************************* */
 
 
 using UnityEditor;
-using UnityEngine;
 
 namespace GameEditor
 {
-	[CustomEditor(typeof(DefineSymbols))]
-	public class DefineSymbolsEditor : Editor
+	[CustomEditor(typeof(LogSetting))]
+	public class LogSettingEditor : Editor
 	{
-		private DefineSymbols _owner;
+		private LogSetting _owner;
 
 		private void OnEnable()
 		{
-			_owner = serializedObject.targetObject as DefineSymbols;
+			_owner = serializedObject.targetObject as LogSetting;
 		}
 
 		private void OnDisable()
@@ -30,19 +29,7 @@ namespace GameEditor
 		public override void OnInspectorGUI()
 		{
 			base.OnInspectorGUI();
-			GUILayout.BeginHorizontal();
 			
-			if (GUILayout.Button("Reset"))
-			{
-				_owner.Reset();
-			}
-			
-			if (GUILayout.Button("Apply"))
-			{
-				_owner.Apply();
-			}
-
-			GUILayout.EndHorizontal();
 		}
 
 //		private void OnSceneGUI()

@@ -11,23 +11,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace MaybeInside
+namespace GameEditor
 {
-	public static class DefineSymbolsLoader
-	{
-		static DefineSymbolsLoader()
-		{
-			const string path = "Assets/Editor/DefineSymbols/DefineSymbols.asset";
-			var instance = AssetDatabase.LoadAssetAtPath<DefineSymbols>(path);
-			if (instance == null)
-			{
-				throw new Exception($"加载失败:{path}");
-			}
-
-			DefineSymbols.Init(instance);
-		}
-	}
-
 	public class DefineSymbols : ScriptableObject
 	{
 		[Flags]
@@ -65,8 +50,16 @@ namespace MaybeInside
 
 		public List<SymbolItem> Symbols;
 
-		public static void Init(DefineSymbols instance)
+		[UnityEditor.Callbacks.DidReloadScripts(1)]
+		private static void DefineSymbolsLoader()
 		{
+			const string path = "Assets/Editor/DefineSymbols/DefineSymbols.asset";
+			var instance = AssetDatabase.LoadAssetAtPath<DefineSymbols>(path);
+			if (instance == null)
+			{
+				throw new Exception($"加载失败:{path}");
+			}
+
 			_instance = instance;
 			foreach (var symbol in _instance.Symbols)
 			{
