@@ -1,0 +1,464 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine;
+namespace hjcd.level.CheckPoint
+{
+    public class TriggerGroupWindow : BaseWindow
+    {
+        public static TriggerGroupWindow Instance;
+
+
+        public static void CloseWindow()
+        {
+            if (Instance != null)
+            {
+                Instance.Close();
+                Instance = null;
+            }
+        }
+        public TriggerGroupWindow()
+        {
+            Instance = this;
+        }
+        public Trigger trigger;
+        public TriggerGroupGroup triggerGroupGroup = new TriggerGroupGroup();
+        public override void Initlize(params object[] obj)
+        {
+            triggerGroupGroup = (TriggerGroupGroup)obj[0];
+
+            this.TitleContent = "触发器";
+            this.minSize = new Vector2(1200, 600);
+            this.maximized = true;
+            //注册监听器
+            EventCenter.GetInstance(EventCenterType.CPEditor).RegisterListener(MessageType.REMOVE_NODE, OnRemoveNode);
+            EventCenter.GetInstance(EventCenterType.CPEditor).RegisterListener(MessageType.REPAINT, DoRepaint);
+
+        }
+
+        void OnGUI()
+        {
+            GUI.skin.font = Utils.font ;
+            EditorGUILayout.BeginHorizontal();
+
+            DrawGroups();
+
+            DrawTriggers();
+
+            DrawInspector();
+
+            EditorGUILayout.EndHorizontal();
+        }
+
+        public void DrawInspector()
+        {
+            EditorGUILayout.BeginVertical(Utils.Style1, GUILayout.ExpandHeight(true), GUILayout.ExpandWidth(true));
+            if (focus != null)
+            {
+                focus.OnDraw();
+            }
+            else
+            {
+                Utils.LabelTip("点击选择元件进行编辑");
+
+            }
+            EditorGUILayout.EndVertical();
+
+        }
+        Node focus;
+
+        public bool IsFoucused(Node node) {
+            return node == focus;
+        }
+        Vector2 scrollPosition;
+        public void DrawGroups() {
+
+            EditorGUILayout.BeginVertical(Utils.Style1, GUILayout.ExpandHeight(true), GUILayout.MinWidth(400));
+
+            EditorGUILayout.BeginHorizontal();
+            //EditorGUILayout.LabelField("触发器分组");
+            if (Utils.Button("新建分组")) {
+                triggerGroupGroup.CreateTriggerGroup();
+            }
+
+            EditorGUILayout.EndHorizontal();
+
+            scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
+
+            //foreach (var triggerGroup in triggerGroupGroup.triggerGroups)
+
+            for (int gIndex = triggerGroupGroup.triggerGroups.Count - 1; gIndex > -1; gIndex--)
+            {
+
+                var triggerGroup = triggerGroupGroup.triggerGroups[gIndex];
+                EditorGUILayout.BeginVertical(Utils.Style2);//Utils.Style2
+
+
+                EditorGUILayout.BeginHorizontal();
+                triggerGroup.foldOut = EditorGUILayout.Foldout(triggerGroup.foldOut, triggerGroup.Name);
+
+
+                if (triggerGroup.Edit)
+                {
+                    triggerGroup.Name = EditorGUILayout.TextField(triggerGroup.Name);
+                    if (Utils.Button("完成", GUILayout.MaxWidth(60)))
+                    {
+                        triggerGroup.Edit = false;
+
+                    }
+                }
+                else
+                {
+                    if (Utils.Button("改名", GUILayout.MaxWidth(60)))
+                    {
+                        triggerGroup.Edit = true;
+                    }
+                }
+                if (Utils.Button("删除", GUILayout.MaxWidth(60))) {
+
+                    triggerGroupGroup.triggerGroups.RemoveAt(gIndex);
+                    triggerGroup.Destroy();
+
+
+                }
+                if (Utils.Button("新增", GUILayout.MaxWidth(60)))
+                {
+                    Trigger trigger = triggerGroup.CreateTrigger();
+                    this.ChangeTrigger(trigger);
+                }
+
+                EditorGUILayout.EndHorizontal();
+
+
+                if (triggerGroup.foldOut)
+                {
+                    //EditorGUILayout.BeginVertical(Utils.Style1);
+                    for (int index = triggerGroup.triggers.Count - 1; index > -1; index--)
+                    {
+                        var trigger = triggerGroup.triggers[index];
+                        EditorGUILayout.BeginHorizontal();
+                        // Utils.Box(trigger.Name , GUILayout.ExpandWidth(true));
+
+                        if (Utils.EventLabel(trigger.Name, trigger == this.trigger, GUILayout.ExpandWidth(true))) {
+                            //this.trigger = trigger;
+                            Node.SetActiveGameObject(trigger.gameObject);
+                            this.ChangeTrigger(trigger);
+
+                        }
+
+                        /*                 if (Utils.Button("编辑", GUILayout.MaxWidth(60)))
+                                         {
+                                             this.trigger = trigger;
+                                         }*/
+                        if (Utils.Button(trigger.enable ? "已激活" : "未激活", trigger.enable ? Color.yellow : Color.red, GUILayout.MaxWidth(80)))
+                        {
+                            trigger.enable = !trigger.enable;
+                        }
+
+                        if (Utils.Button("复制", GUILayout.MaxWidth(60)))
+                        {
+                            Debug.LogError("复制功能暂未实现");
+                        }
+
+                        if (Utils.Button("刪除", GUILayout.MaxWidth(60)))
+                        {
+                            triggerGroup.triggers.RemoveAt(index);
+                            if (this.trigger == trigger) {
+                                this.ChangeTrigger(null);
+                            }
+                            trigger.Destroy(); //删除触发器
+                        }
+                        EditorGUILayout.EndHorizontal();
+                    }
+                    //EditorGUILayout.EndVertical();
+                }
+                EditorGUILayout.EndVertical();
+            }
+
+            EditorGUILayout.EndScrollView();
+            EditorGUILayout.EndVertical();
+        }
+
+
+        public void ChangeTrigger(Trigger trigger) {
+            if (this.trigger == trigger) {
+                return;
+            }
+            this.trigger = trigger;
+            if (this.trigger != null)
+            {
+                if (this.trigger.executeNodes.Count > 0)
+                {
+                    focus = this.trigger.executeNodes[0];
+                    focus.DoFocus();
+                    return;
+                }
+                if (this.trigger.triggerNodes.Count > 0)
+                {
+                    focus = this.trigger.triggerNodes[0];
+                    focus.DoFocus();
+                    return;
+                }
+                if (this.trigger.conditionNodes.Count > 0)
+                {
+                    focus = this.trigger.conditionNodes[0];
+                    focus.DoFocus();
+                    return;
+                }
+                focus = null;
+            }
+            else {
+                focus = null;
+            }
+        }
+        public void DrawTriggers()
+        {
+            if (trigger == null) {
+                EditorGUILayout.BeginVertical(Utils.Style1, GUILayout.ExpandHeight(true), GUILayout.MinWidth(400));
+                Utils.LabelTip("请先选择触发器");
+                EditorGUILayout.EndVertical();
+                return;
+            
+            }
+
+            EditorGUILayout.BeginVertical(Utils.Style1, GUILayout.ExpandHeight(true), GUILayout.MinWidth(400));
+
+
+            Utils.TextField("UID", trigger.uid);
+/*            Utils.LabelField("触发器编号", trigger.id.ToString());*/
+            trigger.Name = Utils.TextField("名称", trigger.Name);
+            //trigger.groupId    = Utils.IntField("分组", trigger.groupId);
+            trigger.orderIndex = Utils.IntField("排序索引", trigger.orderIndex);
+            trigger.loopTimes = Utils.IntField("触发次数", trigger.loopTimes);
+            trigger.enable    = Utils.Toggle("激活状态", trigger.enable);
+            trigger.unlimited = Utils.Toggle("开战之前执行", trigger.unlimited);
+            trigger.desc = EditorGUILayout.TextArea(trigger.desc, GUILayout.MinHeight(60));
+            trigger.desc = trigger.desc.Replace("\r", "");
+            trigger.desc = trigger.desc.Replace("\n", "");
+            trigger.desc = trigger.desc.Trim();
+            /////////////////////////////////////////////////////////
+
+            EditorGUILayout.BeginVertical(Utils.Style1);
+            EditorGUILayout.BeginHorizontal();
+            this.extends[0] = EditorGUILayout.Foldout(this.extends[0], "触发器");
+            if (Utils.Button("选择", GUILayout.MaxWidth(100)))
+            {
+                ShowCreateTriggerMenu();
+            }
+            EditorGUILayout.EndHorizontal();
+            if (this.extends[0])
+            {
+                foreach (var item in trigger.triggerNodes)
+                {
+                    if (Utils.EventLabel(item.Description, IsFoucused(item), GUILayout.ExpandWidth(true), GUILayout.Height(20)))
+                    {
+                        focus = item;
+                        item.DoFocus();
+
+                    }
+                }
+            }
+            EditorGUILayout.EndVertical();
+            /////////////////////////////////////////////////////////
+            EditorGUILayout.BeginVertical(Utils.Style1);
+            EditorGUILayout.BeginHorizontal();
+            this.extends[1] = EditorGUILayout.Foldout(this.extends[1], "判断条件");
+            if (Utils.Button("新增", GUILayout.MaxWidth(100)))
+            {
+                ShowCreateCondtionMenu();
+            }
+            EditorGUILayout.EndHorizontal();
+            if (this.extends[1])
+            {
+                ConditionNode remove_condtionNode = null;
+                foreach (var item in trigger.conditionNodes)
+                {
+                    EditorGUILayout.BeginHorizontal();
+                    if (Utils.EventLabel(item.Description, item == focus, GUILayout.ExpandWidth(true), GUILayout.Height(20)))
+                    {
+                        focus = item;
+                        item.DoFocus();
+                    }
+                    if (Utils.Button("刪除", GUILayout.MaxWidth(100)))
+                    {
+                        remove_condtionNode = item;
+
+                    }
+                    EditorGUILayout.EndHorizontal();
+                }
+                //移除操作
+                if (remove_condtionNode != null)
+                {
+                    trigger.RemoveCondtionNode(remove_condtionNode);
+                    remove_condtionNode.Destroy();
+                    remove_condtionNode = null;
+                }
+            }
+            EditorGUILayout.EndVertical();
+            ///////////////////////////////////////////////////////// 
+            EditorGUILayout.BeginVertical(Utils.Style1);
+            EditorGUILayout.BeginHorizontal();
+            this.extends[2] = EditorGUILayout.Foldout(this.extends[2], "执行事件");
+            if (Utils.Button("新增", GUILayout.MaxWidth(100)))
+            {
+                ShowCreateExecuteMenu();
+            }
+            EditorGUILayout.EndHorizontal();
+            if (this.extends[2])
+            {
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField("执行类型");
+                trigger.triggerExecutType = Utils.DrawPopup<TriggerExecutType>(trigger.triggerExecutType);
+                EditorGUILayout.EndHorizontal();
+
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField("随机事件数量");
+                trigger.excuteNum = EditorGUILayout.IntField(trigger.excuteNum);
+                EditorGUILayout.EndHorizontal();
+
+                ExecuteNode remove_executeNode = null;
+                int moveDownIndex = -1;
+                for (int i = 0; i < trigger.executeNodes.Count; i++)
+                {
+                    ExecuteNode item = trigger.executeNodes[i];
+                    EditorGUILayout.BeginHorizontal();
+                    if (Utils.EventLabel(item.Description, item== focus, GUILayout.ExpandWidth(true),GUILayout.MinWidth(200), GUILayout.Height(20)))
+                    {
+                        focus = item;
+                        item.DoFocus();
+                    }
+
+
+                    if (Utils.Button(item.enable ? "已激活" : "未激活", item.enable ? Color.yellow : Color.red, GUILayout.MaxWidth(100)))
+                    {
+                        item.enable = !item.enable;
+                    }
+
+                    if (Utils.Button("下移", GUILayout.MaxWidth(100)))
+                    {
+                        moveDownIndex = i;
+                    }
+
+                    if (Utils.Button("刪除", GUILayout.MaxWidth(100)))
+                    {
+                        remove_executeNode = item;
+                    }
+                    EditorGUILayout.EndHorizontal();
+                }
+                //下移操作
+                if (moveDownIndex != -1) {
+                    ExecuteNode tempNode = trigger.executeNodes[moveDownIndex];
+                    int nextIndex = (moveDownIndex + 1) % trigger.executeNodes.Count;  //10  0-9
+                    trigger.executeNodes[moveDownIndex] = trigger.executeNodes[nextIndex];
+                    trigger.executeNodes[nextIndex] = tempNode;
+                }
+                //移除操作
+                if (remove_executeNode != null)
+                {
+                    trigger.RemoveExecutNode(remove_executeNode);
+                    remove_executeNode.Destroy();
+                    remove_executeNode = null;
+                }
+
+            }
+            EditorGUILayout.EndVertical();
+
+            EditorGUILayout.EndVertical();
+
+        }
+
+        public void ShowCreateTriggerMenu()
+        {
+            ShowMenu(NodeType.triggers, OnAddTriggerNodeCallback);
+        }
+
+        public void ShowCreateExecuteMenu()
+        {
+            UnityEditor.GenericMenu menu = new GenericMenu();
+            var executeDic = NodeType.GetExecuteDic();
+            foreach (var item in executeDic)
+            {
+                foreach (Type type in item.Value)
+                {
+                    menu.AddItem(new GUIContent(item.Key+"/" + Utils.GetDescription(type)), false, OnAddExecuteNodeCallback, type.FullName);
+                }
+            }
+            menu.ShowAsContext();
+        }
+        public void ShowCreateCondtionMenu()
+        {
+            ShowMenu(NodeType.conditionals, OnAddCondtionNodeCallback);
+        }
+        public void ShowMenu(Type[] types, GenericMenu.MenuFunction2 function)
+        {
+            UnityEditor.GenericMenu menu = new GenericMenu();
+            foreach (Type type in types)
+            {
+                menu.AddItem(new GUIContent(Utils.GetDescription(type)), false, function, type.FullName);
+            }
+            menu.ShowAsContext();
+        }
+
+        public void OnAddTriggerNodeCallback(object obj)
+        {
+            TriggerNode node = Utils.CreateInstance<TriggerNode>(obj.ToString());
+            node.Parent = this.trigger;
+            node.CreateObject();
+            node.DoFocus();
+            trigger.AddTriggerNode(node);
+            focus = node;
+        }
+
+        public void OnAddCondtionNodeCallback(object obj)
+        {
+            ConditionNode node = Utils.CreateInstance<ConditionNode>(obj.ToString());
+            node.Parent = this.trigger;
+            node.CreateObject();
+            node.DoFocus();
+            trigger.AddCondtionNode(node);
+            focus = node;
+        }
+
+        public void OnAddExecuteNodeCallback(object obj)
+        {
+            ExecuteNode node = Utils.CreateInstance<ExecuteNode>(obj.ToString());
+            node.Parent = this.trigger;
+            node.CreateObject();
+            node.DoFocus();
+            trigger.AddExecuteNode(node);
+            focus = node;
+        }
+
+        /*        float m_lastUpdateTime;
+                private void Update(){
+                    float curTime = Time.realtimeSinceStartup;
+                    float dt = curTime - m_lastUpdateTime;
+                    m_lastUpdateTime = Time.realtimeSinceStartup;
+
+                }*/
+
+        public void OnRemoveNode(EventCallBack eventCall)
+        {
+            if (eventCall.Sender == focus)
+            {
+                focus = null;
+            }
+        }
+
+
+        void DoRepaint(EventCallBack eventCall)
+        {
+            this.Repaint();
+
+        }
+        public override void OnDestroyImp()
+        {
+            Debug.Log("OnDestroyImp");
+            EventCenter.GetInstance(EventCenterType.CPEditor).RemoveListener(MessageType.REMOVE_NODE, OnRemoveNode);
+            EventCenter.GetInstance(EventCenterType.CPEditor).RemoveListener(MessageType.REPAINT, DoRepaint);
+        }
+    }
+}

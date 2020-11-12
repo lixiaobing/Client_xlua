@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49276d4dd4026f249bda253a392edc5f, type: 3}
+  m_Name: group
+  m_EditorClassIdentifier: 
+  globalGroupId: 6
+  globalBehaviorTreeId: 1000079
+  groups:
+  - id: -1
+    name: "\u9884\u5236\u5206\u7EC4"
+  - id: 0
+    name: "\u672A\u5206\u7EC4"
+  - id: 1
+    name: "Demo\u6D4B\u8BD5AI"
+  - id: 4
+    name: "Demo\u8054\u52A8\u6D4B\u8BD5AI"
+  - id: 5
+    name: "\u6218\u524D\u884C\u4E3A\u6D4B\u8BD5"
+  aIModels:
+  - id: 101
+    name: "\u6728\u6869AI"
+    groupId: 1
+  - id: 102
+    name: "\u57FA\u7840\u9003\u8DD1\u578BAI"
+    groupId: 1
+  - id: 103
+    name: "\u57FA\u7840\u731B\u653B\u578BAI"
+    groupId: 1
+  - id: 104
+    name: "\u8DDD\u79BB\u5224\u5B9A\u6D4B\u8BD5"
+    groupId: 1
+  - id: 201
+    name: "\u8054\u52A8\u6D4B\u8BD5AI"
+    groupId: 4
+  - id: 301
+    name: "\u5DE1\u903B\u79FB\u52A8\u6D4B\u8BD5"
+    groupId: 5
+  - id: 202
+    name: "\u6728\u6869AI"
+    groupId: 4
+  - id: 203
+    name: "Demo\u8FDC\u7A0B\u602A\u7269"
+    groupId: 4
+  - id: 204
+    name: "Demo\u8FD1\u6218\u602A\u7269"
+    groupId: 4
+  - id: 205
+    name: "7.31\u730E\u4EBA"
+    groupId: 4
+  - id: 1
+    name: "\u73AF\u7ED5\u9884\u5236"
+    groupId: -1
+  - id: 206
+    name: "7.31\u6B66\u58EB"
+    groupId: 4
+  - id: 105
+    name: "\u56DB\u7CF8\u4E43\u6D4B\u8BD5"
+    groupId: 1
+  - id: 106
+    name: "\u6C42\u63F4AI\u6D4B\u8BD5"
+    groupId: 1
+  - id: 2
+    name: "\u4E00\u5806\u8DDD\u79BB\u5224\u5B9A\u7684\u9884\u5236"
+    groupId: -1
+  - id: 107
+    name: "\u730E\u4EBA"
+    groupId: 1
+  - id: 108
+    name: "\u6B66\u58EB"
+    groupId: 1
+  - id: 207
+    name: "7.31\u5DE1\u903B"
+    groupId: 4
+  - id: 305
+    name: "\u5DE1\u903B1\u53F7"
+    groupId: 5
+  - id: 306
+    name: "\u5DE1\u903B2\u53F7"
+    groupId: 5
+  - id: 308
+    name: "\u5DE1\u903B4\u53F7"
+    groupId: 5
+  - id: 309
+    name: "\u5DE1\u903B3\u53F7"
+    groupId: 5
+  - id: 109
+    name: "1\u53F7BOSS\u6D4B\u8BD5"
+    groupId: 1
+  - id: 110
+    name: "1\u53F7BOSS"
+    groupId: 1
+  - id: 111
+    name: "1\u53F7BOSS2"
+    groupId: 1
+  - id: 1000051
+    name: "\u672A\u547D\u540D1000051"
+    groupId: -1
+  - id: 113
+    name: "\u6D4B\u8BD5"
+    groupId: 1
+  - id: 100
+    name: "\u6D4B\u8BD5"
+    groupId: 1
+  - id: 1000078
+    name: "\u672A\u547D\u540D1000078"
+    groupId: -1

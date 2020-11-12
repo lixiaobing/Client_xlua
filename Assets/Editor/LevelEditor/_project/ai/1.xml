@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AIDataMgr xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <id>1</id>
+  <name>环绕预制</name>
+  <debug>true</debug>
+  <variables />
+  <nodes>
+    <Node xsi:type="Root">
+      <uuid>e24c3221f1754a78ad8475d4b1afee7f</uuid>
+      <links />
+      <windowPosition>
+        <x>710.343262</x>
+        <y>127.123169</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+    </Node>
+    <Node xsi:type="CountDown">
+      <uuid>ffc601d9c2a64c79a7d1bf261da6b8b2</uuid>
+      <links />
+      <windowPosition>
+        <x>-1152.22583</x>
+        <y>350.090942</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <breakListen>false</breakListen>
+      <breakPriority>2</breakPriority>
+      <breakTimes>-1</breakTimes>
+      <breakProtectTime>5000</breakProtectTime>
+      <breakCountDonwTime>0</breakCountDonwTime>
+      <canBreakOther>false</canBreakOther>
+      <canBreakSelf>false</canBreakSelf>
+      <time>3500</time>
+    </Node>
+    <Node xsi:type="CheckDistance">
+      <uuid>7a753fec83b841ab8d7606e89012a8c5</uuid>
+      <links />
+      <windowPosition>
+        <x>-1153.352</x>
+        <y>588.824036</y>
+      </windowPosition>
+      <mark>4</mark>
+      <scale>1</scale>
+      <breakListen>false</breakListen>
+      <breakPriority>1</breakPriority>
+      <breakTimes>-1</breakTimes>
+      <breakProtectTime>0</breakProtectTime>
+      <breakCountDonwTime>1000</breakCountDonwTime>
+      <canBreakOther>false</canBreakOther>
+      <canBreakSelf>false</canBreakSelf>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+      </selectTarget>
+      <maxDistance>2</maxDistance>
+      <minDistance>-1</minDistance>
+    </Node>
+    <Node xsi:type="CheckAttactSize">
+      <uuid>e496c83e47d14466bb1b416956131943</uuid>
+      <links />
+      <windowPosition>
+        <x>-1153.352</x>
+        <y>470.583618</y>
+      </windowPosition>
+      <mark>3</mark>
+      <scale>1</scale>
+      <breakListen>false</breakListen>
+      <breakPriority>1</breakPriority>
+      <breakTimes>-1</breakTimes>
+      <breakProtectTime>0</breakProtectTime>
+      <breakCountDonwTime>1000</breakCountDonwTime>
+      <canBreakOther>false</canBreakOther>
+      <canBreakSelf>false</canBreakSelf>
+      <relationalOperator>LESS_THAN</relationalOperator>
+      <attackType>ALL</attackType>
+    </Node>
+    <Node xsi:type="Random">
+      <uuid>04174edd75a94372b6bcf92c41f2dd7f</uuid>
+      <links>
+        <Link>
+          <uuid>e9ea60d379a0456f9c78cdae2fce6389</uuid>
+          <child>bb577bc386f34adb80eaed5149f032a2</child>
+          <weight>50</weight>
+        </Link>
+        <Link>
+          <uuid>0bcd9eaa8f654a5bb48f04b42269defc</uuid>
+          <child>744d3ed793264441aab6edb03409f673</child>
+          <weight>50</weight>
+        </Link>
+        <Link>
+          <uuid>b062fb14a6564fa29e5e1e1dab613659</uuid>
+          <child>993b8761dd7f4158a5a0d7f2097c7ab2</child>
+          <weight>50</weight>
+        </Link>
+        <Link>
+          <uuid>174f069c5091489f9ce09b70c56c6829</uuid>
+          <child>cba1f561efae441fbb832382d1ed39f4</child>
+          <weight>50</weight>
+        </Link>
+        <Link>
+          <uuid>18ae040de7194c02bc311c1c0d3f9232</uuid>
+          <child>06eacb7be3d1432ea3ff60d6e68c9e19</child>
+          <weight>0</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>936.437</x>
+        <y>485.39</y>
+      </windowPosition>
+      <mark>16</mark>
+      <scale>1</scale>
+    </Node>
+    <Node xsi:type="Sequence">
+      <uuid>06eacb7be3d1432ea3ff60d6e68c9e19</uuid>
+      <links>
+        <Link>
+          <uuid>ac36525a85894256af88d2f5be8bc7f6</uuid>
+          <child>a3559a5d6b9645708aad237f256f53e8</child>
+          <weight>0</weight>
+        </Link>
+        <Link>
+          <uuid>611bcfc9900d475f9e3e2f4439af8a70</uuid>
+          <child>26276f37910b4eb1a3e873009df5dc04</child>
+          <weight>0</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>573.302246</x>
+        <y>644.1701</y>
+      </windowPosition>
+      <mark>17</mark>
+      <scale>1</scale>
+      <listenCondition>false</listenCondition>
+    </Node>
+    <Node xsi:type="Sequence">
+      <uuid>cba1f561efae441fbb832382d1ed39f4</uuid>
+      <links>
+        <Link>
+          <uuid>573a81f1087c4cee969f02457d41a878</uuid>
+          <child>e78fe50b54e6475abd9331a9a46770b5</child>
+          <weight>0</weight>
+        </Link>
+        <Link>
+          <uuid>f387b1a7621e4b39ba0f935f96a9ed78</uuid>
+          <child>33845dea6c1a4e57b893ceee3bbac26d</child>
+          <weight>0</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>875.6277</x>
+        <y>631.783</y>
+      </windowPosition>
+      <mark>22</mark>
+      <scale>1</scale>
+      <listenCondition>false</listenCondition>
+    </Node>
+    <Node xsi:type="Sequence">
+      <uuid>993b8761dd7f4158a5a0d7f2097c7ab2</uuid>
+      <links>
+        <Link>
+          <uuid>3292117093fe44a28693dd17f1d520ba</uuid>
+          <child>213f6e3051dd458686315e92576a3d71</child>
+          <weight>0</weight>
+        </Link>
+        <Link>
+          <uuid>48415d0086ed4655beca5e565110e95c</uuid>
+          <child>e16201619e514564b46ab6267c5ed177</child>
+          <weight>0</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>1156.21411</x>
+        <y>617.3871</y>
+      </windowPosition>
+      <mark>23</mark>
+      <scale>1</scale>
+      <listenCondition>false</listenCondition>
+    </Node>
+    <Node xsi:type="Sequence">
+      <uuid>744d3ed793264441aab6edb03409f673</uuid>
+      <links>
+        <Link>
+          <uuid>358fd16bb85444a59c73f20630fff78a</uuid>
+          <child>921ea49766c34066948724cf752aa50c</child>
+          <weight>0</weight>
+        </Link>
+        <Link>
+          <uuid>f9cf67bee69f41febbc302b0e05ece23</uuid>
+          <child>008709912d784e1c81fa8aa6cf33d374</child>
+          <weight>0</weight>
+        </Link>
+        <Link>
+          <uuid>781d534d380545f38c2471843d8567ab</uuid>
+          <child>dee62f5d12f44f1499b38580cb2dc3f6</child>
+          <weight>0</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>1574.93555</x>
+        <y>613.765442</y>
+      </windowPosition>
+      <mark>26</mark>
+      <scale>1</scale>
+      <listenCondition>false</listenCondition>
+    </Node>
+    <Node xsi:type="Sequence">
+      <uuid>bb577bc386f34adb80eaed5149f032a2</uuid>
+      <links>
+        <Link>
+          <uuid>e0150687e09d46f8a58bd31b6a0665af</uuid>
+          <child>9358a006848543a1bb1a1ba03871b6f4</child>
+          <weight>0</weight>
+        </Link>
+        <Link>
+          <uuid>5a7cd15610e84b6b8b1f58b79d567977</uuid>
+          <child>b0ff4c5fbf124ec5ae718808fa99e9f6</child>
+          <weight>0</weight>
+        </Link>
+        <Link>
+          <uuid>5ccf57e4800d4952b51b747ba6c4ffe9</uuid>
+          <child>55a689b89b17459786837be82a5034e8</child>
+          <weight>0</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>2020.87109</x>
+        <y>608.1349</y>
+      </windowPosition>
+      <mark>30</mark>
+      <scale>1</scale>
+      <listenCondition>false</listenCondition>
+    </Node>
+    <Node xsi:type="Move">
+      <uuid>a3559a5d6b9645708aad237f256f53e8</uuid>
+      <links />
+      <windowPosition>
+        <x>614.5073</x>
+        <y>771.5454</y>
+      </windowPosition>
+      <mark>19</mark>
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+      </selectTarget>
+      <speed>2</speed>
+      <maxTime>2000</maxTime>
+      <distance>3</distance>
+    </Node>
+    <Node xsi:type="MoveDir">
+      <uuid>26276f37910b4eb1a3e873009df5dc04</uuid>
+      <links />
+      <windowPosition>
+        <x>452</x>
+        <y>776</y>
+      </windowPosition>
+      <mark>18</mark>
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+      </selectTarget>
+      <speed>1</speed>
+      <maxTime>60000</maxTime>
+      <distance>0</distance>
+      <dir>BACK</dir>
+    </Node>
+    <Node xsi:type="MoveDir">
+      <uuid>33845dea6c1a4e57b893ceee3bbac26d</uuid>
+      <links />
+      <windowPosition>
+        <x>765</x>
+        <y>783</y>
+      </windowPosition>
+      <mark>20</mark>
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+      </selectTarget>
+      <speed>1</speed>
+      <maxTime>60000</maxTime>
+      <distance>0</distance>
+      <dir>BACK</dir>
+    </Node>
+    <Node xsi:type="MoveDir">
+      <uuid>e78fe50b54e6475abd9331a9a46770b5</uuid>
+      <links />
+      <windowPosition>
+        <x>918</x>
+        <y>776</y>
+      </windowPosition>
+      <mark>21</mark>
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+      </selectTarget>
+      <speed>1</speed>
+      <maxTime>2000</maxTime>
+      <distance>0</distance>
+      <dir>LEFT</dir>
+    </Node>
+    <Node xsi:type="MoveDir">
+      <uuid>e16201619e514564b46ab6267c5ed177</uuid>
+      <links />
+      <windowPosition>
+        <x>1092</x>
+        <y>785</y>
+      </windowPosition>
+      <mark>24</mark>
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+      </selectTarget>
+      <speed>1</speed>
+      <maxTime>60000</maxTime>
+      <distance>0</distance>
+      <dir>BACK</dir>
+    </Node>
+    <Node xsi:type="MoveDir">
+      <uuid>213f6e3051dd458686315e92576a3d71</uuid>
+      <links />
+      <windowPosition>
+        <x>1231</x>
+        <y>782</y>
+      </windowPosition>
+      <mark>25</mark>
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+      </selectTarget>
+      <speed>1</speed>
+      <maxTime>2000</maxTime>
+      <distance>0</distance>
+      <dir>RIGHT</dir>
+    </Node>
+    <Node xsi:type="MoveDir">
+      <uuid>008709912d784e1c81fa8aa6cf33d374</uuid>
+      <links />
+      <windowPosition>
+        <x>1400</x>
+        <y>790</y>
+      </windowPosition>
+      <mark>27</mark>
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+      </selectTarget>
+      <speed>1</speed>
+      <maxTime>60000</maxTime>
+      <distance>0</distance>
+      <dir>BACK</dir>
+    </Node>
+    <Node xsi:type="MoveDir">
+      <uuid>921ea49766c34066948724cf752aa50c</uuid>
+      <links />
+      <windowPosition>
+        <x>1554</x>
+        <y>785</y>
+      </windowPosition>
+      <mark>28</mark>
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+      </selectTarget>
+      <speed>1</speed>
+      <maxTime>1000</maxTime>
+      <distance>0</distance>
+      <dir>LEFT</dir>
+    </Node>
+    <Node xsi:type="MoveDir">
+      <uuid>dee62f5d12f44f1499b38580cb2dc3f6</uuid>
+      <links />
+      <windowPosition>
+        <x>1711</x>
+        <y>791</y>
+      </windowPosition>
+      <mark>29</mark>
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+      </selectTarget>
+      <speed>1</speed>
+      <maxTime>2000</maxTime>
+      <distance>0</distance>
+      <dir>RIGHT</dir>
+    </Node>
+    <Node xsi:type="MoveDir">
+      <uuid>b0ff4c5fbf124ec5ae718808fa99e9f6</uuid>
+      <links />
+      <windowPosition>
+        <x>1889</x>
+        <y>790</y>
+      </windowPosition>
+      <mark>31</mark>
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+      </selectTarget>
+      <speed>1</speed>
+      <maxTime>60000</maxTime>
+      <distance>0</distance>
+      <dir>BACK</dir>
+    </Node>
+    <Node xsi:type="MoveDir">
+      <uuid>55a689b89b17459786837be82a5034e8</uuid>
+      <links />
+      <windowPosition>
+        <x>2206</x>
+        <y>795</y>
+      </windowPosition>
+      <mark>33</mark>
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+      </selectTarget>
+      <speed>1</speed>
+      <maxTime>2000</maxTime>
+      <distance>0</distance>
+      <dir>LEFT</dir>
+    </Node>
+    <Node xsi:type="MoveDir">
+      <uuid>9358a006848543a1bb1a1ba03871b6f4</uuid>
+      <links />
+      <windowPosition>
+        <x>2049</x>
+        <y>787</y>
+      </windowPosition>
+      <mark>32</mark>
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+      </selectTarget>
+      <speed>1</speed>
+      <maxTime>1000</maxTime>
+      <distance>0</distance>
+      <dir>RIGHT</dir>
+    </Node>
+  </nodes>
+</AIDataMgr>

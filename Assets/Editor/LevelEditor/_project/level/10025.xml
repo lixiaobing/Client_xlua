@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LevelInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <id>10025</id>
+  <name>天台测试</name>
+  <playStartAnimation>true</playStartAnimation>
+  <fadeIn>true</fadeIn>
+  <cameraEffect>
+    <templateId>0</templateId>
+    <appoint>false</appoint>
+    <center>
+      <x>0.5</x>
+      <y>0.5</y>
+    </center>
+  </cameraEffect>
+  <groupName>Demo测试关卡</groupName>
+  <sceneFile>Assets/Scenes/newRoom.unity</sceneFile>
+  <sceneName>newRoom.unity</sceneName>
+  <soundEventName />
+  <desc />
+  <borns>
+    <Born>
+      <uid>917c357d0ff44ffd9434915f6d32de14</uid>
+      <transform>
+        <id>0</id>
+        <position>
+          <x>-0.4</x>
+          <y>0.650764</y>
+          <z>130.34</z>
+        </position>
+        <scale>
+          <x>1</x>
+          <y>1</y>
+          <z>1</z>
+        </scale>
+        <rotation>
+          <x>-0</x>
+          <y>90</y>
+          <z>-0</z>
+        </rotation>
+        <size>
+          <x>1</x>
+          <y>1</y>
+          <z>1</z>
+        </size>
+      </transform>
+    </Born>
+  </borns>
+  <triggers>
+    <Trigger>
+      <id>3001</id>
+      <enable>true</enable>
+      <desc />
+      <loopTimes>1</loopTimes>
+      <reachConditionNum>0</reachConditionNum>
+      <excuteNum>0</excuteNum>
+      <unlimited>true</unlimited>
+      <triggerExecutType>PARALLEL</triggerExecutType>
+      <triggerNodes>
+        <TriggerNode xsi:type="Start">
+          <id>feacff9d64b14d689cb54860d08c7baf</id>
+          <enable>true</enable>
+          <time>0</time>
+        </TriggerNode>
+      </triggerNodes>
+      <conditionNodes />
+      <executeNodes>
+        <ExecuteNode xsi:type="ActorEnter">
+          <id>a28e8d4b1c2f408a9c777c5c4a257b9e</id>
+          <enable>true</enable>
+          <delayTime>0</delayTime>
+        </ExecuteNode>
+      </executeNodes>
+      <orderIndex>0</orderIndex>
+      <groupId>0</groupId>
+    </Trigger>
+  </triggers>
+  <props />
+  <autoIncrementIds>
+    <int>1</int>
+    <int>1001</int>
+    <int>2001</int>
+    <int>3002</int>
+  </autoIncrementIds>
+  <triggerGroups>
+    <Group>
+      <foldOut>true</foldOut>
+      <id>0</id>
+      <name>分组</name>
+      <Edit>false</Edit>
+    </Group>
+    <Group>
+      <foldOut>false</foldOut>
+      <id>1</id>
+      <name>分组</name>
+      <Edit>false</Edit>
+    </Group>
+  </triggerGroups>
+  <strongholds />
+  <areas />
+  <walls />
+</LevelInfo>
