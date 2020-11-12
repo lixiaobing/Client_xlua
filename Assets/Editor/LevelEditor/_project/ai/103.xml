@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AIDataMgr xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <id>103</id>
+  <name>基础猛攻型AI</name>
+  <debug>true</debug>
+  <variables />
+  <nodes>
+    <Node xsi:type="Root">
+      <uuid>e24c3221f1754a78ad8475d4b1afee7f</uuid>
+      <links>
+        <Link>
+          <uuid>2e66cd5f20be43f7803d3416a67f8a89</uuid>
+          <child>3459a9295b0841ee9abd7bc091119d0a</child>
+          <weight>0</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>-365</x>
+        <y>145</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+    </Node>
+    <Node xsi:type="Selector">
+      <uuid>3459a9295b0841ee9abd7bc091119d0a</uuid>
+      <links>
+        <Link>
+          <uuid>5a9d2e3f9c6d4205af02d65427730323</uuid>
+          <child>ffc601d9c2a64c79a7d1bf261da6b8b2</child>
+          <weight>0</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>-365</x>
+        <y>254</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+    </Node>
+    <Node xsi:type="CheckDistance">
+      <uuid>68ac5009aaf3433ba2edbef103065fcf</uuid>
+      <links />
+      <windowPosition>
+        <x>-306</x>
+        <y>489</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <breakListen>false</breakListen>
+      <breakPriority>1</breakPriority>
+      <breakTimes>-1</breakTimes>
+      <breakProtectTime>0</breakProtectTime>
+      <breakCountDonwTime>1000</breakCountDonwTime>
+      <canBreakOther>false</canBreakOther>
+      <canBreakSelf>false</canBreakSelf>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+      </selectTarget>
+      <maxDistance>3</maxDistance>
+      <minDistance>-1</minDistance>
+    </Node>
+    <Node xsi:type="Random">
+      <uuid>8a0b8ab4f1ad4cac8919fa8242558682</uuid>
+      <links>
+        <Link>
+          <uuid>e9ea60d379a0456f9c78cdae2fce6389</uuid>
+          <child>04fac9e6abf24a1281b017d1bb77e268</child>
+          <weight>50</weight>
+        </Link>
+        <Link>
+          <uuid>0bcd9eaa8f654a5bb48f04b42269defc</uuid>
+          <child>05eead14da15415898b47d0eaa6b1714</child>
+          <weight>50</weight>
+        </Link>
+        <Link>
+          <uuid>b062fb14a6564fa29e5e1e1dab613659</uuid>
+          <child>7ef19e4928f740529528d0f1c29695d7</child>
+          <weight>50</weight>
+        </Link>
+        <Link>
+          <uuid>174f069c5091489f9ce09b70c56c6829</uuid>
+          <child>e9d4379528474d95bfd48dd3e5759267</child>
+          <weight>50</weight>
+        </Link>
+        <Link>
+          <uuid>74406e080c774b699e4a4252c36e9ec9</uuid>
+          <child>ccae79c46735461098e57cbde8f50ef0</child>
+          <weight>50</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>-483</x>
+        <y>492</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+    </Node>
+    <Node xsi:type="UseSkill">
+      <uuid>c09fdffad1514ae69158c5a2f7f6fd63</uuid>
+      <links />
+      <windowPosition>
+        <x>-1669</x>
+        <y>983</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+      </selectTarget>
+      <skillId>0</skillId>
+    </Node>
+    <Node xsi:type="CountDown">
+      <uuid>ffc601d9c2a64c79a7d1bf261da6b8b2</uuid>
+      <links>
+        <Link>
+          <uuid>2efc2b12c94d43cf9943a2d5fe1499de</uuid>
+          <child>fcc1c7d59a2b4c72b194e79aff28785d</child>
+          <weight>0</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>-1308</x>
+        <y>493</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <breakListen>false</breakListen>
+      <breakPriority>2</breakPriority>
+      <breakTimes>-1</breakTimes>
+      <breakProtectTime>5000</breakProtectTime>
+      <breakCountDonwTime>0</breakCountDonwTime>
+      <canBreakOther>false</canBreakOther>
+      <canBreakSelf>false</canBreakSelf>
+      <time>20000</time>
+    </Node>
+    <Node xsi:type="Sequence">
+      <uuid>cedc0b3ccd9a4af9a1a895bcf0717dc3</uuid>
+      <links>
+        <Link>
+          <uuid>ec9c172e6505490aa2b4b8240e21c044</uuid>
+          <child>c09fdffad1514ae69158c5a2f7f6fd63</child>
+          <weight>0</weight>
+        </Link>
+        <Link>
+          <uuid>b2298a8521cc4a5ea5629932192bd330</uuid>
+          <child>b289c38772ea41009d96aaee08e9179e</child>
+          <weight>0</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>-1743</x>
+        <y>748</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <listenCondition>false</listenCondition>
+    </Node>
+    <Node xsi:type="Move">
+      <uuid>b289c38772ea41009d96aaee08e9179e</uuid>
+      <links />
+      <windowPosition>
+        <x>-1839</x>
+        <y>987</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+      </selectTarget>
+      <speed>2</speed>
+      <maxTime>5000</maxTime>
+      <distance>2</distance>
+    </Node>
+    <Node xsi:type="Sequence">
+      <uuid>ccae79c46735461098e57cbde8f50ef0</uuid>
+      <links>
+        <Link>
+          <uuid>57d63d15d01a42b888ea2a48fc27ac28</uuid>
+          <child>0e37ad96ff4c49a990bfd40682080d81</child>
+          <weight>0</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>-735</x>
+        <y>664</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <listenCondition>false</listenCondition>
+    </Node>
+    <Node xsi:type="Idle">
+      <uuid>0e37ad96ff4c49a990bfd40682080d81</uuid>
+      <links />
+      <windowPosition>
+        <x>-656</x>
+        <y>857</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <time>1000</time>
+    </Node>
+    <Node xsi:type="Sequence">
+      <uuid>e9d4379528474d95bfd48dd3e5759267</uuid>
+      <links />
+      <windowPosition>
+        <x>-458</x>
+        <y>622</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <listenCondition>false</listenCondition>
+    </Node>
+    <Node xsi:type="Sequence">
+      <uuid>7ef19e4928f740529528d0f1c29695d7</uuid>
+      <links />
+      <windowPosition>
+        <x>-149</x>
+        <y>621</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <listenCondition>false</listenCondition>
+    </Node>
+    <Node xsi:type="Sequence">
+      <uuid>05eead14da15415898b47d0eaa6b1714</uuid>
+      <links />
+      <windowPosition>
+        <x>168</x>
+        <y>616</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <listenCondition>false</listenCondition>
+    </Node>
+    <Node xsi:type="Sequence">
+      <uuid>04fac9e6abf24a1281b017d1bb77e268</uuid>
+      <links />
+      <windowPosition>
+        <x>489</x>
+        <y>613</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <listenCondition>false</listenCondition>
+    </Node>
+    <Node xsi:type="CheckDistance">
+      <uuid>09e572cf9ec74bdeb7591ec624bb6c25</uuid>
+      <links />
+      <windowPosition>
+        <x>-2081</x>
+        <y>378</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <breakListen>false</breakListen>
+      <breakPriority>1</breakPriority>
+      <breakTimes>-1</breakTimes>
+      <breakProtectTime>5000</breakProtectTime>
+      <breakCountDonwTime>0</breakCountDonwTime>
+      <canBreakOther>false</canBreakOther>
+      <canBreakSelf>false</canBreakSelf>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+      </selectTarget>
+      <maxDistance>-1</maxDistance>
+      <minDistance>5</minDistance>
+    </Node>
+    <Node xsi:type="Move">
+      <uuid>07ebc46e8be347f998048ea317a26ba7</uuid>
+      <links />
+      <windowPosition>
+        <x>-2224</x>
+        <y>693</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+      </selectTarget>
+      <speed>4</speed>
+      <maxTime>5000</maxTime>
+      <distance>5</distance>
+    </Node>
+    <Node xsi:type="Idle">
+      <uuid>01bde77a8d114743af323b906374f56e</uuid>
+      <links />
+      <windowPosition>
+        <x>-1985</x>
+        <y>703</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <time>1000</time>
+    </Node>
+    <Node xsi:type="Sequence">
+      <uuid>a0728a956a3f4ba9baf57010f9dd8cd6</uuid>
+      <links>
+        <Link>
+          <uuid>a560f815e3b547f3bb1af9f3a858b8a0</uuid>
+          <child>07ebc46e8be347f998048ea317a26ba7</child>
+          <weight>0</weight>
+        </Link>
+        <Link>
+          <uuid>92956e3cf30e45c9a290defd5a7e1617</uuid>
+          <child>01bde77a8d114743af323b906374f56e</child>
+          <weight>0</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>-2087</x>
+        <y>583</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <listenCondition>false</listenCondition>
+    </Node>
+    <Node xsi:type="Sequence">
+      <uuid>9a6e423cdb174616a356e1c88c96d278</uuid>
+      <links>
+        <Link>
+          <uuid>7afa5cf57a8f4c3d944425fd235a6295</uuid>
+          <child>6b1342b53fa140449002022ef94c7f13</child>
+          <weight>0</weight>
+        </Link>
+        <Link>
+          <uuid>d6449a6bf20a44738b10f7a8d146307f</uuid>
+          <child>2f2a196a732d4cd99b763f557a8470e5</child>
+          <weight>0</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>-1308</x>
+        <y>748</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <listenCondition>false</listenCondition>
+    </Node>
+    <Node xsi:type="Move">
+      <uuid>2f2a196a732d4cd99b763f557a8470e5</uuid>
+      <links />
+      <windowPosition>
+        <x>-1413</x>
+        <y>970</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+      </selectTarget>
+      <speed>2</speed>
+      <maxTime>5000</maxTime>
+      <distance>2</distance>
+    </Node>
+    <Node xsi:type="UseSkill">
+      <uuid>6b1342b53fa140449002022ef94c7f13</uuid>
+      <links />
+      <windowPosition>
+        <x>-1197</x>
+        <y>969</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+      </selectTarget>
+      <skillId>0</skillId>
+    </Node>
+    <Node xsi:type="Repeat">
+      <uuid>fcc1c7d59a2b4c72b194e79aff28785d</uuid>
+      <links>
+        <Link>
+          <uuid>4d6e0e53da9c421489816809e555a4d4</uuid>
+          <child>9a6e423cdb174616a356e1c88c96d278</child>
+          <weight>0</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>-1308</x>
+        <y>625</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <repeatTimes>2</repeatTimes>
+    </Node>
+  </nodes>
+</AIDataMgr>

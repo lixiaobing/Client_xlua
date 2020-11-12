@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AIDataMgr xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <id>100</id>
+  <name>武兵卫_X</name>
+  <debug>false</debug>
+  <variables />
+  <nodes>
+    <Node xsi:type="Root">
+      <uuid>9881644e0f7e4ee9a7107b0ec479623d</uuid>
+      <links>
+        <Link>
+          <uuid>4648612984561476609</uuid>
+          <child>4643188897649464770</child>
+          <weight>10</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>411</x>
+        <y>102</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+    </Node>
+    <Node xsi:type="CheckDistance">
+      <uuid>17df3ea7c4e2438abd163278e689aa40</uuid>
+      <links>
+        <Link>
+          <uuid>4656432420811848132</uuid>
+          <child>7964b35410094f16a349c252b426744d</child>
+          <weight>10</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>143</x>
+        <y>403</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <breakListen>false</breakListen>
+      <breakPriority>1</breakPriority>
+      <breakTimes>-1</breakTimes>
+      <breakProtectTime>0</breakProtectTime>
+      <breakCountDonwTime>1000</breakCountDonwTime>
+      <canBreakOther>false</canBreakOther>
+      <canBreakSelf>false</canBreakSelf>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+        <camp>ALL</camp>
+        <targetState>HP_MIN</targetState>
+      </selectTarget>
+      <maxDistance>30</maxDistance>
+      <minDistance>4</minDistance>
+    </Node>
+    <Node xsi:type="MoveDir">
+      <uuid>7964b35410094f16a349c252b426744d</uuid>
+      <links />
+      <windowPosition>
+        <x>141</x>
+        <y>545</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+        <camp>ALL</camp>
+        <targetState>HP_MIN</targetState>
+      </selectTarget>
+      <moveType>WALK</moveType>
+      <speed>1</speed>
+      <maxTime>10000</maxTime>
+      <distance>4</distance>
+      <dir>FRONT</dir>
+    </Node>
+    <Node xsi:type="CountDown">
+      <uuid>5174922234316083494</uuid>
+      <links>
+        <Link>
+          <uuid>5179995860271636034</uuid>
+          <child>5374671132739624018</child>
+          <weight>10</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>647</x>
+        <y>522</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <breakListen>false</breakListen>
+      <breakPriority>1</breakPriority>
+      <breakTimes>-1</breakTimes>
+      <breakProtectTime>0</breakProtectTime>
+      <breakCountDonwTime>1000</breakCountDonwTime>
+      <canBreakOther>false</canBreakOther>
+      <canBreakSelf>false</canBreakSelf>
+      <time>8000</time>
+      <enter>false</enter>
+    </Node>
+    <Node xsi:type="MoveDir">
+      <uuid>5742484280254961281</uuid>
+      <links />
+      <windowPosition>
+        <x>502</x>
+        <y>824</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+        <camp>ALL</camp>
+        <targetState>HP_MIN</targetState>
+      </selectTarget>
+      <moveType>WALK</moveType>
+      <speed>0.5</speed>
+      <maxTime>4000</maxTime>
+      <distance>4</distance>
+      <dir>LEFT</dir>
+    </Node>
+    <Node xsi:type="Random">
+      <uuid>5374671132739624018</uuid>
+      <links>
+        <Link>
+          <uuid>5112151965134600524</uuid>
+          <child>4672508550556039702</child>
+          <weight>10</weight>
+        </Link>
+        <Link>
+          <uuid>5467357997648649607</uuid>
+          <child>5742484280254961281</child>
+          <weight>10</weight>
+        </Link>
+        <Link>
+          <uuid>5037765187038563682</uuid>
+          <child>5349092411875870583</child>
+          <weight>10</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>638</x>
+        <y>663</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+    </Node>
+    <Node xsi:type="MoveDir">
+      <uuid>5349092411875870583</uuid>
+      <links />
+      <windowPosition>
+        <x>661</x>
+        <y>827</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+        <camp>ALL</camp>
+        <targetState>HP_MIN</targetState>
+      </selectTarget>
+      <moveType>WALK</moveType>
+      <speed>0.5</speed>
+      <maxTime>4000</maxTime>
+      <distance>6</distance>
+      <dir>BACK</dir>
+    </Node>
+    <Node xsi:type="MoveDir">
+      <uuid>4672508550556039702</uuid>
+      <links />
+      <windowPosition>
+        <x>825</x>
+        <y>819</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+        <camp>ALL</camp>
+        <targetState>HP_MIN</targetState>
+      </selectTarget>
+      <moveType>WALK</moveType>
+      <speed>0.5</speed>
+      <maxTime>4000</maxTime>
+      <distance>4</distance>
+      <dir>RIGHT</dir>
+    </Node>
+    <Node xsi:type="CheckDistance">
+      <uuid>4994143183024639617</uuid>
+      <links>
+        <Link>
+          <uuid>4878444982687759312</uuid>
+          <child>5174922234316083494</child>
+          <weight>10</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>605</x>
+        <y>405</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <breakListen>false</breakListen>
+      <breakPriority>1</breakPriority>
+      <breakTimes>-1</breakTimes>
+      <breakProtectTime>0</breakProtectTime>
+      <breakCountDonwTime>1000</breakCountDonwTime>
+      <canBreakOther>false</canBreakOther>
+      <canBreakSelf>false</canBreakSelf>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+        <camp>ALL</camp>
+        <targetState>HP_MIN</targetState>
+      </selectTarget>
+      <maxDistance>4</maxDistance>
+      <minDistance>0</minDistance>
+    </Node>
+    <Node xsi:type="Selector">
+      <uuid>4643188897649464770</uuid>
+      <links>
+        <Link>
+          <uuid>5222984087645590403</uuid>
+          <child>17df3ea7c4e2438abd163278e689aa40</child>
+          <weight>10</weight>
+        </Link>
+        <Link>
+          <uuid>5425766496240312954</uuid>
+          <child>4994143183024639617</child>
+          <weight>10</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>412</x>
+        <y>255</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+    </Node>
+  </nodes>
+</AIDataMgr>

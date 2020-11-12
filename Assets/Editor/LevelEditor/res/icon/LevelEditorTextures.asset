@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 772179c21f31c70478144fea3b099829, type: 3}
+  m_Name: LevelEditorTextures
+  m_EditorClassIdentifier: 
+  textureRoot: {fileID: 2800000, guid: 41302101116d6cb4783a4274609d1d99, type: 3}
+  textureAction: {fileID: 2800000, guid: b94ded954bc52b84c9b5def50817cb82, type: 3}
+  textureSelector: {fileID: 2800000, guid: 8637f8294da85084db255b7fbf31a3b2, type: 3}
+  textureSequence: {fileID: 2800000, guid: 34eb30e15c5db3d4bb229d33c065f3a3, type: 3}
+  textureRandom: {fileID: 2800000, guid: 8a386c258d77eb44ea04757fdb6b1754, type: 3}
+  textureCondition: {fileID: 2800000, guid: 4ad452bc5f69c9640939fb4a40901fb5, type: 3}
+  textureDecorators: {fileID: 2800000, guid: 85ccafcf9c65a1541ac80192d9983b4e, type: 3}

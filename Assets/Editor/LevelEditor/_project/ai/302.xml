@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AIDataMgr xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <id>302</id>
+  <name>潜行-1</name>
+  <debug>false</debug>
+  <variables />
+  <nodes>
+    <Node xsi:type="Root">
+      <uuid>3ec1876f6cad4655aaefb5dfea6aed49</uuid>
+      <links>
+        <Link>
+          <uuid>7df808e152224863aa01420d9b64c03a</uuid>
+          <child>b4846265634e4c999dac86cb19a2f1b9</child>
+          <weight>0</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>506</x>
+        <y>90</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+    </Node>
+    <Node xsi:type="Sequence">
+      <uuid>b4846265634e4c999dac86cb19a2f1b9</uuid>
+      <links>
+        <Link>
+          <uuid>eaacd4fca9fb4a928f27a1bb630a52de</uuid>
+          <child>fe9d342dc91d4456877caa9b6ec8cac1</child>
+          <weight>0</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>506</x>
+        <y>225</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <listenCondition>false</listenCondition>
+    </Node>
+    <Node xsi:type="MoveTo">
+      <uuid>fe9d342dc91d4456877caa9b6ec8cac1</uuid>
+      <links />
+      <windowPosition>
+        <x>353</x>
+        <y>399</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <positions>
+        <Vector3Ex>
+          <position>
+            <x>-37</x>
+            <y>2.32</y>
+            <z>16.84</z>
+          </position>
+        </Vector3Ex>
+        <Vector3Ex>
+          <position>
+            <x>-29</x>
+            <y>2.32</y>
+            <z>16.84</z>
+          </position>
+        </Vector3Ex>
+      </positions>
+      <speed>1</speed>
+      <loopTimes>-1</loopTimes>
+    </Node>
+  </nodes>
+</AIDataMgr>

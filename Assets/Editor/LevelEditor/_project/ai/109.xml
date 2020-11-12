@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AIDataMgr xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <id>109</id>
+  <name>1号BOSS测试</name>
+  <debug>true</debug>
+  <variables />
+  <nodes>
+    <Node xsi:type="Root">
+      <uuid>e24c3221f1754a78ad8475d4b1afee7f</uuid>
+      <links>
+        <Link>
+          <uuid>446a893d6717458d8cf6aab126fa2d2e</uuid>
+          <child>ec5a7209ae9142f8ab34d50820b74c8c</child>
+          <weight>10</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>687.343262</x>
+        <y>44.12317</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+    </Node>
+    <Node xsi:type="UseSkill">
+      <uuid>31f76d47d5cf4203a5f8d475753fd86b</uuid>
+      <links />
+      <windowPosition>
+        <x>53.340332</x>
+        <y>593.2932</y>
+      </windowPosition>
+      <mark>3333333333333333</mark>
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+        <camp>ALL</camp>
+        <targetState>HP_MIN</targetState>
+      </selectTarget>
+      <skillId>18</skillId>
+      <relationalOperator>LESS_THAN_OR_EQUAL</relationalOperator>
+      <attackType>SHORT_RANG</attackType>
+    </Node>
+    <Node xsi:type="UseSkill">
+      <uuid>40acd016065c412cb7aae0d630842168</uuid>
+      <links />
+      <windowPosition>
+        <x>1462.34033</x>
+        <y>347.2932</y>
+      </windowPosition>
+      <mark>8</mark>
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+        <camp>ALL</camp>
+        <targetState>HP_MIN</targetState>
+      </selectTarget>
+      <skillId>23</skillId>
+      <relationalOperator>LESS_THAN_OR_EQUAL</relationalOperator>
+      <attackType>SHORT_RANG</attackType>
+    </Node>
+    <Node xsi:type="Sequence">
+      <uuid>ec5a7209ae9142f8ab34d50820b74c8c</uuid>
+      <links>
+        <Link>
+          <uuid>89d118af28344b219919f6a3385dfb7f</uuid>
+          <child>40acd016065c412cb7aae0d630842168</child>
+          <weight>10</weight>
+        </Link>
+        <Link>
+          <uuid>0731b833848e46438bf7ca029ca456a1</uuid>
+          <child>7052d80e786642eb8b60e2ac3f9fea5a</child>
+          <weight>10</weight>
+        </Link>
+        <Link>
+          <uuid>469eb1ae7d0c42fd9bc9f4780f7b0fe3</uuid>
+          <child>5306a374e855455d945933a5085ebea5</child>
+          <weight>10</weight>
+        </Link>
+        <Link>
+          <uuid>f4b04c3e8af24b22938af7032c5512a8</uuid>
+          <child>27d60d3186394116bb7d17e461ff63dc</child>
+          <weight>10</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>1566</x>
+        <y>199</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <listenCondition>false</listenCondition>
+    </Node>
+    <Node xsi:type="Sequence">
+      <uuid>530f9c93b1474cb9ab88a20dcfed059a</uuid>
+      <links>
+        <Link>
+          <uuid>b33822f07d8d4429b38ca602fda71bf1</uuid>
+          <child>2d72cecc4b3b4b298fc4fb4689c51ecb</child>
+          <weight>10</weight>
+        </Link>
+        <Link>
+          <uuid>817f2002ad37457989199049e040ed28</uuid>
+          <child>31f76d47d5cf4203a5f8d475753fd86b</child>
+          <weight>10</weight>
+        </Link>
+        <Link>
+          <uuid>8d71febea862455094b9425135b7767b</uuid>
+          <child>40413af4c51a4864ac239fa0f10659a4</child>
+          <weight>10</weight>
+        </Link>
+        <Link>
+          <uuid>01e66d9acf2147e39121ec3cde018cbf</uuid>
+          <child>19e1c64ee84041c696a9bc491b53b3db</child>
+          <weight>10</weight>
+        </Link>
+        <Link>
+          <uuid>89fdd91768d74149802bc5f6bde7d3b4</uuid>
+          <child>fac9ff5fa00747c3b9bf669a93fc2eab</child>
+          <weight>10</weight>
+        </Link>
+        <Link>
+          <uuid>b231b71deb2e4f38b72c316cc8c4e3a3</uuid>
+          <child>6d5a65e6c0084043b103d8cb5d3b4bdb</child>
+          <weight>10</weight>
+        </Link>
+        <Link>
+          <uuid>c23f7968ac6f4abe9ae81048ea48eb90</uuid>
+          <child>e806e29da3af45d992a7460121bc0323</child>
+          <weight>10</weight>
+        </Link>
+        <Link>
+          <uuid>8fa67549e420455a932264f44f45823a</uuid>
+          <child>f967d95a01d24282abc0fd280f1727de</child>
+          <weight>10</weight>
+        </Link>
+        <Link>
+          <uuid>4a09e9641b50494ebee65f12c5f8701d</uuid>
+          <child>14850b820e504d23afd778ff1ee2e3af</child>
+          <weight>10</weight>
+        </Link>
+        <Link>
+          <uuid>9f1888eae2e34fcda2b5c2551859aaf9</uuid>
+          <child>7b69eddd236046578f81255fc3312156</child>
+          <weight>10</weight>
+        </Link>
+      </links>
+      <windowPosition>
+        <x>593</x>
+        <y>233</y>
+      </windowPosition>
+      <mark>222222222222222</mark>
+      <scale>1</scale>
+      <listenCondition>false</listenCondition>
+    </Node>
+    <Node xsi:type="UseSkill">
+      <uuid>40413af4c51a4864ac239fa0f10659a4</uuid>
+      <links />
+      <windowPosition>
+        <x>194.340332</x>
+        <y>593.2932</y>
+      </windowPosition>
+      <mark>44444444444</mark>
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+        <camp>ALL</camp>
+        <targetState>HP_MIN</targetState>
+      </selectTarget>
+      <skillId>19</skillId>
+      <relationalOperator>LESS_THAN_OR_EQUAL</relationalOperator>
+      <attackType>SHORT_RANG</attackType>
+    </Node>
+    <Node xsi:type="UseSkill">
+      <uuid>19e1c64ee84041c696a9bc491b53b3db</uuid>
+      <links />
+      <windowPosition>
+        <x>326.340332</x>
+        <y>593.2932</y>
+      </windowPosition>
+      <mark>55555555555555</mark>
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+        <camp>ALL</camp>
+        <targetState>HP_MIN</targetState>
+      </selectTarget>
+      <skillId>20</skillId>
+      <relationalOperator>LESS_THAN_OR_EQUAL</relationalOperator>
+      <attackType>SHORT_RANG</attackType>
+    </Node>
+    <Node xsi:type="UseSkill">
+      <uuid>7b69eddd236046578f81255fc3312156</uuid>
+      <links />
+      <windowPosition>
+        <x>875.340332</x>
+        <y>599.2932</y>
+      </windowPosition>
+      <mark>6666666666666666666</mark>
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+        <camp>ALL</camp>
+        <targetState>HP_MIN</targetState>
+      </selectTarget>
+      <skillId>21</skillId>
+      <relationalOperator>LESS_THAN_OR_EQUAL</relationalOperator>
+      <attackType>SHORT_RANG</attackType>
+    </Node>
+    <Node xsi:type="UseSkill">
+      <uuid>f967d95a01d24282abc0fd280f1727de</uuid>
+      <links />
+      <windowPosition>
+        <x>1131.34033</x>
+        <y>596.2932</y>
+      </windowPosition>
+      <mark>7777777777777777777</mark>
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+        <camp>ALL</camp>
+        <targetState>HP_MIN</targetState>
+      </selectTarget>
+      <skillId>22</skillId>
+      <relationalOperator>LESS_THAN_OR_EQUAL</relationalOperator>
+      <attackType>SHORT_RANG</attackType>
+    </Node>
+    <Node xsi:type="UseSkill">
+      <uuid>6d5a65e6c0084043b103d8cb5d3b4bdb</uuid>
+      <links />
+      <windowPosition>
+        <x>611.340332</x>
+        <y>595.2932</y>
+      </windowPosition>
+      <mark>3333333333333333</mark>
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+        <camp>ALL</camp>
+        <targetState>HP_MIN</targetState>
+      </selectTarget>
+      <skillId>18</skillId>
+      <relationalOperator>LESS_THAN_OR_EQUAL</relationalOperator>
+      <attackType>SHORT_RANG</attackType>
+    </Node>
+    <Node xsi:type="UseSkill">
+      <uuid>e806e29da3af45d992a7460121bc0323</uuid>
+      <links />
+      <windowPosition>
+        <x>743.340332</x>
+        <y>596.2932</y>
+      </windowPosition>
+      <mark>44444444444</mark>
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+        <camp>ALL</camp>
+        <targetState>HP_MIN</targetState>
+      </selectTarget>
+      <skillId>19</skillId>
+      <relationalOperator>LESS_THAN_OR_EQUAL</relationalOperator>
+      <attackType>SHORT_RANG</attackType>
+    </Node>
+    <Node xsi:type="Wait">
+      <uuid>2d72cecc4b3b4b298fc4fb4689c51ecb</uuid>
+      <links />
+      <windowPosition>
+        <x>458</x>
+        <y>593</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <waitTime>1000</waitTime>
+    </Node>
+    <Node xsi:type="Wait">
+      <uuid>14850b820e504d23afd778ff1ee2e3af</uuid>
+      <links />
+      <windowPosition>
+        <x>1000</x>
+        <y>597</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <waitTime>1000</waitTime>
+    </Node>
+    <Node xsi:type="Wait">
+      <uuid>fac9ff5fa00747c3b9bf669a93fc2eab</uuid>
+      <links />
+      <windowPosition>
+        <x>1274</x>
+        <y>595</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+      <waitTime>1000</waitTime>
+    </Node>
+    <Node xsi:type="UseSkill">
+      <uuid>7052d80e786642eb8b60e2ac3f9fea5a</uuid>
+      <links />
+      <windowPosition>
+        <x>1606.34033</x>
+        <y>347.2932</y>
+      </windowPosition>
+      <mark>8</mark>
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+        <camp>ALL</camp>
+        <targetState>HP_MIN</targetState>
+      </selectTarget>
+      <skillId>24</skillId>
+      <relationalOperator>LESS_THAN_OR_EQUAL</relationalOperator>
+      <attackType>SHORT_RANG</attackType>
+    </Node>
+    <Node xsi:type="UseSkill">
+      <uuid>5306a374e855455d945933a5085ebea5</uuid>
+      <links />
+      <windowPosition>
+        <x>1751.34033</x>
+        <y>348.2932</y>
+      </windowPosition>
+      <mark>8</mark>
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+        <camp>ALL</camp>
+        <targetState>HP_MIN</targetState>
+      </selectTarget>
+      <skillId>25</skillId>
+      <relationalOperator>LESS_THAN_OR_EQUAL</relationalOperator>
+      <attackType>SHORT_RANG</attackType>
+    </Node>
+    <Node xsi:type="UseSkill">
+      <uuid>27d60d3186394116bb7d17e461ff63dc</uuid>
+      <links />
+      <windowPosition>
+        <x>1889.34033</x>
+        <y>348.2932</y>
+      </windowPosition>
+      <mark>8</mark>
+      <scale>1</scale>
+      <selectTarget>
+        <selectTargetType>ANY_PLAYER</selectTargetType>
+        <targetId>0</targetId>
+        <camp>ALL</camp>
+        <targetState>HP_MIN</targetState>
+      </selectTarget>
+      <skillId>26</skillId>
+      <relationalOperator>LESS_THAN_OR_EQUAL</relationalOperator>
+      <attackType>SHORT_RANG</attackType>
+    </Node>
+  </nodes>
+</AIDataMgr>
