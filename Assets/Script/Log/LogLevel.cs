@@ -7,16 +7,13 @@
 ** ************************************* */
 
 
-using System;
-
 namespace Dal
 {
-	[Flags]
 	public enum LogLevel
 	{
-		Log = 1 << 0,
-		Warning = 1 << 1,
-		Error = 1 << 2,
-		Assert = 1 << 3,
+		Log = 0,
+		Warning,
+		Error,
+		Assert,
 	}
 }
