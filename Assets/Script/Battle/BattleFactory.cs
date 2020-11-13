@@ -8,8 +8,9 @@
 
 
 using UnityEngine;
+using Dal;
 
-namespace Dal
+namespace Battle
 {
 	public class BattleFactory
 	{

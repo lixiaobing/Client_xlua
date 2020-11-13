@@ -50,7 +50,7 @@ namespace hjcd.level.BehaviorTree
         }
         public void OnDraw1(string text) {
 
-            EditorGUILayout.BeginVertical(Utils.Style2);
+            EditorGUILayout.BeginVertical(LGUISkin.Style2);
             if (text != null) {
 /*                EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.Separator();*/
@@ -65,7 +65,7 @@ namespace hjcd.level.BehaviorTree
 
         public bool OnDraw2()
         {
-            EditorGUILayout.BeginVertical(Utils.Style2);
+            EditorGUILayout.BeginVertical(LGUISkin.Style2);
             //EditorGUILayout.BeginHorizontal();
 
             //share = Utils.Toggle("共享", share);

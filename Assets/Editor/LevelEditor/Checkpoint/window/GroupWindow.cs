@@ -75,7 +75,7 @@ namespace hjcd.level.CheckPoint
 
         void OnGUI()
         {
-            EditorGUILayout.BeginVertical(Utils.Skin.box, GUILayout.ExpandHeight(true));
+            EditorGUILayout.BeginVertical(LGUISkin.Skin.box, GUILayout.ExpandHeight(true));
 
             EditorGUILayout.BeginHorizontal();
             if (Utils.Button("新建分组"))
@@ -142,7 +142,7 @@ namespace hjcd.level.CheckPoint
             {
                 //分组数据
                 Group group = groupList.groups[i];
-                EditorGUILayout.BeginVertical(Utils.Style1);
+                EditorGUILayout.BeginVertical(LGUISkin.Style1);
                 EditorGUILayout.BeginHorizontal();
                 extends[i] = EditorGUILayout.Foldout(extends[i], group.name);
 
@@ -153,7 +153,7 @@ namespace hjcd.level.CheckPoint
                     {
                         //Utils.Log("删除分组");
 
-                        if (Utils.DisplayDialog("删除警告", "删除分组'" + group.name + "'?", "确定", "取消"))
+                        if (EditorUtility.DisplayDialog("删除警告", "删除分组'" + group.name + "'?", "确定", "取消"))
                         {
                             removeGroup = group;
                         }
@@ -207,7 +207,7 @@ namespace hjcd.level.CheckPoint
         public void OnRemoveModel(Model model)
         {
 
-            if (Utils.DisplayDialog("删除警告", "删除'" + model.name + "'?", "确定", "取消"))
+            if (EditorUtility.DisplayDialog("删除警告", "删除'" + model.name + "'?", "确定", "取消"))
             {
                 groupList.RemoveAIModel(model);
                 ObjectLevelInfo.Delete_(model.id);

@@ -33,7 +33,7 @@ namespace hjcd.level.CheckPoint
         GroupWindow groupWindow;
         int newSelectIndex = 0;
         void OnGUI() {
-            GUI.skin.font = Utils.font ;
+            GUI.skin.font = LGUISkin.font ;
             EditorGUILayout.BeginVertical();
             EditorGUILayout.BeginVertical(GUILayout.Height(170));
 

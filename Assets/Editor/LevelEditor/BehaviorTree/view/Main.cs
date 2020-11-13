@@ -13,7 +13,7 @@ namespace hjcd.level.BehaviorTree
 
         public override void OnDraw() {
 
-            EditorGUILayout.BeginVertical(Utils.Style1,GUILayout.ExpandHeight(true));
+            EditorGUILayout.BeginVertical(LGUISkin.Style1,GUILayout.ExpandHeight(true));
             Utils.LabelField("AI编号", AIDataMgr.Instance.id.ToString());
             Utils.LabelField("AI名称", AIDataMgr.Instance.name);
             AIDataMgr.Instance.debug = Utils.Toggle("日志输出",AIDataMgr.Instance.debug);

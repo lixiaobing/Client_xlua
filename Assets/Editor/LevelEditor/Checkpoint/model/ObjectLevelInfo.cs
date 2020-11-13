@@ -97,7 +97,7 @@ namespace hjcd.level.CheckPoint
 
             if (sceneObject == null)
             {
-                Utils.DisplayDialog("请先选择场景");
+                EditorUtility.DisplayDialog("警告","请先选择场景","确定");
                 return;
             }
             Born born = new Born();
@@ -111,7 +111,7 @@ namespace hjcd.level.CheckPoint
   
             if (sceneObject == null)
             {
-                Utils.DisplayDialog("请先选择场景");
+                EditorUtility.DisplayDialog("警告", "请先选择场景", "确定");
                 return;
             }
             Obstacle p = new Obstacle();
@@ -170,7 +170,7 @@ namespace hjcd.level.CheckPoint
         }
         public void RemoveTriggerGroup(Group group)
         {
-            if (Utils.DisplayDialog("警告", "是否删除触发器分组:" + group.name + "[" + group.id + "]","确定","取消")) {
+            if (EditorUtility.DisplayDialog("警告", "是否删除触发器分组:" + group.name + "[" + group.id + "]","确定","取消")) {
                 triggerGroups.Remove(group);
                 this.Save();
             }
@@ -179,7 +179,7 @@ namespace hjcd.level.CheckPoint
         {
             if (sceneObject == null)
             {
-                Utils.DisplayDialog("请先选择场景");
+                EditorUtility.DisplayDialog("警告","请先选择场景","确定");
                 return;
             }
             Trigger trigger = new Trigger();

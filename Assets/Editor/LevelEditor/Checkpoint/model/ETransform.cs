@@ -94,7 +94,7 @@ namespace hjcd.level.CheckPoint
         public virtual void OnDraw(GameObject gameObject)
         {
          
-            OnDraw(gameObject, Utils.Style1, true);
+            OnDraw(gameObject, LGUISkin.Style1, true);
         }
 
 
@@ -216,10 +216,10 @@ namespace hjcd.level.CheckPoint
             this.DrawBorn(gameObject);
         }
         
-        //ÇøÓò´¥·¢Æ÷/¿ÕÆøÇ½
+  
         public void DrawArea(GameObject gameObject ,bool bStickGround = false)
         {
-                EditorGUILayout.BeginVertical(Utils.Style1);
+                EditorGUILayout.BeginVertical(LGUISkin.Style1);
                 if (gameObject != null)
                 {
                     if(bStickGround){

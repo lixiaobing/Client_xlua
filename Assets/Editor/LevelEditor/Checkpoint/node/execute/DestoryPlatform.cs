@@ -55,7 +55,7 @@ namespace hjcd.level.CheckPoint
             for (int i = childs.Count -1; i > -1; i--)
             {
                 var p = childs[i];
-                GUILayout.BeginVertical(Utils.Style2);
+                GUILayout.BeginVertical(LGUISkin.Style2);
                 p.uid = Utils.TextField("UID", p.uid);
                 p.time = Utils.UFloatField("延迟删除时间(秒)", p.time);
                 if (Utils.Button("删除"))

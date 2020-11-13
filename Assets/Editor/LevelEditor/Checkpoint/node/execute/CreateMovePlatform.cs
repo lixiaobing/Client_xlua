@@ -126,7 +126,7 @@ namespace hjcd.level.CheckPoint
             this.moveType           = Utils.EnumPopup("移动类型",this.moveType);
 
             //位置
-            EditorGUILayout.BeginHorizontal(Utils.Style1);
+            EditorGUILayout.BeginHorizontal(LGUISkin.Style1);
             position.DrawPlatform(this.gameObject);
             EditorGUILayout.EndHorizontal();
             if (Utils.Button("新增路径点")) {
@@ -137,7 +137,7 @@ namespace hjcd.level.CheckPoint
             for (int i = points.Count -1; i > -1; i--)
             {
                 var p = points[i];
-                EditorGUILayout.BeginVertical(Utils.Style2);
+                EditorGUILayout.BeginVertical(LGUISkin.Style2);
                 Utils.LabelField(string.Format("第{0}个移动坐标",i+1),"");
                 EditorGUILayout.BeginHorizontal();
                 if (Utils.Button("复制"))

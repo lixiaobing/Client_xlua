@@ -14,7 +14,7 @@ namespace hjcd.level.CheckPoint.PlotEvent
         //角色位置
         public ETransform position = new ETransform();
         public override void Draw(PlayPlot playPlot) {
-            EditorGUILayout.BeginVertical(Utils.Style2);
+            EditorGUILayout.BeginVertical(LGUISkin.Style2);
             base.Draw(playPlot);
             uid = Utils.TextField("角色UID", uid);
             //挂网信息展示

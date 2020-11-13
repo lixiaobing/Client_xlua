@@ -32,7 +32,7 @@ namespace hjcd.level.BehaviorTree
         GroupWindow groupWindow;
 
         void OnGUI() {
-            GUI.skin.font = Utils.font;
+            GUI.skin.font = LGUISkin.font;
             EditorGUILayout.BeginVertical();
             EditorGUILayout.BeginVertical(GUILayout.Height(170));
  

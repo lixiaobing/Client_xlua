@@ -18,7 +18,7 @@ namespace hjcd.level.BehaviorTree
         {
 
             scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
-            EditorGUILayout.BeginVertical(Utils.Style1);
+            EditorGUILayout.BeginVertical(LGUISkin.Style1);
             actionsFoldout = EditorGUILayout.Foldout(actionsFoldout, "Action");
             if (actionsFoldout)
             {
@@ -51,7 +51,7 @@ namespace hjcd.level.BehaviorTree
             }
 
             EditorGUILayout.EndVertical();
-            EditorGUILayout.BeginVertical(Utils.Style1);
+            EditorGUILayout.BeginVertical(LGUISkin.Style1);
 
             compositesFoldout = EditorGUILayout.Foldout(compositesFoldout, "Composites");
             if (compositesFoldout)
@@ -65,7 +65,7 @@ namespace hjcd.level.BehaviorTree
                 }
             }
             EditorGUILayout.EndVertical();
-            EditorGUILayout.BeginVertical(Utils.Style1);
+            EditorGUILayout.BeginVertical(LGUISkin.Style1);
             conditionalsFoldout = EditorGUILayout.Foldout(conditionalsFoldout, "Conditionals");
             if (conditionalsFoldout)
             {
@@ -78,7 +78,7 @@ namespace hjcd.level.BehaviorTree
                 }
             }
             EditorGUILayout.EndVertical();
-            EditorGUILayout.BeginVertical(Utils.Style1);
+            EditorGUILayout.BeginVertical(LGUISkin.Style1);
             decoratorsFoldout = EditorGUILayout.Foldout(decoratorsFoldout, "Decorators");
             if (decoratorsFoldout)
             {

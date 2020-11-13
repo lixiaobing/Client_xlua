@@ -89,7 +89,7 @@ namespace hjcd.level.CheckPoint
         void DrawLevel()
         {
             EditorGUILayout.BeginVertical();
-            EditorGUILayout.BeginVertical(Utils.Style1);
+            EditorGUILayout.BeginVertical(LGUISkin.Style1);
             Utils.LabelField("关卡ID", data.id.ToString());
             Utils.LabelField("关卡名称", data.name);
             Utils.LabelField("分组类型", data.groupName);
@@ -130,7 +130,7 @@ namespace hjcd.level.CheckPoint
 
         public void DrawGameObjects() 
         {
-            EditorGUILayout.BeginVertical(Utils.Style1);
+            EditorGUILayout.BeginVertical(LGUISkin.Style1);
             EditorGUILayout.BeginHorizontal();
             bool ret = EditorGUILayout.Foldout(extends[3], "关卡据点和区域");
             this.SetExtend(3, ret);
@@ -141,7 +141,7 @@ namespace hjcd.level.CheckPoint
             EditorGUILayout.EndHorizontal();
             if (extends[3])
             {
-                EditorGUILayout.BeginVertical(Utils.Style2);
+                EditorGUILayout.BeginVertical(LGUISkin.Style2);
                 for (int i = 0; i < data.strongholds.Count; i++)
                 {
                     var item= data.strongholds[i];
@@ -165,7 +165,7 @@ namespace hjcd.level.CheckPoint
         //出生点
         public void DrawBorns()
         {
-            EditorGUILayout.BeginVertical(Utils.Style1);
+            EditorGUILayout.BeginVertical(LGUISkin.Style1);
             EditorGUILayout.BeginHorizontal();
             bool ret = EditorGUILayout.Foldout(extends[0], "出生点");
             this.SetExtend(0, ret);
@@ -203,7 +203,7 @@ namespace hjcd.level.CheckPoint
         //场景道具
         public void DrawProps()
         {
-            EditorGUILayout.BeginVertical(Utils.Style1);
+            EditorGUILayout.BeginVertical(LGUISkin.Style1);
             EditorGUILayout.BeginHorizontal();
             bool ret = EditorGUILayout.Foldout(extends[2], "可破坏物");
             this.SetExtend(2, ret);
@@ -238,7 +238,7 @@ namespace hjcd.level.CheckPoint
 
 
         public void DrawTriggers() {
-            EditorGUILayout.BeginVertical(Utils.Style1);
+            EditorGUILayout.BeginVertical(LGUISkin.Style1);
     
             EditorGUILayout.BeginHorizontal();
             bool ret = EditorGUILayout.Foldout(extends[1], "触发器");
@@ -318,7 +318,7 @@ namespace hjcd.level.CheckPoint
         {
 
 
-            EditorGUILayout.BeginVertical(Utils.Style1);
+            EditorGUILayout.BeginVertical(LGUISkin.Style1);
 
             EditorGUILayout.BeginHorizontal();
             bool ret = EditorGUILayout.Foldout(extends[1], "触发器");
@@ -355,7 +355,7 @@ namespace hjcd.level.CheckPoint
                     Group removeGroup = null;
                     foreach (var group in data.triggerGroups)
                     {
-                        EditorGUILayout.BeginVertical(Utils.Style2);
+                        EditorGUILayout.BeginVertical(LGUISkin.Style2);
                         EditorGUILayout.BeginHorizontal();
                         group.foldOut = EditorGUILayout.Foldout(group.foldOut, group.Name());
                         if (group.Edit)

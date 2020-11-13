@@ -146,21 +146,21 @@ namespace hjcd.level.BehaviorTree
         public GUIStyle GetStyleLabel() {
             /*            if (this.Focused()) { 
 
-                            return Utils.Skin.GetStyle("FocusedlNodeLabel");  
+                            return LGUISkin.Skin.GetStyle("FocusedlNodeLabel");  
                         }*/
-            return Utils.Skin.GetStyle("NodeLabel");
+            return LGUISkin.Skin.GetStyle("NodeLabel");
         }
 
         public virtual Texture2D GetTexture2D() 
         {
-            return Utils.Textures.textureRoot;
+            return LGUISkin.Textures.textureRoot;
         }
         public override void OnDraw(Vector2 offset) {
 ;
             GUILayout.Space(8 * scale);
             GUILayout.BeginHorizontal();
             GUILayout.FlexibleSpace();
-            GUILayout.Box(GetTexture2D(), Utils.GetStyle("Icon"), GUILayout.Width(60 * scale), GUILayout.Height(35 * scale));
+            GUILayout.Box(GetTexture2D(), LGUISkin.GetStyle("Icon"), GUILayout.Width(60 * scale), GUILayout.Height(35 * scale));
             GUILayout.FlexibleSpace();
             GUILayout.EndHorizontal();
 
@@ -225,7 +225,7 @@ namespace hjcd.level.BehaviorTree
         public void DrawLinkJoin()
         {
 
-            GUIStyle style = GetStyle();//   Utils.Skin.GetStyle("Link"); //this.GetStyle();
+            GUIStyle style = GetStyle();//   LGUISkin.Skin.GetStyle("Link"); //this.GetStyle();
             if (LinkInType() != LinkType.NONE)
             {
                 GUI.Box(GetLinkInRect(),"", style);
@@ -298,13 +298,13 @@ namespace hjcd.level.BehaviorTree
 
         public Node Clone(bool containChild = false)
         {
-            string temp = Application.temporaryCachePath + "/" + Utils.GetUUID() + ".xml";
+            string temp = Application.temporaryCachePath + "/" + IDFactory.GetUUID() + ".xml";
             Utils.XmlSerialize(temp, this); //序列化到临时文件
             Node obj = (Node)Utils.XmlDeserialize(temp, this.GetType());
             Utils.DeleteFile(temp);
 
             obj.MovePosition(new Vector2(20, 20));
-            obj.uuid = Utils.GetUUID();
+            obj.uuid = IDFactory.GetUUID();
             AIDataMgr.Instance.AddNode(obj);
             if (containChild)
             {
@@ -312,7 +312,7 @@ namespace hjcd.level.BehaviorTree
                 {
                     Node node = AIDataMgr.Instance.GetNode(link.child).Clone(containChild);
                     link.child = node.uuid;
-                    link.uuid  = Utils.GetUUID();
+                    link.uuid  = IDFactory.GetUUID();
                 }
             }
             else {  
@@ -355,11 +355,11 @@ namespace hjcd.level.BehaviorTree
         public virtual GUIStyle GetStyle() {
             if (this.Focused())
             {
-                return Utils.Skin.GetStyle("FocusedNode");
+                return LGUISkin.Skin.GetStyle("FocusedNode");
             }
             else {
      
-                return Utils.Skin.GetStyle("CommonNode");
+                return LGUISkin.Skin.GetStyle("CommonNode");
             }
            
         }

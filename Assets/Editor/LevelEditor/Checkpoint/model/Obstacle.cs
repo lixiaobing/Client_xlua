@@ -19,7 +19,7 @@ namespace hjcd.level.CheckPoint
 
         public Obstacle Clone() {
             Obstacle p = new Obstacle();
-            p.uid = Utils.GetUUID();
+            p.uid = IDFactory.GetUUID();
             p.cid = this.cid;
             p.transform = this.transform.Clone();
             return p;

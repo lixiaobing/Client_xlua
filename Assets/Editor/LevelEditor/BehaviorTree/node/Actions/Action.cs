@@ -22,18 +22,18 @@ namespace hjcd.level.BehaviorTree
         }
         public override Texture2D GetTexture2D()
         {
-            return Utils.Textures.textureAction;
+            return LGUISkin.Textures.textureAction;
         }
 
         /*        public override GUIStyle GetStyle()
                 {
                     if (this.Focused())
                     {
-                        return Utils.Skin.GetStyle("FocusedNode");
+                        return LGUISkin.Skin.GetStyle("FocusedNode");
                     }
                     else
                     {
-                        return Utils.Skin.GetStyle("ActionNode");
+                        return LGUISkin.Skin.GetStyle("ActionNode");
                     }
 
                 }*/

@@ -69,7 +69,7 @@ LuaManager = CS.Framework.LuaManager
 LuaComponent = CS.Framework.LuaComponent
 GameTween = CS.GameTween
 GameAsset = CS.GameAsset
-
+GameLog = CS.GameLog
 
 --AI
 -- NavMesh = UnityEngine.AI.NavMesh

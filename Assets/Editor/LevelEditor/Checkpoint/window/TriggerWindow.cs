@@ -39,7 +39,7 @@ namespace hjcd.level.CheckPoint
 
         void OnGUI()
         {
-            GUI.skin.font = Utils.font;
+            GUI.skin.font = LGUISkin.font;
             EditorGUILayout.BeginHorizontal();
 
             DrawTriggers();
@@ -51,7 +51,7 @@ namespace hjcd.level.CheckPoint
 
         public void DrawInspector()
         {
-            EditorGUILayout.BeginVertical(Utils.Style1, GUILayout.ExpandHeight(true), GUILayout.ExpandWidth(true));
+            EditorGUILayout.BeginVertical(LGUISkin.Style1, GUILayout.ExpandHeight(true), GUILayout.ExpandWidth(true));
             if (focus != null)
             {
                 focus.OnDraw();
@@ -73,7 +73,7 @@ namespace hjcd.level.CheckPoint
         {
 
 
-            EditorGUILayout.BeginVertical(Utils.Style1, GUILayout.ExpandHeight(true), GUILayout.Width(300));
+            EditorGUILayout.BeginVertical(LGUISkin.Style1, GUILayout.ExpandHeight(true), GUILayout.Width(300));
 
 
             Utils.LabelField("触发器编号", trigger.id.ToString());
@@ -88,7 +88,7 @@ namespace hjcd.level.CheckPoint
             trigger.desc = trigger.desc.Trim();
             /////////////////////////////////////////////////////////
 
-            EditorGUILayout.BeginVertical(Utils.Style1);
+            EditorGUILayout.BeginVertical(LGUISkin.Style1);
             EditorGUILayout.BeginHorizontal();
             this.extends[0] = EditorGUILayout.Foldout(this.extends[0], "触发器");
             if (Utils.Button("选择", GUILayout.MaxWidth(100)))
@@ -110,7 +110,7 @@ namespace hjcd.level.CheckPoint
             }
             EditorGUILayout.EndVertical();
             /////////////////////////////////////////////////////////
-            EditorGUILayout.BeginVertical(Utils.Style1);
+            EditorGUILayout.BeginVertical(LGUISkin.Style1);
             EditorGUILayout.BeginHorizontal();
             this.extends[1] = EditorGUILayout.Foldout(this.extends[1], "判断条件");
             if (Utils.Button("新增", GUILayout.MaxWidth(100)))
@@ -146,7 +146,7 @@ namespace hjcd.level.CheckPoint
             }
             EditorGUILayout.EndVertical();
             ///////////////////////////////////////////////////////// 
-            EditorGUILayout.BeginVertical(Utils.Style1);
+            EditorGUILayout.BeginVertical(LGUISkin.Style1);
             EditorGUILayout.BeginHorizontal();
             this.extends[2] = EditorGUILayout.Foldout(this.extends[2], "执行事件");
             if (Utils.Button("新增", GUILayout.MaxWidth(100)))

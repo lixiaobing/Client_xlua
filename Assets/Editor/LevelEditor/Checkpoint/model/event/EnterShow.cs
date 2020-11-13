@@ -13,7 +13,7 @@ namespace hjcd.level.CheckPoint.PlotEvent
         public int cid = 0;          //怪物ID
         public int duration = 0;      //展示时间
         public override void Draw(PlayPlot playPlot) {
-            EditorGUILayout.BeginVertical(Utils.Style2);
+            EditorGUILayout.BeginVertical(LGUISkin.Style2);
             base.Draw(playPlot);
             cid = Utils.IntField("怪物CID", cid);
             duration = Utils.IntField("持续时间", duration);

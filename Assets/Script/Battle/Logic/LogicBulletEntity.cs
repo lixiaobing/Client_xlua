@@ -7,7 +7,7 @@
 ** ************************************* */
 
 
-namespace Dal
+namespace Battle
 {
 	public class LogicBulletEntity : ILogicEntity
 	{

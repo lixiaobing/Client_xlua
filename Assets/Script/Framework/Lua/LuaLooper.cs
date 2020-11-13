@@ -7,19 +7,25 @@ namespace Framework
 {
     public class LuaLooper : MonoBehaviour
     {
-        public UnityEvent UpdateEvent
+        public static LuaLooper Instance
         {
             get;
             private set;
         }
 
-        public UnityEvent LateUpdateEvent
+        public LuaFunction UpdateEvent
         {
             get;
             private set;
         }
 
-        public UnityEvent FixedUpdateEvent
+        public LuaFunction LateUpdateEvent
+        {
+            get;
+            private set;
+        }
+
+        public LuaFunction FixedUpdateEvent
         {
             get;
             private set;
@@ -27,34 +33,51 @@ namespace Framework
 
         void Awake()
         {
-            UpdateEvent = new UnityEvent();
-            LateUpdateEvent = new UnityEvent();
-            FixedUpdateEvent = new UnityEvent();
+            Instance = this;
+        }
+
+        public void Init()
+        {
+            LuaFunction UpdateEvent = LuaManager.Instance.GetFunction("Update");
+            LuaFunction LateUpdateEvent = LuaManager.Instance.GetFunction("LateUpdate");
+            LuaFunction FixedUpdateEvent = LuaManager.Instance.GetFunction("FixedUpdate");
         }
 
         void Update()
         {
-            UpdateEvent.Invoke();
+            if(UpdateEvent != null)
+                UpdateEvent.Call(new object[]{Time.deltaTime, Time.unscaledDeltaTime});
         }
 
         void LateUpdate()
         {
-            LateUpdateEvent.Invoke();
+            if (LateUpdateEvent != null)
+                LateUpdateEvent.Call();
         }
 
         void FixedUpdate()
         {
-            FixedUpdateEvent.Invoke();
+            if (FixedUpdateEvent != null)
+                FixedUpdateEvent.Call(new object[] { Time.fixedDeltaTime });
         }
 
         void OnDestroy()
         {
-            UpdateEvent.RemoveAllListeners();
-            UpdateEvent = null;
-            LateUpdateEvent.RemoveAllListeners();
-            LateUpdateEvent = null;
-            FixedUpdateEvent.RemoveAllListeners();
-            FixedUpdateEvent = null;
+            if (UpdateEvent != null)
+            {
+                UpdateEvent.Dispose();
+                UpdateEvent = null;
+            }
+            if (LateUpdateEvent != null)
+            {
+                LateUpdateEvent.Dispose();
+                LateUpdateEvent = null;
+            }
+            if (FixedUpdateEvent != null)
+            {
+                FixedUpdateEvent.Dispose();
+                FixedUpdateEvent = null;
+            }
         }
     }
 

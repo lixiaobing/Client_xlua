@@ -25,17 +25,17 @@ namespace hjcd.level.BehaviorTree
                 {
                     if (this.Focused())
                     {
-                        return Utils.Skin.GetStyle("FocusedNode");
+                        return LGUISkin.Skin.GetStyle("FocusedNode");
                     }
                     else
                     {
-                        return Utils.Skin.GetStyle("DecoratorsNode");
+                        return LGUISkin.Skin.GetStyle("DecoratorsNode");
                     }
 
                 }*/
         public override Texture2D GetTexture2D()
         {
-            return Utils.Textures.textureDecorators;
+            return LGUISkin.Textures.textureDecorators;
         }
     }
 }

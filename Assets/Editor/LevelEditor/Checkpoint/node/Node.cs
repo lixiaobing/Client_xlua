@@ -6,7 +6,7 @@ namespace hjcd.level.CheckPoint
 {
     public class Node : BaseObject,IExport{
 
-        public string id = Utils.GetUUID();
+        public string id = IDFactory.GetUUID();
         public bool enable = true;
 
         public virtual string Type { get { return this.GetType().Name; } }
@@ -71,7 +71,7 @@ namespace hjcd.level.CheckPoint
         }
 
         public virtual void NewUUID() {
-             this.id = Utils.GetUUID();
+             this.id = IDFactory.GetUUID();
         }
         public void AddTransformListener() {
 

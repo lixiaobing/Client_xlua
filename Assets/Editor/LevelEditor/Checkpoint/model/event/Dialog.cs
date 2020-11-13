@@ -13,7 +13,7 @@ namespace hjcd.level.CheckPoint.PlotEvent
     {
         public int id = 0;          //对话ID      
         public override  void Draw(PlayPlot playPlot) {
-            EditorGUILayout.BeginVertical(Utils.Style2);
+            EditorGUILayout.BeginVertical(LGUISkin.Style2);
             base.Draw(playPlot);
             id = Utils.IntField("对话ID", id);
 

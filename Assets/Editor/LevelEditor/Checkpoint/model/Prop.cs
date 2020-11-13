@@ -13,17 +13,17 @@ namespace hjcd.level.CheckPoint
     {
 
 
-        public string uid = Utils.GetUUID();
+        public string uid = IDFactory.GetUUID();
         public int cid = 1;
         public ObjectData transform = new ObjectData(); //位置信息
         private GameObject gameObject;
 
         public void NewUUID() {
-            uid = Utils.GetUUID();
+            uid = IDFactory.GetUUID();
         }
         public Prop Clone() {
             Prop p = new Prop();
-            p.uid = Utils.GetUUID();
+            p.uid = IDFactory.GetUUID();
             p.cid = this.cid;
             p.transform = this.transform.Clone();
             return p;

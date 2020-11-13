@@ -24,7 +24,7 @@ namespace hjcd.level.CheckPoint
         }
         public void OnDraw(DestroyProp destoryProp)
         {
-            EditorGUILayout.BeginVertical(Utils.Style2);
+            EditorGUILayout.BeginVertical(LGUISkin.Style2);
             cid = Utils.IntField("cid", cid);
             num = Utils.IntField("数量", num);
             if (Utils.Button("删除"))

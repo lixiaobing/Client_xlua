@@ -13,7 +13,7 @@ namespace hjcd.level.CheckPoint
     [Serializable]
     public  class EObject : BaseObject
     {
-        public string uid = Utils.GetUUID();
+        public string uid = IDFactory.GetUUID();
         public ETransform position = new ETransform();
 
 
@@ -38,7 +38,7 @@ namespace hjcd.level.CheckPoint
 
         public virtual void NewUUID()
         {
-            this.uid = Utils.GetUUID();
+            this.uid = IDFactory.GetUUID();
         }
         public string name = "";
 

@@ -77,7 +77,7 @@ namespace hjcd.level.BehaviorTree
         
         void OnGUI() {
 
-            EditorGUILayout.BeginVertical(Utils.Style1,GUILayout.ExpandHeight(true));
+            EditorGUILayout.BeginVertical(LGUISkin.Style1,GUILayout.ExpandHeight(true));
             EditorGUILayout.BeginHorizontal();
             if (Utils.Button("新建分组")) {
                 CreateGroupWindow.OpenWindow(this);
@@ -95,7 +95,7 @@ namespace hjcd.level.BehaviorTree
             {
                 //分组数据
                 Group group = groupList.groups[i];
-                EditorGUILayout.BeginVertical(Utils.Style1);
+                EditorGUILayout.BeginVertical(LGUISkin.Style1);
                 EditorGUILayout.BeginHorizontal();
                 extends[i] = EditorGUILayout.Foldout(extends[i], group.name);
               
@@ -105,7 +105,7 @@ namespace hjcd.level.BehaviorTree
                     {
                         //Utils.Log("删除分组");
 
-                        if (Utils.DisplayDialog("删除警告", "删除分组'" + group.name + "'?", "确定", "取消"))
+                        if (EditorUtility.DisplayDialog("删除警告", "删除分组'" + group.name + "'?", "确定", "取消"))
                         {
                             removeGroup = group;
                         }  
@@ -152,7 +152,7 @@ namespace hjcd.level.BehaviorTree
         //删除行为树
         public void OnRemoveBehaviorTree(AIModel aIModel) {
 
-            if (Utils.DisplayDialog("删除警告", "删除'" + aIModel.name + "'?", "确定", "取消"))
+            if (EditorUtility.DisplayDialog("删除警告", "删除'" + aIModel.name + "'?", "确定", "取消"))
             {
                 groupList.RemoveAIModel(aIModel);
                 AIDataMgr.Delete_(aIModel);

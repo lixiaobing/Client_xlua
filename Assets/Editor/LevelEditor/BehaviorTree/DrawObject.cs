@@ -9,9 +9,9 @@ using System.Runtime.Serialization;
 namespace hjcd.level.BehaviorTree
 {
     [Serializable]
-    public class DrawObject : IExport//: ScriptableObject
+    public class DrawObject : ScriptableObject ,IExport//: ScriptableObject
     {
-        public string uuid = Utils.GetUUID(); //唯一标识
+        public string uuid = IDFactory.GetUUID(); //唯一标识
         public virtual string Type { get { return this.GetType().Name; } }
         public virtual string Description { get{return Utils.GetDescription(this.GetType()); } }
         public virtual void OnDraw(Vector2 offset) {
@@ -19,7 +19,7 @@ namespace hjcd.level.BehaviorTree
         }
         public virtual void OnDrawIcon(float scale)
         {
-            GUILayout.Box(Utils.GetStyle("Abort").normal.background, Utils.GetStyle("Icon"), GUILayout.Width(60 * scale), GUILayout.Height(35 * scale));
+            GUILayout.Box(LGUISkin.GetStyle("Abort").normal.background, LGUISkin.GetStyle("Icon"), GUILayout.Width(60 * scale), GUILayout.Height(35 * scale));
         }
         public virtual void OnInspectorDraw()
         {

@@ -13,7 +13,7 @@ namespace hjcd.level.CheckPoint.PlotEvent
         public string uid = "";             //角色ID
         public string actionName = "";  //
         public override void Draw(PlayPlot playPlot) {
-            EditorGUILayout.BeginVertical(Utils.Style2);
+            EditorGUILayout.BeginVertical(LGUISkin.Style2);
             base.Draw(playPlot);
             uid        = Utils.TextField("角色UID", uid);
             actionName = Utils.TextField("动画名称", actionName);

@@ -39,11 +39,11 @@ namespace hjcd.level.BehaviorTree
         {
             if (this.Focused())
             {
-                return Utils.Skin.GetStyle("FocusedNode");
+                return LGUISkin.Skin.GetStyle("FocusedNode");
             }
             else
             {
-                return Utils.Skin.GetStyle("CompositeNode");
+                return LGUISkin.Skin.GetStyle("CompositeNode");
             }
 
         }*/

@@ -75,17 +75,17 @@ namespace hjcd.level.BehaviorTree
                 {
                     if (this.Focused())
                     {
-                        return Utils.Skin.GetStyle("FocusedNode");
+                        return LGUISkin.Skin.GetStyle("FocusedNode");
                     }
                     else
                     {
-                        return Utils.Skin.GetStyle("ConditionalNode");
+                        return LGUISkin.Skin.GetStyle("ConditionalNode");
                     }
 
                 }*/
         public override Texture2D GetTexture2D()
         {
-            return Utils.Textures.textureCondition;
+            return LGUISkin.Textures.textureCondition;
         }
     }
 }

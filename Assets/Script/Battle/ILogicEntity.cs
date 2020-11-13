@@ -5,9 +5,9 @@
 * description : 
 *******************************************
 ** ************************************* */
+using Dal;
 
-
-namespace Dal
+namespace Battle
 {
 	public interface ILogicEntity : IDispose
 	{
