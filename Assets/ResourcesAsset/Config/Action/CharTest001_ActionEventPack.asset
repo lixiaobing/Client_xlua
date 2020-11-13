@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 028d66e21e743fa4dabf87a7be6c4175, type: 3}
-  m_Name: ActionEventPack
+  m_Name: CharTest001_ActionEventPack
   m_EditorClassIdentifier: 
   statePacks:
   - stateName: 

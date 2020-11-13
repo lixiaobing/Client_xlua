@@ -1,0 +1,152 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3988721235728958503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3988721235728958493}
+  - component: {fileID: 3988721235728958492}
+  - component: {fileID: 3988721235728958499}
+  - component: {fileID: 3988721235728958498}
+  - component: {fileID: 3988721235728958497}
+  - component: {fileID: 3988721235728958496}
+  m_Layer: 0
+  m_Name: Main Camera (1)
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3988721235728958493
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3988721235728958503}
+  m_LocalRotation: {x: 0.074758336, y: 0.36428046, z: -0.02935225, w: 0.9278197}
+  m_LocalPosition: {x: -21.14, y: 2.88, z: -31.51}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &3988721235728958492
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3988721235728958503}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_GateFitMode: 2
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 100
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 0
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!92 &3988721235728958499
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3988721235728958503}
+  m_Enabled: 1
+--- !u!124 &3988721235728958498
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3988721235728958503}
+  m_Enabled: 1
+--- !u!81 &3988721235728958497
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3988721235728958503}
+  m_Enabled: 1
+--- !u!114 &3988721235728958496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3988721235728958503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18d4149521456498592a8e5f7798456e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effectType: 2
+  _preset: 7
+  _profile: {fileID: 11400000, guid: ae38d7fca4709ad478556bf78ea9b43d, type: 2}
+  _useFogVolumes: 0
+  _enableDithering: 0
+  _ditherStrength: 0.03
+  _alpha: 0.606
+  _noiseStrength: 0.142
+  _noiseScale: 0.1
+  _distance: 0
+  _distanceFallOff: 0.08
+  _maxDistance: 1
+  _maxDistanceFallOff: 0
+  _height: 5
+  _maxHeight: 100
+  _heightFallOff: 0.922
+  _baselineHeight: 0
+  _clipUnderBaseline: 0
+  _turbulence: 2
+  _speed: 0.03
+  _windDirection: {x: 1, y: 0, z: 1}
+  _color: {r: 0.89, g: 0.89, b: 0.89, a: 1}
+  _color2: {r: 0.89, g: 0.89, b: 0.89, a: 1}
+  _skyHaze: 35
+  _skySpeed: 0.3
+  _skyNoiseStrength: 0.32
+  _skyAlpha: 0.33
+  _sun: {fileID: 0}
+  _fogOfWarEnabled: 0
+  _fogOfWarCenter: {x: 0, y: 0, z: 0}
+  _fogOfWarSize: {x: 1024, y: 0, z: 1024}
+  _fogOfWarTextureSize: 256
+  _useSinglePassStereoRenderingMatrix: 0
+  _useXZDistance: 0
+  _scattering: 0.7
+  _scatteringColor: {r: 1, g: 1, b: 0.8, a: 1}
+  fogMat: {fileID: 0}
