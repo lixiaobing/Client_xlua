@@ -1,36 +1,38 @@
 ﻿using UnityEngine;
-
-[CreateAssetMenu(fileName = "SummonSet Name", menuName = "X-Create SummonSet")]
-[System.Serializable]
-public class SummonSet:ScriptableObject
+namespace Battle
 {
-    public GameObject prefab;
+    [CreateAssetMenu(fileName = "SummonSet Name", menuName = "X-Create SummonSet")]
+    [System.Serializable]
+    public class SummonSet : ScriptableObject
+    {
+        public GameObject prefab;
 
-    public string path;
+        public string path;
 
-    public string luaPath;
+        public string luaPath;
 
-    public string controller;
+        public string controller;
 
-    public string action;
+        public string action;
 
-    public int skillId;
+        public int skillId;
 
-    public float lifeTime;
+        public float lifeTime;
 
-    public bool targetFirst;
+        public bool targetFirst;
 
-    public SummonBornConfig bornTarget;
+        public SummonBornConfig bornTarget;
 
-    public SummonBornConfig bornOwner;
-}
+        public SummonBornConfig bornOwner;
+    }
 
-[System.Serializable]
-public class SummonBornConfig
-{
-    public Vector3 position;
+    [System.Serializable]
+    public class SummonBornConfig
+    {
+        public Vector3 position;
 
-    public float angle;
+        public float angle;
 
-    public float checkRadius;
+        public float checkRadius;
+    }
 }

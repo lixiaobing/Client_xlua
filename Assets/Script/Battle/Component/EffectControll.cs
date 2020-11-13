@@ -2,335 +2,338 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EffectControll:MonoBehaviour
+namespace Battle
 {
-    public EffectPlayType playType = EffectPlayType.Once;
-
-    public float delayTime = 0;
-    public float runDelayTime = 0;
-
-    public float lifeTime = 1f;
-    public float runLifeTime = 0;
-
-    [HideInInspector]
-    public string path;
-
-    [HideInInspector]
-    public bool controllSpeed = true;
-
-    ParticleSystem[] particles;
-    Animation[] animations;
-    Animator[] animators;
-    TrailRenderer[] renders;
-    Animation mainAnimation;
-
-    [HideInInspector]
-    public UnityEvent onFinished = new UnityEvent();
-
-    private float playSpeed = 1f;
-    private float customSpeed = 1f;
-
-    private bool isPlaying = false;
-
-    private bool lockRotation = false;
-    private Quaternion lockRotationValue;
-    //private AkAmbient m_btnAkEvent;
-
-    private void Awake()
+    public class EffectControll : MonoBehaviour
     {
-        particles = gameObject.GetComponentsInChildren<ParticleSystem>();
-        animations = gameObject.GetComponentsInChildren<Animation>();
-        animators = gameObject.GetComponentsInChildren<Animator>();
-        renders = gameObject.GetComponentsInChildren<TrailRenderer>();
-        mainAnimation = gameObject.GetComponent<Animation>();
-        //m_btnAkEvent = gameObject.GetComponent<AkAmbient>();
-    }
+        public EffectPlayType playType = EffectPlayType.Once;
 
-    private void Start()
-    {
-        if (delayTime > 0)
+        public float delayTime = 0;
+        public float runDelayTime = 0;
+
+        public float lifeTime = 1f;
+        public float runLifeTime = 0;
+
+        [HideInInspector]
+        public string path;
+
+        [HideInInspector]
+        public bool controllSpeed = true;
+
+        ParticleSystem[] particles;
+        Animation[] animations;
+        Animator[] animators;
+        TrailRenderer[] renders;
+        Animation mainAnimation;
+
+        [HideInInspector]
+        public UnityEvent onFinished = new UnityEvent();
+
+        private float playSpeed = 1f;
+        private float customSpeed = 1f;
+
+        private bool isPlaying = false;
+
+        private bool lockRotation = false;
+        private Quaternion lockRotationValue;
+        //private AkAmbient m_btnAkEvent;
+
+        private void Awake()
         {
-            Pause();
+            particles = gameObject.GetComponentsInChildren<ParticleSystem>();
+            animations = gameObject.GetComponentsInChildren<Animation>();
+            animators = gameObject.GetComponentsInChildren<Animator>();
+            renders = gameObject.GetComponentsInChildren<TrailRenderer>();
+            mainAnimation = gameObject.GetComponent<Animation>();
+            //m_btnAkEvent = gameObject.GetComponent<AkAmbient>();
         }
 
-        runDelayTime = 0;
-        runLifeTime = 0;
-    }
-
-    private void LateUpdate()
-    {
-        if (lockRotation)
+        private void Start()
         {
-            this.transform.rotation = lockRotationValue;
-        }
-        
-        if (playType == EffectPlayType.Once)
-        {
-            if (runDelayTime < delayTime)
+            if (delayTime > 0)
             {
-                runDelayTime += Time.deltaTime * playSpeed * customSpeed;
-                if (runDelayTime >= delayTime)
-                {
-                    Play();
-                }
+                Pause();
             }
 
-            if (isPlaying)
-            {
-                runLifeTime += Time.deltaTime * playSpeed * customSpeed;
-                if (runLifeTime >= lifeTime)
-                {
-                    onFinished.Invoke();
-                }
-            }
+            runDelayTime = 0;
+            runLifeTime = 0;
         }
-    }
 
-    public void Play()
-    {
-        isPlaying = true;
-
-        if (particles != null)
+        private void LateUpdate()
         {
-            for (int i = 0; i < particles.Length; i++)
+            if (lockRotation)
             {
-                ParticleSystem ps = particles[i];
-                if (ps != null)
+                this.transform.rotation = lockRotationValue;
+            }
+
+            if (playType == EffectPlayType.Once)
+            {
+                if (runDelayTime < delayTime)
                 {
-                    ps.Play();
+                    runDelayTime += Time.deltaTime * playSpeed * customSpeed;
+                    if (runDelayTime >= delayTime)
+                    {
+                        Play();
+                    }
+                }
+
+                if (isPlaying)
+                {
+                    runLifeTime += Time.deltaTime * playSpeed * customSpeed;
+                    if (runLifeTime >= lifeTime)
+                    {
+                        onFinished.Invoke();
+                    }
                 }
             }
         }
 
-        if (animations != null)
+        public void Play()
         {
-            for (int i = 0; i < animations.Length; i++)
+            isPlaying = true;
+
+            if (particles != null)
             {
-                Animation anim = animations[i];
-                if (anim!=null && anim.clip!=null)
+                for (int i = 0; i < particles.Length; i++)
                 {
-                    anim.Play();
+                    ParticleSystem ps = particles[i];
+                    if (ps != null)
+                    {
+                        ps.Play();
+                    }
+                }
+            }
+
+            if (animations != null)
+            {
+                for (int i = 0; i < animations.Length; i++)
+                {
+                    Animation anim = animations[i];
+                    if (anim != null && anim.clip != null)
+                    {
+                        anim.Play();
+                        string name = anim.clip.name;
+                        anim[name].speed = 1;
+                    }
+                }
+            }
+
+            if (animators != null)
+            {
+                for (int i = 0; i < animators.Length; i++)
+                {
+                    Animator anim = animators[i];
+                    if (anim != null)
+                    {
+                        anim.speed = 1;
+                    }
+                }
+            }
+
+            if (renders != null)
+            {
+                for (int i = 0; i < renders.Length; i++)
+                {
+                    TrailRenderer render = renders[i];
+                    render.Clear();
+                }
+            }
+
+            //sound
+            //if (m_btnAkEvent != null)
+            //{
+            //    m_btnAkEvent.HandleEvent(gameObject);
+            //}
+        }
+
+        public void PlayAnimation(string clipName)
+        {
+            if (mainAnimation)
+            {
+                mainAnimation.Play(clipName);
+            }
+        }
+
+        public void Pause()
+        {
+            isPlaying = false;
+
+            if (particles != null)
+            {
+                for (int i = 0; i < particles.Length; i++)
+                {
+                    ParticleSystem ps = particles[i];
+                    if (ps != null)
+                    {
+                        ps.Pause();
+                    }
+                }
+            }
+
+            if (animations != null)
+            {
+                for (int i = 0; i < animations.Length; i++)
+                {
+                    Animation anim = animations[i];
                     string name = anim.clip.name;
-                    anim[name].speed = 1;
+                    anim[name].speed = 0;
                 }
             }
-        }
 
-        if (animators != null)
-        {
-            for (int i = 0; i < animators.Length; i++)
+            if (animators != null)
             {
-                Animator anim = animators[i];
-                if (anim != null)
+                for (int i = 0; i < animators.Length; i++)
                 {
-                    anim.speed = 1;
+                    Animator anim = animators[i];
+                    if (anim != null)
+                    {
+                        anim.speed = 0;
+                    }
                 }
             }
-        }
 
-        if (renders != null)
-        {
-            for (int i = 0; i < renders.Length; i++)
+            if (renders != null)
             {
-                TrailRenderer render = renders[i];
-                render.Clear();
-            }
-        }
-
-        //sound
-        //if (m_btnAkEvent != null)
-        //{
-        //    m_btnAkEvent.HandleEvent(gameObject);
-        //}
-    }
-
-    public void PlayAnimation(string clipName)
-    {
-        if (mainAnimation)
-        {
-            mainAnimation.Play(clipName);
-        }
-    }
-
-    public void Pause()
-    {
-        isPlaying = false;
-
-        if (particles != null)
-        {
-            for (int i = 0; i < particles.Length; i++)
-            {
-                ParticleSystem ps = particles[i];
-                if (ps != null)
+                for (int i = 0; i < renders.Length; i++)
                 {
-                    ps.Pause();
+                    TrailRenderer render = renders[i];
+                    render.Clear();
                 }
             }
         }
 
-        if (animations != null)
+        public void Stop()
         {
-            for (int i = 0; i < animations.Length; i++)
-            {
-                Animation anim = animations[i];
-                string name = anim.clip.name;
-                anim[name].speed = 0;
-            }
-        }
+            isPlaying = false;
 
-        if (animators != null)
-        {
-            for (int i = 0; i < animators.Length; i++)
+            if (particles != null)
             {
-                Animator anim = animators[i];
-                if (anim != null)
+                for (int i = 0; i < particles.Length; i++)
                 {
-                    anim.speed = 0;
+                    ParticleSystem ps = particles[i];
+                    if (ps != null)
+                    {
+                        ps.Stop();
+                    }
                 }
             }
-        }
 
-        if (renders != null)
-        {
-            for (int i = 0; i < renders.Length; i++)
+            if (animations != null)
             {
-                TrailRenderer render = renders[i];
-                render.Clear();
-            }
-        }
-    }
-
-    public void Stop()
-    {
-        isPlaying = false;
-
-        if (particles != null)
-        {
-            for (int i = 0; i < particles.Length; i++)
-            {
-                ParticleSystem ps = particles[i];
-                if (ps != null)
+                for (int i = 0; i < animations.Length; i++)
                 {
-                    ps.Stop();
+                    Animation anim = animations[i];
+                    anim.Stop();
+                    string name = anim.clip.name;
+                    anim[name].speed = 0;
                 }
             }
-        }
 
-        if (animations != null)
-        {
-            for (int i = 0; i < animations.Length; i++)
+            if (animators != null)
             {
-                Animation anim = animations[i];
-                anim.Stop();
-                string name = anim.clip.name;
-                anim[name].speed = 0;
-            }
-        }
-
-        if (animators != null)
-        {
-            for (int i = 0; i < animators.Length; i++)
-            {
-                Animator anim = animators[i];
-                if (anim != null)
+                for (int i = 0; i < animators.Length; i++)
                 {
-                    anim.speed = 0;
+                    Animator anim = animators[i];
+                    if (anim != null)
+                    {
+                        anim.speed = 0;
+                    }
                 }
             }
-        }
 
-        if (renders != null)
-        {
-            for (int i = 0; i < renders.Length; i++)
+            if (renders != null)
             {
-                TrailRenderer render = renders[i];
-                render.Clear();
-            }
-        }
-
-        runDelayTime = 0;
-        runLifeTime = 0;
-    }
-
-    private void ResetSpeed()
-    {
-        if (particles != null)
-        {
-            for (int i = 0; i < particles.Length; i++)
-            {
-                ParticleSystem ps = particles[i];
-                var main = ps.main;
-                main.simulationSpeed = playSpeed * customSpeed;
-            }
-        }
-
-        if (animations != null)
-        {
-            for (int i = 0; i < animations.Length; i++)
-            {
-                Animation anim = animations[i];
-                foreach (AnimationState state in anim)
+                for (int i = 0; i < renders.Length; i++)
                 {
-                    state.speed = playSpeed * customSpeed;
+                    TrailRenderer render = renders[i];
+                    render.Clear();
+                }
+            }
+
+            runDelayTime = 0;
+            runLifeTime = 0;
+        }
+
+        private void ResetSpeed()
+        {
+            if (particles != null)
+            {
+                for (int i = 0; i < particles.Length; i++)
+                {
+                    ParticleSystem ps = particles[i];
+                    var main = ps.main;
+                    main.simulationSpeed = playSpeed * customSpeed;
+                }
+            }
+
+            if (animations != null)
+            {
+                for (int i = 0; i < animations.Length; i++)
+                {
+                    Animation anim = animations[i];
+                    foreach (AnimationState state in anim)
+                    {
+                        state.speed = playSpeed * customSpeed;
+                    }
+                }
+            }
+
+            if (animators != null)
+            {
+                for (int i = 0; i < animators.Length; i++)
+                {
+                    Animator anim = animators[i];
+                    anim.speed = playSpeed * customSpeed;
                 }
             }
         }
 
-        if (animators != null)
+
+        public void SetLockRotation(bool isLock)
         {
-            for (int i = 0; i < animators.Length; i++)
-            {
-                Animator anim = animators[i];
-                anim.speed = playSpeed * customSpeed;
-            }
+            lockRotation = isLock;
+            lockRotationValue = this.transform.rotation;
         }
-    }
 
-
-    public void SetLockRotation(bool isLock)
-    {
-        lockRotation = isLock;
-        lockRotationValue = this.transform.rotation;
-    }
-
-    public void ResetDefaultSpeed()
-    {
-        playSpeed = 1;
-        customSpeed = 1;
-        ResetSpeed();
-    }
-
-    public void SetSpeed(float ps, float cs=1)
-    {
-        if (controllSpeed)
+        public void ResetDefaultSpeed()
         {
-            playSpeed = ps;
-            customSpeed = cs;
+            playSpeed = 1;
+            customSpeed = 1;
             ResetSpeed();
         }
-    }
 
-    public void SetPlaySpeed(float speed)
-    {
-        if (controllSpeed)
+        public void SetSpeed(float ps, float cs = 1)
         {
-            playSpeed = speed;
-            ResetSpeed();
+            if (controllSpeed)
+            {
+                playSpeed = ps;
+                customSpeed = cs;
+                ResetSpeed();
+            }
+        }
+
+        public void SetPlaySpeed(float speed)
+        {
+            if (controllSpeed)
+            {
+                playSpeed = speed;
+                ResetSpeed();
+            }
+        }
+
+        public void SetCustomSpeed(float speed)
+        {
+            if (controllSpeed)
+            {
+                customSpeed = speed;
+                ResetSpeed();
+            }
         }
     }
 
-    public void SetCustomSpeed(float speed)
+    public enum EffectPlayType
     {
-        if (controllSpeed)
-        {
-            customSpeed = speed;
-            ResetSpeed();
-        }
+        Once,
+        Loop
     }
-}
-
-public enum EffectPlayType
-{
-    Once,
-    Loop
 }

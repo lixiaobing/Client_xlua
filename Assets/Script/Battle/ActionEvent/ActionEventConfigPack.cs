@@ -2,20 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ActionEventPack", menuName = "X-Create ActionEvent/ActionEventPack")]
-public class ActionEventConfigPack : ScriptableObject
+namespace Battle
 {
-    [System.Serializable]
-    public class StatePack
+    [CreateAssetMenu(fileName = "ActionEventPack", menuName = "X-Create ActionEvent/ActionEventPack")]
+    public class ActionEventConfigPack : ScriptableObject
     {
-        public string stateName;
+        [System.Serializable]
+        public class StatePack
+        {
+            public string stateName;
 
-        public AnimationClip clip;
+            public AnimationClip clip;
 
-        public int frameLength;
+            public int frameLength;
 
-        public ActionEventConfig[] events;
+            public ActionEventConfig[] events;
+        }
+
+        public StatePack[] statePacks;
     }
-
-    public StatePack[] statePacks;
 }

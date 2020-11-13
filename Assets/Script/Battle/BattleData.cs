@@ -9,7 +9,7 @@
 
 using UnityEngine;
 
-namespace Dal
+namespace Battle
 {
 	public struct BattleData
 	{

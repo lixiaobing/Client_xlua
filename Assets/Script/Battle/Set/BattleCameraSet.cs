@@ -2,7 +2,6 @@
 
 namespace Battle
 {
-
     [CreateAssetMenu(fileName = "BattleCameraSet", menuName = "X-Create BattleCameraSet")]
     [System.Serializable]
     public class BattleCameraSet : ScriptableObject

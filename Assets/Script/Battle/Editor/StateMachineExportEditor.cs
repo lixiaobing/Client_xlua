@@ -1,6 +1,9 @@
 ﻿using UnityEditor;
 
-public class StateMachineExportEditor:Editor
+namespace Battle
 {
+    public class StateMachineExportEditor : Editor
+    {
 
+    }
 }

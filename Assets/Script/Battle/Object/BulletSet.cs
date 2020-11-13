@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 
-[System.Serializable]
-class BulletSet : ScriptableObject
+namespace Battle
 {
+    [System.Serializable]
+    class BulletSet : ScriptableObject
+    {
 
 
+    }
 }

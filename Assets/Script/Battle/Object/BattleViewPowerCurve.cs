@@ -1,10 +1,13 @@
 ﻿
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "BattleViewPowerCurve", menuName = "X-Create BattleViewPowerCurve")]
-[System.Serializable]
-public class BattleViewPowerCurve: ScriptableObject
+namespace Battle
 {
-    public AnimationCurve curve;
+    [CreateAssetMenu(fileName = "BattleViewPowerCurve", menuName = "X-Create BattleViewPowerCurve")]
+    [System.Serializable]
+    public class BattleViewPowerCurve : ScriptableObject
+    {
+        public AnimationCurve curve;
+    }
 }
 

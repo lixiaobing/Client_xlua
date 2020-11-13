@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Battle;
 
 public static class GameTool
 {

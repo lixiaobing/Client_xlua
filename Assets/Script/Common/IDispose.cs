@@ -9,8 +9,8 @@
 
 namespace Dal
 {
-	public interface IDispose
-	{
-		void Dispose();
-	}
+    public interface IDispose
+    {
+        void Dispose();
+    }
 }
