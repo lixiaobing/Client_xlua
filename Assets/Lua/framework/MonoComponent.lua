@@ -21,26 +21,6 @@ function MonoComponent:AddLuaComponent(obj)
 	return comp
 end
 
-function MonoComponent:Awake()
-
-end
-
-function MonoComponent:Start()
-
-end
-
-function MonoComponent:Update()
-
-end
-
-function MonoComponent:LateUpdate()
-
-end
-
-function MonoComponent:FixedUpdate()
-
-end
-
 function MonoComponent:OnDestroy()
 
 end
@@ -68,3 +48,29 @@ function MonoComponent:clearTable(tab, layers)
         end
     end
 end
+
+function MonoComponent:addUpdate()
+    self:removeUpdate()
+    if self.onUpdate then
+        UpdateBeat:Add(self.onUpdate, self)
+    end
+    if self.onLateUpdate then
+        LateUpdateBeat:Add(self.onLateUpdate, self)
+    end
+    if self.onFixedUpdate then
+        FixedUpdateBeat:Add(self.onFixedUpdate, self)
+    end
+end
+
+function MonoComponent:removeUpdate()
+    if self.onUpdate then
+        UpdateBeat:Remove(self.onUpdate, self)
+    end
+    if self.onLateUpdate then
+        LateUpdateBeat:Remove(self.onLateUpdate, self)
+    end
+    if self.onFixedUpdate then
+        FixedUpdateBeat:Remove(self.onFixedUpdate, self)
+    end
+end
+

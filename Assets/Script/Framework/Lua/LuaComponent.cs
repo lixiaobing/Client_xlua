@@ -7,7 +7,6 @@ namespace Framework
 {
     public class LuaComponent : MonoBehaviour
     {
-        LuaFunction destroyfunc = null;
 
         public LuaTable table
         {
@@ -25,34 +24,20 @@ namespace Framework
             return luaCom.table;
         }
 
-        public LuaComponent Bind(GameObject obj, LuaTable tb)
+        public static LuaComponent Bind(GameObject obj, LuaTable tb)
         {
             LuaComponent luaComp = obj.GetComponent<LuaComponent>();
             if (luaComp == null)
             {
                 luaComp = obj.AddComponent<LuaComponent>();
             }
-            table = tb;
+            luaComp.table = tb;
             return luaComp;
-        }
-
-        protected void Awake()
-        {
-            var func = table.GetInPath<LuaFunction>("Awake");
-            if (func != null)
-                func.Call(table);
-        }
-
-        protected void Start()
-        {
-            var func = table.GetInPath<LuaFunction>("Start");
-            if (func != null)
-                func.Call(table);
         }
 
         protected void OnDestroy()
         {
-            var func = table.GetInPath<LuaFunction>("Update");
+            var func = table.GetInPath<LuaFunction>("OnDestroy");
             if (func != null)
                 func.Call(table);
         }

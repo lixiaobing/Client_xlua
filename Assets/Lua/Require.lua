@@ -1,4 +1,6 @@
 require("RequireUnity")
+require("framework/utility/Event")
+require("framework/utility/Timer")
 require("framework/utility/Coroutine")
 require("framework/utility/Class")
 require("framework/utility/Global")
