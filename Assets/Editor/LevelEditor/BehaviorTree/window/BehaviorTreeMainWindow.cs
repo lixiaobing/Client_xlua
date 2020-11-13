@@ -92,7 +92,7 @@ public class BehaviorTreeMainWindow : EditorWindow
         }
         public void OnGUI()
         {
-            GUI.skin.font = Utils.font;
+            GUI.skin.font = LGUISkin.font;
             if (AIDataMgr.Instance == null)
             {
                 AIDataMgr.Load_(int.Parse(this.name)); //TODO name存储行为树ID

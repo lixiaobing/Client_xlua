@@ -35,7 +35,7 @@ namespace hjcd.level.BehaviorTree
  /*       GroupWindow groupWindow;*/
         int newSelectIndex = 0;
         void OnGUI() {
-            EditorGUILayout.BeginVertical(Utils.Style2, GUILayout.ExpandHeight(true));
+            EditorGUILayout.BeginVertical(LGUISkin.Style2, GUILayout.ExpandHeight(true));
             EditorGUILayout.BeginVertical(GUILayout.Height(160));
             
             aIModel.id   = Utils.IntField("id", aIModel.id);

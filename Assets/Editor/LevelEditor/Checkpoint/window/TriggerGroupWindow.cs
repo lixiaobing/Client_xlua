@@ -41,7 +41,7 @@ namespace hjcd.level.CheckPoint
 
         void OnGUI()
         {
-            GUI.skin.font = Utils.font ;
+            GUI.skin.font = LGUISkin.font ;
             EditorGUILayout.BeginHorizontal();
 
             DrawGroups();
@@ -55,7 +55,7 @@ namespace hjcd.level.CheckPoint
 
         public void DrawInspector()
         {
-            EditorGUILayout.BeginVertical(Utils.Style1, GUILayout.ExpandHeight(true), GUILayout.ExpandWidth(true));
+            EditorGUILayout.BeginVertical(LGUISkin.Style1, GUILayout.ExpandHeight(true), GUILayout.ExpandWidth(true));
             if (focus != null)
             {
                 focus.OnDraw();
@@ -76,7 +76,7 @@ namespace hjcd.level.CheckPoint
         Vector2 scrollPosition;
         public void DrawGroups() {
 
-            EditorGUILayout.BeginVertical(Utils.Style1, GUILayout.ExpandHeight(true), GUILayout.MinWidth(400));
+            EditorGUILayout.BeginVertical(LGUISkin.Style1, GUILayout.ExpandHeight(true), GUILayout.MinWidth(400));
 
             EditorGUILayout.BeginHorizontal();
             //EditorGUILayout.LabelField("触发器分组");
@@ -94,7 +94,7 @@ namespace hjcd.level.CheckPoint
             {
 
                 var triggerGroup = triggerGroupGroup.triggerGroups[gIndex];
-                EditorGUILayout.BeginVertical(Utils.Style2);//Utils.Style2
+                EditorGUILayout.BeginVertical(LGUISkin.Style2);//LGUISkin.Style2
 
 
                 EditorGUILayout.BeginHorizontal();
@@ -135,7 +135,7 @@ namespace hjcd.level.CheckPoint
 
                 if (triggerGroup.foldOut)
                 {
-                    //EditorGUILayout.BeginVertical(Utils.Style1);
+                    //EditorGUILayout.BeginVertical(LGUISkin.Style1);
                     for (int index = triggerGroup.triggers.Count - 1; index > -1; index--)
                     {
                         var trigger = triggerGroup.triggers[index];
@@ -217,14 +217,14 @@ namespace hjcd.level.CheckPoint
         public void DrawTriggers()
         {
             if (trigger == null) {
-                EditorGUILayout.BeginVertical(Utils.Style1, GUILayout.ExpandHeight(true), GUILayout.MinWidth(400));
+                EditorGUILayout.BeginVertical(LGUISkin.Style1, GUILayout.ExpandHeight(true), GUILayout.MinWidth(400));
                 Utils.LabelTip("请先选择触发器");
                 EditorGUILayout.EndVertical();
                 return;
             
             }
 
-            EditorGUILayout.BeginVertical(Utils.Style1, GUILayout.ExpandHeight(true), GUILayout.MinWidth(400));
+            EditorGUILayout.BeginVertical(LGUISkin.Style1, GUILayout.ExpandHeight(true), GUILayout.MinWidth(400));
 
 
             Utils.TextField("UID", trigger.uid);
@@ -241,7 +241,7 @@ namespace hjcd.level.CheckPoint
             trigger.desc = trigger.desc.Trim();
             /////////////////////////////////////////////////////////
 
-            EditorGUILayout.BeginVertical(Utils.Style1);
+            EditorGUILayout.BeginVertical(LGUISkin.Style1);
             EditorGUILayout.BeginHorizontal();
             this.extends[0] = EditorGUILayout.Foldout(this.extends[0], "触发器");
             if (Utils.Button("选择", GUILayout.MaxWidth(100)))
@@ -263,7 +263,7 @@ namespace hjcd.level.CheckPoint
             }
             EditorGUILayout.EndVertical();
             /////////////////////////////////////////////////////////
-            EditorGUILayout.BeginVertical(Utils.Style1);
+            EditorGUILayout.BeginVertical(LGUISkin.Style1);
             EditorGUILayout.BeginHorizontal();
             this.extends[1] = EditorGUILayout.Foldout(this.extends[1], "判断条件");
             if (Utils.Button("新增", GUILayout.MaxWidth(100)))
@@ -299,7 +299,7 @@ namespace hjcd.level.CheckPoint
             }
             EditorGUILayout.EndVertical();
             ///////////////////////////////////////////////////////// 
-            EditorGUILayout.BeginVertical(Utils.Style1);
+            EditorGUILayout.BeginVertical(LGUISkin.Style1);
             EditorGUILayout.BeginHorizontal();
             this.extends[2] = EditorGUILayout.Foldout(this.extends[2], "执行事件");
             if (Utils.Button("新增", GUILayout.MaxWidth(100)))

@@ -16,7 +16,7 @@ namespace hjcd.level.CheckPoint
 
         public Born Clone() {
             Born p = new Born();
-            p.uid = Utils.GetUUID();
+            p.uid = IDFactory.GetUUID();
             p.transform = this.transform.Clone();
             return p;
         }
@@ -38,7 +38,7 @@ namespace hjcd.level.CheckPoint
         public void OnDraw(IOperate host)
         {
             //EditorGUILayout.BeginVertical(GUI.skin.box);
-            EditorGUILayout.BeginVertical(Utils.Style2);
+            EditorGUILayout.BeginVertical(LGUISkin.Style2);
             flag =  EditorGUILayout.InspectorTitlebar(flag, gameObject);
             if (flag) { 
             

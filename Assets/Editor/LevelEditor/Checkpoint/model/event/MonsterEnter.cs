@@ -10,11 +10,11 @@ namespace hjcd.level.CheckPoint.PlotEvent
     [EnumDescription("角色入场")]
     public class MonsterEnter : TimeEvent
     {
-        public string uid = Utils.GetUUID();     //唯一ID
+        public string uid = IDFactory.GetUUID();     //唯一ID
         public int cid = 0;          //怪物ID
         public ETransform position = new ETransform();
         public override void Draw(PlayPlot playPlot) {
-            EditorGUILayout.BeginVertical(Utils.Style2);
+            EditorGUILayout.BeginVertical(LGUISkin.Style2);
             base.Draw(playPlot);
             Utils.TextField("怪物UID", uid);
             cid = Utils.IntField("怪物CID", cid);

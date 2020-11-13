@@ -211,7 +211,7 @@ namespace hjcd.level.BehaviorTree
             foreach (var node in nodes)
             {
                 string uuid = node.uuid;
-                string newUUID = Utils.GetUUID();
+                string newUUID = IDFactory.GetUUID();
 
                 foreach (var child in nodes) {
                     if (child.uuid.Equals(uuid))
@@ -307,18 +307,27 @@ namespace hjcd.level.BehaviorTree
             //{
             //    System.IO.File.WriteAllText(savePath, content);
             //    Utils.Log("导出成功:", savePath);
-
             //}
-            AIDataMgr temp = AIDataMgr.instance;
-            AIDataMgr.instance = this;
-            string content = this.ToLuaString(0, false);
-            AIDataMgr.instance = temp;
-            System.IO.File.WriteAllText(exportPath, content);
-            AssetDatabase.Refresh();
-            Utils.Log("导出成功:", exportPath);
+            if (Test.exportMode == Test.ExportMode.Asset)
+            {
+                //导出AI到asset
+                Test.ExportAI(this);
+                Utils.Log("导出成功:", exportPath);
+            }
+            else {
+                AIDataMgr temp = AIDataMgr.instance;
+                AIDataMgr.instance = this;
+                string content = this.ToLuaString(0, false);
+                AIDataMgr.instance = temp;
+                System.IO.File.WriteAllText(exportPath, content);
+                AssetDatabase.Refresh();
+                Utils.Log("导出成功:", exportPath);
 
-            //导出AI到asset
-            Test.ExportAI(this);
+            }
+
+
+
+
 
         }
 
@@ -445,8 +454,7 @@ namespace hjcd.level.BehaviorTree
             }
             else
             {
-
-                Utils.DisplayDialog("export fail " + filePath + " not exists!");
+                EditorUtility.DisplayDialog("警告","export fail " + filePath + " not exists!","确定");
             }
 
         }

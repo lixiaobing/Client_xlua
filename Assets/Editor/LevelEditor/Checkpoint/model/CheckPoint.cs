@@ -34,7 +34,7 @@ namespace hjcd.level.CheckPoint
         public bool OnDraw()
         {
             bool remove = false;
-            EditorGUILayout.BeginVertical(Utils.Style2);
+            EditorGUILayout.BeginVertical(LGUISkin.Style2);
             if (Utils.Button("删除")) {
                 remove = true;
             }

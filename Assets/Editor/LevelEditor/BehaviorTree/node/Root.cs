@@ -28,7 +28,7 @@ namespace hjcd.level.BehaviorTree
         }
         public override Texture2D GetTexture2D()
         {
-            return Utils.Textures.textureRoot;
+            return LGUISkin.Textures.textureRoot;
         }
     }
 }

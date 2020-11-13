@@ -22,7 +22,7 @@ namespace hjcd.level.CheckPoint
         public int level =0; //怪物等级
 
         public override void NewUUID() {
-            uid = Utils.GenerateMonsterID().ToString();
+            uid = IDFactory.GenerateMonsterID().ToString();
         }
         public Monster Clone() {
             Monster monster = new Monster();
@@ -73,7 +73,7 @@ namespace hjcd.level.CheckPoint
         //返回是否被删除
         public void OnDraw(CreateMonsters host)
         {
-           EditorGUILayout.BeginVertical(Utils.Style2);
+           EditorGUILayout.BeginVertical(LGUISkin.Style2);
        /*     EditorGUILayout.BeginVertical(GUI.skin.box);*/
             flag =  EditorGUILayout.InspectorTitlebar(flag, gameObject);
             if (flag) { 

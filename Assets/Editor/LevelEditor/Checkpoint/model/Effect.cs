@@ -54,7 +54,7 @@ namespace hjcd.level.CheckPoint
         //返回是否被删除
         public void OnDraw(CreateEffect host)
         {
-            EditorGUILayout.BeginVertical(Utils.Style2);
+            EditorGUILayout.BeginVertical(LGUISkin.Style2);
             CreateObject();
             flag = EditorGUILayout.InspectorTitlebar(flag, gameObject);
             if (flag)

@@ -9,33 +9,81 @@ using UnityEngine;
 
 namespace hjcd.level {
 
-    public static class Utils {
-        static System.Random r = new System.Random();
-        static Utils()
+    //ID生成器
+    public static class IDFactory {
+        private static System.Random random = new System.Random();
+        public static string GetUUID()
         {
-            
+            return GetLongUUID().ToString();             //return Guid.NewGuid().ToString("N");
         }
-        static System.Random getRandom()
+        public static long GetLongUUID()
         {
-            if (r == null) {
-                r = new System.Random();
-            }
-            return r;
-        }
-        /*
-                static List<CameraEffectTemplate> cameraEffectTemplates;
+            byte[] data = Guid.NewGuid().ToByteArray();
+            return BitConverter.ToInt64(data, 0);                     //return Guid.NewGuid().ToString().GetHashCode();
 
-                public static List<CameraEffectTemplate> GetCameraEffectTemplates()
+        }
+        //随机怪物ID
+        public static long GenerateMonsterID()
+        {
+            string millisecond = ((DateTime.Now.ToUniversalTime().Ticks - 621355968000000000) / 10000).ToString(); //毫秒
+            millisecond = millisecond.Substring(millisecond.Length - 8) + string.Format("{0:D2}", random.Next(0, 99));
+            return long.Parse(millisecond);
+        }
+    }
+
+    public static class LEditorGUILayout
+    {
+
+
+    }
+
+    public static class LGUISkin
+    {
+            
+        private const string skinPath = "Assets/Editor/LevelEditor/res/skin.guiskin";
+        private static GUISkin skin;  //自定义
+        public static GUISkin Skin
+        {
+            get
+            {
+                if (skin == null)
                 {
-                    if (cameraEffectTemplates == null)
-                    {
-                        CameraEffectPack  cameraEffectPack = AssetDatabase.LoadAssetAtPath<CameraEffectPack>("Assets/ResourcesAsset/Setting/CameraEffectPack.asset");
-                        cameraEffectTemplates = cameraEffectPack.templates;
-                    }
-                    return cameraEffectTemplates;
+                    skin = AssetDatabase.LoadAssetAtPath<GUISkin>(skinPath);
                 }
-        */
-        //TODOxlua
+                return skin;
+            }
+        }
+
+        public static GUIStyle GetStyle(string styleName)
+        {
+            return Skin.GetStyle(styleName);
+        }
+        public static GUIStyle Style1
+        {
+            get
+            {
+                return Skin.box;
+            }
+        }
+        public static GUIStyle Style2
+        {
+            get
+            {
+                //return GUI.skin.box;
+                return GUI.skin.customStyles[1];
+            }
+        }
+
+        //定义通用字体
+        public static Font font
+        {
+            get
+            {
+                return Skin.font;
+            }
+        }
+
+
 
         public const string texturePath = "Assets/Editor/LevelEditor/res/icon/LevelEditorTextures.asset";
 
@@ -52,6 +100,34 @@ namespace hjcd.level {
             }
         }
 
+
+    }
+
+
+
+    public static class Utils {
+
+        static Utils()
+        {
+            
+        }
+
+        /*
+                static List<CameraEffectTemplate> cameraEffectTemplates;
+
+                public static List<CameraEffectTemplate> GetCameraEffectTemplates()
+                {
+                    if (cameraEffectTemplates == null)
+                    {
+                        CameraEffectPack  cameraEffectPack = AssetDatabase.LoadAssetAtPath<CameraEffectPack>("Assets/ResourcesAsset/Setting/CameraEffectPack.asset");
+                        cameraEffectTemplates = cameraEffectPack.templates;
+                    }
+                    return cameraEffectTemplates;
+                }
+        */
+        //TODOxlua
+
+
         public static string ResourcesPath {
             get
             {
@@ -59,7 +135,7 @@ namespace hjcd.level {
             }
         }
         //自定义skin路径
-        public const string skinPath = "Assets/Editor/LevelEditor/res/skin.guiskin";
+/*        public const string skinPath = "Assets/Editor/LevelEditor/res/skin.guiskin";
         private static GUISkin skin;  //自定义
         public static GUISkin Skin {
             get {
@@ -71,11 +147,11 @@ namespace hjcd.level {
         }
 
         public static GUIStyle GetStyle(string styleName) {
-            return Utils.Skin.GetStyle(styleName);
+            return LGUISkin.Skin.GetStyle(styleName);
         }
         public static GUIStyle Style1 {
             get{
-               return Utils.Skin.box;
+               return LGUISkin.Skin.box;
             }
         }
         public static GUIStyle Style2{
@@ -89,9 +165,9 @@ namespace hjcd.level {
         {
             get
             {
-                return Utils.Skin.font;
+                return LGUISkin.Skin.font;
             }
-        }
+        }*/
 
         //提示Label  /* EditorGUILayout.HelpBox*/
         public static void LabelTip(string text, UnityEditor.MessageType messageType)
@@ -173,19 +249,7 @@ namespace hjcd.level {
 
 
 
-        public static bool DisplayDialog(string title, string content, string left, string right)
-        {
-            return EditorUtility.DisplayDialog(title, content, left, right);
-        }
 
-        public static bool DisplayDialog(string content)
-        {
-            return EditorUtility.DisplayDialog("提示", content, "确定");
-        }
-        public static bool DisplayDialog(string title, string content)
-        {
-            return EditorUtility.DisplayDialog(title, content, "确定");
-        }
 
         /*            string uuid = System.Guid.NewGuid().ToString(); // 9af7f46a-ea52-4aa3-b8c3-9fd484c2af12
             string uuidN = System.Guid.NewGuid().ToString("N"); // e0a953c3ee6040eaa9fae2b667060e09 
@@ -194,21 +258,7 @@ namespace hjcd.level {
             string uuidP = System.Guid.NewGuid().ToString("P"); //  (ade24d16-db0f-40af-8794-1e08e2040df3)
             string uuidX = System.Guid.NewGuid().ToString("X"); // {0x3fa412e3,0x8356,0x428f,{0xaa,0x34,0xb7,0x40,0*//*xda,0xaf,0x45,0x6f}}*/
 
-        public static string GetUUID() {
-            //return Guid.NewGuid().ToString("N");
-            return GetLongUUID().ToString();
-        }
-        public static long GetLongUUID()
-        {
-            byte[] data = Guid.NewGuid().ToByteArray();
-            return BitConverter.ToInt64(data, 0);
-            //return Guid.NewGuid().ToString().GetHashCode();
-        }
-        public static long GenerateMonsterID() {
-            string millisecond = ((DateTime.Now.ToUniversalTime().Ticks - 621355968000000000) / 10000).ToString(); //毫秒
-            millisecond = millisecond.Substring(millisecond.Length - 8) +  string.Format("{0:D2}", getRandom().Next(0, 99));
-            return long.Parse(millisecond);
-        }
+
         public static void DrawBezier(Rect start, Rect end, Color color)
         {
             Vector3 startPos = new Vector3(start.x + start.width - 10, start.y + start.height / 2, 0);
@@ -546,31 +596,31 @@ namespace hjcd.level {
             return gameObject;
         }
         public static bool Button(string name, params GUILayoutOption[] options) {
-            return GUILayout.Button(name, Utils.Skin.button, options);
+            return GUILayout.Button(name, LGUISkin.Skin.button, options);
         }
         //带点击事件和边框的Label
        public static bool EventLabel(string name,bool focused, params GUILayoutOption[] options)
         {
             GUIStyle style;
             if (focused){
-                style = Utils.Skin.GetStyle("FocusedEventLabel");
+                style = LGUISkin.Skin.GetStyle("FocusedEventLabel");
             }
             else{
-                style = Utils.Skin.GetStyle("NormalEventLabel");
+                style = LGUISkin.Skin.GetStyle("NormalEventLabel");
             }
             return GUILayout.Button(name, style, options);
         }
         //
         public static void Box(string name, params GUILayoutOption[] options)
         {
-            GUIStyle style = Utils.Skin.GetStyle("NormalEventLabel");
+            GUIStyle style = LGUISkin.Skin.GetStyle("NormalEventLabel");
             GUILayout.Label(name, style, options);
         }
 
         //指定按鈕文字顔色的按鈕
         public static bool Button(string name, Color textColor, params GUILayoutOption[] options)
         {
-            GUIStyle style   = Utils.Skin.button;
+            GUIStyle style   = LGUISkin.Skin.button;
             Color _textColor = style.normal.textColor;
             style.normal.textColor  = textColor;
             style.active.textColor  = textColor;
@@ -591,7 +641,7 @@ namespace hjcd.level {
             return GUILayout.Toolbar(selected, options);
         }
         /*        public static void BeginVertical2(params GUILayoutOption[] options) {
-                    EditorGUILayout.BeginVertical(Utils.Style2, options);
+                    EditorGUILayout.BeginVertical(LGUISkin.Style2, options);
                 }*/
         //获取完整的路径
         public static string GetTransPath(Transform trans)
@@ -623,25 +673,7 @@ namespace hjcd.level {
 
 
 
-        public static void TEST()
-        {
-            Debug.LogError("测试开始");
-            Dictionary<long, bool> dic = new Dictionary<long, bool>();
-            int count = 0;
-            while (count < 999999)
-            {
-                count++;
-                long uid = GetLongUUID();
-                if (dic.ContainsKey(uid)) {
-                    Debug.LogError("key" + uid);
-                    Debug.LogError("我操key重复了" + count);
-                    break;
-                }
-                dic.Add(uid, true);
 
-            }
-            Debug.LogError("测试完成1");
-        }
     }
 
 

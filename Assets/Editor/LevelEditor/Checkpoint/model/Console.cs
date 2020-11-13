@@ -14,7 +14,7 @@ namespace hjcd.level.CheckPoint
     {
         public int cid = 1;   //关联配置表
         public void OnDraw(CreateConsoles createConsoles) {
-            EditorGUILayout.BeginVertical(Utils.Style2);
+            EditorGUILayout.BeginVertical(LGUISkin.Style2);
             this.Name = Utils.TextField("名字", this.Name);
             Utils.TextField("UID", this.uid);
             int cid = Utils.IntField("CID", this.cid);

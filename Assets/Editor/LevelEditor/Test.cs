@@ -9,11 +9,18 @@ using UnityEngine;
 namespace hjcd.level {
     public class Test : ScriptableObject
     {
-
-        //[MenuItem("Tools/Level/TestAsset")]
+        //导出类型
+        public enum ExportMode { 
+            Lua = 0, //lua
+            Asset,
+        
+        }
+        public static ExportMode exportMode = ExportMode.Asset;
         public static void ExportAI(AIDataMgr data)
         {
-            string path = "Assets/Editor/LevelEditor/AI" + data.id + ".asset";
+            string path = string.Format("Assets/ResourcesAsset/Config/Ai/AI{0}.asset", data.id);
+
+            //string path = string.Format("Assets/AI{0}.asset", data.id);
             if (Utils.FileExists(path))
             {
                 AssetDatabase.DeleteAsset(path);
@@ -28,7 +35,7 @@ namespace hjcd.level {
         //[MenuItem("Tools/Level/TestAssetLoad")]
         public static AIDataMgr LoadAI(int id)
         {
-            string path = "Assets/Editor/LevelEditor/AI" + id + ".asset";
+            string path = string.Format("Assets/ResourcesAsset/Config/Ai/AI{0}.asset", id);
             AIDataMgr t = AssetDatabase.LoadAssetAtPath<AIDataMgr>(path);
             return t;
         }

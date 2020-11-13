@@ -26,7 +26,7 @@ namespace hjcd.level.CheckPoint
         }
         public void OnDraw(ConsoleCount consoleCount)
         {
-            EditorGUILayout.BeginVertical(Utils.Style2);
+            EditorGUILayout.BeginVertical(LGUISkin.Style2);
             cid = Utils.IntField("cid", cid);
             num = Utils.IntField("数量", num);
             relationalOperator = Utils.EnumPopup<RelationalOperator>("关系", relationalOperator);

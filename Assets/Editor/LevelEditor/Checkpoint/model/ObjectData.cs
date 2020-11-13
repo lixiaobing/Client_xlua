@@ -94,7 +94,7 @@ namespace hjcd.level.CheckPoint
         public virtual void OnDraw(GameObject gameObject)
         {
          
-            OnDraw(gameObject, Utils.Style1, true);
+            OnDraw(gameObject, LGUISkin.Style1, true);
         }
 
 

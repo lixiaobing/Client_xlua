@@ -80,7 +80,7 @@ namespace hjcd.level.CheckPoint
 
 
         void OnGUI() {
-            GUI.skin.font = Utils.font ;
+            GUI.skin.font = LGUISkin.font ;
             EditorGUILayout.BeginVertical();
             EditorGUILayout.LabelField("");
             EditorGUILayout.BeginVertical(GUILayout.Height(140));
