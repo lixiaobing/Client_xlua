@@ -102,7 +102,7 @@ namespace Battle
         }
 
 
-        public static bool CheckExportAttr(string typeName, string attrName)
+        public static bool CheckExportAttr(string typeName, string attrName, bool includeBaseAttr = false)
         {
             ActionEventKind kind = ActionEvent.GetActionEventKind(typeName);
 
@@ -112,8 +112,11 @@ namespace Battle
             }
 
             List<string> attrList = new List<string>();
-            string[] attrs = { "type", "time", "realTime" };
-            attrList.AddRange(attrs);
+            if (includeBaseAttr)
+            {
+                string[] attrs = { "type", "time", "realTime" };
+                attrList.AddRange(attrs);
+            }
 
             if (kind == ActionEventKind.Attack)
             {

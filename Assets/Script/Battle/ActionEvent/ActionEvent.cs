@@ -14,6 +14,15 @@ namespace Battle
             return this.MemberwiseClone();
         }
 
+        static ActionEvent()
+        {
+            string [] types = System.Enum.GetNames(typeof(ActionEventKind));
+            // 总数去掉一个None
+            MaxType = types.Length - 1;
+        }
+
+        public static readonly int MaxType;
+
         public ActionEventKind _type;
         public ActionEventKind type { get => _type; set => _type = value; }
 

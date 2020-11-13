@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Battle
 {
     [CreateAssetMenu(fileName = "ActionEventPack", menuName = "X-Create ActionEvent/ActionEventPack")]
-    public class ActionEventConfigPack : ScriptableObject
+    public class ActionEventPackConfig : ScriptableObject
     {
         [System.Serializable]
         public class StatePack
