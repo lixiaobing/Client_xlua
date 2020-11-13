@@ -179,7 +179,8 @@ namespace hjcd.level {
         {
             LabelTip(text, UnityEditor.MessageType.Info);
         }
-        public static string GetDescription(System.Object actionType) {
+        public static string GetDescription(System.Object actionType)
+        {
             FieldInfo fieldInfo = actionType.GetType().GetField(actionType.ToString());
             object[] attribArray = fieldInfo.GetCustomAttributes(false);
             EnumDescription attrib = (EnumDescription)attribArray[0];
@@ -672,8 +673,31 @@ namespace hjcd.level {
         }
 
 
-
-
+        public static void DrawSelectTarget2(string title,SelectTarget2 selectTarget)
+        {
+     
+            selectTarget.selectTargetType = Utils.EnumPopup<SelectTargetType2>(title, selectTarget.selectTargetType);
+            if (selectTarget.selectTargetType == SelectTargetType2.DESIGNATE_MONSTER || selectTarget.selectTargetType == SelectTargetType2.DESIGNATE_PLAYER)
+            {
+                selectTarget.targetId = Utils.IntField("指定ID", selectTarget.targetId);
+            }
+            else if (selectTarget.selectTargetType == SelectTargetType2.CUSTOM)
+            {
+                selectTarget.camp = Utils.EnumPopup<Camp>(title, selectTarget.camp);
+                selectTarget.targetState = Utils.EnumPopup<TargetState>(title, selectTarget.targetState);
+            }
+        }
+        
+        public static SelectTarget DrawSelectTarget(string title,SelectTarget selectTarget)
+        {
+            selectTarget.selectTargetType = Utils.EnumPopup<SelectTargetType>(title, selectTarget.selectTargetType);
+            if (selectTarget.selectTargetType == SelectTargetType.DESIGNATE_MONSTER || 
+                selectTarget.selectTargetType == SelectTargetType.DESIGNATE_PLAYER)
+            {
+                selectTarget.targetId = Utils.IntField("指定ID", selectTarget.targetId);
+            }
+            return selectTarget;
+        }
     }
 
 

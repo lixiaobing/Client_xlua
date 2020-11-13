@@ -36,7 +36,8 @@ namespace hjcd.level.CheckPoint
             AreaType _areaType = Utils.EnumPopup<AreaType>("触发区域",areaType);
             ChangeAreaType(_areaType);
             //目标选择可以封装成公用模块
-            selectTarget.OnDraw("触发对象");
+   /*         selectTarget.OnDraw("触发对象");*/
+            Utils.DrawSelectTarget("触发对象", selectTarget);
             string name = gameObject != null ? gameObject.name : "";
             Utils.LabelField("物体名称", name);
             position.DrawArea(gameObject,true);

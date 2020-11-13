@@ -24,7 +24,7 @@ namespace hjcd.level.CheckPoint
             base.OnDraw();
             CreateObject();
             delayTime = Utils.FloatField("延迟", delayTime);
-            selectTargetType.OnDraw();
+            selectTargetType = Utils.DrawSelectTarget("目标选择",selectTargetType);
             fight = Utils.Toggle("战斗状态", fight);
         }
 

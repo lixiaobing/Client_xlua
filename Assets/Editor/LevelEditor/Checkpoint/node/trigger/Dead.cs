@@ -23,7 +23,7 @@ namespace hjcd.level.CheckPoint
         public override void OnDraw()
         {
             base.OnDraw();
-            selectTarget.OnDraw("选择对象");
+            Utils.DrawSelectTarget("选择对象",selectTarget);
             relationalOperator = Utils.EnumPopup<RelationalOperator>("对比关系", relationalOperator);
             num = Utils.IntField("数量",num);
         }
