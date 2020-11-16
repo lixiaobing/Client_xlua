@@ -10,7 +10,7 @@ namespace hjcd.level.BehaviorTree
 {
     public class ChangeBuffConfig : ActionConfig
     {
-        public SelectTarget2Config selectTarget = new SelectTarget2Config();
+        public SelectTarget2 selectTarget = new SelectTarget2();
         //增加/删除
         public TargetOperator targetOperator = TargetOperator.ADD;
         

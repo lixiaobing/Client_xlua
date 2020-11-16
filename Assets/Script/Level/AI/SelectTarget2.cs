@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectTarget2Config : ScriptableObject
+public class SelectTarget2 : ScriptableObject
 {
 
 }

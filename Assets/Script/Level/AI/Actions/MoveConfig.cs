@@ -10,7 +10,7 @@ namespace hjcd.level.BehaviorTree
 {
     public class MoveConfig : ActionConfig
     {
-        public SelectTarget2Config selectTarget = new SelectTarget2Config();
+        public SelectTarget2 selectTarget = new SelectTarget2();
         //移动类型
         public MoveType moveType = MoveType.WALK;
         //移动速度

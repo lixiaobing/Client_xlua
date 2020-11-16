@@ -12,7 +12,7 @@ namespace hjcd.level.BehaviorTree
 
     public class SetFightConfig : ActionConfig
     {
-        public SelectTarget2Config selectTarget = new SelectTarget2Config();
+        public SelectTarget2 selectTarget = new SelectTarget2();
         
         //是否战斗状态
         public bool fight;
