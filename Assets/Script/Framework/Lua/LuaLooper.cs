@@ -13,23 +13,9 @@ namespace Framework
             private set;
         }
 
-        public LuaFunction UpdateEvent
-        {
-            get;
-            private set;
-        }
-
-        public LuaFunction LateUpdateEvent
-        {
-            get;
-            private set;
-        }
-
-        public LuaFunction FixedUpdateEvent
-        {
-            get;
-            private set;
-        }
+        LuaFunction UpdateEvent;
+        LuaFunction LateUpdateEvent;
+        LuaFunction FixedUpdateEvent;
 
         void Awake()
         {
@@ -38,9 +24,9 @@ namespace Framework
 
         public void Init()
         {
-            LuaFunction UpdateEvent = LuaManager.Instance.GetFunction("Update");
-            LuaFunction LateUpdateEvent = LuaManager.Instance.GetFunction("LateUpdate");
-            LuaFunction FixedUpdateEvent = LuaManager.Instance.GetFunction("FixedUpdate");
+            UpdateEvent = LuaManager.Instance.GetFunction("Update");
+            LateUpdateEvent = LuaManager.Instance.GetFunction("LateUpdate");
+            FixedUpdateEvent = LuaManager.Instance.GetFunction("FixedUpdate");
         }
 
         void Update()

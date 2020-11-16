@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     AssetManager asset;
     LuaManager lua;
-    //TFNetManager net;
+    TFNetManager net;
     //AkAudioManager akAudio;
 
     private void Awake()
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 
         asset = this.gameObject.AddComponent<AssetManager>();
         lua = this.gameObject.AddComponent<LuaManager>();
-        //net = this.gameObject.AddComponent<TFNetManager>();
+        net = this.gameObject.AddComponent<TFNetManager>();
 
         if (GameConst.isUseWwise)
         {

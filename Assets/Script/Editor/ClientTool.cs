@@ -36,23 +36,18 @@ public class ClientTool
         }
     }
 
+
     [MenuItem("Addressables/Generate")]
     public static void AddressablesGenerate()
     {
-        /*
         string folderPath = Application.dataPath + "/AddressableAssetsData";
 
         if (Directory.Exists(folderPath))
         {
             Directory.Delete(folderPath, true);
-            File.Delete(folderPath + ".meta");
-
-            AddressableAssetSettingsDefaultObject.Settings = null;
 
             AssetDatabase.Refresh();
-            AssetDatabase.SaveAssets();
         }
-        */
 
         var settings = AddressableAssetSettings.Create(AddressableAssetSettingsDefaultObject.kDefaultConfigFolder, AddressableAssetSettingsDefaultObject.kDefaultConfigAssetName, true, true);
         AddressableAssetSettingsDefaultObject.Settings = settings;
@@ -96,14 +91,13 @@ public class ClientTool
         }
 
         AddressablesReimport();
-        ClearMissFile();
     }
 
     [MenuItem("Addressables/Reimport")]
     public static void AddressablesReimport()
     {
         var setting = AssetDatabase.LoadAssetAtPath<AddressableAssetSettings>("Assets/AddressableAssetsData/AddressableAssetSettings.asset");
-        for(var i=setting.groups.Count-1; i >= 0; i--)
+        for (var i = setting.groups.Count - 1; i >= 0; i--)
         {
             var group = setting.groups[i];
             if (group.name != "Built In Data" && group.name != "Default Local Group")
@@ -113,6 +107,7 @@ public class ClientTool
         }
         EditorUtility.SetDirty(setting);
 
+
         List<string> paths = new List<string>();
 
         string path1 = Path.Combine(Application.dataPath, "ResourcesAsset");
@@ -121,7 +116,7 @@ public class ClientTool
             if (!subFile.EndsWith(".meta"))
             {
                 var newPath = subFile.Replace(Application.dataPath, "");
-                newPath = "Assets" + newPath.Replace("\\","/");
+                newPath = "Assets" + newPath.Replace("\\", "/");
                 paths.Add(newPath);
             }
         }
@@ -183,6 +178,7 @@ public class ClientTool
         AssetDatabase.Refresh();
         AssetDatabase.SaveAssets();
     }
+
 
     [MenuItem("Tools/Find Missing Objects")]
 
