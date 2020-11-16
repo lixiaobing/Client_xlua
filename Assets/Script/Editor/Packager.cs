@@ -8,6 +8,7 @@ using System.Diagnostics;
 using Framework;
 using UnityEditor.AddressableAssets.Settings;
 using System;
+using GameEditor;
 using UnityEditor.AddressableAssets.Settings.GroupSchemas;
 
 public class Packager
@@ -97,7 +98,7 @@ public class Packager
         }
         Directory.CreateDirectory(luaPath);
 
-        string path1 = Path.Combine(Application.dataPath, GameConst.luaCodePath);
+        string path1 = $"{Application.dataPath}/{GameConst.luaCodePath}";
         string[] luaPaths = { path1 };
         string luaList = string.Empty;
 
@@ -113,18 +114,16 @@ public class Packager
                 if (f.EndsWith(".bat")) continue;
                 if (f.EndsWith(".meta")) continue;
 
-                string newfile = f.Replace(luaDataPath, "");
-                string newpath = luaPath + newfile + ".txt";
+                string newfile = f.Replace(luaDataPath, luaPath);
+                string newpath = newfile + ".txt";
 
                 string path = Path.GetDirectoryName(newpath);
 
-                if (!Directory.Exists(path))
-                    Directory.CreateDirectory(path);
-
-                if (File.Exists(newpath))
-                {
-                    File.Delete(newpath);
-                }
+                GameEditorUtils.EnsurePath(path);
+                // if (File.Exists(newpath))
+                // {
+                //     File.Delete(newpath);
+                // }
                 File.Copy(f, newpath, true);
 
                 n++;
@@ -134,7 +133,7 @@ public class Packager
             }
         }
 
-        luaList = luaList.Remove(luaList.LastIndexOf("\r\n"));
+        luaList = luaList.TrimEnd();
 
         var encoding = new UTF8Encoding(false);
         File.WriteAllText(luaPath + "LuaFilesMap.txt", luaList, encoding);

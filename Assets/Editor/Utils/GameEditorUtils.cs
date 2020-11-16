@@ -46,7 +46,7 @@ namespace GameEditor
 			return File.Exists(path) || Directory.Exists(path);
 		}
 		
-		private static void EnsurePath(string path)
+		public static void EnsurePath(string path, bool isCreateFile=false)
 		{
 			if (IsExist(path))
 			{
@@ -57,7 +57,10 @@ namespace GameEditor
 			{
 				var dir = Path.GetDirectoryName(path);
 				EnsurePath(dir);
-				File.Create(path);
+				if (isCreateFile)
+				{
+					File.Create(path);
+				}
 			}
 			else
 			{
