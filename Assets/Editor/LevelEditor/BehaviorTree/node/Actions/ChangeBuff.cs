@@ -33,7 +33,8 @@ namespace hjcd.level.BehaviorTree
 
         public override void OnInspector()
         {
-            selectTarget.OnDraw();
+            //Utils.DrawSelectTarget2("目标选择", selectTarget);
+            Utils.DrawSelectTarget2("目标选择", selectTarget);
             targetOperator = Utils.EnumPopup<TargetOperator>("操作",targetOperator);
             buffId = Utils.IntField("BuffID",buffId);
         }

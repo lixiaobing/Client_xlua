@@ -34,7 +34,7 @@ namespace hjcd.level.BehaviorTree
 
         public override void OnInspector()
         {
-            selectTarget.OnDraw();
+            Utils.DrawSelectTarget2("目标选择", selectTarget);
             attackType = Utils.EnumPopup<AttackType>("攻击类型", attackType);
             relationalOperator = Utils.EnumPopup<RelationalOperator>("关系", relationalOperator);
             skillId = Utils.IntField("技能ID",skillId);

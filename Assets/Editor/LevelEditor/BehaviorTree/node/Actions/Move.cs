@@ -33,7 +33,7 @@ namespace hjcd.level.BehaviorTree
         }
         public override void OnInspector()
         {
-            selectTarget.OnDraw();
+            Utils.DrawSelectTarget2("目标选择", selectTarget);
             moveType = Utils.EnumPopup<MoveType>("移动方式", moveType);
             speed = Utils.UFloatField("移动速度",speed);
             maxTime = Utils.UFloatField("終止时间(毫秒)", maxTime);

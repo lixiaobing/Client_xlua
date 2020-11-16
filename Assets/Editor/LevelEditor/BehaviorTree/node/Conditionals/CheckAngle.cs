@@ -33,7 +33,7 @@ namespace hjcd.level.BehaviorTree
         public override void OnInspector()
         {
             base.OnInspector();
-            selectTarget.OnDraw();
+            Utils.DrawSelectTarget2("目标选择", selectTarget);
 
             angle = Utils.FloatField("角度",angle);
             radius = Utils.FloatField("半径",radius);

@@ -30,7 +30,7 @@ namespace hjcd.level.BehaviorTree
         public override void OnInspector()
         {
             base.OnInspector();
-            selectTarget.OnDraw();
+            Utils.DrawSelectTarget2("目标选择", selectTarget);
             skillId = Utils.UIntField("技能ID", skillId);
         }
     }

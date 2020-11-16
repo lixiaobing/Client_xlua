@@ -29,7 +29,8 @@ namespace hjcd.level.BehaviorTree
         public override void OnInspector()
         {
             base.OnInspector();
-            selectTarget.OnDraw();
+            //Utils.DrawSelectTarget2("目标选择", selectTarget);
+            Utils.DrawSelectTarget2("目标选择", selectTarget);
             state = Utils.EnumPopup<RoleState>("状态",state); 
         }
     }

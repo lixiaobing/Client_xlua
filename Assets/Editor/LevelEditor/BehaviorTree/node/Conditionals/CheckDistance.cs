@@ -33,7 +33,7 @@ namespace hjcd.level.BehaviorTree
         public override void OnInspector()
         {
             base.OnInspector();
-            selectTarget.OnDraw();
+            Utils.DrawSelectTarget2("目标选择", selectTarget);
 /*          minDistance = Utils.IntField("最小距离",minDistance);
             maxDistance = Utils.IntField("最大距离",maxDistance);*/
     

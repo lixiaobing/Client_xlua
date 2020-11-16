@@ -34,7 +34,8 @@ namespace hjcd.level.BehaviorTree
         public override void OnInspector()
         {
 
-            selectTarget.OnDraw();
+            //Utils.DrawSelectTarget2("目标选择", selectTarget);
+            Utils.DrawSelectTarget2("目标选择", selectTarget);
             attrPercent = Utils.EnumPopup<AttrPercent>("属性",attrPercent);
             simpleArithmeticOperator = Utils.EnumPopup<SimpleArithmeticOperator>("关系",simpleArithmeticOperator);
             //percent = Utils.IntField("百分比",percent);

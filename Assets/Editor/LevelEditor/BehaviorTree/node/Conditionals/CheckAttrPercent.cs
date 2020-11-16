@@ -36,7 +36,7 @@ namespace hjcd.level.BehaviorTree
         public override void OnInspector()
         {
             base.OnInspector();
-            selectTarget.OnDraw();
+            Utils.DrawSelectTarget2("目标选择", selectTarget);
 
             attrPercent = Utils.EnumPopup<AttrPercent>("属性",attrPercent);
     

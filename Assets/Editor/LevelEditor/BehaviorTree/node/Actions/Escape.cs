@@ -14,7 +14,7 @@ namespace hjcd.level.BehaviorTree
     {
         public override void OnInspector()
         {
-            selectTarget.OnDraw();
+            Utils.DrawSelectTarget2("目标选择", selectTarget);
             speed = Utils.UFloatField("移动速率", speed);
             maxTime = Utils.UFloatField("終止时间(毫秒)", maxTime);
             distance = Utils.UFloatField("最小距离", distance);

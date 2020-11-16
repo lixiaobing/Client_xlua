@@ -29,7 +29,7 @@ namespace hjcd.level.BehaviorTree
 
         public override void OnInspector()
         {
-            selectTarget.OnDraw();
+            Utils.DrawSelectTarget2("目标选择", selectTarget);
             fight = Utils.Toggle("战斗状态", fight);
         }
 
