@@ -31,20 +31,17 @@ namespace Framework
 
         void Update()
         {
-            if(UpdateEvent != null)
-                UpdateEvent.Call(new object[]{Time.deltaTime, Time.unscaledDeltaTime});
+            UpdateEvent?.Action(Time.deltaTime, Time.unscaledDeltaTime);
         }
 
         void LateUpdate()
         {
-            if (LateUpdateEvent != null)
-                LateUpdateEvent.Call();
+            LateUpdateEvent?.Action(0);
         }
 
         void FixedUpdate()
         {
-            if (FixedUpdateEvent != null)
-                FixedUpdateEvent.Call(new object[] { Time.fixedDeltaTime });
+            FixedUpdateEvent?.Action(Time.fixedDeltaTime);
         }
 
         void OnDestroy()
