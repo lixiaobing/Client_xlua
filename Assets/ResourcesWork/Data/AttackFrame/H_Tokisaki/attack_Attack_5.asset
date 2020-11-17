@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c5c10b126c0b1a4c8839e7f090d5368, type: 3}
+  m_Name: attack_Attack_5
+  m_EditorClassIdentifier: 
+  filePath: H_Tokisaki/attack_Attack_5
+  attackCheckType: 6
+  attackCheckVector: {x: 0, y: 1, z: 3.5}
+  attackPriorityTarget: 0
+  attackRadius: 3
+  attackRangePosition: {x: 0, y: 1, z: 3.5}
+  attackRangeTarget: 0
+  attackRangeRadius: 3
+  attackBallCenter: {x: 0, y: 1, z: 0}
+  attackBallRadius: 0
+  attackRayStart: {x: 0, y: 1, z: 0}
+  attackRayEnd: {x: 0, y: 1, z: 3}
+  attackBoxCenter: {x: 0, y: 1, z: 1}
+  attackBoxAngle: 0
+  attackBoxSize: {x: 1, y: 1, z: 1}
+  attackSectorPosition: {x: 0, y: 1, z: 0}
+  attackSectorDirection: 0
+  attackSectorRadius: 5
+  attackSectorAngle: 60
+  attackRingPosition: {x: 0, y: 0, z: 0}
+  attackRingRadiusMax: 0
+  attackRingRadiusMin: 0
+  attackRectCenter: {x: 0, y: 0, z: 0}
+  attackRectAngle: 0
+  attackRectSize: {x: 0, y: 0, z: 0}
+  attackEffectPath: 
+  attackDelayTime: 0
+  attackCheckTime: 0
+  debugPause: 0
+  warningTime: 0
+  beAttackedAction: None
+  beAttackedActionAir: None
+  beAttackedFlowUp: 0
+  beAttackedReset: 0
+  freezeFrameDelay: 0
+  freezeFrameTarget: 0
+  freezeFrameSelf: 0
+  cameraEffectId: 0
