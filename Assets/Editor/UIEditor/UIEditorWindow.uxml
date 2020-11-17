@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <uie:PropertyField name="UIContainer" />
+    <ui:VisualElement style="flex-direction: row;">
+        <uie:ObjectField label="UIPrefab" name="UIPrefab" />
+        <ui:Button text="Add" name="AddUIPrefab" />
+    </ui:VisualElement>
+</ui:UXML>
