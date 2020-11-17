@@ -1,7 +1,13 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
-    <uie:PropertyField name="UIContainer" />
-    <ui:VisualElement style="flex-direction: row;">
-        <uie:ObjectField label="UIPrefab" name="UIPrefab" />
-        <ui:Button text="Add" name="AddUIPrefab" />
+    <uie:Toolbar name="Toolbar" style="flex-direction: row;">
+        <uie:ToolbarButton text="UIContainer" name="UIContainer" />
+        <uie:ToolbarButton text="UIEditor" name="UIEditor" />
+    </uie:Toolbar>
+    <ui:VisualElement name="RootPanel" style="flex-direction: row; height: 100%; flex-basis: auto; flex-wrap: wrap; position: relative; align-items: flex-start; justify-content: flex-start; visibility: visible;">
+        <ui:VisualElement name="UIContainerPanel" style="width: 100%; height: auto; visibility: visible; display: flex;" />
+        <ui:VisualElement name="UIEditorPanel" style="opacity: 1; display: flex; width: 100%;">
+            <uie:ObjectField label="UIPrefab" name="UIPrefab" />
+            <ui:Button text="Add" name="AddUIPrefab" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

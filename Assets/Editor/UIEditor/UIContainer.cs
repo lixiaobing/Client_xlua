@@ -72,6 +72,7 @@ namespace GameEditor
 			AssetDatabase.CreateAsset(item, p);
 			_instance.Items.Add(item);
 			EditorUtility.SetDirty(_instance);
+			AssetDatabase.Refresh();
 		}
 	}
 }

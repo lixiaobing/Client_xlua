@@ -11,7 +11,9 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace GameEditor
 {
@@ -155,6 +157,31 @@ namespace GameEditor
 				sb.Append(b.ToString("x2"));
 			}
 			return sb.ToString();
+		}
+		
+		public static void DefaultGui(VisualElement container, SerializedObject serializedObject, bool hideScript)
+		{
+			var property = serializedObject.GetIterator();
+			if (!property.NextVisible(true))
+			{
+				return;
+			}
+
+			do
+			{
+				if (hideScript && property.propertyPath == "m_Script")
+				{
+					continue;
+				}
+
+				var field = new PropertyField(property);
+				if (property.propertyPath == "m_Script" && serializedObject.targetObject != null)
+				{
+					field.SetEnabled(false);
+				}
+				field.Bind(serializedObject);
+				container.Add(field);
+			} while (property.NextVisible(false));
 		}
 	}
 }
