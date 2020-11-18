@@ -14,13 +14,6 @@ namespace hjcd.level.BehaviorTree
     {
         public int parameter;
 
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(ExportUtils.KV(nameof(parameter), parameter, indent, newLine));
-            return sb.ToString();
-        }
-
         public override void OnInspector()
         {
             parameter = Utils.IntField("参数",parameter);

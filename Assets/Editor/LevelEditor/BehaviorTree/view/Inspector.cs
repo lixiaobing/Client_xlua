@@ -13,8 +13,8 @@ namespace hjcd.level.BehaviorTree
         public override void OnDraw()
         {
             EditorGUILayout.BeginVertical(LGUISkin.Style1, GUILayout.ExpandHeight(true));
-            if (AIDataMgr.Instance != null) {
-                DrawObject drawObject = AIDataMgr.Instance.Focus();
+            if (BehaviorTree.Instance != null) {
+                DrawObject drawObject = BehaviorTree.Instance.Focus();
                 if (drawObject != null)
                 {
                     drawObject.OnInspectorDraw();

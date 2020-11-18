@@ -20,16 +20,6 @@ namespace hjcd.level.BehaviorTree
         public int num;
         //关系
         public RelationalOperator relationalOperator = RelationalOperator.GREATER_THAN;
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(base.ToStringEx(indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(camp), camp, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(roleFightState), roleFightState, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(num), num, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(relationalOperator), relationalOperator, indent, newLine));
-            return sb.ToString();
-        }
 
 
         public override void OnInspector()

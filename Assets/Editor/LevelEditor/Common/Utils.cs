@@ -1,4 +1,5 @@
 using Framework;
+using hjcd.level.BehaviorTree;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -698,6 +699,84 @@ namespace hjcd.level {
             }
             return selectTarget;
         }
+
+
+
+
+
+        ////////////////////////////////////变量绘制////////////////////////////////////////
+        ///
+
+
+/*        public static void DrawVariable(Variable v)
+        {
+            v.share = Utils.Toggle("共享", v.share);
+            v.name = Utils.TextField("变量名", v.name);
+            v.value = Utils.FloatField("变量值", v.value);
+        }*/
+        public static void DrawVariable1(Variable v ,string text)
+        {
+
+            EditorGUILayout.BeginVertical(LGUISkin.Style2);
+            if (text != null)
+            {
+
+                EditorGUILayout.LabelField(text);
+            }
+            v.share = Utils.Toggle("共享", v.share);
+            v.name = Utils.TextField("变量名", v.name);
+            EditorGUILayout.EndVertical();
+        }
+
+        public static bool DrawVariable2(Variable v)
+        {
+            EditorGUILayout.BeginVertical(LGUISkin.Style2);
+
+            v.share = false;
+            v.name = Utils.TextField("变量名", v.name);
+            v.value = Utils.FloatField("变量值", v.value);
+            v.minValue = Utils.FloatField("最小值", v.minValue);
+            v.maxValue = Utils.FloatField("最大值", v.maxValue);
+            v.changgeType = Utils.EnumPopup("变化", v.changgeType);
+            if (v.changgeType == VariableChangeType.Auto)
+            {
+                v.interval = Utils.FloatField("间隔(秒)", v.interval);
+                v.changeValue = Utils.FloatField("变化值", v.changeValue);
+            }
+            bool ret = false;
+            if (Utils.Button("删除"))
+            {
+                ret = true;
+            }
+
+            EditorGUILayout.EndVertical();
+            return ret;
+        }
+
+
+
+
+        //克隆
+        public static T Clone<T>(T o) where T: ScriptableObject
+        {
+            System.Type type = o.GetType();
+            T oo = ScriptableObject.CreateInstance<T>();
+            System.Type configType = oo.GetType();
+            var Fields = configType.GetFields(BindingFlags.Public | BindingFlags.Instance);
+            foreach (var field in Fields)
+            {
+                FieldInfo f = type.GetField(field.Name);
+                field.SetValue(oo, f.GetValue(o));
+            }
+            return oo;
+        }
+
+
+
+
+
+
+
     }
 
 

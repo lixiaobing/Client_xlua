@@ -22,15 +22,6 @@ namespace hjcd.level.BehaviorTree
         //buffId
         public int buffId;
 
-        public override string ToStringEx(int indent,bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(selectTarget.ToLuaString(indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(targetOperator), targetOperator, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(buffId), buffId, indent, newLine));
-            return sb.ToString();
-        }
-
         public override void OnInspector()
         {
             //Utils.DrawSelectTarget2("目标选择", selectTarget);

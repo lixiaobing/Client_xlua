@@ -54,7 +54,6 @@ namespace hjcd.level.BehaviorTree
     [XmlInclude(typeof(CheckRunTime))]
     [XmlInclude(typeof(Idle))]
     [XmlInclude(typeof(Fallow))]
-    [XmlInclude(typeof(Vector3Ex))]
     [XmlInclude(typeof(Patrol))]
     [XmlInclude(typeof(Linkage))]
     [XmlInclude(typeof(TimeScale))]
@@ -74,7 +73,7 @@ namespace hjcd.level.BehaviorTree
     [XmlInclude(typeof(TriggerBuff))]
     [XmlInclude(typeof(BackRoot))]
     [XmlInclude(typeof(WillBeHit))]
-    public class AIDataMgr : ScriptableObject,IExport 
+    public class BehaviorTree : ScriptableObject 
     {
         //行为树编号
         public int id = 0;
@@ -91,15 +90,15 @@ namespace hjcd.level.BehaviorTree
 
 
 
-        private static AIModel model;
+        private static Model model;
         private bool active = false;
-        private static AIDataMgr instance;
+        private static BehaviorTree instance;
         private DrawObject focus;
         private string currentSavePath
         {
             get
             {
-                return BehaviorTreeConfig.GetBehaviorTreeFilePath(this.id);
+                return BehaviorTreeConst.GetBehaviorTreeFilePath(this.id);
 
             }
         }
@@ -109,7 +108,7 @@ namespace hjcd.level.BehaviorTree
 
             get
             {
-                return BehaviorTreeConfig.GetBehaviorTreeExportFilePath(this.id);
+                return BehaviorTreeConst.GetBehaviorTreeExportFilePath(this.id);
 
             }
         }
@@ -128,24 +127,17 @@ namespace hjcd.level.BehaviorTree
             RepaintWindow();
         }
 
-        public static AIDataMgr Instance
+        public static BehaviorTree Instance
         {
             get
             {
-
-                //if (instance == null)
-                //{
-                //    instance = new AIDataMgr();//ScriptableObject.CreateInstance<AIDataMgr>();
-                //    instance.active = false;
-                //}
-
                 return instance;
             }
         }
 
         public void AddVariable(string name, int value)
         {
-            Variable variable = new Variable();//ScriptableObject.CreateInstance<Variable>();
+            Variable variable = new Variable();
             variable.name = name;
             variable.value = value;
             variables.Add(variable);
@@ -266,118 +258,39 @@ namespace hjcd.level.BehaviorTree
             this.AddNode(new Root());
         }
 
-        public string ToLuaString(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(ExportUtils.Return);
-            sb.Append(ExportUtils.F_CurlyBracesLeft(0, true));
-            indent = 1;
-
-            sb.Append(ExportUtils.KV(nameof(id), id, indent, true));
-            //日志输出
-            sb.Append(ExportUtils.KV(nameof(debug), debug, indent, true));
-            //变量
-/*            sb.Append(ExportUtils.K(nameof(variables), indent, true));
-            sb.Append(ExportUtils.EqualSign);
-            sb.Append(ExportUtils.F_CurlyBracesLeft(0, false));*/
- /*           foreach (Variable v in variables)
-            {
-
-                sb.Append(ExportUtils.KV(v.name, v.value, indent + 1, true));
-
-            }*/
-         //sb.Append(ExportUtils.KV_LIST("variables", variables, indent, true));
-            /*            sb.Append(ExportUtils.F_CurlyBracesRight(indent, true));*/
-            //sb.Append(ExportUtils.Comma);
-
-           sb.Append(ExportUtils.KV_LIST<Variable>(nameof(variables), variables, indent, true));
-
-            //还未完善
-            sb.Append(ExportUtils.KV_LIST<Node>(nameof(nodes), nodes, indent, true));
-            sb.Append(ExportUtils.F_CurlyBracesRight(0, true));
-            return sb.ToString();
-        }
+       
         public void Export()
         {
-            //string content = this.ToLuaString(0, false);
-            //Debug.Log(content); ;
-            //string name = "ai_" + this.id + ".lua";
-            //string savePath = EditorUtility.SaveFilePanelInProject("保存文件", name, "lua", "请填写文件名");
-            //if (Utils.IsVaildPath(savePath))
-            //{
-            //    System.IO.File.WriteAllText(savePath, content);
-            //    Utils.Log("导出成功:", savePath);
-            //}
-            if (Test.exportMode == Test.ExportMode.Asset)
+            AIConfig aiConfig  = ScriptableObject.CreateInstance<AIConfig>();
+            aiConfig.id    = this.id;
+            aiConfig.name  = this.name;
+            aiConfig.debug = this.debug;
+            foreach (var variable in this.variables)
             {
-                //导出AI到asset
-                Test.ExportAI(this);
-                Utils.Log("导出成功:", exportPath);
+                aiConfig.variables.Add(variable); //Utils.Clone(variable)
             }
-            else {
-                AIDataMgr temp = AIDataMgr.instance;
-                AIDataMgr.instance = this;
-                string content = this.ToLuaString(0, false);
-                AIDataMgr.instance = temp;
-                System.IO.File.WriteAllText(exportPath, content);
-                AssetDatabase.Refresh();
-                Utils.Log("导出成功:", exportPath);
+            foreach (var node in this.nodes) {
 
+                aiConfig.nodes.Add(node.ToScriptableObject());
             }
-
-
-
+            string path = BehaviorTreeConst.GetBehaviorTreeExportFilePath(aiConfig.id);
+            if (Utils.FileExists(path))
+            {
+                AssetDatabase.DeleteAsset(path);
+            }
+            AssetDatabase.CreateAsset(aiConfig, path);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
 
 
         }
 
 
 
-        /// <summary>
-        /// ////////////////////////////////////
-        /// </summary>
-        //public void Load()
-        //{
-        //    string file_path = EditorUtility.OpenFilePanel("选择文件", Application.dataPath, "xml");
-
-        //    if (Utils.FileExists(file_path))
-        //    {
-        //        string asset_path = "Assets" + file_path.Replace(Application.dataPath, "");
-
-        //        AIDataMgr.instance = Utils.XmlDeserialize<AIDataMgr>(asset_path);
-        //        AIDataMgr.instance.active = true;
-        //        AIDataMgr.instance.currentSavePath = asset_path;
-        //        Utils.Log("打开成功:" + asset_path);
-        //    }
-        //    else
-        //    {
-        //        Utils.Log("打开失败:" + file_path);
-        //    }
-        //    RepaintWindow();
-        //}
-        //public void OtherSave()
-        //{
-        //    string savePath = EditorUtility.SaveFilePanelInProject("保存文件", "", "xml", "请填写文件名");
-        //    if (Utils.IsVaildPath(savePath))
-        //    {
-        //        Utils.XmlSerialize(savePath, this);
-        //        currentSavePath = savePath;
-        //        Utils.Log("保存成功:" + currentSavePath);
-        //    }
-        //}
         public void Save()
         {
-            //if (Utils.FileExists(currentSavePath))
-            //{
-            //    Utils.XmlSerialize(currentSavePath, this);
-            //    Utils.Log("保存:", currentSavePath);
-            //}
-            //else
-            //{
-            //    OtherSave();
-            //}
 
-            Utils.XmlSerialize(currentSavePath, this);
+            Utils.XmlSerialize(currentSavePath,this);
             Utils.Log("保存成功:", currentSavePath);
         }
 
@@ -395,11 +308,11 @@ namespace hjcd.level.BehaviorTree
         public static void Load_(int id)
         {
             //Utils.Log("Load id " + id);
-            string filePath = BehaviorTreeConfig.GetBehaviorTreeFilePath(id);
+            string filePath = BehaviorTreeConst.GetBehaviorTreeFilePath(id);
             if (File.Exists(filePath))
             {
-                AIDataMgr.instance = Utils.XmlDeserialize<AIDataMgr>(filePath);
-                AIDataMgr.instance.active = true;
+                BehaviorTree.instance = Utils.XmlDeserialize<BehaviorTree>(filePath);
+                BehaviorTree.instance.active = true;
             }
             else
             {
@@ -408,9 +321,9 @@ namespace hjcd.level.BehaviorTree
 
         }
         //新建文件
-        public static void Create_(AIModel model)
+        public static void Create_(Model model)
         {
-            AIDataMgr aIDataMgr = new AIDataMgr();
+            BehaviorTree aIDataMgr = new BehaviorTree();
             aIDataMgr.Create();
             aIDataMgr.id = model.id;
             aIDataMgr.name = model.name;
@@ -418,9 +331,9 @@ namespace hjcd.level.BehaviorTree
             //Utils.XmlSerialize(aIDataMgr.currentSavePath, aIDataMgr);
         }
         //删除文件
-        public static void Delete_(AIModel model)
+        public static void Delete_(Model model)
         {
-            string filePath = BehaviorTreeConfig.GetBehaviorTreeFilePath(model.id);  //string.Format("Assets/Editor/LevelEditor/_project/ai/{0}.xml", model.id);
+            string filePath = BehaviorTreeConst.GetBehaviorTreeFilePath(model.id);  //string.Format("Assets/Editor/LevelEditor/_project/ai/{0}.xml", model.id);
             //Utils.Log("filePath:" + filePath +"  存在 "+ File.Exists(filePath));
             if (File.Exists(filePath))
             {
@@ -429,12 +342,12 @@ namespace hjcd.level.BehaviorTree
             }
         }
         //复制
-        public static bool Copy_(AIModel src, AIModel model)
+        public static bool Copy_(Model src, Model model)
         {
-            string filePath = BehaviorTreeConfig.GetBehaviorTreeFilePath(src.id);
+            string filePath = BehaviorTreeConst.GetBehaviorTreeFilePath(src.id);
             if (File.Exists(filePath))
             {
-                AIDataMgr aIDataMgr = Utils.XmlDeserialize<AIDataMgr>(filePath);
+                BehaviorTree aIDataMgr = Utils.XmlDeserialize<BehaviorTree>(filePath);
                 aIDataMgr.id = model.id;
                 aIDataMgr.name = model.name;
                 aIDataMgr.Save();
@@ -443,12 +356,12 @@ namespace hjcd.level.BehaviorTree
 
             return false;
         }
-        public static void Export_(AIModel model)
+        public static void Export_(Model model)
         {
-            string filePath = BehaviorTreeConfig.GetBehaviorTreeFilePath(model.id);
+            string filePath = BehaviorTreeConst.GetBehaviorTreeFilePath(model.id);
             if (File.Exists(filePath))
             {
-                AIDataMgr aIDataMgr = Utils.XmlDeserialize<AIDataMgr>(filePath);
+                BehaviorTree aIDataMgr = Utils.XmlDeserialize<BehaviorTree>(filePath);
                 aIDataMgr.Export();
 
             }
@@ -459,14 +372,14 @@ namespace hjcd.level.BehaviorTree
 
         }
 
-        public static void Edit_(AIModel src ,AIModel model)
+        public static void Edit_(Model src ,Model model)
         {
-            string filePath = BehaviorTreeConfig.GetBehaviorTreeFilePath(src.id);
-            string _filePath = BehaviorTreeConfig.GetBehaviorTreeFilePath(model.id);
+            string filePath = BehaviorTreeConst.GetBehaviorTreeFilePath(src.id);
+            string _filePath = BehaviorTreeConst.GetBehaviorTreeFilePath(model.id);
             if (!filePath.Equals(_filePath)) {
                 File.Move(filePath, _filePath);
             }
-            AIDataMgr aIDataMgr = Utils.XmlDeserialize<AIDataMgr>(_filePath);
+            BehaviorTree aIDataMgr = Utils.XmlDeserialize<BehaviorTree>(_filePath);
             aIDataMgr.id = model.id;
             aIDataMgr.name = model.name;
             aIDataMgr.Save();

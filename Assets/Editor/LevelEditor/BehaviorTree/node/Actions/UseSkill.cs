@@ -22,16 +22,6 @@ namespace hjcd.level.BehaviorTree
         public RelationalOperator relationalOperator = RelationalOperator.GREATER_THAN;
         public AttackType attackType = AttackType.ALL;
 
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(selectTarget.ToLuaString(indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(attackType), attackType, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(relationalOperator), relationalOperator, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(skillId), skillId, indent,  newLine));
-            return sb.ToString();
-        }
-
         public override void OnInspector()
         {
             Utils.DrawSelectTarget2("目标选择", selectTarget);

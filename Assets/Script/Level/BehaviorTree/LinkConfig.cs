@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace hjcd.level.BehaviorTree
 {
-    public class NodeConfig : ScriptableObject
+    public class LinkConfig : ScriptableObject
     {
-        public int uuid;
-
+        public string child;
+        //权重
+        public float weight = 10;
     }
 }

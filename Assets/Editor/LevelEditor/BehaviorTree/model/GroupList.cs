@@ -16,7 +16,7 @@ namespace hjcd.level.BehaviorTree
         public int globalBehaviorTreeId = 1000001; //行为树ID
 
         public List<Group> groups     = new List<Group>();
-        public List<AIModel> aIModels = new List<AIModel>();
+        public List<Model> aIModels = new List<Model>();
 
         public int NextGlobalGroupID() {
             return globalGroupId++;
@@ -28,7 +28,7 @@ namespace hjcd.level.BehaviorTree
         //把不存在的分组 放到未分组
         public void Check() {
 
-            foreach (AIModel model in aIModels)
+            foreach (Model model in aIModels)
             {
                 bool flag = false;
                 foreach (Group group in groups)
@@ -60,14 +60,14 @@ namespace hjcd.level.BehaviorTree
         }
 
 
-        public void AddAIModel(AIModel model)
+        public void AddAIModel(Model model)
         {
             aIModels.Add(model);
 
             this.SaveAssets();
         }
 
-        public void RemoveAIModel(AIModel model)
+        public void RemoveAIModel(Model model)
         {
             aIModels.Remove(model);
             this.SaveAssets();

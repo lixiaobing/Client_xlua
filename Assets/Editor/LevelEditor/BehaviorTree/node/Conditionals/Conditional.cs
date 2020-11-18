@@ -28,20 +28,6 @@ namespace hjcd.level.BehaviorTree
         //能否被自己打断
         public bool canBreakSelf = false;
 
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(ExportUtils.KV(nameof(breakListen), breakListen, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(breakPriority), breakPriority, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(breakTimes), breakTimes, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(breakProtectTime), breakProtectTime, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(breakCountDonwTime), breakCountDonwTime, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(canBreakOther), canBreakOther, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(canBreakSelf), canBreakSelf, indent, newLine));
-            return sb.ToString();
-        }
-
-
         public override void OnInspector() {
 
 
@@ -71,18 +57,6 @@ namespace hjcd.level.BehaviorTree
 
         }
 
-        /*        public override GUIStyle GetStyle()
-                {
-                    if (this.Focused())
-                    {
-                        return LGUISkin.Skin.GetStyle("FocusedNode");
-                    }
-                    else
-                    {
-                        return LGUISkin.Skin.GetStyle("ConditionalNode");
-                    }
-
-                }*/
         public override Texture2D GetTexture2D()
         {
             return LGUISkin.Textures.textureCondition;

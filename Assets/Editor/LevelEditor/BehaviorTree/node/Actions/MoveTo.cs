@@ -12,24 +12,13 @@ namespace hjcd.level.BehaviorTree
     [Serializable]
     public class MoveTo : Action
     {
-        public List<Vector3Ex> positions = new List<Vector3Ex>();
+        public List<Vector3> positions = new List<Vector3>();
         //移动速度
         public float speed    = 4;
         //最大移动时间
-        public int loopTimes=-1;
+        public int loopTimes =-1;
         //移动类型
         public MoveType moveType = MoveType.WALK;
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-
-            sb.Append(ExportUtils.KV_LIST<Vector3Ex>(nameof(positions), positions, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(moveType), moveType, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(speed), speed, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(loopTimes), loopTimes, indent, newLine));
-
-            return sb.ToString();
-        }
 
         public override void OnInspector()
         {
@@ -40,27 +29,24 @@ namespace hjcd.level.BehaviorTree
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("位置");
             if (Utils.Button("添加", GUILayout.MaxWidth(100))) {
-                positions.Add(new Vector3Ex());
+                positions.Add(new Vector3());
             }
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginVertical(GUI.skin.box);
-            bool remove = false;
-            Vector3Ex removeVector = null;
-            foreach (var position in positions)
+            for (int i = positions.Count-1; i > -1; i--)
             {
+                Vector3 position = positions[i];
                 EditorGUILayout.BeginHorizontal();
-                position.position = EditorGUILayout.Vector3Field("", position.position);
-                if(Utils.Button("删除",GUILayout.MaxWidth(100))) {
-                    removeVector = position;
-                    remove = true;
+                Vector3 pos = EditorGUILayout.Vector3Field("", position);
+                position.Set(pos.x, pos.y, pos.z);
+                if (Utils.Button("删除",GUILayout.MaxWidth(100))) {
+                    positions.RemoveAt(i);
                 }
                 EditorGUILayout.EndHorizontal();
             }
             EditorGUILayout.EndVertical();
-            if (remove) {
-                positions.Remove(removeVector);
-            }
+
         }
     }
 }

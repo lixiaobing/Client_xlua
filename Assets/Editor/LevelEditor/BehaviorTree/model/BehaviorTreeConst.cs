@@ -9,9 +9,9 @@ namespace hjcd.level.BehaviorTree
 {
 
     //[CreateAssetMenu]
-    public class BehaviorTreeConfig : ScriptableObject
+    public class BehaviorTreeConst : ScriptableObject
     {
-        public const string behaviorTreeExportDir = "Assets/Lua/config/ai/";
+        public const string behaviorTreeExportDir = "Assets/ResourcesAsset/Config/Ai/AI{0}.asset";
         public const string behaviorTreeGroup = "Assets/Editor/LevelEditor/_project/config/group.asset";
         //Ai 存放目录
         public const string behaviorTreeDir  = "Assets/Editor/LevelEditor/_project/ai/";
@@ -24,7 +24,7 @@ namespace hjcd.level.BehaviorTree
 
         public static string GetBehaviorTreeExportFilePath(int id)
         {
-            return string.Format(behaviorTreeExportDir + "ai_{0}.lua", id);
+            return string.Format(behaviorTreeExportDir, id);
         }
     }
 }

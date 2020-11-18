@@ -9,6 +9,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Xml.Serialization;
 using System.Text;
+using System.Reflection;
 
 namespace hjcd.level.BehaviorTree
 {
@@ -59,7 +60,7 @@ namespace hjcd.level.BehaviorTree
             windowPosition += offset;
             foreach (Link link in links)
             {
-                Node node = AIDataMgr.Instance.GetNode(link.child);
+                Node node = BehaviorTree.Instance.GetNode(link.child);
                 node.MovePosition(offset);
             }
         }
@@ -83,8 +84,8 @@ namespace hjcd.level.BehaviorTree
         {
             links.Sort((Link link1, Link link2) =>
             {
-                Node n1 = AIDataMgr.Instance.GetNode(link1.child);
-                Node n2 = AIDataMgr.Instance.GetNode(link2.child);
+                Node n1 = BehaviorTree.Instance.GetNode(link1.child);
+                Node n2 = BehaviorTree.Instance.GetNode(link2.child);
                 return n1.GetLinkInPosition().y.CompareTo(n2.GetLinkInPosition().y);
             });
         }
@@ -104,7 +105,7 @@ namespace hjcd.level.BehaviorTree
                 if (link.child == node.uuid) {
                     return true;
                 }
-                Node _node = AIDataMgr.Instance.GetNode(link.child);
+                Node _node = BehaviorTree.Instance.GetNode(link.child);
                 if (_node.HaveChild(node)) {
                     return true;
                 }
@@ -124,7 +125,7 @@ namespace hjcd.level.BehaviorTree
             if (LinkOutType() == LinkType.NONE) {
                 return;
             }
-            AIDataMgr.Instance.RemoveLink(node.uuid);
+            BehaviorTree.Instance.RemoveLink(node.uuid);
             if (LinkOutType() == LinkType.SINGLE) {
                 links.Clear();  //只支持单个
             }
@@ -265,7 +266,7 @@ namespace hjcd.level.BehaviorTree
 
         public override void RemoveSelf(bool containChild = false)
         {
-            AIDataMgr.Instance.RemoveNode(this, containChild);
+            BehaviorTree.Instance.RemoveNode(this, containChild);
         }
 
 
@@ -305,12 +306,12 @@ namespace hjcd.level.BehaviorTree
 
             obj.MovePosition(new Vector2(20, 20));
             obj.uuid = IDFactory.GetUUID();
-            AIDataMgr.Instance.AddNode(obj);
+            BehaviorTree.Instance.AddNode(obj);
             if (containChild)
             {
                 foreach (var link in obj.links)
                 {
-                    Node node = AIDataMgr.Instance.GetNode(link.child).Clone(containChild);
+                    Node node = BehaviorTree.Instance.GetNode(link.child).Clone(containChild);
                     link.child = node.uuid;
                     link.uuid  = IDFactory.GetUUID();
                 }
@@ -324,34 +325,7 @@ namespace hjcd.level.BehaviorTree
 
 
 
-        public virtual string ToStringEx(int indent ,bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            
-            return sb.ToString();
-        }
 
-
-        public override string ToLuaString(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(ExportUtils.F_CurlyBracesLeft(0, false));
-            sb.Append(ExportUtils.KV(nameof(uuid), uuid, indent+1,true));
-            sb.Append(ExportUtils.KV(nameof(Type), Type, indent+1, true));
-            sb.Append(ExportUtils.KV(nameof(mark), mark, indent + 1, true));
-            links.Sort((Link link1, Link link2) =>
-            {
-                Node n1 = AIDataMgr.Instance.GetNode(link1.child);
-                Node n2 = AIDataMgr.Instance.GetNode(link2.child);
-                return n1.windowPosition.x.CompareTo(n2.windowPosition.x);
-            });
-
-            sb.Append(ExportUtils.KV_LIST<Link>(nameof(links), links, indent+1, true));
-/*            sb.Append(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");*/
-            sb.Append(ToStringEx(indent+1,newLine));
-            sb.Append(ExportUtils.F_CurlyBracesRight(indent, newLine));
-            return sb.ToString();
-        }
         public virtual GUIStyle GetStyle() {
             if (this.Focused())
             {
@@ -363,5 +337,59 @@ namespace hjcd.level.BehaviorTree
             }
            
         }
+
+
+
+
+
+
+
+        public  ScriptableObject ToScriptableObject()
+        {
+            System.Type type = this.GetType();
+            ScriptableObject nodeConfig = ScriptableObject.CreateInstance(type.Name + "Config");
+            if (nodeConfig == null)
+            {
+                Debug.LogError("Class " + type.Name + "Config" + " not found");
+                // return null;
+            }
+            System.Type configType = nodeConfig.GetType();
+            var Fields = configType.GetFields(BindingFlags.Public | BindingFlags.Instance);
+            foreach (var field in Fields)
+            {
+                if (field.Name.Equals("links"))
+                {
+                    continue;
+                }
+                //Debug.Log(field.Name);
+                FieldInfo f = type.GetField(field.Name);
+                if (f != null)
+                {
+                    //Debug.LogError("Class " + type.Name + "." + field.Name);
+                    field.SetValue(nodeConfig, f.GetValue(this));
+                }
+                else
+                {
+                    Debug.LogError("Class " + type.Name + "." + field.Name + " not found");
+                }
+            }
+
+            FieldInfo ff = configType.GetField("links");
+            if (ff != null)
+            {
+                List<Link> links = (List<Link>)type.GetField("links").GetValue(this);
+                List<LinkConfig> linkConfigs = new List<LinkConfig>();
+                foreach (var link in links)
+                {
+                    var linkConfig = ScriptableObject.CreateInstance<LinkConfig>();
+                    linkConfig.child = link.child;
+                    linkConfig.weight = link.weight;
+                }
+                ff.SetValue(nodeConfig, linkConfigs);
+            }
+            return nodeConfig;
+        }
+        
+
     }
 }

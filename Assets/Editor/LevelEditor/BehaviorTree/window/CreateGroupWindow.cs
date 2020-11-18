@@ -11,7 +11,7 @@ namespace hjcd.level.BehaviorTree
     {
         public static CreateGroupWindow instance;
         private Group group = new Group();
-        public static EditorWindow OpenWindow(GroupWindow groupWindow)
+        public static EditorWindow OpenWindow(BehaviorTreeGroupWindow groupWindow)
         {
 
             if (instance != null) {
@@ -29,7 +29,7 @@ namespace hjcd.level.BehaviorTree
            instance = window;
             return window;
         }
-        GroupWindow groupWindow;
+        BehaviorTreeGroupWindow groupWindow;
 
         void OnGUI() {
             GUI.skin.font = LGUISkin.font;

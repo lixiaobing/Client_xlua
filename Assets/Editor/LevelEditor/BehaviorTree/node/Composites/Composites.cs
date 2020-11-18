@@ -17,14 +17,6 @@ namespace hjcd.level.BehaviorTree
         // 打断类型
         public AbortType abortType = AbortType.None;
 
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(ExportUtils.KV(nameof(abortType), abortType, indent, newLine));
-            return sb.ToString();
-        }
-
-
         public override LinkType LinkOutType()
         {
             return LinkType.MULTIPLE;

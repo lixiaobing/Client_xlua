@@ -9,7 +9,7 @@ using System.Text;
 namespace hjcd.level.BehaviorTree
 {
 
-    public class PatroConfigl : ActionConfig
+    public class PatrolConfig : ActionConfig
     {
         //移动次数
         public int times  = 3;

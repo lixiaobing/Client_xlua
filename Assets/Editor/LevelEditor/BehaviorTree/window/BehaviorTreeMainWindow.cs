@@ -30,7 +30,7 @@ public class BehaviorTreeMainWindow : EditorWindow
                 BehaviorTreeMainWindow.instance.Close();
             }
         }
-        public static void OpenWindow(AIModel model)
+        public static void OpenWindow(Model model)
         {
             if (instance == null) {
                 BehaviorTreeMainWindow window = EditorWindow.GetWindow<BehaviorTreeMainWindow>();
@@ -41,7 +41,7 @@ public class BehaviorTreeMainWindow : EditorWindow
             instance.titleContent = new GUIContent("行为树编辑:" + model.id);
             instance.name = model.id.ToString();
             instance.Repaint();
-            AIDataMgr.Load_(model.id); 
+            BehaviorTree.Load_(model.id); 
 
         }
         public static GUISkin skin { get; private set; }
@@ -93,15 +93,15 @@ public class BehaviorTreeMainWindow : EditorWindow
         public void OnGUI()
         {
             GUI.skin.font = LGUISkin.font;
-            if (AIDataMgr.Instance == null)
+            if (BehaviorTree.Instance == null)
             {
-                AIDataMgr.Load_(int.Parse(this.name)); //TODO name存储行为树ID
+                BehaviorTree.Load_(int.Parse(this.name)); //TODO name存储行为树ID
             }
 
             Event e = Event.current;
     
 
-            List<Node> nodeList = AIDataMgr.Instance.nodes;
+            List<Node> nodeList = BehaviorTree.Instance.nodes;
             DrawBackground();
             
             //if (!AIDataMgr.Instance.IsActive()) {
@@ -254,7 +254,7 @@ public class BehaviorTreeMainWindow : EditorWindow
                 if (e.keyCode == KeyCode.Delete)
                 {
                     Utils.Log("删除RemoveFocus");
-                    AIDataMgr.Instance.RemoveFocus();
+                    BehaviorTree.Instance.RemoveFocus();
                     readRepaint = true;
                 }
             }
@@ -275,11 +275,11 @@ public class BehaviorTreeMainWindow : EditorWindow
                 AIDataMgr.Instance.Create();
             }
             */
-            if (AIDataMgr.Instance.nodes.Count > 0)
+            if (BehaviorTree.Instance.nodes.Count > 0)
             {
                 if (Utils.Button("保存", GUILayout.Width(80), GUILayout.Height(30)))
                 {
-                    AIDataMgr.Instance.Save();
+                    BehaviorTree.Instance.Save();
                 }
                 //if (Utils.Button("另存为", GUILayout.Width(80), GUILayout.Height(30)))
                 //{
@@ -287,7 +287,7 @@ public class BehaviorTreeMainWindow : EditorWindow
                 //}
                 if (Utils.Button("导出", GUILayout.Width(80), GUILayout.Height(30)))
                 {
-                    AIDataMgr.Instance.Export();
+                    BehaviorTree.Instance.Export();
                 }
 
             }
@@ -295,7 +295,7 @@ public class BehaviorTreeMainWindow : EditorWindow
    
             if (Utils.Button("元件", GUILayout.Width(80), GUILayout.Height(30)))
             {
-                InspectorWindow.OpenWindow();
+                BehaviorTreeInspectorWindow.OpenWindow();
             }
             Node.staticScale = GUILayout.HorizontalSlider(Node.staticScale,0.5f,1.0f,GUILayout.Width(200));
             GUILayout.Label(Node.staticScale.ToString());
@@ -332,8 +332,8 @@ public class BehaviorTreeMainWindow : EditorWindow
 
         public void DrawNodeWindow(int index)
         {
-            if (index < AIDataMgr.Instance.nodes.Count) {  //删除操作时的容错处理
-                Node node = AIDataMgr.Instance.nodes[index];
+            if (index < BehaviorTree.Instance.nodes.Count) {  //删除操作时的容错处理
+                Node node = BehaviorTree.Instance.nodes[index];
                 node.OnDraw(offset);                
                 GUI.DragWindow();
 
@@ -388,7 +388,7 @@ public class BehaviorTreeMainWindow : EditorWindow
                 node.SetPosition(mousePosition);
 
             }
-            AIDataMgr.Instance.AddNode(node);
+            BehaviorTree.Instance.AddNode(node);
         }
 
         //记录鼠标位置
@@ -422,7 +422,7 @@ public class BehaviorTreeMainWindow : EditorWindow
                 menu.AddItem(new GUIContent("装饰节点/" + Utils.GetDescription(type)), false, OnAddNodeCallback, type.FullName);
             }
             //预制模块
-            GroupList groupList = Utils.AssetDeserialize<GroupList>(BehaviorTreeConfig.behaviorTreeGroup);
+            GroupList groupList = Utils.AssetDeserialize<GroupList>(BehaviorTreeConst.behaviorTreeGroup);
             if (groupList != null) {
                 foreach (var model in groupList.aIModels)
                 {
@@ -442,17 +442,17 @@ public class BehaviorTreeMainWindow : EditorWindow
         //添加AI模块
         public void OnCreateMode(object obj)
         {
-            AIModel model = obj as AIModel;
-            string filePath = BehaviorTreeConfig.GetBehaviorTreeFilePath(model.id);
+            Model model = obj as Model;
+            string filePath = BehaviorTreeConst.GetBehaviorTreeFilePath(model.id);
             if (File.Exists(filePath))
             {
-                AIDataMgr data = Utils.XmlDeserialize<AIDataMgr>(filePath);
+                BehaviorTree data = Utils.XmlDeserialize<BehaviorTree>(filePath);
 
                 data.NewUUID();
 
                 foreach (var node in data.nodes)
                 {
-                    AIDataMgr.Instance.AddNode(node);
+                    BehaviorTree.Instance.AddNode(node);
                 }
             }
          
@@ -496,7 +496,7 @@ public class BehaviorTreeMainWindow : EditorWindow
             {
                Node _node=  node.Clone();
                _node.MovePosition(new Vector2(20, 20));
-               AIDataMgr.Instance.AddNode(_node);
+               BehaviorTree.Instance.AddNode(_node);
 
             }
 
@@ -515,8 +515,8 @@ public class BehaviorTreeMainWindow : EditorWindow
 
         public void OnDestroy()
         {
-            AIDataMgr.Instance.CleanUp();
-            InspectorWindow.ClosweWindow();
+            BehaviorTree.Instance.CleanUp();
+            BehaviorTreeInspectorWindow.ClosweWindow();
         }
 
     }

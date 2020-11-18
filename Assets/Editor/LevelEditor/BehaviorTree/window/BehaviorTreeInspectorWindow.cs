@@ -3,9 +3,9 @@ using UnityEditor;
 using UnityEngine;
 namespace hjcd.level.BehaviorTree
 {
-    public class InspectorWindow : EditorWindow
+    public class BehaviorTreeInspectorWindow : EditorWindow
     {
-        private static InspectorWindow instance;
+        private static BehaviorTreeInspectorWindow instance;
 
         private readonly static string[] ToolbarText = { "主参数配置", "检点参数", "元件列表" };
        
@@ -15,7 +15,7 @@ namespace hjcd.level.BehaviorTree
         public static void OpenWindow(int selectIndex)
         {
             if (instance == null) {
-                InspectorWindow window = (InspectorWindow)EditorWindow.GetWindow<InspectorWindow>(false);
+                BehaviorTreeInspectorWindow window = (BehaviorTreeInspectorWindow)EditorWindow.GetWindow<BehaviorTreeInspectorWindow>(false);
                 window.titleContent = new GUIContent("AIEditor Inspector");
                 window.minSize = new Vector2(500, 800);
                 window.maximized = true;
@@ -29,7 +29,7 @@ namespace hjcd.level.BehaviorTree
         public int tabSelectIndex = 3;
         readonly View[] views = { new Main()  , new Inspector(), new Tasks() };
 
-        public InspectorWindow() 
+        public BehaviorTreeInspectorWindow() 
         {
             EventCenter.GetInstance(EventCenterType.AIEditor).RegisterListener(level.MessageType.REPAINT, DoRepaint);
         }
@@ -41,7 +41,7 @@ namespace hjcd.level.BehaviorTree
 
             EditorGUILayout.BeginVertical();
             tabSelectIndex = GUILayout.Toolbar(tabSelectIndex, ToolbarText);
-            if (AIDataMgr.Instance != null)
+            if (BehaviorTree.Instance != null)
             {
                 views[tabSelectIndex].OnDraw();
             }

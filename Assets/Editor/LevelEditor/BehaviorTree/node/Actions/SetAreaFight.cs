@@ -18,14 +18,6 @@ namespace hjcd.level.BehaviorTree
         public float radius = 1;
         //是否战斗状态
         public bool fight = true;
-        public override string ToStringEx(int indent,bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(ExportUtils.KV(nameof(camp), camp, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(radius), radius, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(fight), fight, indent, newLine));
-            return sb.ToString();
-        }
 
         public override void OnInspector()
         {

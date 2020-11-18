@@ -95,7 +95,7 @@ namespace hjcd.level.BehaviorTree
         }
         public void OnClick(Type type)
         {
-            if (AIDataMgr.Instance.IsActive())
+            if (BehaviorTree.Instance.IsActive())
             {
                 Node node = Utils.CreateInstance<Node>(type.FullName);
                 if (node == null) {
@@ -103,7 +103,7 @@ namespace hjcd.level.BehaviorTree
                     level.Utils.Log("创建失败", type.Name);
                     return;
                 }
-                AIDataMgr.Instance.AddNode(node);
+                BehaviorTree.Instance.AddNode(node);
             }
         }
 

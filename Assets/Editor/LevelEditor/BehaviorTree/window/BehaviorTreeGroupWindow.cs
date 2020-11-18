@@ -8,30 +8,28 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 namespace hjcd.level.BehaviorTree
 {
-    public class GroupWindow : BaseWindow
+    public class BehaviorTreeGroupWindow : BaseWindow
     {
 
-        public static GroupWindow instance;
+        public static BehaviorTreeGroupWindow instance;
 
 
-        [MenuItem("Tools/Level/BehaviorTree %#F10")] //CTRL SHIFT F10
+        [MenuItem("Tools/Level/AI编辑 %#F10")] //CTRL SHIFT F10
         public static void OpenWindow() {
-            if (instance == null)
-            {
-                GroupWindow window = BaseWindow.GetWindow<GroupWindow>();
-                window.Initlize();
-            }
+            BehaviorTreeGroupWindow window = BaseWindow.GetWindow<BehaviorTreeGroupWindow>();
+            window.Initlize();
         }
 
-        public GroupWindow() {
+        public BehaviorTreeGroupWindow() {
             instance = this;
         }
 
         public override void Initlize(params object[] obj)
         {
-            this.TitleContent = "行为树分组编辑";
+            this.TitleContent = "AI分组";
             this.minSize = new Vector2(600, 800);
             this.maximized = true;
+/*            this.position*/
 
         }
 
@@ -39,7 +37,7 @@ namespace hjcd.level.BehaviorTree
  
 
         public GroupList _groupList;
-        public static string AssetPath = BehaviorTreeConfig.behaviorTreeGroup;
+        public static string AssetPath = BehaviorTreeConst.behaviorTreeGroup;
         public GroupList groupList
         {
             get
@@ -88,7 +86,7 @@ namespace hjcd.level.BehaviorTree
             }
             EditorGUILayout.EndHorizontal();
             Group removeGroup = null;
-            AIModel removeAIModel = null;
+            Model removeAIModel = null;
             GroupList groupList = this.groupList;
 
             for (int i = 0; i < groupList.groups.Count; i++)
@@ -115,11 +113,11 @@ namespace hjcd.level.BehaviorTree
                 EditorGUILayout.EndHorizontal();
                 if (extends[i])
                 {
-                    foreach (AIModel model in groupList.aIModels)
+                    foreach (Model model in groupList.aIModels)
                     {
                         if (model.groupId == group.id) {
 
-                            if (model.Draw(this)) {
+                            if (this.DrawModel(model)) {
                                 removeAIModel = model;
 
                             }
@@ -143,47 +141,47 @@ namespace hjcd.level.BehaviorTree
             groupList.AddGroup(group);
         }
         //创建行为树
-        public void OnCreateBehaviorTree(AIModel aIModel)
+        public void OnCreateBehaviorTree(Model aIModel)
         {
             groupList.AddAIModel(aIModel);
-            AIDataMgr.Create_(aIModel);
+            BehaviorTree.Create_(aIModel);
 
         }
         //删除行为树
-        public void OnRemoveBehaviorTree(AIModel aIModel) {
+        public void OnRemoveBehaviorTree(Model aIModel) {
 
             if (EditorUtility.DisplayDialog("删除警告", "删除'" + aIModel.name + "'?", "确定", "取消"))
             {
                 groupList.RemoveAIModel(aIModel);
-                AIDataMgr.Delete_(aIModel);
+                BehaviorTree.Delete_(aIModel);
             }
         }
         //复制 
-        public void OnCopyBehaviorTree(AIModel aIModel)
+        public void OnCopyBehaviorTree(Model aIModel)
         {
             //aIModel.id
-            AIModel copyAIModel = new AIModel();
+            Model copyAIModel = new Model();
             copyAIModel.name = aIModel.id + "_copy";
             copyAIModel.id = groupList.NextGlobalBehaviorTreeID();
             copyAIModel.groupId = 0;
-            if (AIDataMgr.Copy_(aIModel, copyAIModel))
+            if (BehaviorTree.Copy_(aIModel, copyAIModel))
             { //复制成功
                 groupList.AddAIModel(copyAIModel);
             }
             
         }
         //导出行为树
-        public void OnExportBehaviorTree(AIModel aIModel)
+        public void OnExportBehaviorTree(Model aIModel)
         {
-            AIDataMgr.Export_(aIModel);
+            BehaviorTree.Export_(aIModel);
         }
         //打开行为树
-        public void OnOpenBehaviorTree(AIModel aIModel)
+        public void OnOpenBehaviorTree(Model aIModel)
         {
             BehaviorTreeMainWindow.OpenWindow(aIModel);
         }
         //编辑行为树
-        public void OnEditBehaviorTree(AIModel aIModel)
+        public void OnEditBehaviorTree(Model aIModel)
         {
             //MainWindow.OpenWindow(aIModel);
 
@@ -201,7 +199,37 @@ namespace hjcd.level.BehaviorTree
             BehaviorTreeMainWindow.ClosweWindow();
             EditBehaviorTreeWindow.ClosweWindow();
         }
-  
+
+        public bool DrawModel(Model model)
+        {
+            EditorGUILayout.BeginHorizontal();
+            Utils.Box(model.id.ToString(), GUILayout.MinWidth(60));
+            Utils.Box(this.name, GUILayout.MinWidth(130));
+            GUILayoutOption width = GUILayout.Width(70);
+            if (Utils.Button("打开", width))
+            {
+                this.OnOpenBehaviorTree(model);
+            }
+            if (Utils.Button("编辑", width))
+            {
+                this.OnEditBehaviorTree(model);
+            }
+            bool flag = false;
+            if (Utils.Button("删除", width))
+            {
+                flag = true;
+            }
+            if (Utils.Button("复制", width))
+            {
+                this.OnCopyBehaviorTree(model);
+            }
+            if (Utils.Button("导出", width))
+            {
+                this.OnExportBehaviorTree(model);
+            }
+            EditorGUILayout.EndHorizontal();
+            return flag;
+        }
     }
 
 

@@ -9,15 +9,15 @@ using System.Text;
 namespace hjcd.level.BehaviorTree
 {
 
-    public class CheckVariableConfig : ConditionalConfig
+    public class CompareVariableConfig : ConditionalConfig
     {
         //变量名1
-        public VariableConfig var1 = new VariableConfig();
-        //比较的变量值
-        public float value = 0;
+        public Variable var1 = new Variable();
+        //变量名2
+        public Variable var2 = new Variable();
         //关系运算
         public RelationalOperator relationalOperator = RelationalOperator.EQUAL;
 
-        
+       
     }
 }
