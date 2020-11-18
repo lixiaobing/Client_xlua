@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1919f8715a677d449ee9f90f2aa5004, type: 3}
   m_Name: Attack1_03
   m_EditorClassIdentifier: 
-  time: 0
+  time: 1
   realTime: 0
   cameraEffectId: 1004
