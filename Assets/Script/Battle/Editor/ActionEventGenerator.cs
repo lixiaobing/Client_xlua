@@ -218,21 +218,25 @@ namespace Battle
                 string eventConfigFilePath = ExportConfigPath + fileName + ".asset";
                 string eventConfigFoldPath = ExportConfigPath + fileName + "/";
 
-                if (File.Exists(eventConfigFilePath))
-                    File.Delete(eventConfigFilePath);
-                if (Directory.Exists(eventConfigFoldPath))
-                    Directory.Delete(eventConfigFoldPath, true);
-                Directory.CreateDirectory(eventConfigFoldPath);
+                if (!Directory.Exists(eventConfigFoldPath))
+                    Directory.CreateDirectory(eventConfigFoldPath);
 
-                ActionEventPackConfig config = ScriptableObject.CreateInstance<ActionEventPackConfig>();
-                AssetDatabase.CreateAsset(config, eventConfigFilePath.Replace(Application.dataPath, "Assets"));
+                string relativeEventConfigFilePath = eventConfigFilePath.Replace(Application.dataPath, "Assets");
+
+                ActionEventPackConfig config = null;
+                config = AssetDatabase.LoadMainAssetAtPath(relativeEventConfigFilePath) as ActionEventPackConfig;
+                if (config == null)
+                {
+                    config = ScriptableObject.CreateInstance<ActionEventPackConfig>();
+                    AssetDatabase.CreateAsset(config, relativeEventConfigFilePath);
+                }
 
                 int subPackCount = actionEventPack.clipPacks.Count;
                 config.subPacks = new ActionEventPackConfig.SubPack[subPackCount];
 
                 var editorActionEventType = typeof(ActionEvent);
 
-                Dictionary<string, ActionEventConfig> createRefAssets = new Dictionary<string, ActionEventConfig>();
+                Dictionary<string, ActionEventConfig> createAssets = new Dictionary<string, ActionEventConfig>();
 
                 for (int i = 0; i < subPackCount; ++i)
                 {
@@ -249,12 +253,32 @@ namespace Battle
                         {
                             var editorActionEvent = subPackEditor.events[j];
                             string eventFilePath = eventConfigFoldPath + subPackData.stateName + "_" + j.ToString("00") + ".asset";
-                            ActionEventConfig eventConfig = typeof(ActionEventConfig).Assembly.CreateInstance(string.Format("Battle.{0}EventConfig", editorActionEvent.type.ToString())) as ActionEventConfig;
+                            eventFilePath = eventFilePath.Replace(Application.dataPath, "Assets");
+                            string eventConfigClassName = string.Format("Battle.{0}EventConfig", editorActionEvent.type.ToString());
+
+                            ActionEventConfig eventConfig = null;
+
+                            eventConfig = AssetDatabase.LoadMainAssetAtPath(eventFilePath) as ActionEventConfig;
                             if (eventConfig != null)
                             {
-                                //AssetDatabase.CreateAsset(eventConfig, eventFilePath.Replace(Application.dataPath, "Assets"));
+                                if (eventConfig.type != editorActionEvent.type)
+                                {
+                                    AssetDatabase.DeleteAsset(eventFilePath);
+                                    eventConfig = null;
+                                }
+                            }
 
-                                createRefAssets.Add(eventFilePath.Replace(Application.dataPath, "Assets"), eventConfig);
+                            bool isCreate = false;
+                            if(eventConfig==null)
+                            {
+                                eventConfig = typeof(ActionEventConfig).Assembly.CreateInstance(eventConfigClassName) as ActionEventConfig;
+                                isCreate = true;
+                            }
+                            if (eventConfig != null)
+                            {
+                                bool isDirty = false;
+                                if(isCreate)
+                                    createAssets.Add(eventFilePath, eventConfig);
 
                                 subPackData.events[j] = eventConfig;
 
@@ -266,24 +290,26 @@ namespace Battle
                                     var editorActionEventProperty = editorActionEventType.GetProperty(fields[k].Name);
                                     if (editorActionEventProperty != null)
                                     {
-                                        object obj = editorActionEventProperty.GetValue(editorActionEvent);
-                                        actionEventField.SetValue(eventConfig, obj);
+                                        object valueNew = editorActionEventProperty.GetValue(editorActionEvent);
+                                        object valueOld = actionEventField.GetValue(eventConfig);
+                                        if (!valueNew.Equals(valueOld))
+                                        {
+                                            actionEventField.SetValue(eventConfig, valueNew);
+                                            isDirty = true;
+                                        }
                                     }
                                 }
-                                //EditorUtility.SetDirty(eventConfig);
+                                if (!isCreate && isDirty)
+                                {
+                                    EditorUtility.SetDirty(eventConfig);
+                                }
                             }
                         }
                     }
                 }
 
-                if (createRefAssets.Count > 0)
-                {
-                    foreach(var kv in createRefAssets)
-                    {
-                        AssetDatabase.CreateAsset(kv.Value, kv.Key);
-                    }
-                }
-
+                foreach (var kv in createAssets)
+                    AssetDatabase.CreateAsset(kv.Value, kv.Key);
                 EditorUtility.SetDirty(config);
                 if (refresh)
                 {
