@@ -10,8 +10,8 @@ namespace hjcd.level.BehaviorTree
     public class CreateBehaviorTreeWindow : EditorWindow
     {
         public static CreateBehaviorTreeWindow instance;
-        private AIModel aIModel = new AIModel();
-        public static EditorWindow OpenWindow(GroupWindow groupWindow)
+        private Model aIModel = new Model();
+        public static EditorWindow OpenWindow(BehaviorTreeGroupWindow groupWindow)
         {
 
             if (instance != null) {
@@ -30,7 +30,7 @@ namespace hjcd.level.BehaviorTree
             window.aIModel.name = "未命名" + window.aIModel.id;
             return window;
         }
-        GroupWindow groupWindow;
+        BehaviorTreeGroupWindow groupWindow;
         int newSelectIndex = 0;
         void OnGUI() {
             GUI.skin.font = LGUISkin.font;

@@ -10,9 +10,9 @@ namespace hjcd.level.BehaviorTree
     public class EditBehaviorTreeWindow : EditorWindow
     {
         public static EditBehaviorTreeWindow instance;
-        private AIModel aIModel = new AIModel();
-        private AIModel srcModel;
-        public static EditorWindow OpenWindow(AIModel aIModel)
+        private Model aIModel = new Model();
+        private Model srcModel;
+        public static EditorWindow OpenWindow(Model aIModel)
         {
 
             if (instance != null) {
@@ -43,8 +43,8 @@ namespace hjcd.level.BehaviorTree
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("分组");
-            GroupWindow groupWindow = GroupWindow.instance;
-            List<Group> groups = GroupWindow.instance.groupList.groups;
+            BehaviorTreeGroupWindow groupWindow = BehaviorTreeGroupWindow.instance;
+            List<Group> groups = BehaviorTreeGroupWindow.instance.groupList.groups;
             string[] options = new string[groups.Count];
             for (int index = 0; index < options.Length; index++)
             {
@@ -72,7 +72,7 @@ namespace hjcd.level.BehaviorTree
      
 
 
-                AIDataMgr.Edit_(srcModel,aIModel);
+                BehaviorTree.Edit_(srcModel,aIModel);
                 srcModel.id = aIModel.id;
                 srcModel.name = aIModel.name;
                 srcModel.groupId = aIModel.groupId;

@@ -9,17 +9,6 @@ namespace hjcd.level.CheckPoint
         public RelationalOperator relationalOperator = RelationalOperator.EQUAL;
         public int num;
 
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(selectTarget.ToLuaString( indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(relationalOperator), relationalOperator, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(num), num, indent, newLine));
-            return sb.ToString();
-        }
-
-
-
         public override void OnDraw()
         {
             base.OnDraw();

@@ -9,7 +9,7 @@ using System.Runtime.Serialization;
 namespace hjcd.level.BehaviorTree
 {
     [Serializable]
-    public class DrawObject : ScriptableObject ,IExport//: ScriptableObject
+    public class DrawObject : ScriptableObject
     {
         public string uuid = IDFactory.GetUUID(); //唯一标识
         public virtual string Type { get { return this.GetType().Name; } }
@@ -32,12 +32,12 @@ namespace hjcd.level.BehaviorTree
         public void SetFocus()
         {
             if (CanFocus()) {
-                AIDataMgr.Instance.SetFocus(this);
+                BehaviorTree.Instance.SetFocus(this);
             }
         }
         public virtual bool Focused()
         {
-            DrawObject drawObject = AIDataMgr.Instance.Focus();
+            DrawObject drawObject = BehaviorTree.Instance.Focus();
             return drawObject == this;
         }
         public virtual bool TryFocus(Vector2 position) {

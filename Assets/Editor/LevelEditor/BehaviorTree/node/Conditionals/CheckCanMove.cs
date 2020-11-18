@@ -18,15 +18,6 @@ namespace hjcd.level.BehaviorTree
         //范围
         public float distance;
         
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(base.ToStringEx(indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(angle), angle, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(distance), distance, indent, newLine));
-            return sb.ToString();
-        }
-
 
         public override void OnInspector()
         {

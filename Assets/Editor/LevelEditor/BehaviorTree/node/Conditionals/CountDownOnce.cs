@@ -14,13 +14,7 @@ namespace hjcd.level.BehaviorTree
     {
         //变量名1
         public float time;
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(base.ToStringEx(indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(time), time, indent,newLine));
-            return sb.ToString();
-        }
+
         public override void OnInspector()
         {
             base.OnInspector();

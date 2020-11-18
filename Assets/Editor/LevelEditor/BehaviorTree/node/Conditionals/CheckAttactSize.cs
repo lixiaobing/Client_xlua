@@ -17,15 +17,6 @@ namespace hjcd.level.BehaviorTree
         public RelationalOperator relationalOperator = RelationalOperator.GREATER_THAN;
         public AttackType attackType = AttackType.ALL;
 
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(base.ToStringEx(indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(attackType), attackType, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(relationalOperator), relationalOperator, indent, newLine));
-            return sb.ToString();
-        }
-
 
         public override void OnInspector()
         {

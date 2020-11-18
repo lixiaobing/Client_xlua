@@ -13,13 +13,6 @@ namespace hjcd.level.BehaviorTree
     public class Linkage : Conditional
     {
         public int group = 0;  
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(ExportUtils.KV(nameof(group), group, indent, newLine));
-
-            return sb.ToString();
-        }
         public override void OnInspector()
         {
             base.OnInspector();

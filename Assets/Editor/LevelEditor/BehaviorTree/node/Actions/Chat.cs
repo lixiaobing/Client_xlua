@@ -17,14 +17,6 @@ namespace hjcd.level.BehaviorTree
         //喊话内容
         public string content;
 
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(ExportUtils.KV(nameof(chatId), chatId, indent,newLine));
-            sb.Append(ExportUtils.KV(nameof(content), content, indent, newLine));
-            return sb.ToString();
-        }
-
         public override void OnInspector()
         {
 

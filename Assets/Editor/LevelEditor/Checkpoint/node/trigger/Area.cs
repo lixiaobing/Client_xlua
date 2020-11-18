@@ -16,19 +16,6 @@ namespace hjcd.level.CheckPoint
         public Area() {
 
         }
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(selectTarget.ToLuaString(indent,newLine));
-            //区域类型
-            sb.Append(ExportUtils.KV(nameof(areaType), areaType, indent, newLine));
-            sb.Append(ExportUtils.K(nameof(position), indent, newLine));
-            sb.Append(ExportUtils.EqualSign);
-            sb.Append(position.ToLuaString(indent, newLine));
-
-            return sb.ToString();
-        }
-
 
         public override void OnDraw()
         {
@@ -36,7 +23,6 @@ namespace hjcd.level.CheckPoint
             AreaType _areaType = Utils.EnumPopup<AreaType>("触发区域",areaType);
             ChangeAreaType(_areaType);
             //目标选择可以封装成公用模块
-   /*         selectTarget.OnDraw("触发对象");*/
             Utils.DrawSelectTarget("触发对象", selectTarget);
             string name = gameObject != null ? gameObject.name : "";
             Utils.LabelField("物体名称", name);

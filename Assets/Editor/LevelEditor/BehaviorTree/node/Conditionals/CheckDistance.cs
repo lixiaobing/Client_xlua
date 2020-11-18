@@ -19,16 +19,6 @@ namespace hjcd.level.BehaviorTree
         //最小距离
         public float minDistance;
 
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(base.ToStringEx(indent, newLine));
-            sb.Append(selectTarget.ToLuaString( indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(maxDistance), maxDistance, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(minDistance), minDistance, indent, newLine));
-            return sb.ToString();
-        }
-
 
         public override void OnInspector()
         {

@@ -16,13 +16,6 @@ namespace hjcd.level.BehaviorTree
         public int triggerId;
         //状态机是否激活
         public bool enable;
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(ExportUtils.KV(nameof(triggerId), triggerId, indent,newLine));
-            sb.Append(ExportUtils.KV(nameof(enable), enable, indent, newLine));
-            return sb.ToString();
-        }
 
         public override void OnInspector()
         {

@@ -15,13 +15,6 @@ namespace hjcd.level.BehaviorTree
 
         public float time = 1000;
 
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(ExportUtils.KV(nameof(time), time, indent, newLine));
-
-            return sb.ToString();
-        }
         public override void OnInspector()
         {
             time = Utils.FloatField("待机时间(毫秒)", time);

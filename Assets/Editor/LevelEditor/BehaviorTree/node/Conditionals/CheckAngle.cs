@@ -19,16 +19,6 @@ namespace hjcd.level.BehaviorTree
         //半径
         public float radius;
 
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(base.ToStringEx(indent, newLine));
-            sb.Append(selectTarget.ToLuaString(indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(angle), angle, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(radius), radius, indent, newLine));
-            return sb.ToString();
-        }
-
 
         public override void OnInspector()
         {

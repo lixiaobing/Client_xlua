@@ -20,16 +20,6 @@ namespace hjcd.level.BehaviorTree
         public SimpleArithmeticOperator simpleArithmeticOperator = SimpleArithmeticOperator.ADD;
         //百分比
         public int percent;
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-
-            sb.Append(selectTarget.ToLuaString(indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(attrPercent), attrPercent, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(simpleArithmeticOperator), simpleArithmeticOperator, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(percent), percent, indent, newLine));
-            return sb.ToString();
-        }
 
         public override void OnInspector()
         {
