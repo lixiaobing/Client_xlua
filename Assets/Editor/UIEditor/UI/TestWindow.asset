@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a70a3b6e40183d47998743f8f701f31, type: 3}
-  m_Name: TestUIEditorWindow
+  m_Name: TestWindow
   m_EditorClassIdentifier: 
-  Md5: ec5b662f6ced941779fc570068c30eee
+  Md5: 58ad96db24976344134d4ba04725ae65
   Path: Assets/Editor/UIEditor/TestUIEditorWindow.prefab
-  Prefab: {fileID: 3315073010294783724, guid: 0e4add1db20ab4e4ba0041d553f5a870, type: 3}
+  Prefab: {fileID: 6092253026937965912, guid: 74e014059c6fc0b49be75d078b685e9d, type: 3}

@@ -21,7 +21,15 @@ namespace GameEditor
 		public List<UIItem> Items;
 		private string _rootDirectory;
 		
-		[UnityEditor.Callbacks.DidReloadScripts(1)]
+		[InitializeOnLoad]
+		private class TestLoader
+		{
+			static TestLoader()
+			{
+				Loader();
+			}
+		}
+		
 		private static void Loader()
 		{
 			const string p = "Assets/Editor/UIEditor/UIContainer.asset";
@@ -46,7 +54,7 @@ namespace GameEditor
 			return $"{_instance._rootDirectory}/{_instance.Directory}/{file}.asset";
 		}
 		
-		private static bool IsAlreadyExist(GameObject go)
+		public static bool IsAlreadyExist(GameObject go)
 		{
 			foreach (var item in _instance.Items)
 			{
@@ -59,6 +67,19 @@ namespace GameEditor
 			return false;
 		}
 
+		// public static bool IsAlreadyExist(UIItem item)
+		// {
+		// 	foreach (var i in _instance.Items)
+		// 	{
+		// 		if (i == item)
+		// 		{
+		// 			return true;
+		// 		}
+		// 	}
+		//
+		// 	return false;
+		// }
+		
 		public static void AddItem(GameObject prefab)
 		{
 			if (IsAlreadyExist(prefab))
@@ -73,6 +94,16 @@ namespace GameEditor
 			_instance.Items.Add(item);
 			EditorUtility.SetDirty(_instance);
 			AssetDatabase.Refresh();
+		}
+
+		public static void RemoveItem(UIItem item)
+		{
+			if (!IsAlreadyExist(item.Prefab))
+			{
+				return;
+			}
+
+			_instance.Items.Remove(item);
 		}
 	}
 }

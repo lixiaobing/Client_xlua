@@ -183,5 +183,11 @@ namespace GameEditor
 				container.Add(field);
 			} while (property.NextVisible(false));
 		}
+
+		public static void Write(string p, string content)
+		{
+			EnsurePath(p);
+			File.WriteAllText(p, content);
+		}
 	}
 }
