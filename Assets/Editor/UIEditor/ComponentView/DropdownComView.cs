@@ -11,9 +11,9 @@ using UnityEngine.UIElements;
 
 namespace GameEditor
 {
-	public class ScrollRectComView : ComponentViewBase
+	public class DropdownComView : ComponentViewBase
 	{
-		public ScrollRectComView(VisualElement node)
+		public DropdownComView(VisualElement node)
 		{
 			Node = node;
 		}

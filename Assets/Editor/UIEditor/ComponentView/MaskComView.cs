@@ -11,9 +11,9 @@ using UnityEngine.UIElements;
 
 namespace GameEditor
 {
-	public class ScrollRectComView : ComponentViewBase
+	public class MaskComView : ComponentViewBase
 	{
-		public ScrollRectComView(VisualElement node)
+		public MaskComView(VisualElement node)
 		{
 			Node = node;
 		}

@@ -35,6 +35,10 @@ namespace GameEditor
 			Button,
 			Toggle,
 			Slider,
+			Scrollbar,
+			Dropdown,
+			ScrollRect,
+			Mask,
 
 			ComponentCount,
 		}
