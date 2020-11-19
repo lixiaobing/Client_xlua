@@ -19,6 +19,7 @@ namespace GameEditor
 		{
 			public UIEditor.ComponentAsset ComponentType;
 			public Object Component;
+			public string AliasName;
 			public bool IsBinding;
 			public bool IsAsTransform;
 			public string EventName;

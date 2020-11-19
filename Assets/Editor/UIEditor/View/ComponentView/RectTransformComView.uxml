@@ -3,10 +3,11 @@
  flex-wrap: nowrap;
  align-items: center;
  justify-content: space-between;">
-        <uie:ObjectField name="Prefab" style="width: 50%;" />
+        <uie:ObjectField name="Prefab" style="width: 40%;" />
+        <ui:TextField picking-mode="Ignore" label="导出名" value="alias" name="AliasName" style="width: 35%;" />
         <ui:Toggle label="是否绑定" name="IsBinding" style="align-items: stretch;
  flex-direction: row;
- width: 45%;" />
+ width: 20%;" />
     </ui:VisualElement>
     <ui:VisualElement>
         <ui:Toggle label="视为Transform导出" name="Toggle" style="align-items: stretch;
