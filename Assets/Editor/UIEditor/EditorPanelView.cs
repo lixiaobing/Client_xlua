@@ -8,7 +8,6 @@
 
 
 using System;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Experimental.SceneManagement;
 using UnityEditor.UIElements;
@@ -19,8 +18,6 @@ namespace GameEditor
 {
 	public class EditorPanelView
 	{
-		// private static Dictionary<> ComponentConverter
-
 		public VisualElement Node { get; }
 		private readonly Button _addButton;
 		private readonly ScrollView _scrollView;
@@ -133,7 +130,7 @@ namespace GameEditor
 			}
 		}
 
-		private void UpdateComponentsView(UIItem.NodeItem nodeItem)
+		private void UpdateComponentsView(UIItem itemData, UIItem.NodeItem nodeItem)
 		{
 			if (nodeItem == null)
 			{
@@ -158,7 +155,7 @@ namespace GameEditor
 
 				if (isIn)
 				{
-					_components[i].SetComView(comItem);
+					_components[i].SetComView(itemData, comItem);
 				}
 
 				_components[i].SetActive(isIn);
@@ -189,7 +186,7 @@ namespace GameEditor
 			}
 
 			var components = UIContainer.GetComponents(itemData, Selection.activeGameObject);
-			UpdateComponentsView(components);
+			UpdateComponentsView(itemData, components);
 		}
 	}
 }
