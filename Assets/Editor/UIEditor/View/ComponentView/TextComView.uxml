@@ -1,6 +1,11 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
-    <ui:VisualElement style="flex-direction: row; flex-wrap: nowrap; align-items: center; justify-content: space-between;">
+    <ui:VisualElement style="flex-direction: row;
+ flex-wrap: nowrap;
+ align-items: center;
+ justify-content: space-between;">
         <uie:ObjectField name="Prefab" style="width: 50%;" />
-        <ui:Toggle label="是否绑定" style="align-items: stretch; flex-direction: row; width: 45%;" />
+        <ui:Toggle label="是否绑定" name="IsBinding" style="align-items: stretch;
+ flex-direction: row;
+ width: 45%;" />
     </ui:VisualElement>
 </ui:UXML>

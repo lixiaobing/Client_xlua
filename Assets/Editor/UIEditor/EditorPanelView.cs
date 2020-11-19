@@ -143,7 +143,7 @@ namespace GameEditor
 			for (int i = 0; i < _components.Length; i++)
 			{
 				var isIn = false;
-				var comItem = UIItem.ComponentItem.Default;
+				UIItem.ComponentItem comItem = null;
 				foreach (var com in nodeItem.Components)
 				{
 					if ((int) com.ComponentType != i)

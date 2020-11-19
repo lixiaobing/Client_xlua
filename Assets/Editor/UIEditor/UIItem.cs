@@ -15,12 +15,13 @@ namespace GameEditor
 	public class UIItem : ScriptableObject
 	{
 		[System.Serializable]
-		public struct ComponentItem
+		public class ComponentItem
 		{
-			public static readonly ComponentItem Default = new ComponentItem(); 
-			
 			public UIEditor.ComponentAsset ComponentType;
 			public Object Component;
+			public bool IsBinding;
+			public bool IsAsTransform;
+			public string EventName;
 		}
 
 		[System.Serializable]
