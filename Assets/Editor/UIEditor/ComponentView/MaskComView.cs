@@ -13,6 +13,8 @@ namespace GameEditor
 {
 	public class MaskComView : ComponentViewBase
 	{
+		public override UIEditor.ComponentAsset ComponentType => UIEditor.ComponentAsset.Mask;
+
 		public MaskComView(VisualElement node) : base(node)
 		{
 		}

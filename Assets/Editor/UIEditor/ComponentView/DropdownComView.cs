@@ -13,6 +13,8 @@ namespace GameEditor
 {
 	public class DropdownComView : ComponentViewBase
 	{
+		public override UIEditor.ComponentAsset ComponentType => UIEditor.ComponentAsset.Dropdown;
+
 		public DropdownComView(VisualElement node) : base(node)
 		{
 		}

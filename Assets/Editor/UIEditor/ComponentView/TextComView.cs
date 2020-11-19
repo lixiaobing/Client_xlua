@@ -13,6 +13,8 @@ namespace GameEditor
 {
 	public class TextComView : ComponentViewBase
 	{
+		public override UIEditor.ComponentAsset ComponentType => UIEditor.ComponentAsset.Text;
+
 		public TextComView(VisualElement node) : base(node)
 		{
 		}

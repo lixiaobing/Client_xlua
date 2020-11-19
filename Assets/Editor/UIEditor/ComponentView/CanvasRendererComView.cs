@@ -13,6 +13,8 @@ namespace GameEditor
 {
 	public class CanvasRendererComView : ComponentViewBase
 	{
+		public override UIEditor.ComponentAsset ComponentType => UIEditor.ComponentAsset.CanvasRenderer;
+
 		public CanvasRendererComView(VisualElement node) : base(node)
 		{
 		}

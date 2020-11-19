@@ -200,5 +200,10 @@ namespace GameEditor
 				node.AddToClassList("hidden");
 			}
 		}
+
+		public static bool IsActive(VisualElement node)
+		{
+			return !node.ClassListContains("hidden");
+		}
 	}
 }

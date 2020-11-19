@@ -13,6 +13,8 @@ namespace GameEditor
 {
 	public class ScrollbarComView : ComponentViewBase
 	{
+		public override UIEditor.ComponentAsset ComponentType => UIEditor.ComponentAsset.Scrollbar;
+
 		public ScrollbarComView(VisualElement node) : base(node)
 		{
 		}

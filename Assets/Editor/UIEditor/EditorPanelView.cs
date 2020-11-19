@@ -23,6 +23,7 @@ namespace GameEditor
 		private readonly ScrollView _scrollView;
 		private static readonly char[] SearchSplit = {' '};
 		private UIEditor _owner;
+		private VisualElement _bindingComponentsRoot;
 
 		private readonly ComponentViewBase[] _components =
 			new ComponentViewBase[(int) UIEditor.ComponentAsset.ComponentCount];
@@ -54,6 +55,8 @@ namespace GameEditor
 				_components[i] = com;
 				componentsRoot.Add(com.Node);
 			}
+
+			_bindingComponentsRoot = panel.Q<VisualElement>("BindingComponents");
 
 			var toolbarSearchField = panel.Q<ToolbarSearchField>("ToolbarSearchField");
 			toolbarSearchField.RegisterValueChangedCallback(evt =>
@@ -162,6 +165,76 @@ namespace GameEditor
 			}
 		}
 
+		private void UpdateBindingComponentsView(UIItem itemData)
+		{
+			var components = _bindingComponentsRoot.Children();
+			if (itemData == null)
+			{
+				foreach (var com in components)
+				{
+					((ComponentViewBase)com.userData).SetActive(false);
+				}
+				return;
+			}
+
+			foreach (var node in itemData.Nodes)
+			{
+				foreach (var comData in node.Components)
+				{
+					if (!comData.IsBinding)
+					{
+						foreach (var cv in components)
+						{
+							if (((ComponentViewBase) cv.userData).ComData != comData)
+							{
+								continue;
+							}
+							((ComponentViewBase)cv.userData).SetActive(false);
+							break;
+						}
+						continue;
+					}
+					VisualElement comView = null;
+					foreach (var cv in components)
+					{
+						if (((ComponentViewBase) cv.userData).ComData != comData)
+						{
+							continue;
+						}
+						comView = cv;
+						break;
+					}
+
+					if (comView == null)
+					{
+						foreach (var cv in components)
+						{
+							if (UIEditor.IsActive(cv))
+							{
+								continue;
+							}
+							comView = cv;
+							break;
+						}
+					}
+
+					if (comView == null)
+					{
+						var com = _owner.NewComponentView(comData.ComponentType);
+						com.Node.userData = com;
+						_bindingComponentsRoot.Add(com.Node);
+						com.SetComView(itemData, comData);
+					}
+					else
+					{
+						var com = (ComponentViewBase)comView.userData;
+						com.SetComView(itemData, comData);
+						UIEditor.SetActive(comView, true);
+					}
+				}
+			}
+		}
+
 		public void Update()
 		{
 			var stage = PrefabStageUtility.GetCurrentPrefabStage();
@@ -173,6 +246,9 @@ namespace GameEditor
 
 			var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(stage.prefabAssetPath);
 			var itemData = UIContainer.GetUiItem(prefab);
+			
+			UpdateBindingComponentsView(itemData);
+			
 			if (itemData == null)
 			{
 				UIEditor.SetActive(_addButton, true);

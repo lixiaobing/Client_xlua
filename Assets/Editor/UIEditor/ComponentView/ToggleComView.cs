@@ -13,6 +13,8 @@ namespace GameEditor
 {
 	public class ToggleComView : ComponentViewBase
 	{
+		public override UIEditor.ComponentAsset ComponentType => UIEditor.ComponentAsset.Toggle;
+
 		public ToggleComView(VisualElement node) : base(node)
 		{
 		}

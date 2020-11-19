@@ -13,6 +13,8 @@ namespace GameEditor
 {
 	public class InputFieldComView : ComponentViewBase
 	{
+		public override UIEditor.ComponentAsset ComponentType => UIEditor.ComponentAsset.InputField;
+
 		public InputFieldComView(VisualElement node) : base(node)
 		{
 		}

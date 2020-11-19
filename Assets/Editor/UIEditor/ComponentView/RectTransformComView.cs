@@ -13,6 +13,8 @@ namespace GameEditor
 {
 	public class RectTransformComView : ComponentViewBase
 	{
+		public override UIEditor.ComponentAsset ComponentType => UIEditor.ComponentAsset.RectTransform;
+
 		public RectTransformComView(VisualElement node) :base(node)
 		{
 		}

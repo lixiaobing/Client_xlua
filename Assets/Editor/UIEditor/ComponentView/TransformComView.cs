@@ -11,9 +11,11 @@ using UnityEngine.UIElements;
 
 namespace GameEditor
 {
-	public class ScrollRectComView : ComponentViewBase
+	public class TransformComView : ComponentViewBase
 	{
-		public ScrollRectComView(VisualElement node) : base(node)
+		public override UIEditor.ComponentAsset ComponentType => UIEditor.ComponentAsset.Transform;
+
+		public TransformComView(VisualElement node) : base(node)
 		{
 		}
 	}

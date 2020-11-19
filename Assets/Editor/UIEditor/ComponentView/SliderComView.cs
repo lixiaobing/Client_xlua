@@ -13,6 +13,8 @@ namespace GameEditor
 {
 	public class SliderComView : ComponentViewBase
 	{
+		public override UIEditor.ComponentAsset ComponentType => UIEditor.ComponentAsset.Slider;
+
 		public SliderComView(VisualElement node) : base(node)
 		{
 		}

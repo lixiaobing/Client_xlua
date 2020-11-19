@@ -13,8 +13,11 @@ namespace GameEditor
 {
 	public class ButtonComView : ComponentViewBase
 	{
+		public override UIEditor.ComponentAsset ComponentType => UIEditor.ComponentAsset.Button;
+
 		public ButtonComView(VisualElement node) : base(node)
 		{
 		}
+
 	}
 }

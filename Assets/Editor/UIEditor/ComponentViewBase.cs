@@ -14,10 +14,12 @@ using Object = UnityEngine.Object;
 
 namespace GameEditor
 {
-	public class ComponentViewBase
+	public abstract class ComponentViewBase
 	{
+		public abstract UIEditor.ComponentAsset ComponentType { get; }
 		public VisualElement Node { get; }
 		private UIItem _itemData;
+		public UIItem.ComponentItem ComData => _comData;
 		private UIItem.ComponentItem _comData;
 		private readonly ObjectField _comField;
 		private readonly Toggle _isBinding;
@@ -45,6 +47,11 @@ namespace GameEditor
 
 		public void SetActive(bool isActive)
 		{
+			if (!isActive)
+			{
+				_comData = null;
+				_itemData = null;
+			}
 			UIEditor.SetActive(Node, isActive);
 		}
 		
