@@ -21,13 +21,13 @@ namespace GameEditor
 		public VisualElement Node { get; }
 		public Button AddButton { get; }
 		private readonly ScrollView _scrollView;
-		private readonly VisualTreeAsset _uiItemViewAsset;
 		private static readonly char[] SearchSplit = {' '};
+		private UIEditor _owner;
 
-		public EditorPanelView(VisualElement panel, VisualTreeAsset uiItemViewAsset)
+		public EditorPanelView( UIEditor owner, VisualElement panel)
 		{
+			_owner = owner;
 			Node = panel;
-			_uiItemViewAsset = uiItemViewAsset;
 			AddButton = panel.Q<Button>("AddUIPrefab");
 			AddButton.clicked += () =>
 			{
@@ -49,7 +49,7 @@ namespace GameEditor
 				OnSearchTextChanged(evt.newValue.ToLower());
 			});
 
-			_scrollView = panel.Q<ScrollView>("ScrollView");
+			_scrollView = panel.Q<ScrollView>("DataContainer");
 			foreach (var item in UIContainer.UIItems)
 			{
 				AddUiItem(item);
@@ -58,7 +58,7 @@ namespace GameEditor
 
 		private void AddUiItem(UIItem itemData)
 		{
-			var item = _uiItemViewAsset.CloneTree();
+			var item = _owner.GetViewAsset(UIEditor.ViewAsset.UiItem).CloneTree();
 			item.userData = itemData;
 			var prefab = item.Q<ObjectField>("Prefab");
 			prefab.objectType = typeof(GameObject);

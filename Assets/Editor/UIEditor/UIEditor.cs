@@ -23,6 +23,16 @@ namespace GameEditor
 
 			PanelCount,
 		}
+		
+		public enum ViewAsset
+		{
+			UiItem = 0,
+			
+			// Components
+			Transform,
+			
+			ViewAssetCount,
+		}
 
 		private VisualElement[] _panels = new VisualElement[(int) Panel.PanelCount];
 
@@ -31,6 +41,7 @@ namespace GameEditor
 		// private Label _label;
 		private GameObject _selected;
 		private EditorPanelView _editorPanel;
+		private VisualTreeAsset[] _componentsView = new VisualTreeAsset[(int)ViewAsset.ViewAssetCount];
 
 		[MenuItem("Tools/UIEditor #O")]
 		private static void ShowWindow()
@@ -46,16 +57,18 @@ namespace GameEditor
 			var directory = GameEditorUtils.GetScriptDirectory(this);
 			var style = AssetDatabase.LoadAssetAtPath<StyleSheet>($"{directory}/UIEditorWindow.uss");
 			root.styleSheets.Add(style);
-			var wndAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>($"{directory}/UIEditorWindow.uxml");
+
+			var wndAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>($"{directory}/View/UIEditorWindow.uxml");
+			var editorPanel = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>($"{directory}/View/EditorPanelView.uxml");
+			AddViewAsset(ViewAsset.UiItem, $"{directory}/View/UIItemView.uxml");
+			
 			var wnd = wndAsset.CloneTree();
 			wnd.AddToClassList("sizefull");
 			root.Add(wnd);
 
 			var rootPanel = root.Q<VisualElement>("RootPanel");
 
-			var editorPanel = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>($"{directory}/EditorPanelView.uxml");
-			var uiItemXml = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>($"{directory}/UIItem.uxml");
-			_editorPanel = new EditorPanelView(editorPanel.CloneTree(), uiItemXml);
+			_editorPanel = new EditorPanelView(this, editorPanel.CloneTree());
 			_editorPanel.Node.AddToClassList("sizefull");
 			rootPanel.Add(_editorPanel.Node);
 
@@ -81,6 +94,16 @@ namespace GameEditor
 		{
 			PrefabStage.prefabSaved -= UIContainer.UpdateItem;
 			_panels = null;
+		}
+
+		private void AddViewAsset(ViewAsset t, string p)
+		{
+			_componentsView[(int) t] = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(p);
+		}
+
+		public VisualTreeAsset GetViewAsset(ViewAsset t)
+		{
+			return _componentsView[(int)t];
 		}
 
 		private void OnGUI()

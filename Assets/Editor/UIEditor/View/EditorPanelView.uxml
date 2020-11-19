@@ -2,8 +2,8 @@
     <ui:VisualElement name="UIEditorPanel" style="opacity: 1; display: flex; width: auto; height: 100%;">
         <Style src="UIEditorWindow.uss" />
         <ui:Button text="Add" name="AddUIPrefab" />
-        <ui:VisualElement name="VisualElement" />
+        <ui:VisualElement name="ComponentPanel" />
         <uie:ToolbarSearchField focusable="True" name="ToolbarSearchField" />
-        <ui:ScrollView vertical-page-size="4" show-vertical-scroller="true" name="ScrollView" style="overflow: hidden; height: 30%; width: auto;" />
+        <ui:ScrollView vertical-page-size="4" show-vertical-scroller="true" name="DataContainer" style="overflow: hidden; height: 40%; width: auto;" />
     </ui:VisualElement>
 </ui:UXML>
