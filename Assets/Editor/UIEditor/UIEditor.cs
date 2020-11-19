@@ -32,6 +32,9 @@ namespace GameEditor
 			CanvasRenderer,
 			Image,
 			Text,
+			Button,
+			Toggle,
+			Slider,
 
 			ComponentCount,
 		}
@@ -46,14 +49,14 @@ namespace GameEditor
 		}
 
 		private VisualElement[] _panels = new VisualElement[(int) Panel.PanelCount];
-
 		private VisualElement _curPanel;
 
 		// private Label _label;
 		private GameObject _selected;
 		private EditorPanelView _editorPanel;
-
-		private VisualTreeAsset[] _componentsView =
+		private static readonly Type[] ComponentConstructorParameterTypes = {typeof(VisualElement)};
+		private static readonly object[] ComponentConstructorParameters = new object[1];
+		private readonly VisualTreeAsset[] _componentsView =
 			new VisualTreeAsset[(int) ViewAsset.ViewAssetCount + (int) ComponentAsset.ComponentCount - 1];
 
 		[MenuItem("Tools/UIEditor #O")]
@@ -74,12 +77,7 @@ namespace GameEditor
 			var wndAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>($"{directory}/View/UIEditorWindow.uxml");
 			var editorPanel = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>($"{directory}/View/EditorPanelView.uxml");
 			AddViewAsset(ViewAsset.UiItem, $"{directory}/View/UIItemView.uxml");
-			AddViewAsset(ComponentAsset.GameObject, $"{directory}/View/ComponentView/GameObjectComView.uxml");
-			AddViewAsset(ComponentAsset.Transform, $"{directory}/View/ComponentView/TransformComView.uxml");
-			AddViewAsset(ComponentAsset.RectTransform, $"{directory}/View/ComponentView/RectTransformComView.uxml");
-			AddViewAsset(ComponentAsset.CanvasRenderer, $"{directory}/View/ComponentView/CanvasRendererComView.uxml");
-			AddViewAsset(ComponentAsset.Image, $"{directory}/View/ComponentView/ImageComView.uxml");
-			AddViewAsset(ComponentAsset.Text, $"{directory}/View/ComponentView/TextComView.uxml");
+			LoadComponentViewAssets(directory);
 
 			var wnd = wndAsset.CloneTree();
 			SetSizeFull(wnd);
@@ -109,6 +107,16 @@ namespace GameEditor
 			_editorPanel = null;
 			_panels = null;
 		}
+		
+		private void LoadComponentViewAssets(string directory)
+		{
+			for (int i = 0; i < (int)ComponentAsset.ComponentCount; i++)
+			{
+				var t = (ComponentAsset) i;
+				var p = $"{directory}/View/ComponentView/{t}ComView.uxml";
+				AddViewAsset(t, p);
+			}
+		}
 
 		private void AddViewAsset(ViewAsset t, string p)
 		{
@@ -131,45 +139,25 @@ namespace GameEditor
 			return _componentsView[(int) t + (int) ViewAsset.ComponentAsset];
 		}
 
-		public ComponentViewBase NewComponentView(ComponentAsset t)
+		public ComponentViewBase NewComponentView(ComponentAsset assetType)
 		{
-			switch (t)
+			var comViewName = $"GameEditor.{assetType}ComView";
+			var t = Type.GetType(comViewName);
+			if (t == null)
 			{
-				case ComponentAsset.GameObject:
-				{
-					var asset = GetViewAsset(t);
-					return new GameObjectComView(asset.CloneTree());
-				}
-				case ComponentAsset.Transform:
-				{
-					var asset = GetViewAsset(t);
-					return new TransformComView(asset.CloneTree());
-				}
-				case ComponentAsset.RectTransform:
-				{
-					var asset = GetViewAsset(t);
-					return new RectTransformComView(asset.CloneTree());
-				}
-				case ComponentAsset.CanvasRenderer:
-				{
-					var asset = GetViewAsset(t);
-					return new CanvasRendererComView(asset.CloneTree());
-				}
-				case ComponentAsset.Image:
-				{
-					var asset = GetViewAsset(t);
-					return new ImageComView(asset.CloneTree());
-				}
-				case ComponentAsset.Text:
-				{
-					var asset = GetViewAsset(t);
-					return new TextComView(asset.CloneTree());
-				}
-				case ComponentAsset.ComponentCount:
-					throw new ArgumentOutOfRangeException(nameof(t), t, null);
-				default:
-					throw new ArgumentOutOfRangeException(nameof(t), t, null);
+				throw new Exception($"没有找到类:{comViewName}");
 			}
+
+			var constructor = t.GetConstructor(ComponentConstructorParameterTypes);
+			if (constructor == null)
+			{
+				throw new Exception($"没有合适的构造函数");
+			}
+
+			var asset = GetViewAsset(assetType);
+			ComponentConstructorParameters[0] = asset.CloneTree();
+			var com = constructor.Invoke(ComponentConstructorParameters);
+			return (ComponentViewBase) com;
 		}
 
 		private void OnGUI()
