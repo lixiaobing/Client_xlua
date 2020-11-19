@@ -23,20 +23,23 @@ namespace GameEditor
 
 			PanelCount,
 		}
-		
+
 		public enum ComponentAsset
 		{
 			GameObject = 0,
 			Transform,
 			RectTransform,
+			CanvasRenderer,
+			Image,
+			Text,
 
 			ComponentCount,
 		}
-		
+
 		public enum ViewAsset
 		{
 			UiItem = 0,
-			
+
 			ComponentAsset,
 
 			ViewAssetCount,
@@ -49,7 +52,9 @@ namespace GameEditor
 		// private Label _label;
 		private GameObject _selected;
 		private EditorPanelView _editorPanel;
-		private VisualTreeAsset[] _componentsView = new VisualTreeAsset[(int)ViewAsset.ViewAssetCount + (int)ComponentAsset.ComponentCount - 1];
+
+		private VisualTreeAsset[] _componentsView =
+			new VisualTreeAsset[(int) ViewAsset.ViewAssetCount + (int) ComponentAsset.ComponentCount - 1];
 
 		[MenuItem("Tools/UIEditor #O")]
 		private static void ShowWindow()
@@ -72,15 +77,18 @@ namespace GameEditor
 			AddViewAsset(ComponentAsset.GameObject, $"{directory}/View/ComponentView/GameObjectComView.uxml");
 			AddViewAsset(ComponentAsset.Transform, $"{directory}/View/ComponentView/TransformComView.uxml");
 			AddViewAsset(ComponentAsset.RectTransform, $"{directory}/View/ComponentView/RectTransformComView.uxml");
+			AddViewAsset(ComponentAsset.CanvasRenderer, $"{directory}/View/ComponentView/CanvasRendererComView.uxml");
+			AddViewAsset(ComponentAsset.Image, $"{directory}/View/ComponentView/ImageComView.uxml");
+			AddViewAsset(ComponentAsset.Text, $"{directory}/View/ComponentView/TextComView.uxml");
 
 			var wnd = wndAsset.CloneTree();
-			wnd.AddToClassList("sizefull");
+			SetSizeFull(wnd);
 			root.Add(wnd);
 
 			var rootPanel = root.Q<VisualElement>("RootPanel");
 
 			_editorPanel = new EditorPanelView(this, editorPanel.CloneTree());
-			_editorPanel.Node.AddToClassList("sizefull");
+			SetSizeFull(_editorPanel.Node);
 			rootPanel.Add(_editorPanel.Node);
 
 			_panels[(int) Panel.UiEditor] = _editorPanel.Node;
@@ -88,14 +96,7 @@ namespace GameEditor
 			for (int i = 0; i < _panels.Length; i++)
 			{
 				var panel = _panels[i];
-				if (panel == _curPanel)
-				{
-					panel.RemoveFromClassList("hidden");
-				}
-				else
-				{
-					panel.AddToClassList("hidden");
-				}
+				SetActive(panel, panel == _curPanel);
 			}
 
 			PrefabStage.prefabSaved += UIContainer.UpdateItem;
@@ -113,20 +114,21 @@ namespace GameEditor
 		{
 			_componentsView[(int) t] = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(p);
 		}
-		
+
 		private void AddViewAsset(ComponentAsset t, string p)
 		{
-			_componentsView[(int)t + (int)ViewAsset.ComponentAsset] = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(p);
+			_componentsView[(int) t + (int) ViewAsset.ComponentAsset] =
+				AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(p);
 		}
 
 		public VisualTreeAsset GetViewAsset(ViewAsset t)
 		{
-			return _componentsView[(int)t];
+			return _componentsView[(int) t];
 		}
 
 		public VisualTreeAsset GetViewAsset(ComponentAsset t)
 		{
-			return _componentsView[(int)t + (int)ViewAsset.ComponentAsset];
+			return _componentsView[(int) t + (int) ViewAsset.ComponentAsset];
 		}
 
 		public ComponentViewBase NewComponentView(ComponentAsset t)
@@ -148,6 +150,21 @@ namespace GameEditor
 					var asset = GetViewAsset(t);
 					return new RectTransformComView(asset.CloneTree());
 				}
+				case ComponentAsset.CanvasRenderer:
+				{
+					var asset = GetViewAsset(t);
+					return new CanvasRendererComView(asset.CloneTree());
+				}
+				case ComponentAsset.Image:
+				{
+					var asset = GetViewAsset(t);
+					return new ImageComView(asset.CloneTree());
+				}
+				case ComponentAsset.Text:
+				{
+					var asset = GetViewAsset(t);
+					return new TextComView(asset.CloneTree());
+				}
 				case ComponentAsset.ComponentCount:
 					throw new ArgumentOutOfRangeException(nameof(t), t, null);
 				default:
@@ -160,6 +177,35 @@ namespace GameEditor
 			_editorPanel.Update();
 
 			Repaint();
+		}
+
+		public static ComponentAsset GetComponentType(Component com)
+		{
+			var t = com.GetType();
+			var n = t.Name.Replace("UnityEngine.", string.Empty);
+			if (Enum.TryParse(n, out ComponentAsset comType))
+			{
+				return comType;
+			}
+
+			throw new Exception($"没有处理的组件类型:{n}");
+		}
+
+		private static void SetSizeFull(VisualElement node)
+		{
+			node.AddToClassList("sizefull");
+		}
+
+		public static void SetActive(VisualElement node, bool isActive)
+		{
+			if (isActive)
+			{
+				node.RemoveFromClassList("hidden");
+			}
+			else
+			{
+				node.AddToClassList("hidden");
+			}
 		}
 	}
 }

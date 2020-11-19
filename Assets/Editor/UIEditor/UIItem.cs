@@ -15,13 +15,20 @@ namespace GameEditor
 	public class UIItem : ScriptableObject
 	{
 		[System.Serializable]
+		public struct ComponentItem
+		{
+			public UIEditor.ComponentAsset ComponentType;
+			public Component Component;
+		}
+
+		[System.Serializable]
 		public class NodeItem
 		{
 			public GameObject Owner;
 			public string OwnerPath;
-			public List<Component> Components = new List<Component>();
+			public List<ComponentItem> Components = new List<ComponentItem>();
 		}
-		
+
 		public string Md5;
 		public string Path;
 		public string NameLower;
@@ -50,7 +57,7 @@ namespace GameEditor
 			{
 				return;
 			}
-			
+
 			Init(Prefab);
 		}
 
@@ -70,8 +77,13 @@ namespace GameEditor
 			var components = node.GetComponents<Component>();
 			foreach (var com in components)
 			{
-				item.Components.Add(com);
+				item.Components.Add(new ComponentItem
+				{
+					ComponentType = UIEditor.GetComponentType(com),
+					Component = com,
+				});
 			}
+
 			for (int i = 0; i < node.childCount; i++)
 			{
 				var child = node.GetChild(i);

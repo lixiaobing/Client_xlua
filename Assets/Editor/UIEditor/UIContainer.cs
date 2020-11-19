@@ -132,13 +132,13 @@ namespace GameEditor
 			_instance.Items.Remove(item);
 		}
 
-		public static List<Component> GetComponents(UIItem item, GameObject gameObject)
+		public static UIItem.NodeItem GetComponents(UIItem item, GameObject gameObject)
 		{
 			foreach (var node in item.Nodes)
 			{
 				if (node.Owner == gameObject)
 				{
-					return node.Components;
+					return node;
 				}
 			}
 

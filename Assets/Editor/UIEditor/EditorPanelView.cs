@@ -8,6 +8,7 @@
 
 
 using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Experimental.SceneManagement;
 using UnityEditor.UIElements;
@@ -18,14 +19,18 @@ namespace GameEditor
 {
 	public class EditorPanelView
 	{
+		// private static Dictionary<> ComponentConverter
+		
 		public VisualElement Node { get; }
 		private readonly Button _addButton;
 		private readonly ScrollView _scrollView;
 		private static readonly char[] SearchSplit = {' '};
 		private UIEditor _owner;
-		private readonly ComponentViewBase[] _components = new ComponentViewBase[(int)UIEditor.ComponentAsset.ComponentCount];
 
-		public EditorPanelView( UIEditor owner, VisualElement panel)
+		private readonly ComponentViewBase[] _components =
+			new ComponentViewBase[(int) UIEditor.ComponentAsset.ComponentCount];
+
+		public EditorPanelView(UIEditor owner, VisualElement panel)
 		{
 			_owner = owner;
 			Node = panel;
@@ -44,9 +49,9 @@ namespace GameEditor
 			};
 
 			var componentsRoot = panel.Q<VisualElement>("Components");
-			for (int i = 0; i < (int)UIEditor.ComponentAsset.ComponentCount; i++)
+			for (int i = 0; i < (int) UIEditor.ComponentAsset.ComponentCount; i++)
 			{
-				var com = _owner.NewComponentView((UIEditor.ComponentAsset)i);
+				var com = _owner.NewComponentView((UIEditor.ComponentAsset) i);
 				com.SetActive(false);
 				_components[i] = com;
 				componentsRoot.Add(com.Node);
@@ -89,7 +94,7 @@ namespace GameEditor
 			removeBtn.clicked += () =>
 			{
 				UIContainer.RemoveItem(itemData);
-				item.AddToClassList("hidden");
+				UIEditor.SetActive(item, false);
 			};
 			var openBtn = item.Q<Button>("Open");
 			openBtn.clicked += () => { AssetDatabase.OpenAsset(itemData.Prefab); };
@@ -103,7 +108,7 @@ namespace GameEditor
 			{
 				foreach (var child in _scrollView.Children())
 				{
-					child.RemoveFromClassList("hidden");
+					UIEditor.SetActive(child, true);
 				}
 
 				return;
@@ -123,13 +128,16 @@ namespace GameEditor
 					}
 				}
 
-				if (isContains)
+				UIEditor.SetActive(child, isContains);
+			}
+		}
+
+		private void UpdateComponentsView(UIItem.NodeItem nodeItem)
+		{
+			if (nodeItem != null)
+			{
+				foreach (var com in nodeItem.Components)
 				{
-					child.RemoveFromClassList("hidden");
-				}
-				else
-				{
-					child.AddToClassList("hidden");
 				}
 			}
 		}
@@ -139,30 +147,26 @@ namespace GameEditor
 			var stage = PrefabStageUtility.GetCurrentPrefabStage();
 			if (stage == null)
 			{
-				_addButton.AddToClassList("hidden");
+				UIEditor.SetActive(_addButton, false);
 				return;
 			}
 
 			var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(stage.prefabAssetPath);
-			var isIn = UIContainer.IsAlreadyIn(prefab);
-			if (isIn)
+			var itemData = UIContainer.GetUiItem(prefab);
+			if (itemData == null)
 			{
-				_addButton.AddToClassList("hidden");
-				if (Selection.activeGameObject == null)
-				{
-					return;
-				}
+				UIEditor.SetActive(_addButton, true);
+				return;
+			}
 
-				// if ((UIItem)_uiItems.selectedItem != null)
-				// {
-				// 	var components = UIContainer.GetComponents((UIItem)_uiItems.selectedItem, Selection.activeGameObject);
-				// }
-				// _label.text = Selection.activeGameObject.name;
-			}
-			else
+			UIEditor.SetActive(_addButton, false);
+			if (Selection.activeGameObject == null)
 			{
-				_addButton.RemoveFromClassList("hidden");
+				return;
 			}
+
+			var components = UIContainer.GetComponents(itemData, Selection.activeGameObject);
+			UpdateComponentsView(components);
 		}
 	}
 }

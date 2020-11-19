@@ -1,7 +1,7 @@
 ﻿/* ****************************************
 *******************************************
 * author : kaka
-* create time : 2020-11-19 16:30:33
+* create time : 2020-11-19 16:29:52
 * description : 
 *******************************************
 ** ************************************* */
@@ -11,13 +11,11 @@ using UnityEngine.UIElements;
 
 namespace GameEditor
 {
-	public class ComponentViewBase
+	public class CanvasRendererComView : ComponentViewBase
 	{
-		public VisualElement Node { get; protected set; }
-
-		public void SetActive(bool isActive)
+		public CanvasRendererComView(VisualElement node)
 		{
-			UIEditor.SetActive(Node, isActive);
+			Node = node;
 		}
 	}
 }
