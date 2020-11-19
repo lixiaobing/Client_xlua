@@ -119,16 +119,16 @@ namespace GameEditor
 
 			foreach (var child in _scrollView.Children())
 			{
-				var isContains = true;
+				var isContains = false;
 				foreach (var info in infos)
 				{
-					if (!((UIItem) child.userData).NameLower.Contains(info))
+					if (((UIItem) child.userData).NameLower.Contains(info))
 					{
-						isContains = false;
+						isContains = true;
 						break;
 					}
 				}
-
+				
 				UIEditor.SetActive(child, isContains);
 			}
 		}

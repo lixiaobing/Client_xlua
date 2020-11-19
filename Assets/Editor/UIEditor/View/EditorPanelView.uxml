@@ -4,9 +4,14 @@
         <ui:VisualElement name="Components" style="height: auto;" />
         <ui:Foldout text="已经绑定的组件" name="BindingComponents" value="false" />
         <ui:Button text="Add" name="AddUIPrefab" />
-        <uie:ToolbarSearchField focusable="True" name="ToolbarSearchField">
-            <ui:VisualElement name="ComponentPanel" />
-        </uie:ToolbarSearchField>
-        <ui:ScrollView vertical-page-size="4" show-vertical-scroller="true" name="DataContainer" style="overflow: hidden; height: 30%; width: auto;" />
+        <ui:VisualElement name="VisualElement" style="flex-direction: row; width: 100%;">
+            <ui:Label text="空格支持模糊搜索" name="Label" />
+            <uie:ToolbarSearchField focusable="True" name="ToolbarSearchField">
+                <ui:VisualElement name="ComponentPanel" />
+            </uie:ToolbarSearchField>
+        </ui:VisualElement>
+        <ui:Foldout text="关联的预制" name="Datas" value="false">
+            <ui:ScrollView vertical-page-size="4" show-vertical-scroller="true" name="DataContainer" style="overflow: hidden; height: auto; width: auto;" />
+        </ui:Foldout>
     </ui:VisualElement>
 </ui:UXML>
