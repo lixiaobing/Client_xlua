@@ -1,9 +1,11 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
     <ui:VisualElement name="UIEditorPanel" style="opacity: 1; display: flex; width: auto; height: 100%;">
-        <Style src="UIEditorWindow.uss" />
+        <Style src="/Assets/Editor/UIEditor/UIEditorWindow.uss" />
+        <ui:VisualElement name="Components" style="height: auto;" />
         <ui:Button text="Add" name="AddUIPrefab" />
-        <ui:VisualElement name="ComponentPanel" />
-        <uie:ToolbarSearchField focusable="True" name="ToolbarSearchField" />
+        <uie:ToolbarSearchField focusable="True" name="ToolbarSearchField">
+            <ui:VisualElement name="ComponentPanel" />
+        </uie:ToolbarSearchField>
         <ui:ScrollView vertical-page-size="4" show-vertical-scroller="true" name="DataContainer" style="overflow: hidden; height: 40%; width: auto;" />
     </ui:VisualElement>
 </ui:UXML>

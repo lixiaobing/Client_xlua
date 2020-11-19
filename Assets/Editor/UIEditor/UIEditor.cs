@@ -7,9 +7,9 @@
 ** ************************************* */
 
 
+using System;
 using UnityEditor;
 using UnityEditor.Experimental.SceneManagement;
-using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -24,13 +24,21 @@ namespace GameEditor
 			PanelCount,
 		}
 		
+		public enum ComponentAsset
+		{
+			GameObject = 0,
+			Transform,
+			RectTransform,
+
+			ComponentCount,
+		}
+		
 		public enum ViewAsset
 		{
 			UiItem = 0,
 			
-			// Components
-			Transform,
-			
+			ComponentAsset,
+
 			ViewAssetCount,
 		}
 
@@ -41,7 +49,7 @@ namespace GameEditor
 		// private Label _label;
 		private GameObject _selected;
 		private EditorPanelView _editorPanel;
-		private VisualTreeAsset[] _componentsView = new VisualTreeAsset[(int)ViewAsset.ViewAssetCount];
+		private VisualTreeAsset[] _componentsView = new VisualTreeAsset[(int)ViewAsset.ViewAssetCount + (int)ComponentAsset.ComponentCount - 1];
 
 		[MenuItem("Tools/UIEditor #O")]
 		private static void ShowWindow()
@@ -61,7 +69,10 @@ namespace GameEditor
 			var wndAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>($"{directory}/View/UIEditorWindow.uxml");
 			var editorPanel = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>($"{directory}/View/EditorPanelView.uxml");
 			AddViewAsset(ViewAsset.UiItem, $"{directory}/View/UIItemView.uxml");
-			
+			AddViewAsset(ComponentAsset.GameObject, $"{directory}/View/ComponentView/GameObjectComView.uxml");
+			AddViewAsset(ComponentAsset.Transform, $"{directory}/View/ComponentView/TransformComView.uxml");
+			AddViewAsset(ComponentAsset.RectTransform, $"{directory}/View/ComponentView/RectTransformComView.uxml");
+
 			var wnd = wndAsset.CloneTree();
 			wnd.AddToClassList("sizefull");
 			root.Add(wnd);
@@ -93,6 +104,8 @@ namespace GameEditor
 		private void OnDisable()
 		{
 			PrefabStage.prefabSaved -= UIContainer.UpdateItem;
+			_editorPanel.Dispose();
+			_editorPanel = null;
 			_panels = null;
 		}
 
@@ -100,41 +113,51 @@ namespace GameEditor
 		{
 			_componentsView[(int) t] = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(p);
 		}
+		
+		private void AddViewAsset(ComponentAsset t, string p)
+		{
+			_componentsView[(int)t + (int)ViewAsset.ComponentAsset] = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(p);
+		}
 
 		public VisualTreeAsset GetViewAsset(ViewAsset t)
 		{
 			return _componentsView[(int)t];
 		}
 
+		public VisualTreeAsset GetViewAsset(ComponentAsset t)
+		{
+			return _componentsView[(int)t + (int)ViewAsset.ComponentAsset];
+		}
+
+		public ComponentViewBase NewComponentView(ComponentAsset t)
+		{
+			switch (t)
+			{
+				case ComponentAsset.GameObject:
+				{
+					var asset = GetViewAsset(t);
+					return new GameObjectComView(asset.CloneTree());
+				}
+				case ComponentAsset.Transform:
+				{
+					var asset = GetViewAsset(t);
+					return new TransformComView(asset.CloneTree());
+				}
+				case ComponentAsset.RectTransform:
+				{
+					var asset = GetViewAsset(t);
+					return new RectTransformComView(asset.CloneTree());
+				}
+				case ComponentAsset.ComponentCount:
+					throw new ArgumentOutOfRangeException(nameof(t), t, null);
+				default:
+					throw new ArgumentOutOfRangeException(nameof(t), t, null);
+			}
+		}
+
 		private void OnGUI()
 		{
-			var stage = PrefabStageUtility.GetCurrentPrefabStage();
-			if (stage == null)
-			{
-				_editorPanel.AddButton.AddToClassList("hidden");
-				return;
-			}
-
-			var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(stage.prefabAssetPath);
-			var isIn = UIContainer.IsAlreadyIn(prefab);
-			if (isIn)
-			{
-				_editorPanel.AddButton.AddToClassList("hidden");
-				if (Selection.activeGameObject == null)
-				{
-					return;
-				}
-
-				// if ((UIItem)_uiItems.selectedItem != null)
-				// {
-				// 	var components = UIContainer.GetComponents((UIItem)_uiItems.selectedItem, Selection.activeGameObject);
-				// }
-				// _label.text = Selection.activeGameObject.name;
-			}
-			else
-			{
-				_editorPanel.AddButton.RemoveFromClassList("hidden");
-			}
+			_editorPanel.Update();
 
 			Repaint();
 		}
