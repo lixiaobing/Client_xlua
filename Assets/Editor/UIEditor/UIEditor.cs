@@ -39,6 +39,7 @@ namespace GameEditor
 			Dropdown,
 			ScrollRect,
 			Mask,
+			InputField,
 
 			ComponentCount,
 		}
