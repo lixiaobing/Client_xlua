@@ -20,7 +20,7 @@ namespace GameEditor
 	public class EditorPanelView
 	{
 		// private static Dictionary<> ComponentConverter
-		
+
 		public VisualElement Node { get; }
 		private readonly Button _addButton;
 		private readonly ScrollView _scrollView;
@@ -52,6 +52,7 @@ namespace GameEditor
 			for (int i = 0; i < (int) UIEditor.ComponentAsset.ComponentCount; i++)
 			{
 				var com = _owner.NewComponentView((UIEditor.ComponentAsset) i);
+
 				com.SetActive(false);
 				_components[i] = com;
 				componentsRoot.Add(com.Node);
@@ -134,11 +135,33 @@ namespace GameEditor
 
 		private void UpdateComponentsView(UIItem.NodeItem nodeItem)
 		{
-			if (nodeItem != null)
+			if (nodeItem == null)
 			{
+				return;
+			}
+
+			for (int i = 0; i < _components.Length; i++)
+			{
+				var isIn = false;
+				var comItem = UIItem.ComponentItem.Default;
 				foreach (var com in nodeItem.Components)
 				{
+					if ((int) com.ComponentType != i)
+					{
+						continue;
+					}
+
+					comItem = com;
+					isIn = true;
+					break;
 				}
+
+				if (isIn)
+				{
+					_components[i].SetComView(comItem);
+				}
+
+				_components[i].SetActive(isIn);
 			}
 		}
 

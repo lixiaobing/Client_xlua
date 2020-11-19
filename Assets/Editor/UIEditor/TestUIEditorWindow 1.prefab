@@ -589,7 +589,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 3315073010231002712}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.6666667
+  m_Size: 0.61
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1727,7 +1727,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3315073010294783725}
   m_Layer: 5
-  m_Name: TestUIEditorWindow
+  m_Name: TestUIEditorWindow 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

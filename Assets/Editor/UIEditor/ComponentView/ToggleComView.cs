@@ -13,9 +13,8 @@ namespace GameEditor
 {
 	public class ToggleComView : ComponentViewBase
 	{
-		public ToggleComView(VisualElement node)
+		public ToggleComView(VisualElement node) : base(node)
 		{
-			Node = node;
 		}
 	}
 }

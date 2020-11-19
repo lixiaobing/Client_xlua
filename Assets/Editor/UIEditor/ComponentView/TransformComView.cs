@@ -13,9 +13,8 @@ namespace GameEditor
 {
 	public class ScrollRectComView : ComponentViewBase
 	{
-		public ScrollRectComView(VisualElement node)
+		public ScrollRectComView(VisualElement node) : base(node)
 		{
-			Node = node;
 		}
 	}
 }

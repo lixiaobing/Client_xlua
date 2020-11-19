@@ -13,9 +13,12 @@ namespace GameEditor
 {
 	public class GameObjectComView : ComponentViewBase
 	{
-		public GameObjectComView(VisualElement node)
+		public GameObjectComView(VisualElement node) : base(node)
 		{
-			Node = node;
+		}
+
+		public void Set()
+		{
 		}
 	}
 }

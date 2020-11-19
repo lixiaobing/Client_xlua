@@ -134,9 +134,12 @@ namespace GameEditor
 
 		public static UIItem.NodeItem GetComponents(UIItem item, GameObject gameObject)
 		{
+			var so = new SerializedObject(gameObject);
+			// var localId = so.FindProperty("m_").longValue;
+			var localId = GlobalObjectId.GetGlobalObjectIdSlow(gameObject).targetObjectId;
 			foreach (var node in item.Nodes)
 			{
-				if (node.Owner == gameObject)
+				if ((ulong)node.LocalId == localId)
 				{
 					return node;
 				}

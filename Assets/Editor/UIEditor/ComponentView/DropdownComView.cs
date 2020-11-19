@@ -13,9 +13,8 @@ namespace GameEditor
 {
 	public class DropdownComView : ComponentViewBase
 	{
-		public DropdownComView(VisualElement node)
+		public DropdownComView(VisualElement node) : base(node)
 		{
-			Node = node;
 		}
 	}
 }

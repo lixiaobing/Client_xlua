@@ -13,9 +13,8 @@ namespace GameEditor
 {
 	public class TransformComView : ComponentViewBase
 	{
-		public TransformComView(VisualElement node)
+		public TransformComView(VisualElement node) : base(node)
 		{
-			Node = node;
 		}
 	}
 }

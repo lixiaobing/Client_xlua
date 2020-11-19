@@ -13,9 +13,8 @@ namespace GameEditor
 {
 	public class ButtonComView : ComponentViewBase
 	{
-		public ButtonComView(VisualElement node)
+		public ButtonComView(VisualElement node) : base(node)
 		{
-			Node = node;
 		}
 	}
 }

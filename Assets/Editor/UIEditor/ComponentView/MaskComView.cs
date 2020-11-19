@@ -13,9 +13,8 @@ namespace GameEditor
 {
 	public class MaskComView : ComponentViewBase
 	{
-		public MaskComView(VisualElement node)
+		public MaskComView(VisualElement node) : base(node)
 		{
-			Node = node;
 		}
 	}
 }

@@ -15,5 +15,3 @@ MonoBehaviour:
   Directory: UI
   Items:
   - {fileID: 11400000, guid: c8b518837b3d71a4ebee6d275a9b96cf, type: 2}
-  - {fileID: 11400000, guid: 46968ad11d8d21c49bfc88a08b56bb1a, type: 2}
-  - {fileID: 11400000, guid: b5c8a78a22a532a44876c045db71d677, type: 2}

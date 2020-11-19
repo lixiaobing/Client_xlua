@@ -13,9 +13,8 @@ namespace GameEditor
 {
 	public class RectTransformComView : ComponentViewBase
 	{
-		public RectTransformComView(VisualElement node)
+		public RectTransformComView(VisualElement node) :base(node)
 		{
-			Node = node;
 		}
 	}
 }

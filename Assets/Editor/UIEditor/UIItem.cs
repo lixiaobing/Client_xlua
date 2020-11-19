@@ -17,14 +17,17 @@ namespace GameEditor
 		[System.Serializable]
 		public struct ComponentItem
 		{
+			public static readonly ComponentItem Default = new ComponentItem(); 
+			
 			public UIEditor.ComponentAsset ComponentType;
-			public Component Component;
+			public Object Component;
 		}
 
 		[System.Serializable]
 		public class NodeItem
 		{
 			public GameObject Owner;
+			public long LocalId;
 			public string OwnerPath;
 			public List<ComponentItem> Components = new List<ComponentItem>();
 		}
@@ -69,11 +72,18 @@ namespace GameEditor
 
 		private void ParseComponent(Transform node)
 		{
+			var go = node.gameObject;
 			var item = new NodeItem()
 			{
-				Owner = node.gameObject,
+				Owner = go,
 			};
+			AssetDatabase.TryGetGUIDAndLocalFileIdentifier(go, out var _, out item.LocalId);
 			Nodes.Add(item);
+			item.Components.Add(new ComponentItem
+			{
+				ComponentType = UIEditor.ComponentAsset.GameObject,
+				Component = go,
+			});
 			var components = node.GetComponents<Component>();
 			foreach (var com in components)
 			{

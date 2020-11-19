@@ -13,9 +13,8 @@ namespace GameEditor
 {
 	public class SliderComView : ComponentViewBase
 	{
-		public SliderComView(VisualElement node)
+		public SliderComView(VisualElement node) : base(node)
 		{
-			Node = node;
 		}
 	}
 }

@@ -13,9 +13,8 @@ namespace GameEditor
 {
 	public class CanvasRendererComView : ComponentViewBase
 	{
-		public CanvasRendererComView(VisualElement node)
+		public CanvasRendererComView(VisualElement node) : base(node)
 		{
-			Node = node;
 		}
 	}
 }

@@ -13,9 +13,8 @@ namespace GameEditor
 {
 	public class InputFieldComView : ComponentViewBase
 	{
-		public InputFieldComView(VisualElement node)
+		public InputFieldComView(VisualElement node) : base(node)
 		{
-			Node = node;
 		}
 	}
 }

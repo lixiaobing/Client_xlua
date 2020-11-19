@@ -13,9 +13,8 @@ namespace GameEditor
 {
 	public class ScrollbarComView : ComponentViewBase
 	{
-		public ScrollbarComView(VisualElement node)
+		public ScrollbarComView(VisualElement node) : base(node)
 		{
-			Node = node;
 		}
 	}
 }
