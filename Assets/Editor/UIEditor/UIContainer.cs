@@ -16,6 +16,7 @@ namespace GameEditor
 	public class UIContainer : ScriptableObject
 	{
 		public static UIContainer Instance => _instance;
+		public static List<UIItem> UIItems => _instance.Items;
 		private static UIContainer _instance;
 		public string Directory;
 		public List<UIItem> Items;
@@ -54,7 +55,7 @@ namespace GameEditor
 			return $"{_instance._rootDirectory}/{_instance.Directory}/{file}.asset";
 		}
 		
-		public static bool IsAlreadyExist(GameObject go)
+		public static bool IsAlreadyIn(GameObject go)
 		{
 			foreach (var item in _instance.Items)
 			{
@@ -65,6 +66,19 @@ namespace GameEditor
 			}
 
 			return false;
+		}
+		
+		public static UIItem GetUiItem(GameObject go)
+		{
+			foreach (var item in _instance.Items)
+			{
+				if (item.Prefab == go)
+				{
+					return item;
+				}
+			}
+
+			return null;
 		}
 
 		// public static bool IsAlreadyExist(UIItem item)
@@ -80,12 +94,23 @@ namespace GameEditor
 		// 	return false;
 		// }
 		
-		public static void AddItem(GameObject prefab)
+		public static void UpdateItem(GameObject prefab)
 		{
-			if (IsAlreadyExist(prefab))
+			PrefabUtility.GetPrefabAssetType(prefab);
+			var item = GetUiItem(prefab);
+			if (item == null)
+			{
+				return;
+			}
+			item.Init(prefab);
+		}
+		
+		public static UIItem AddItem(GameObject prefab)
+		{
+			if (IsAlreadyIn(prefab))
 			{
 				EditorUtility.DisplayDialog("duplicate", "duplicate ui game object", "ok");
-				return;
+				return null;
 			}
 			var item = CreateInstance<UIItem>();
 			item.Init(prefab);
@@ -94,16 +119,30 @@ namespace GameEditor
 			_instance.Items.Add(item);
 			EditorUtility.SetDirty(_instance);
 			AssetDatabase.Refresh();
+			return item;
 		}
 
 		public static void RemoveItem(UIItem item)
 		{
-			if (!IsAlreadyExist(item.Prefab))
+			if (!IsAlreadyIn(item.Prefab))
 			{
 				return;
 			}
 
 			_instance.Items.Remove(item);
+		}
+
+		public static List<Component> GetComponents(UIItem item, GameObject gameObject)
+		{
+			foreach (var node in item.Nodes)
+			{
+				if (node.Owner == gameObject)
+				{
+					return node.Components;
+				}
+			}
+
+			return null;
 		}
 	}
 }

@@ -1,16 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
     <uie:Toolbar name="Toolbar" style="flex-direction: row;">
         <Style src="UIEditorWindow.uss" />
-        <uie:ToolbarButton text="UIContainer" name="UIContainer" />
         <uie:ToolbarButton text="UIEditor" name="UIEditor" />
     </uie:Toolbar>
     <ui:VisualElement name="RootPanel" style="flex-direction: row; height: 100%; flex-basis: auto; flex-wrap: wrap; position: relative; align-items: flex-start; justify-content: flex-start; visibility: visible;">
         <Style src="UIEditorWindow.uss" />
-        <ui:VisualElement name="UIContainerPanel" style="width: 100%; height: auto; visibility: visible; display: flex;" />
-        <ui:VisualElement name="UIEditorPanel" style="opacity: 1; display: flex; width: 100%;">
-            <uie:ToolbarSearchField focusable="True" name="ToolbarSearchField" />
-            <ui:Button text="Add" name="AddUIPrefab" />
-            <ui:ListView focusable="True" name="ListView" item-height="20" style="height: 188px; display: flex;" />
-        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

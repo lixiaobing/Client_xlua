@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 3315073009341017263}
   - component: {fileID: 3315073009341017262}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text123
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -589,7 +589,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 3315073010231002712}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.6666667
+  m_Size: 0.61
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2167,7 +2167,7 @@ GameObject:
   - component: {fileID: 3315073010794437785}
   - component: {fileID: 3315073010794437784}
   m_Layer: 5
-  m_Name: Label
+  m_Name: Label123
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2625,7 +2625,7 @@ GameObject:
   - component: {fileID: 3315073011082558955}
   - component: {fileID: 3315073011082558954}
   m_Layer: 5
-  m_Name: Background
+  m_Name: Background123
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a70a3b6e40183d47998743f8f701f31, type: 3}
   m_Name: TestWindow
   m_EditorClassIdentifier: 
-  Md5: 58ad96db24976344134d4ba04725ae65
-  Path: Assets/Editor/UIEditor/TestUIEditorWindow.prefab
+  Md5: b5a7609f549acd3697f11a7e2ccd66aa
+  Path: Assets/Editor/UIEditor/TestWindow.prefab
+  NameLower: testwindow
   Prefab: {fileID: 6092253026937965912, guid: 74e014059c6fc0b49be75d078b685e9d, type: 3}
+  Nodes:
+  - Owner: {fileID: 6092253026937965912, guid: 74e014059c6fc0b49be75d078b685e9d, type: 3}
+    OwnerPath: 
+    Components:
+    - {fileID: 6092253026937965895, guid: 74e014059c6fc0b49be75d078b685e9d, type: 3}
