@@ -91,7 +91,7 @@ namespace Framework
 
         void OnDestroy()
         {
-            luaEnv.Dispose();
+
         }
     }
 }

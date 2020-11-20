@@ -29,8 +29,6 @@ public static class GameAsset
 
     public static void LoadSceneSingle(string key, System.Action onComplete)
     {
-        Debug.LogError(key);
-
         cacheScene.Clear();
 
         var handle = Addressables.LoadSceneAsync(key, UnityEngine.SceneManagement.LoadSceneMode.Single);

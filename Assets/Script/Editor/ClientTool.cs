@@ -33,7 +33,11 @@ public class ClientTool
 
             var encoding = new UTF8Encoding(false);
             File.WriteAllText(path, content, encoding);
+
+            //Debug.Log(path);
         }
+        AssetDatabase.Refresh();
+        AssetDatabase.SaveAssets();
     }
 
 
