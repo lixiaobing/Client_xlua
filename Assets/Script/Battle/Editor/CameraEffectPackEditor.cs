@@ -74,6 +74,11 @@ namespace Battle
 
             };
             //绘制表头
+            list.elementHeightCallback = (index) =>
+            {
+                return 192;
+            };
+            //绘制表头
             list.drawHeaderCallback = (Rect rect) =>
             {
                 GUI.Label(rect, "Camera Effect Templates");

@@ -8,9 +8,9 @@ UIGlobal.loading = nil
 UIGlobal.topBanner = nil
 
 function UIGlobal.init()
-    -- if this.onUpdate then
-    --     UpdateBeat:Add(this.onUpdate, this)
-    -- end
+    if this.onUpdate then
+        UpdateBeat:Add(this.onUpdate, this)
+    end
 
     this.readyAsset()
 
@@ -19,18 +19,15 @@ end
 
 function UIGlobal.readyAsset()
     local assetKeys = {
-        "UI/Window/VideoWindow",
-
         "UI/Component/Loading",
         "UI/Component/TopBanner",
         "UI/Component/HintCommon"
     }
-    Yield(
-        GameAsset.LoadAssets(assetKeys, function(index, obj)
-            local key = assetKeys[index]
-            _assets[key] = obj
-        end)
-    )
+
+    Yield(GameAsset.LoadAssets(assetKeys, function(index, obj)
+        local key = assetKeys[index]
+        _assets[key] = obj
+    end))
 end
 
 function UIGlobal:onUpdate()
@@ -71,7 +68,7 @@ end
 
 function UIGlobal.createUI()
     --全局准备UI
-    UIManager.addPrefabCache("VideoWindow", _assets["UI/Window/VideoWindow"], true)
+    -- UIManager.addPrefabCache("VideoWindow", _assets["UI/Window/VideoWindow"], true)
 
     --全局Loading
     local loadingObj = GameObject.Instantiate(_assets["UI/Component/Loading"])

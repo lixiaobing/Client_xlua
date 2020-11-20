@@ -32,7 +32,7 @@ function BaseComponent:BindNodes()
 						if class then
 							class = class[v]
 						else
-							class = _G[v]
+							class = CS[v]
 						end
 					end
 					if class then

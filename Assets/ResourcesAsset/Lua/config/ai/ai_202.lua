@@ -1,0 +1,28 @@
+return
+{
+	["id"]=202,
+	["debug"]=false,
+	["variables"]={
+	},
+	["nodes"]={
+		[1]={
+			["uuid"]="097b5c0deed44f0c8c7b90c3d4535cd6",
+			["Type"]="Root",
+			["mark"]="",
+			["links"]={
+				[1]={
+					["child"]="f8122205d80c4559b8787169baa07c31",
+					["weight"]=Fixed64(0) --[[0]],
+				},
+			},
+		},
+		[2]={
+			["uuid"]="f8122205d80c4559b8787169baa07c31",
+			["Type"]="Idle",
+			["mark"]="",
+			["links"]={
+			},
+			["time"]=50000,
+		},
+	},
+}

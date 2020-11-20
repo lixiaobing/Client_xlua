@@ -28,7 +28,7 @@ function UIUtil.cloneGameObject(obj)
     if not obj then
         return
     end
-    local goParent = null
+    local goParent = nil
     local transParent = obj.transform.parent
     if transParent then
         goParent = transParent.gameObject

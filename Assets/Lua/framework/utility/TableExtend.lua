@@ -5,6 +5,8 @@ local pairs = pairs
 local next = next
 local tonumber = tonumber
 
+unpack = table.unpack
+
 --[[--
     替换表
 ]]
@@ -314,4 +316,17 @@ function table.reverse(tab)
 		tmp[i] = table.remove(tab)
 	end
 	return tmp
+end
+
+function table.maxn(t)
+    local mn=nil
+    for k, v in pairs(t) do
+        if(mn==nil) then
+            mn=v
+        end
+        if mn < v then
+            mn = v
+        end
+    end
+    return mn
 end
