@@ -297,7 +297,23 @@ namespace GameEditor
 			var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabAssetPath);
 			var curUiItem = UIContainer.GetUiItem(prefab);
 
-			UpdateBindingComponentsView(_curUiItem);
+			if (_curUiItem == null)
+			{
+				UpdateBindingComponentsView(_curUiItem);
+			}
+			else
+			{
+				if (_curUiItem.IsRefreshData)
+				{
+					UpdateBindingComponentsView(null);
+					UpdateBindingComponentsView(_curUiItem);
+				}
+				else
+				{
+					UpdateBindingComponentsView(_curUiItem);
+				}
+			}
+			
 			UIEditor.SetActive(_addButton, curUiItem == null || _curUiItem != curUiItem);
 			_curUiItem = curUiItem;
 			if (_curUiItem != null)

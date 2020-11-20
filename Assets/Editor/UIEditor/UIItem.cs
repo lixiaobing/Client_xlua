@@ -203,6 +203,7 @@ namespace GameEditor
 
 		private static void SyncItemData(UIItem oldData, UIItem newData)
 		{
+			oldData.Md5 = newData.Md5;
 			oldData.Path = newData.Path;
 			oldData.LocalId = newData.LocalId;
 			oldData.NameLower = newData.NameLower;
