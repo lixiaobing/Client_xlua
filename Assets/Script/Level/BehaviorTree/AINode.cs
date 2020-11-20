@@ -35,7 +35,6 @@ namespace hjcd.level.BehaviorTree
 
 
 
-
         public int executeCount;
         public AINode parentNode;
         public AINode childNode;
@@ -107,11 +106,41 @@ namespace hjcd.level.BehaviorTree
 
         public virtual void OnPause() { }
         public virtual void OnReseum() { }
-        public virtual void OnEnter() { }
+        public virtual void OnEnter() { 
+            this.excuteState  = ExcuteState.Excute_Read ;
+            this.executeCount = this.executeCount + 1;
+            this.deltaTime    = 0 ;
+            this.PrepChild() ;
+            this.OnEnterImpl();
+
+        }
         public virtual void OnExit() { }
-        public virtual void OnUpdate(float time) { 
+        public virtual void OnUpdate(float time) {
+
+            this.deltaTime = this.deltaTime + time;
+            if (this.excuteState == ExcuteState.Excute_Read){
+                this.excuteState = ExcuteState.Excute_Progress; 
+                this.OnExecute();
+            }
+            if(this.excuteState == ExcuteState.Excute_Progress) {
+                this.OnUpdateImpl();
+            }
+
+
+            if(this.excuteState == ExcuteState.Excute_Complete) {
+
+                this.OnExecuteComplete();
+            } 
+        }
+
+        public virtual void OnUpdateImpl()
+        {
+      
+        }
+
+        public virtual void OnExecuteComplete()
+        {
             
-           
         }
 
         public virtual bool OnPop(bool result) {
@@ -119,6 +148,9 @@ namespace hjcd.level.BehaviorTree
             return result;
         }
 
+        public virtual void PrepChild(){
+            this.childNode = this.childs[0];
+        }
         public void AddExecuteCount()
         {
 
@@ -162,6 +194,54 @@ namespace hjcd.level.BehaviorTree
         public bool IsOvertime(float time){
             return this.deltaTime >= time;
         }
+
+
+
+
+
+        public void OnExitImpl()
+        {
+
+
+        }
+        public void OnEnterImpl()
+        {
+
+
+        }
+        //子类重写实现逻辑
+        public virtual void OnExecute()
+        {
+
+            this.excuteState = ExcuteState.Excute_Complete;//执行完成
+            this.excuteResult = true;//执行成功
+        }
+
+
+
+
+        public void SetExcuteState(ExcuteState excuteState, bool excuteResult)
+        {
+            this.excuteState = excuteState;
+            if (this.excuteResult)
+            {
+                this.excuteResult = excuteResult;
+            }
+        }
+
+
+        public void SetExcuteComplete_Success(bool excuteResult)
+        {
+            this.excuteState = ExcuteState.Excute_Complete;
+            this.excuteResult = true;
+        }
+
+        public void SetExcuteComplete_Fail(bool excuteResult)
+        {
+            this.excuteState = ExcuteState.Excute_Complete;
+            this.excuteResult = false;
+        }
+
 
         public static AINode Create(NodeConfig config)
         {
