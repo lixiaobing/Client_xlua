@@ -34,15 +34,6 @@ MonoBehaviour:
   - id: 10013
     name: "\u5361\u5DF4\u62C91\u53F7"
     groupId: 1
-  - id: 21001
-    name: "\u8D2B\u6C11\u7A9F"
-    groupId: 5
-  - id: 21002
-    name: "\u5546\u4E1A\u533A"
-    groupId: 5
-  - id: 21003
-    name: "\u7814\u7A76\u5927\u697C"
-    groupId: 5
   - id: 10021
     name: "\u6728\u6869\u8BAD\u7EC3"
     groupId: 1
@@ -58,18 +49,9 @@ MonoBehaviour:
   - id: 10025
     name: "\u5929\u53F0\u6D4B\u8BD5"
     groupId: 1
-  - id: 21004
-    name: "\u5929\u53F0"
-    groupId: 5
-  - id: 21005
-    name: "\u7814\u7A76\u5927\u697C-\u65B0"
-    groupId: 5
   - id: 10026
     name: "timeline\u6D4B\u8BD5"
     groupId: 1
-  - id: 21006
-    name: "\u5929\u53F0-\u65B0"
-    groupId: 5
   - id: 10028
     name: "\u8DF3\u8DC3\u6D4B\u8BD5"
     groupId: 1
@@ -79,6 +61,24 @@ MonoBehaviour:
   - id: 10032
     name: "\u5C3C\u5C14\u6D4B\u8BD52"
     groupId: 1
+  - id: 21001
+    name: "\u8D2B\u6C11\u7A9F"
+    groupId: 5
+  - id: 21002
+    name: "\u5546\u4E1A\u533A"
+    groupId: 5
+  - id: 21003
+    name: "\u7814\u7A76\u5927\u697C"
+    groupId: 5
+  - id: 21004
+    name: "\u5929\u53F0"
+    groupId: 5
+  - id: 21005
+    name: "\u7814\u7A76\u5927\u697C-\u65B0"
+    groupId: 5
+  - id: 21006
+    name: "\u5929\u53F0-\u65B0"
+    groupId: 5
   - id: 31001
     name: "\u8702\u5DE2\u73A9\u6CD5"
     groupId: 8

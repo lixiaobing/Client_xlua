@@ -23,16 +23,6 @@ namespace hjcd.level.BehaviorTree
         //每次移动的最小距离
         public float minDistance;
 
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(ExportUtils.KV(nameof(times), times, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(speed), speed, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(stayTime), stayTime, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(radius), radius, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(minDistance), minDistance, indent, newLine));
-            return sb.ToString();
-        }
         public override void OnInspector()
         {
             times       = Utils.IntField("移动次数", times);

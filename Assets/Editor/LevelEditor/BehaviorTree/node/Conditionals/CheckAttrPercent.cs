@@ -22,16 +22,6 @@ namespace hjcd.level.BehaviorTree
         //百分比值
         public float attrPercentValue = 0;
 
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(base.ToStringEx(indent, newLine));
-            sb.Append(selectTarget.ToLuaString(indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(attrPercent), attrPercent, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(relationalOperator), relationalOperator, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(attrPercentValue), attrPercentValue, indent, newLine));
-            return sb.ToString();
-        }
 
         public override void OnInspector()
         {

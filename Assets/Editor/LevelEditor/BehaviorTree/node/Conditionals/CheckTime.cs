@@ -17,14 +17,6 @@ namespace hjcd.level.BehaviorTree
 
         public RelationalOperator relationalOperator;
 
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(base.ToStringEx(indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(time), time, indent, newLine));
-            return sb.ToString();
-        }
-
         public override void OnInspector()
         {
             base.OnInspector();

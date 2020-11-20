@@ -60,7 +60,7 @@ namespace hjcd.level.BehaviorTree
 
         public float DoLayout(Vector2 startPostion, float offset) {
             //计算线的位置
-            Node node = AIDataMgr.Instance.GetNode(child);
+            Node node = BehaviorTree.Instance.GetNode(child);
             Vector2 endPostion= node.GetLinkInPosition();
 
             if (offset < 5)
@@ -109,7 +109,7 @@ namespace hjcd.level.BehaviorTree
 
         public override void RemoveSelf(bool containChild)
         {
-            AIDataMgr.Instance.RemoveLink(child);
+            BehaviorTree.Instance.RemoveLink(child);
         }
 
 

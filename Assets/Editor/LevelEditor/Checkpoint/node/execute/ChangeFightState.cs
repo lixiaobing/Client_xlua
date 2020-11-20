@@ -11,14 +11,7 @@ namespace hjcd.level.CheckPoint
         //战斗状态
         public bool fight;
         public SelectTarget selectTargetType = new SelectTarget();
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(ExportUtils.KV(nameof(delayTime), delayTime, indent, newLine));
-            sb.Append(selectTargetType.ToLuaString(indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(fight), fight, indent, newLine));
-            return sb.ToString();
-        }
+
         public override void OnDraw()
         {
             base.OnDraw();

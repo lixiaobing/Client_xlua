@@ -20,15 +20,7 @@ namespace hjcd.level.BehaviorTree
         public float value  = 0;
         //是否是共享变量
         public bool share = false;
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(ExportUtils.KV(nameof(simpleArithmeticOperator), simpleArithmeticOperator,indent,newLine));
-            sb.Append(ExportUtils.KV(nameof(varName), varName, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(value), value, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(share), share, indent, newLine));
-            return sb.ToString();
-        }
+       
 
 
         public override void OnInspector()

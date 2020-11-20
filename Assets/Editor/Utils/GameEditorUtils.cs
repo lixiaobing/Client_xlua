@@ -8,13 +8,41 @@
 
 using System;
 using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace GameEditor
 {
 	public static class GameEditorUtils
 	{
+		public static string GetScriptPath<T>(T script)
+		{
+			MonoScript ms;
+			switch (script)
+			{
+				case MonoBehaviour behaviour:
+					ms = MonoScript.FromMonoBehaviour(behaviour);
+					break;
+				case ScriptableObject scriptableObject:
+					ms = MonoScript.FromScriptableObject(scriptableObject);
+					break;
+				default:
+					throw new Exception($"{script}");
+			}
+
+			return AssetDatabase.GetAssetPath(ms);
+		}
+
+		public static string GetScriptDirectory<T>(T script)
+		{
+			var p = GetScriptPath(script);
+			return Path.GetDirectoryName(p);
+		}
+		
 		public static System.Diagnostics.Process CreateShellExProcess(string cmd, string args, string workingDir = "")
 		{
 			var pStartInfo = new System.Diagnostics.ProcessStartInfo(cmd);
@@ -46,7 +74,7 @@ namespace GameEditor
 			return File.Exists(path) || Directory.Exists(path);
 		}
 		
-		private static void EnsurePath(string path)
+		public static void EnsurePath(string path, bool isCreateFile=false)
 		{
 			if (IsExist(path))
 			{
@@ -57,7 +85,10 @@ namespace GameEditor
 			{
 				var dir = Path.GetDirectoryName(path);
 				EnsurePath(dir);
-				File.Create(path);
+				if (isCreateFile)
+				{
+					File.Create(path);
+				}
 			}
 			else
 			{
@@ -103,6 +134,60 @@ namespace GameEditor
 			{
 				Debug.LogError($"{file}");
 			}
+		}
+		
+		public static string Md5(string filePath)
+		{
+			if (!IsExist(filePath))
+			{
+				Debug.LogError($"没有文件:({filePath})");
+				return string.Empty;
+			}
+
+			return Md5(File.ReadAllBytes(filePath));
+		}
+		
+		public static string Md5(byte[] contents)
+		{
+			var md5 = MD5.Create();
+			var byteNew =  md5.ComputeHash(contents);
+			var sb = new StringBuilder();
+			foreach (byte b in byteNew)
+			{
+				sb.Append(b.ToString("x2"));
+			}
+			return sb.ToString();
+		}
+		
+		public static void DefaultGui(VisualElement container, SerializedObject serializedObject, bool hideScript)
+		{
+			var property = serializedObject.GetIterator();
+			if (!property.NextVisible(true))
+			{
+				return;
+			}
+
+			do
+			{
+				if (hideScript && property.propertyPath == "m_Script")
+				{
+					continue;
+				}
+
+				var field = new PropertyField(property);
+				if (property.propertyPath == "m_Script" && serializedObject.targetObject != null)
+				{
+					field.SetEnabled(false);
+				}
+				field.Bind(serializedObject);
+				container.Add(field);
+			} while (property.NextVisible(false));
+		}
+
+		public static void Write(string p, string content)
+		{
+			EnsurePath(p);
+			File.WriteAllText(p, content);
 		}
 	}
 }

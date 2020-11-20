@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <uie:Toolbar name="Toolbar" style="flex-direction: row;">
+        <Style src="UIEditorWindow.uss" />
+        <uie:ToolbarButton text="UIEditor" name="UIEditor" />
+    </uie:Toolbar>
+    <ui:VisualElement name="RootPanel" style="flex-direction: row; height: 100%; flex-basis: auto; flex-wrap: wrap; position: relative; align-items: flex-start; justify-content: flex-start; visibility: visible;">
+        <Style src="UIEditorWindow.uss" />
+    </ui:VisualElement>
+</ui:UXML>

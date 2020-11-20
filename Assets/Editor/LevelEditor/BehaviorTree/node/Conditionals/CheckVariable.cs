@@ -19,25 +19,10 @@ namespace hjcd.level.BehaviorTree
         //关系运算
         public RelationalOperator relationalOperator = RelationalOperator.EQUAL;
 
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(base.ToStringEx(indent, newLine));
-
-            sb.Append(ExportUtils.K(nameof(var1), indent, newLine));
-            sb.Append(ExportUtils.EqualSign);
-            sb.Append(var1.ToLuaString(0, false));
-            sb.Append(ExportUtils.Comma);
-
-
-            sb.Append(ExportUtils.KV(nameof(value), value, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(relationalOperator), relationalOperator, indent, newLine));
-            return sb.ToString();
-        }
         public override void OnInspector()
         {
             base.OnInspector();
-            var1.OnDraw1("变量1");
+            Utils.DrawVariable1(var1, "变量");
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("关系");
             relationalOperator = Utils.DrawPopup<RelationalOperator>(relationalOperator);

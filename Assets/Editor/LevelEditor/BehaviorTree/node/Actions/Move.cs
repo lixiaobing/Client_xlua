@@ -21,16 +21,7 @@ namespace hjcd.level.BehaviorTree
         public float maxTime;
         //与目标的最大距离(小于这个距离完成)
         public float distance;
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(selectTarget.ToLuaString(indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(moveType), moveType, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(speed), speed, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(maxTime), maxTime, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(distance), distance, indent, newLine));
-            return sb.ToString();
-        }
+
         public override void OnInspector()
         {
             Utils.DrawSelectTarget2("目标选择", selectTarget);

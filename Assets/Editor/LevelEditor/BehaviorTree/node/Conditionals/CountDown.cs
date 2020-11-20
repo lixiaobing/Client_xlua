@@ -17,15 +17,6 @@ namespace hjcd.level.BehaviorTree
         //是否是进入
         public bool enter;
 
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(base.ToStringEx(indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(time), time, indent,newLine));
-            sb.Append(ExportUtils.KV(nameof(enter), enter, indent, newLine));
-            
-            return sb.ToString();
-        }
         public override void OnInspector()
         {
             base.OnInspector();

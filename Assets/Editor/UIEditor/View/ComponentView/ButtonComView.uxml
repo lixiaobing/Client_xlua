@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement style="flex-direction: row;
+ flex-wrap: nowrap;
+ align-items: center;
+ justify-content: space-between;">
+        <uie:ObjectField name="Prefab" style="width: 40%;" />
+        <ui:TextField picking-mode="Ignore" label="导出名" value="alias" name="AliasName" style="width: 35%;" />
+        <ui:Toggle label="是否绑定" name="IsBinding" style="align-items: stretch;
+ flex-direction: row;
+ width: 20%;" />
+    </ui:VisualElement>
+    <ui:VisualElement>
+        <ui:TextField picking-mode="Ignore" label="点击方法名" value="filler text" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -17,15 +17,6 @@ namespace hjcd.level.BehaviorTree
         //状态ID
         public RoleState state = RoleState.IDLE ;
 
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(base.ToStringEx(indent, newLine));
-            sb.Append(selectTarget.ToLuaString(indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(state), state, indent, newLine));
-            return sb.ToString();
-        }
-
         public override void OnInspector()
         {
             base.OnInspector();

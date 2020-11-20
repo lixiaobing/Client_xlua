@@ -8,17 +8,14 @@ namespace Battle
     public class ActionEventPackConfig : ScriptableObject
     {
         [System.Serializable]
-        public class StatePack
+        public class SubPack
         {
             public string stateName;
-
-            public AnimationClip clip;
-
+            //public AnimationClip clip;
             public int frameLength;
-
             public ActionEventConfig[] events;
         }
 
-        public StatePack[] statePacks;
+        public SubPack[] subPacks;
     }
 }

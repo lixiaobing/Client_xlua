@@ -1,0 +1,348 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 028d66e21e743fa4dabf87a7be6c4175, type: 3}
+  m_Name: H_Tokisaki_01
+  m_EditorClassIdentifier: 
+  subPacks:
+  - stateName: Attack1
+    frameLength: 20
+    events:
+    - {fileID: 11400000, guid: 6a4b56d5ebc61ad438a7e20c7daa2d49, type: 2}
+    - {fileID: 11400000, guid: b6987450df287af448b10e8ebac9dbaa, type: 2}
+    - {fileID: 11400000, guid: eaa858c1dbd19f44cad724dcda049caf, type: 2}
+    - {fileID: 11400000, guid: 7c532bab5e5f07541a314e0ac2d0e400, type: 2}
+    - {fileID: 11400000, guid: d52c7a683d5cf1c429a9e1cd219ebf3e, type: 2}
+    - {fileID: 11400000, guid: 733c2511c5c1cc746a6edd8ae6ea12ed, type: 2}
+    - {fileID: 11400000, guid: fc23c3511a145c74aa384e8602234707, type: 2}
+    - {fileID: 11400000, guid: 474f4eda508619143866cf43c0e166e5, type: 2}
+    - {fileID: 11400000, guid: 66771eee0ed605847bb81263618be8ba, type: 2}
+    - {fileID: 11400000, guid: 96ca20f8476056648a1ce7ccc8f8e2ba, type: 2}
+    - {fileID: 11400000, guid: 80a27155132d7704d8f7c0950c6ff0d1, type: 2}
+    - {fileID: 11400000, guid: e2e30859c854a044bbec5d55387478a6, type: 2}
+  - stateName: Attack2
+    frameLength: 20
+    events:
+    - {fileID: 11400000, guid: 422887e5045ca604aa96dccd0227ec70, type: 2}
+    - {fileID: 11400000, guid: fe084967d5703d14d9d1459fcb6498aa, type: 2}
+    - {fileID: 11400000, guid: 25965a1d3aee2894cb3733730ba4d94e, type: 2}
+    - {fileID: 11400000, guid: 4ab135ea90e5e79428227bfe55a70e32, type: 2}
+    - {fileID: 11400000, guid: 24a0ef830195b534ba1fcca0dd9e5e42, type: 2}
+    - {fileID: 11400000, guid: d041dc207f3ab784bb61b316fcb8849e, type: 2}
+    - {fileID: 11400000, guid: 28a7511f5c2a7f7428438dedec8f362a, type: 2}
+    - {fileID: 11400000, guid: dad688ce14f8eef45b55139656f2c171, type: 2}
+    - {fileID: 11400000, guid: 6df518c4b7addf541b693e1f4e24132f, type: 2}
+    - {fileID: 11400000, guid: 70d495ab99060324186815f5886e018a, type: 2}
+    - {fileID: 11400000, guid: 1b03b0440d938e640bb3d65493316823, type: 2}
+  - stateName: Attack3
+    frameLength: 30
+    events:
+    - {fileID: 11400000, guid: 5cebb19a3dd56384bb6788dec07ad3bf, type: 2}
+    - {fileID: 11400000, guid: 7fd82b16d1dcd8648be9f415b42842ed, type: 2}
+    - {fileID: 11400000, guid: 76bf926f25fde5f46b5a5231adaf4452, type: 2}
+    - {fileID: 11400000, guid: 5d0648aed2205a9408f5eae8c9f9ee16, type: 2}
+    - {fileID: 11400000, guid: accf265655b06994a801e14a984d5fb8, type: 2}
+    - {fileID: 11400000, guid: 4b5f0af6f92e9004ebffedf159cf9cb7, type: 2}
+    - {fileID: 11400000, guid: 5306610b2b8b7ef4e854c2cfb07ee732, type: 2}
+    - {fileID: 11400000, guid: 62f3ba407775436429bbdc42a699e4a7, type: 2}
+    - {fileID: 11400000, guid: 40e5c68434edf3b48ae6d2fffaabb449, type: 2}
+    - {fileID: 11400000, guid: 1d530c981d6398c47acc74742f50bb83, type: 2}
+  - stateName: Attack4
+    frameLength: 35
+    events:
+    - {fileID: 11400000, guid: 6749220b432b05244b781025421e02d9, type: 2}
+    - {fileID: 11400000, guid: bfc3eafecd5d70c4699272fa615638f8, type: 2}
+    - {fileID: 11400000, guid: ea2702c604ce2f94b940834e36a6fce7, type: 2}
+    - {fileID: 11400000, guid: 10820a219edb21a48a6e8cea1e6fc75f, type: 2}
+    - {fileID: 11400000, guid: 263cb7930f05a244ab573b8f3e72d5e4, type: 2}
+    - {fileID: 11400000, guid: c89dc2478fcf15248b4f8619691b970d, type: 2}
+    - {fileID: 11400000, guid: f50704317ef53dd40814a83bf99a76c7, type: 2}
+    - {fileID: 11400000, guid: 4757a002a7878af458fb2a8598c3d353, type: 2}
+    - {fileID: 11400000, guid: 7085152ae4f87ec4bb0387a315c9b25f, type: 2}
+    - {fileID: 11400000, guid: f1acc1d9c46ff8f4d96558652f0ecd58, type: 2}
+    - {fileID: 11400000, guid: bc0b1758ab88fcf469a37fac93f1edd8, type: 2}
+    - {fileID: 11400000, guid: 639676c3bcecef04998a7f3b184f52f8, type: 2}
+    - {fileID: 11400000, guid: 7c99b253f50bd0a459a6330e679be530, type: 2}
+    - {fileID: 11400000, guid: 2d60f377594036d42ae3f0c605a6e99e, type: 2}
+    - {fileID: 11400000, guid: 961bfb07a01371a49b2a8c5e44a6199a, type: 2}
+    - {fileID: 11400000, guid: a7e08cb6f5119ec4290b07e4844747b5, type: 2}
+    - {fileID: 11400000, guid: 93f1c6261cfb4e048a82f0143799f143, type: 2}
+    - {fileID: 11400000, guid: b2b7b2dde942ec34e883e527341f8da0, type: 2}
+    - {fileID: 11400000, guid: 9429d3c5094becc498028e6ab532ec6d, type: 2}
+    - {fileID: 11400000, guid: f5b8420a34990584380a2cf5df813dbd, type: 2}
+  - stateName: Attack5
+    frameLength: 36
+    events:
+    - {fileID: 11400000, guid: a91c4617763b7384faa2bc570f1852fc, type: 2}
+    - {fileID: 11400000, guid: 0fa36c967b515614ba74d2c78563f3a5, type: 2}
+    - {fileID: 11400000, guid: 0ca9093301781744fb7fab80d8fbc74e, type: 2}
+    - {fileID: 11400000, guid: c46dbb3c8cce8d44eade087016f70dea, type: 2}
+    - {fileID: 11400000, guid: 4cfe973df05a5dc468c9325205484676, type: 2}
+    - {fileID: 11400000, guid: 58432baee353fb247831673063544c96, type: 2}
+    - {fileID: 11400000, guid: 794d033ff8c0c9644b3713328040df1f, type: 2}
+    - {fileID: 11400000, guid: b5c15090a64f1c44789f059f926bd51e, type: 2}
+    - {fileID: 11400000, guid: 412a4dd4a421b884d90cfbaa4736fa4e, type: 2}
+    - {fileID: 11400000, guid: cacbf2766e60cf94da5620f64172fae6, type: 2}
+  - stateName: Rush
+    frameLength: 17
+    events:
+    - {fileID: 11400000, guid: e3fbfe6304fd93e408194fa010a968bd, type: 2}
+    - {fileID: 11400000, guid: bc58ae8999c539943bd7ccecde793b93, type: 2}
+    - {fileID: 11400000, guid: f2ba6a91a58254b4a86cdbeae178db85, type: 2}
+    - {fileID: 11400000, guid: d19bf1ab7ab52114ba54a2b5ab4eac33, type: 2}
+    - {fileID: 11400000, guid: f73b6d2408c553b44b6aca89ff7499f0, type: 2}
+    - {fileID: 11400000, guid: ea19827d8f127a94c96170ca43519c20, type: 2}
+    - {fileID: 11400000, guid: 100148b146d2a3f4d92a73f7a247ba4d, type: 2}
+    - {fileID: 11400000, guid: 617663d2d25b8ca44907247694809925, type: 2}
+    - {fileID: 11400000, guid: 3025c6f47ad404340913a0a349e84ebe, type: 2}
+    - {fileID: 11400000, guid: 8c6e087b1201217449c203cc3ddeeb1a, type: 2}
+    - {fileID: 11400000, guid: 696fd18ed06704849a26c87cdfe5f418, type: 2}
+  - stateName: Skill4
+    frameLength: 172
+    events:
+    - {fileID: 11400000, guid: f3f1638e48837e94f82bf4808b8557bf, type: 2}
+    - {fileID: 11400000, guid: 6ea8648f6d857fd4e94d81bf324bc61c, type: 2}
+    - {fileID: 11400000, guid: 0acc9a8c528b5e642bac0beda6b4f0f6, type: 2}
+    - {fileID: 11400000, guid: db4d4d9933274354883a8728d56ed818, type: 2}
+    - {fileID: 11400000, guid: e80230e68bd4ddb418f0094242ab21d5, type: 2}
+    - {fileID: 11400000, guid: ee304a5c0de59f94bb7bf18cfb4dc483, type: 2}
+    - {fileID: 11400000, guid: c1fb86f23bb7e324c937f2d00c297a95, type: 2}
+    - {fileID: 11400000, guid: 1d3d29b8be946764c891c963063af9c8, type: 2}
+    - {fileID: 11400000, guid: dd4cf27364270624f91d499b35e5d261, type: 2}
+    - {fileID: 11400000, guid: e0d4cf5acbc40084a8d530a2f4d60dc1, type: 2}
+    - {fileID: 11400000, guid: b8ef9f87b970b664e80927d6744b160b, type: 2}
+    - {fileID: 11400000, guid: 874c6b3b593e7e141a47b8276054cd1e, type: 2}
+    - {fileID: 11400000, guid: a90bfc67a2cb8d64491482fe3fe37b48, type: 2}
+    - {fileID: 11400000, guid: d29c0b815df9ad144a6c8dd5a1b6f1f1, type: 2}
+    - {fileID: 11400000, guid: 5fe5604168683b846832a083b19ac1c8, type: 2}
+    - {fileID: 11400000, guid: 9a6e81b395712944aa688d4ff41651a3, type: 2}
+    - {fileID: 11400000, guid: b4807a177ed2a2b47905892fa37587b9, type: 2}
+    - {fileID: 11400000, guid: 0bc2f3efcb91cf544a64013db0e20afb, type: 2}
+    - {fileID: 11400000, guid: d9a14c8101b19d044ac28eadb9282876, type: 2}
+    - {fileID: 11400000, guid: 119bdd683371957428dc28f5e759fcb1, type: 2}
+    - {fileID: 11400000, guid: 1d131d2256143b949ae3317ecd237213, type: 2}
+    - {fileID: 11400000, guid: b98b360f2114d784e8410d2f907ee809, type: 2}
+    - {fileID: 11400000, guid: 442e53f9fc74b0f4eb5d6c629a439069, type: 2}
+    - {fileID: 11400000, guid: cd3f2bf05913ee143862b69e74f8f02e, type: 2}
+    - {fileID: 11400000, guid: ad159e6653f7e5f4488b790fa6aa4347, type: 2}
+    - {fileID: 11400000, guid: 84ae656c10c94e644b1de1734144a792, type: 2}
+    - {fileID: 11400000, guid: d04cb39d290433d48a1b8f0d16bd00f7, type: 2}
+    - {fileID: 11400000, guid: c73d3c55a435b144cbc69cff4f80379e, type: 2}
+    - {fileID: 11400000, guid: 51ba07ac0d85968429229888100b8be3, type: 2}
+    - {fileID: 11400000, guid: 477b04f4bd4854247a30f5e53ae81b6e, type: 2}
+    - {fileID: 11400000, guid: 74fd15d30e96be542b7007842c5b6f53, type: 2}
+    - {fileID: 11400000, guid: e43777a64304f8941bb15cbc2121ab91, type: 2}
+    - {fileID: 11400000, guid: 617c7fbff4802024ba59a5a1360399c5, type: 2}
+    - {fileID: 11400000, guid: 8a9b6ea9fd52bcb45b74179b6bd06481, type: 2}
+    - {fileID: 11400000, guid: 50295273083ed2446a6ba032499c7a5a, type: 2}
+    - {fileID: 11400000, guid: 2fd90c64a32306e45ba667d366b2b407, type: 2}
+    - {fileID: 11400000, guid: bf621c2a8d1f9a948bed8436b8c544ef, type: 2}
+    - {fileID: 11400000, guid: 5076f276fc2299f4a8753738c20ce494, type: 2}
+    - {fileID: 11400000, guid: 2f9268a4b163d9541b8302e8c98096ac, type: 2}
+    - {fileID: 11400000, guid: 53c3dbc62992d204ca3204f3593bc5a5, type: 2}
+    - {fileID: 11400000, guid: 0f0b01e5936aa8d469dc9fb85e4599fa, type: 2}
+  - stateName: Skill3
+    frameLength: 85
+    events:
+    - {fileID: 11400000, guid: 928968ae76d52a54ebfcd5a7b072f89a, type: 2}
+    - {fileID: 11400000, guid: e9b75855d29bea0439f354b614e26e42, type: 2}
+    - {fileID: 11400000, guid: cba8de370d624ab42a95d25da0975e26, type: 2}
+    - {fileID: 11400000, guid: 6f802bfb8c21d324785fcd66c4ce03d6, type: 2}
+    - {fileID: 11400000, guid: 31e98b89b8d52d54d96765707fbf3fc0, type: 2}
+    - {fileID: 11400000, guid: 63e8f0753ec5b7840bae7bdaf98c28aa, type: 2}
+    - {fileID: 11400000, guid: 76c7bc85f4ae52e40963c5854d411018, type: 2}
+    - {fileID: 11400000, guid: 46e9d12b532f297489ac975d8d6aae44, type: 2}
+    - {fileID: 11400000, guid: 3815447a8d4706a46a20c86f913e7557, type: 2}
+    - {fileID: 11400000, guid: 43dcb3cae1a49f74a9b653305e9deb33, type: 2}
+    - {fileID: 11400000, guid: c92c1e5e6d9d86341b1d912479e3db70, type: 2}
+    - {fileID: 11400000, guid: 0470f7eef24b78843b574fec4c289639, type: 2}
+    - {fileID: 11400000, guid: 70e4ecc2551f28f4691058fc80dd04c6, type: 2}
+    - {fileID: 11400000, guid: 88a5938fdaedec34db99373431662122, type: 2}
+    - {fileID: 11400000, guid: edb2bdc3edbc62344bcfc817ef9ab38b, type: 2}
+    - {fileID: 11400000, guid: 108bbdc96c6453b4da31df3e8e4c5052, type: 2}
+    - {fileID: 11400000, guid: 1576b9570fd96554f84ac36919cd2d62, type: 2}
+    - {fileID: 11400000, guid: 79443b9ccfc09e94da37f15e1b739f24, type: 2}
+    - {fileID: 11400000, guid: b94785bb4b22da04183c48a8570743a9, type: 2}
+    - {fileID: 11400000, guid: 227e9798747cae24b834eff934037490, type: 2}
+    - {fileID: 11400000, guid: af5054a64e5f7fd45b3a6f1f97499c49, type: 2}
+    - {fileID: 11400000, guid: 183237fd84465194197fa57605641a60, type: 2}
+    - {fileID: 11400000, guid: f3180742683ac3549a9928e726c171b4, type: 2}
+    - {fileID: 11400000, guid: bb822be120b3ae946938011360da2d5c, type: 2}
+    - {fileID: 11400000, guid: 91b4d7bd27e717e4cbd9c8d86ba5299e, type: 2}
+    - {fileID: 11400000, guid: b84dab40d1cb8fe40962c77f5802aaeb, type: 2}
+    - {fileID: 11400000, guid: bea69603dcd4dd14b9295c622e3591cd, type: 2}
+    - {fileID: 11400000, guid: 5372ef286c2055a42849d19d6d3779f2, type: 2}
+    - {fileID: 11400000, guid: 5c303693020f16c4a9fcaf4e891abc3d, type: 2}
+    - {fileID: 11400000, guid: 6cea3f337e7662f498221f9a20cfbe84, type: 2}
+    - {fileID: 11400000, guid: 43a191524fc246146a542310b0742224, type: 2}
+    - {fileID: 11400000, guid: 1ed5d1efbde6196458360f1aacaa24d3, type: 2}
+    - {fileID: 11400000, guid: de20fa086ce956b4b9037b1c91b4ff4a, type: 2}
+    - {fileID: 11400000, guid: 74d96d70bc4063445a1bd4e079e65127, type: 2}
+  - stateName: Start
+    frameLength: 130
+    events:
+    - {fileID: 11400000, guid: 46577d5265bc36543bd504a661138539, type: 2}
+    - {fileID: 11400000, guid: aeeea57e6e5bbc945bb4efe4bf27eceb, type: 2}
+    - {fileID: 11400000, guid: 4f0d17cf83ed29949999d8aa50eaccb7, type: 2}
+    - {fileID: 11400000, guid: dd24e2f23da8938498b1208b0334e3b7, type: 2}
+  - stateName: Skill1
+    frameLength: 60
+    events:
+    - {fileID: 11400000, guid: f8ab17b76360ccd4693b089ac0acc214, type: 2}
+    - {fileID: 11400000, guid: ff81c2bfcb390574392f5f2ca81cba71, type: 2}
+    - {fileID: 11400000, guid: 67950d7890bfe6142967b47c87897bb8, type: 2}
+    - {fileID: 11400000, guid: 95a7114c2aaa2124c9f230eb201ccd8d, type: 2}
+    - {fileID: 11400000, guid: 6e0bf04734d9b2a44be2b0c3522ba3d3, type: 2}
+    - {fileID: 11400000, guid: a3e00762b1cb75b4d9e7951784bda0dc, type: 2}
+    - {fileID: 11400000, guid: 1c4653a535a675d4a825dade70204799, type: 2}
+    - {fileID: 11400000, guid: ddb6ac892fdf476408181308a0139cea, type: 2}
+    - {fileID: 11400000, guid: 4e7a43df08ad6b343902c9aefcc064e5, type: 2}
+    - {fileID: 11400000, guid: 2c4ce1d6f1305c74fab1be01ad502c05, type: 2}
+    - {fileID: 11400000, guid: 7b2324d383ed2aa40a54801f83034641, type: 2}
+    - {fileID: 11400000, guid: 74acf83bba7ccce48954c6909fcc1b40, type: 2}
+    - {fileID: 11400000, guid: 5ff6034472f5d2a4597ddf791e6d85a3, type: 2}
+    - {fileID: 11400000, guid: 61427c5570cf722459a5be10786dce83, type: 2}
+    - {fileID: 11400000, guid: e4e091ca84dd10740b6d23b0ffa836f8, type: 2}
+    - {fileID: 11400000, guid: 4626e83c6ab1bb04ba3a299694b57768, type: 2}
+    - {fileID: 11400000, guid: 7886c5bc12ded3544bbbccb4d2d20e8c, type: 2}
+    - {fileID: 11400000, guid: b328471a1ac4a4749b9b882ebb65df34, type: 2}
+    - {fileID: 11400000, guid: 93bbc0ca5ea4e054da5e6b3529484bef, type: 2}
+    - {fileID: 11400000, guid: 76e491658638fa943aeab25bfce75d7b, type: 2}
+    - {fileID: 11400000, guid: a7925b39699c2ab4bad436ba58699ac6, type: 2}
+    - {fileID: 11400000, guid: 41d6d532abba874449cdfe611316e9d4, type: 2}
+    - {fileID: 11400000, guid: 5f29f51e0e3747747b350c675bcb8acb, type: 2}
+    - {fileID: 11400000, guid: 28403e897c4a8fd4881b0a2b0d70efc2, type: 2}
+  - stateName: Win
+    frameLength: 86
+    events:
+    - {fileID: 11400000, guid: 5e99c3d8cb809ca46a525805b029ecc8, type: 2}
+    - {fileID: 11400000, guid: 9afce6a8e23501a42833eff82f9c986d, type: 2}
+    - {fileID: 11400000, guid: 69b47dc58e8f8a9408f03322b5357dcc, type: 2}
+    - {fileID: 11400000, guid: d7ba67ca78bb8c8458bb0d9cba5ee43e, type: 2}
+  - stateName: Skill2
+    frameLength: 100
+    events:
+    - {fileID: 11400000, guid: 3712053e04b26684eb6b6b9029848901, type: 2}
+    - {fileID: 11400000, guid: c4d1d65d5b41fcb439af8781391a7dc4, type: 2}
+    - {fileID: 11400000, guid: d8038510792be2044b35ce3ecb6813ec, type: 2}
+    - {fileID: 11400000, guid: 7414b025a4050c8458525a9e6ccc7d76, type: 2}
+    - {fileID: 11400000, guid: 3feb154580d995948a5e2e3a5dd32d5d, type: 2}
+    - {fileID: 11400000, guid: e0217a62e441be949960e0ec7416f5a1, type: 2}
+    - {fileID: 11400000, guid: 41fb1099bd517634f9dbf79a86cb7d17, type: 2}
+    - {fileID: 11400000, guid: 69ac5f670fd9bb94ea9c6f370b27630d, type: 2}
+    - {fileID: 11400000, guid: 98bbd3d9f7053bf4fa170996b3b51185, type: 2}
+    - {fileID: 11400000, guid: 26dc88cc666487345b021673e0e1a7ff, type: 2}
+    - {fileID: 11400000, guid: 16eece4c63b7c014cb48ca3fafbac793, type: 2}
+    - {fileID: 11400000, guid: 0d010da5dbf049345a459e23096237d7, type: 2}
+    - {fileID: 11400000, guid: 451aca95ea658e9489635f3cdb9df00d, type: 2}
+    - {fileID: 11400000, guid: 9dc9452b27d6021438e3ff3412e62cb7, type: 2}
+    - {fileID: 11400000, guid: 4e6d9afe19fc561488bc85ed45e240e6, type: 2}
+  - stateName: RushBack
+    frameLength: 20
+    events:
+    - {fileID: 11400000, guid: aaf6dd295a6b6ef449058ddc1093da87, type: 2}
+    - {fileID: 11400000, guid: 57961f77ce191d749b58c0d594a449a7, type: 2}
+    - {fileID: 11400000, guid: 77d52df0840675943b6c90e8a74f73c9, type: 2}
+    - {fileID: 11400000, guid: 7f1f1c5dc29dbe5458d2ef138a12e8f0, type: 2}
+    - {fileID: 11400000, guid: 32e8ad8c305f9c549945acf1cc81f33b, type: 2}
+    - {fileID: 11400000, guid: ae362eee61156f445bc9b0825afe7de9, type: 2}
+    - {fileID: 11400000, guid: cacce489ad5ddee4a9d1bad3f278a5cb, type: 2}
+  - stateName: JumpFirst
+    frameLength: 20
+    events:
+    - {fileID: 11400000, guid: 9471573e247ef3f4a96181cb3c76167f, type: 2}
+    - {fileID: 11400000, guid: 059ad6f52e712504c9d99d9af0325be9, type: 2}
+  - stateName: JumpEnd
+    frameLength: 22
+    events:
+    - {fileID: 11400000, guid: d4ace3e05fe39c4498c5d857509b11cb, type: 2}
+  - stateName: JumpRun
+    frameLength: 3
+    events:
+    - {fileID: 11400000, guid: 665b3c6dc68f54f4598ef953196ec7b6, type: 2}
+  - stateName: JumpTwice
+    frameLength: 20
+    events:
+    - {fileID: 11400000, guid: 329930dbd5b731b4da8d968df414fb00, type: 2}
+  - stateName: IdleTransition
+    frameLength: 32
+    events:
+    - {fileID: 11400000, guid: 4672faaa2516ccc4980c9ce340543c5c, type: 2}
+  - stateName: Run
+    frameLength: 7
+    events:
+    - {fileID: 11400000, guid: dc014677f98bc6b408a0b25f02962436, type: 2}
+  - stateName: RunLoop
+    frameLength: 16
+    events:
+    - {fileID: 11400000, guid: c110d60a76e55fb4591376696bdfe399, type: 2}
+    - {fileID: 11400000, guid: 48a343f1f1abe1040b61b434e6d5686c, type: 2}
+  - stateName: RunStop
+    frameLength: 31
+    events:
+    - {fileID: 11400000, guid: 869059452a5bddc44b9badb329c91a42, type: 2}
+  - stateName: HitHeavyR
+    frameLength: 40
+    events: []
+  - stateName: HitHeavyL
+    frameLength: 40
+    events: []
+  - stateName: HitHaulBack
+    frameLength: 40
+    events: []
+  - stateName: HitFly
+    frameLength: 53
+    events: []
+  - stateName: HitDown
+    frameLength: 45
+    events: []
+  - stateName: HitBeatback
+    frameLength: 40
+    events: []
+  - stateName: HitAirSoft
+    frameLength: 50
+    events: []
+  - stateName: Idle
+    frameLength: 50
+    events: []
+  - stateName: IdleBattle
+    frameLength: 40
+    events: []
+  - stateName: IdleRelax
+    frameLength: 80
+    events: []
+  - stateName: JumpFlash
+    frameLength: 15
+    events: []
+  - stateName: AttackS
+    frameLength: 42
+    events: []
+  - stateName: Change
+    frameLength: 40
+    events: []
+  - stateName: ChangeTarget
+    frameLength: 32
+    events: []
+  - stateName: Collect
+    frameLength: 36
+    events: []
+  - stateName: HitSoftL
+    frameLength: 30
+    events: []
+  - stateName: HitSoftR
+    frameLength: 30
+    events: []
+  - stateName: HitVerySoftL
+    frameLength: 30
+    events: []
+  - stateName: HitVerySoftR
+    frameLength: 30
+    events: []

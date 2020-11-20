@@ -17,13 +17,6 @@ namespace hjcd.level.BehaviorTree
 
         public Vector2 offset = new Vector2();
 
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(ExportUtils.KV(nameof(tag), tag, indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(offset), offset, indent, newLine));
-            return sb.ToString();
-        }
         public override void OnInspector()
         {
             tag    = Utils.IntField("队长Tag", tag);

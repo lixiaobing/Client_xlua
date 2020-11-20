@@ -10,6 +10,8 @@ namespace Battle
 {
     public class ActionEventGenerator
     {
+
+        #region 导出脚本
         public static string ExportScriptPath = Application.dataPath + "/Script/Battle/ActionEvent/ActionConfig/ActionEventConfig/";
 
         [MenuItem("Tools/Battle/ClearActionEventScript", false, 200)]
@@ -41,7 +43,7 @@ namespace Battle
                 }
                 ExportScript(exprotTypeName, exportPropertys);
             }
-
+            Debug.Log("导出脚本完毕");
             AssetDatabase.Refresh();
         }
 
@@ -67,27 +69,45 @@ namespace Battle
                         string arrtType = PropertyToName(info.PropertyType);
                         if (info.Name!="None" && info.Name == property)
                         {
-                            sbAttrs.Append($"        public {arrtType} {property};\n");
+                            sbAttrs.Append($"        public {arrtType} {property};\r\n");
                         }
                     }
                 }
             }
             string strAttrs = sbAttrs.ToString();
 
-            StringBuilder sbContent = new StringBuilder();
+            // 导出格式如下：
+            //namespace Battle
+            //{
+            //    public partial class {0}EventConfig : ActionEventConfig
+            //    {
+            //        public override ActionEventKind type => ActionEventKind.{0};
+            //        {1}
+            //        {2}
+            //        {...}
+            //        {n}
+            //    }
+            //}
 
-            sbContent.Append("using UnityEngine;\n\n");
-            sbContent.Append("namespace Battle\n");
-            sbContent.Append("{\n");
-            sbContent.Append($"    public partial class {exprotTypeName}EventConfig : ActionEventConfig\n");
-            sbContent.Append("    {\n");
-            sbContent.Append($"        public override ActionEventKind type => ActionEventKind.{exprotTypeName};\n");
+            StringBuilder sbContent = new StringBuilder();
+            sbContent.Append("using UnityEngine;\r\n\r\n");
+            sbContent.Append("namespace Battle\r\n");
+            sbContent.Append("{\r\n");
+            sbContent.Append($"    public partial class {exprotTypeName}EventConfig : ActionEventConfig\r\n");
+            sbContent.Append("    {\r\n");
+            sbContent.Append($"        public override ActionEventKind type => ActionEventKind.{exprotTypeName};\r\n");
             if (!string.IsNullOrEmpty(strAttrs))
                 sbContent.Append(sbAttrs);
-            sbContent.Append("    }\n");
-            sbContent.Append("}\n");
+            sbContent.Append("    }\r\n");
+            sbContent.Append("}\r\n");
 
-            File.WriteAllText(filePath, sbContent.ToString());
+            string newContent = sbContent.ToString();
+            string oldContent = "";
+
+            if (File.Exists(filePath))
+                oldContent = File.ReadAllText(filePath);
+            if(newContent != oldContent)
+                File.WriteAllText(filePath, newContent);
         }
 
         private static string PropertyToName(Type PropertyType)
@@ -110,5 +130,195 @@ namespace Battle
                     return PropertyType.Name;
             }
         }
+        #endregion
+
+        #region 导出数据
+        public static string ExportConfigPath = Application.dataPath + "/ResourcesAsset/Config/Action/";
+
+        [MenuItem("Tools/Battle/ClearActionEventConfig", false, 202)]
+        public static void ClearActionEventConfig()
+        {
+            if (Directory.Exists(ExportConfigPath))
+                Directory.Delete(ExportConfigPath, true);
+            AssetDatabase.Refresh();
+        }
+
+
+        [MenuItem("Tools/Battle/GenerateActionEventConfigAll", false, 203)]
+        public static void GenerateActionEventConfig()
+        {
+            string[] modelTypeTabs = { "Hero", "Monster", "Summon", "Dungeon" };
+            for(int i=0; i< modelTypeTabs.Length; ++i)
+            {
+                string modelTabName = modelTypeTabs[i];
+                string selectModelFolder = Application.dataPath + "/ResourcesWork/Model/" + modelTabName + "/";
+
+                string[] heroFolders = Directory.GetDirectories(selectModelFolder);
+                List<string> heroPaths = new List<string>();
+
+                foreach (string path in heroFolders)
+                {
+                    heroPaths.AddRange(Directory.GetFiles(path, "*.controller"));
+                    heroPaths.AddRange(Directory.GetFiles(path, "*.overrideController"));
+                }
+
+                string[] paths = heroPaths.ToArray();
+
+                Array.Sort(paths, (a, b) =>
+                {
+                    string namea = Path.GetFileNameWithoutExtension(a);
+                    string nameb = Path.GetFileNameWithoutExtension(b);
+                    return string.CompareOrdinal(namea, nameb);
+                });
+
+                foreach (string path in paths)
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(path);
+                    string[] folders = Path.GetDirectoryName(path).Split('\\');
+                    string folderName = folders[folders.Length - 1];
+
+                    string selectFolder = folderName;
+                    string selectFile = Path.GetFileNameWithoutExtension(path);
+                    ActionEventPack selectEventPack = LoadActionEventPack(modelTabName, selectFolder, selectFile);
+                    ExportActionEventPack(selectEventPack, fileName);
+                }
+            }
+            
+            AssetDatabase.Refresh();
+        }
+
+        [MenuItem("Tools/Battle/GenerateActionEventConfigSelect", false, 204)]
+        public static void GenerateActionEventConfigSelect()
+        {
+            if (!Selection.activeObject || !(Selection.activeObject is ActionEventPack))
+                return;
+            ActionEventPack pack = Selection.activeObject as ActionEventPack;
+            ExportActionEventPack(pack, pack.name, true);
+        }
+
+        private static ActionEventPack LoadActionEventPack(string tabName, string folderName, string animatorName)
+        {
+            string packPath = $"Assets/ResourcesWork/Model/{tabName}/{folderName}/{animatorName}.asset";
+            ActionEventPack pack = AssetDatabase.LoadAssetAtPath<ActionEventPack>(packPath);
+            if (pack == null)
+            {
+                ActionEventPack obj = ScriptableObject.CreateInstance<ActionEventPack>();
+                AssetDatabase.CreateAsset(obj, packPath);
+                AssetDatabase.Refresh();
+
+                pack = obj;
+            }
+            return pack;
+        }
+
+        private static void ExportActionEventPack(ActionEventPack actionEventPack, string fileName, bool refresh = false)
+        {
+            if (actionEventPack)
+            {
+                string eventConfigFilePath = ExportConfigPath + fileName + ".asset";
+                string eventConfigFoldPath = ExportConfigPath + fileName + "/";
+
+                if (!Directory.Exists(eventConfigFoldPath))
+                    Directory.CreateDirectory(eventConfigFoldPath);
+
+                string relativeEventConfigFilePath = eventConfigFilePath.Replace(Application.dataPath, "Assets");
+
+                ActionEventPackConfig config = null;
+                config = AssetDatabase.LoadMainAssetAtPath(relativeEventConfigFilePath) as ActionEventPackConfig;
+                if (config == null)
+                {
+                    config = ScriptableObject.CreateInstance<ActionEventPackConfig>();
+                    AssetDatabase.CreateAsset(config, relativeEventConfigFilePath);
+                }
+
+                int subPackCount = actionEventPack.clipPacks.Count;
+                config.subPacks = new ActionEventPackConfig.SubPack[subPackCount];
+
+                var editorActionEventType = typeof(ActionEvent);
+
+                Dictionary<string, ActionEventConfig> createAssets = new Dictionary<string, ActionEventConfig>();
+
+                for (int i = 0; i < subPackCount; ++i)
+                {
+                    ActionEventSubPack subPackEditor = actionEventPack.clipPacks[i];
+                    if (subPackEditor != null)
+                    {
+                        config.subPacks[i] = new ActionEventPackConfig.SubPack();
+                        var subPackData = config.subPacks[i];
+                        subPackData.stateName = subPackEditor.stateName;
+                        subPackData.frameLength = subPackEditor.frameLength;
+                        subPackData.events = new ActionEventConfig[subPackEditor.events.Count];
+
+                        for(int j=0; j< subPackData.events.Length; ++j)
+                        {
+                            var editorActionEvent = subPackEditor.events[j];
+                            string eventFilePath = eventConfigFoldPath + subPackData.stateName + "_" + j.ToString("00") + ".asset";
+                            eventFilePath = eventFilePath.Replace(Application.dataPath, "Assets");
+                            string eventConfigClassName = string.Format("Battle.{0}EventConfig", editorActionEvent.type.ToString());
+
+                            ActionEventConfig eventConfig = null;
+
+                            eventConfig = AssetDatabase.LoadMainAssetAtPath(eventFilePath) as ActionEventConfig;
+                            if (eventConfig != null)
+                            {
+                                if (eventConfig.type != editorActionEvent.type)
+                                {
+                                    AssetDatabase.DeleteAsset(eventFilePath);
+                                    eventConfig = null;
+                                }
+                            }
+
+                            bool isCreate = false;
+                            if(eventConfig==null)
+                            {
+                                eventConfig = typeof(ActionEventConfig).Assembly.CreateInstance(eventConfigClassName) as ActionEventConfig;
+                                isCreate = true;
+                            }
+                            if (eventConfig != null)
+                            {
+                                bool isDirty = false;
+                                if(isCreate)
+                                    createAssets.Add(eventFilePath, eventConfig);
+
+                                subPackData.events[j] = eventConfig;
+
+                                Type typeEventConfig = eventConfig.GetType();
+                                var fields = typeEventConfig.GetFields(BindingFlags.Public | BindingFlags.Instance);
+                                for(int k=0; k< fields.Length; ++k)
+                                {
+                                    var actionEventField = fields[k];
+                                    var editorActionEventProperty = editorActionEventType.GetProperty(fields[k].Name);
+                                    if (editorActionEventProperty != null)
+                                    {
+                                        object valueNew = editorActionEventProperty.GetValue(editorActionEvent);
+                                        object valueOld = actionEventField.GetValue(eventConfig);
+                                        if (!valueNew.Equals(valueOld))
+                                        {
+                                            actionEventField.SetValue(eventConfig, valueNew);
+                                            isDirty = true;
+                                        }
+                                    }
+                                }
+                                if (!isCreate && isDirty)
+                                {
+                                    EditorUtility.SetDirty(eventConfig);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                foreach (var kv in createAssets)
+                    AssetDatabase.CreateAsset(kv.Value, kv.Key);
+                EditorUtility.SetDirty(config);
+                if (refresh)
+                {
+                    AssetDatabase.SaveAssets();
+                    AssetDatabase.Refresh();
+                }
+            }
+            
+        }
+        #endregion
     }
 }

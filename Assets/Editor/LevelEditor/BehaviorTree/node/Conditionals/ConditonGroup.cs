@@ -14,24 +14,7 @@ namespace hjcd.level.BehaviorTree
     {
         //private bool foldout = true;
         public List<string> condtions = new List<string>();
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            //移除
-            for (int i = condtions.Count -1; i >0 ; i--)
-            {
-                string uuid = condtions[i];
-                Node node = AIDataMgr.Instance.GetNode(uuid);
-                if (node == null)
-                {
-                    condtions.RemoveAt(i);
-                    //Utils.Log("uuid:"+ uuid);
-                }
-            }
-            StringBuilder sb = new StringBuilder();
-            sb.Append(base.ToStringEx(indent, newLine));
-            sb.Append(ExportUtils.KV_LIST_VALUE<string>(nameof(condtions), condtions, indent, newLine,true));
-            return sb.ToString();
-        }
+
 
         public override void OnInspector() {
 
@@ -47,7 +30,7 @@ namespace hjcd.level.BehaviorTree
             string removeItem = null;
             foreach (var item in condtions)
             {
-                Node node = AIDataMgr.Instance.GetNode(item);
+                Node node = BehaviorTree.Instance.GetNode(item);
                 if (node != null)
                 {
                     EditorGUILayout.BeginHorizontal();
@@ -91,7 +74,7 @@ namespace hjcd.level.BehaviorTree
         {
 
             UnityEditor.GenericMenu menu = new GenericMenu();
-            foreach (var item in AIDataMgr.Instance.nodes)
+            foreach (var item in BehaviorTree.Instance.nodes)
             {
                 if (isCondtion(item)) {
                     if (!this.condtions.Contains(item.uuid))

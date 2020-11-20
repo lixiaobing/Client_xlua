@@ -13,12 +13,6 @@ namespace hjcd.level.BehaviorTree
     public class Random : Composites
     {
 
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(ExportUtils.KV(nameof(abortType), AbortType.None, indent, newLine));
-            return sb.ToString();
-        }
 
         public override void OnInspector()
         {

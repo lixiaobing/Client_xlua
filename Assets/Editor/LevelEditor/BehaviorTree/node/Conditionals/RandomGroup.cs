@@ -14,15 +14,6 @@ namespace hjcd.level.BehaviorTree
     {
         public List<float> probabilitys = new List<float>();
 
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(base.ToStringEx(indent, newLine));
-            sb.Append(ExportUtils.KV_LIST_VALUE<float>(nameof(probabilitys), probabilitys, indent, newLine,true));
-            return sb.ToString();
-        }
-
-
         public override void OnInspector()
         {
             if (probabilitys.Count < 1) {

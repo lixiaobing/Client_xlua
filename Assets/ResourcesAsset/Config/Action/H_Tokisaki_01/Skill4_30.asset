@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa2e6b72f73b1f44824a8c2ff688460, type: 3}
+  m_Name: Skill4_30
+  m_EditorClassIdentifier: 
+  time: 76.5
+  realTime: 4.386
+  filePath: H_Tokisaki/attack_Skill_4
+  attackGroupTag: 

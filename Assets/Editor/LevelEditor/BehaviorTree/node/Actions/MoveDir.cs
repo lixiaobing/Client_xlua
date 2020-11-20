@@ -20,14 +20,6 @@ namespace hjcd.level.BehaviorTree
             } 
         }
 
-        public override string ToStringEx(int indent, bool newLine)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(base.ToStringEx(indent, newLine));
-            sb.Append(ExportUtils.KV(nameof(dir), dir, indent, newLine));
-            return sb.ToString();
-        }
-
         public override void OnInspector()
         {
             Utils.DrawSelectTarget2("目标选择", selectTarget);

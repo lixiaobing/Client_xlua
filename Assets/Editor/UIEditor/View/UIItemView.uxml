@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement style="flex-direction: row; flex-wrap: nowrap; align-items: stretch; justify-content: space-between;">
+        <uie:ObjectField name="Prefab" style="width: 30%;" />
+        <uie:ObjectField name="Data" style="width: 30%;" />
+        <ui:Button text="Remove" name="Remove" style="width: 15%;" />
+        <ui:Button text="Open" name="Open" style="width: 20%;" />
+    </ui:VisualElement>
+</ui:UXML>

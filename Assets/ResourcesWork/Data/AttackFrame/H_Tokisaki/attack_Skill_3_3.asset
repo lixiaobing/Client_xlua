@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c5c10b126c0b1a4c8839e7f090d5368, type: 3}
+  m_Name: attack_Skill_3_3
+  m_EditorClassIdentifier: 
+  filePath: H_Tokisaki/attack_Skill_3_3
+  attackCheckType: 2
+  attackCheckVector: {x: 0, y: 1, z: 0}
+  attackPriorityTarget: 0
+  attackRadius: 4
+  attackRangePosition: {x: 0, y: 1, z: 0}
+  attackRangeTarget: 0
+  attackRangeRadius: 4
+  attackBallCenter: {x: 0, y: 1, z: 0}
+  attackBallRadius: 0
+  attackRayStart: {x: 0, y: 1, z: 0}
+  attackRayEnd: {x: 0, y: 1, z: 3}
+  attackBoxCenter: {x: 0, y: 1, z: 1}
+  attackBoxDirection: {x: 0, y: 0, z: 1}
+  attackBoxSize: {x: 1, y: 1, z: 1}
+  attackSectorPosition: {x: 0, y: 1, z: 0}
+  attackSectorDirection: {x: 0, y: 0, z: 1}
+  attackSectorRadius: 0
+  attackSectorAngle: 0
+  attackRingPosition: {x: 0, y: 0, z: 0}
+  attackRingRadiusMax: 0
+  attackRingRadiusMin: 0
+  attackEffectPath: 
+  attackDelayTime: 0
+  attackCheckTime: 0
+  debugPause: 0
+  warningTime: 0
+  beAttackedAction: HitFly
+  beAttackedActionAir: AirHitFly
+  beAttackedFlowUp: 5.5
+  beAttackedReset: 1
+  hitEffectPath: Effect/H_Tokisaki_01/Tokisaki_attack_1_hit_c
+  hitEffectBoneNog: 1
+  hitEffectGlobal: 0
+  hitEffectClear: 0
+  hitEffectLockRotation: 0
+  hitSoundPath: 
+  freezeFrameDelay: 0
+  freezeFrameTarget: 1
+  freezeFrameSelf: 1
+  cameraEffectId: 0
