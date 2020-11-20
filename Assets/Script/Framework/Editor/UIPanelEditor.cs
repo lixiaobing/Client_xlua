@@ -85,6 +85,10 @@ namespace Framework
                         EditorUtility.SetDirty(_target);
                     }
                 }
+                else
+                {
+                    EditorGUI.LabelField(new Rect(rect.x + rect.width * 0.65f + 7, rect.y + 3, rect.width * 0.35f - 10, EditorGUIUtility.singleLineHeight), "<= 从Prefab拖入一个UI节点");
+                }
             };
             nodeList.elementHeightCallback = (index) =>
             {
