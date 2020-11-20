@@ -225,3 +225,14 @@ function string.split(input, delimiter)
     table.insert(arr, string.sub(input, pos))
     return arr
 end
+
+function IsNull(tar)
+    if tar == nil then
+        return true
+    else
+        if type(tar)=="userdata" then
+            return tar:IsNull()
+        end
+        return false
+    end
+end
