@@ -93,11 +93,13 @@ namespace GameEditor
 			prefab.value = itemData.Prefab;
 			prefab.RegisterValueChangedCallback(evt => { prefab.SetValueWithoutNotify(evt.previousValue); });
 
-			var data = item.Q<ObjectField>("Data");
-			data.objectType = typeof(UIItem);
-			data.value = itemData;
-			data.RegisterValueChangedCallback(evt => { data.SetValueWithoutNotify(evt.previousValue); });
-
+			var scriptPath = item.Q<TextField>("ScriptPath");
+			scriptPath.SetValueWithoutNotify(itemData.ScriptPath);
+			scriptPath.RegisterValueChangedCallback(evt =>
+			{
+				itemData.ScriptPath = evt.newValue;
+			});
+			
 			var removeBtn = item.Q<Button>("Remove");
 			removeBtn.clicked += () =>
 			{
@@ -109,11 +111,18 @@ namespace GameEditor
 					UpdateComponentsView(null, null);
 				}
 			};
+			
 			var openBtn = item.Q<Button>("Open");
 			openBtn.clicked += () =>
 			{
 				_curUiItem = itemData;
 				AssetDatabase.OpenAsset(itemData.Prefab);
+			};
+			
+			var bindingBtn = item.Q<Button>("Binding");
+			bindingBtn.clicked += () =>
+			{
+				UIBindingSystem.BindingStart(itemData);
 			};
 
 			_scrollView.Add(item);

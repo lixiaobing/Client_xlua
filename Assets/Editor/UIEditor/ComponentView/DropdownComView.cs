@@ -7,6 +7,7 @@
 ** ************************************* */
 
 
+using System;
 using UnityEngine.UIElements;
 
 namespace GameEditor
@@ -17,6 +18,18 @@ namespace GameEditor
 
 		public DropdownComView(VisualElement node) : base(node)
 		{
+		}
+		
+		private static string BindingComponent(UIBindingSystem.BindingParameter bindingParameters)
+		{
+			if (bindingParameters.IsMulti)
+			{
+				return $"self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}:GetComponent(typeof(Dropdown))";
+			}
+			else
+			{
+				return $"self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}:Find('{bindingParameters.NodeData.OwnerPath}'):GetComponent(typeof(Dropdown))";
+			}
 		}
 	}
 }

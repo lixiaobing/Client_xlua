@@ -8,6 +8,7 @@
 
 using System;
 using System.IO;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using UnityEditor;
@@ -20,7 +21,9 @@ namespace GameEditor
 {
 	public static class GameEditorUtils
 	{
+		public static readonly string NewLine = Environment.NewLine;
 		private static readonly char[] TrimGameObjectPath = {'/'};
+		private const BindingFlags AllBindingFlags = (BindingFlags)(-1);
 
 		public static string GetScriptPath<T>(T script)
 		{
@@ -190,10 +193,39 @@ namespace GameEditor
 			} while (property.NextVisible(false));
 		}
 
+		public static string ReadText(string p)
+		{
+			if (IsExist(p))
+			{
+				return File.ReadAllText(p);
+			}
+
+			Debug.LogError($"不存在的路径:{p}");
+			return string.Empty;
+		}
+		
+		public static bool ReadText(string p, out string content)
+		{
+			if (IsExist(p))
+			{
+				content = File.ReadAllText(p);
+				return true;
+			}
+
+			content = string.Empty;
+			return false;
+		}
+		
 		public static void Write(string p, string content)
 		{
 			EnsurePath(p);
-			File.WriteAllText(p, content);
+			File.WriteAllText(p, content, new UTF8Encoding(false));
+		}
+		
+		public static void Write(string p, string content, Encoding encoding)
+		{
+			EnsurePath(p);
+			File.WriteAllText(p, content, encoding);
 		}
 
 		public static long GetLocalIdentity(Object go)
@@ -212,6 +244,12 @@ namespace GameEditor
 			}
 
 			return path.TrimEnd(TrimGameObjectPath);
+		}
+
+		public static MethodInfo ReflectMethod(Type t, string n)
+		{
+			var method = t.GetMethod(n, AllBindingFlags);
+			return method;
 		}
 	}
 }

@@ -7,6 +7,7 @@
 ** ************************************* */
 
 
+using System;
 using UnityEngine.UIElements;
 
 namespace GameEditor
@@ -28,6 +29,18 @@ namespace GameEditor
 		protected override void SetComView()
 		{
 			_eventName.SetValueWithoutNotify(ComData.EventName);
+		}
+
+		private static string BindingComponent(UIBindingSystem.BindingParameter bindingParameters)
+		{
+			if (bindingParameters.IsMulti)
+			{
+				return $"self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}:GetComponent(typeof(Button))";
+			}
+			else
+			{
+				return $"self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}:Find('{bindingParameters.NodeData.OwnerPath}'):GetComponent(typeof(Button))";
+			}
 		}
 	}
 }
