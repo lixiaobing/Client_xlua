@@ -48,16 +48,20 @@ namespace hjcd.level {
         public static void GetField()
         {
 
-       
-            var a = AssetDatabase.LoadAssetAtPath<AIConfig>(BehaviorTreeConst.GetBehaviorTreeExportFilePath(101));
 
-            foreach (var variable in a.variables)
-            {
-                Debug.Log(variable.name + ":" + variable.value);
-            }
-            
+            /*            var a = AssetDatabase.LoadAssetAtPath<AIConfig>(BehaviorTreeConst.GetBehaviorTreeExportFilePath(101));
 
-            Debug.Log("AAAAAAA");
+                        foreach (var variable in a.variables)
+                        {
+                            Debug.Log(variable.name + ":" + variable.value);
+                        }
+
+
+                        Debug.Log("AAAAAAA");*/
+
+            var o = AINode.Create(new ActionConfig());
+
+            Debug.Log("///////");
         }
 
 

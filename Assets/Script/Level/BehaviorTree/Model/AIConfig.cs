@@ -27,7 +27,7 @@ namespace hjcd.level.BehaviorTree
         //变量列表
         public List<Variable> variables = new List<Variable>();
         //节点列表
-        public List<ScriptableObject> nodes = new List<ScriptableObject>();
+        public List<NodeConfig> nodes = new List<NodeConfig>();
 
     }
 }

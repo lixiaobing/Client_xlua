@@ -204,7 +204,7 @@ namespace hjcd.level.BehaviorTree
         {
             EditorGUILayout.BeginHorizontal();
             Utils.Box(model.id.ToString(), GUILayout.MinWidth(60));
-            Utils.Box(this.name, GUILayout.MinWidth(130));
+            Utils.Box(model.name, GUILayout.MinWidth(130));
             GUILayoutOption width = GUILayout.Width(70);
             if (Utils.Button("打开", width))
             {
