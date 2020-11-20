@@ -1,0 +1,45 @@
+return
+{
+	["id"]=303,
+	["debug"]=false,
+	["variables"]={
+	},
+	["nodes"]={
+		[1]={
+			["uuid"]="3ec1876f6cad4655aaefb5dfea6aed49",
+			["Type"]="Root",
+			["mark"]="",
+			["links"]={
+				[1]={
+					["child"]="b4846265634e4c999dac86cb19a2f1b9",
+					["weight"]=0,
+				},
+			},
+		},
+		[2]={
+			["uuid"]="b4846265634e4c999dac86cb19a2f1b9",
+			["Type"]="Sequence",
+			["mark"]="",
+			["links"]={
+				[1]={
+					["child"]="fe9d342dc91d4456877caa9b6ec8cac1",
+					["weight"]=0,
+				},
+			},
+			["listenCondition"]=false,
+		},
+		[3]={
+			["uuid"]="fe9d342dc91d4456877caa9b6ec8cac1",
+			["Type"]="MoveTo",
+			["mark"]="",
+			["links"]={
+			},
+			["positions"]={
+				[1]={["x"]=-46.16,["y"]=2.32,["z"]=18.3,},
+				[2]={["x"]=-46.16,["y"]=2.32,["z"]=7.62,},
+			},
+			["speed"]=1,
+			["loopTimes"]=-1,
+		},
+	},
+}

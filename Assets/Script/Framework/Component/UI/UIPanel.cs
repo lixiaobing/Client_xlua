@@ -2,20 +2,24 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIPanel : MonoBehaviour
+namespace Framework
 {
-    public List<UINodeInfo> nodes = new List<UINodeInfo>();
 
-    public UINodeInfo[] getNodes()
+    public class UIPanel : MonoBehaviour
     {
-        return nodes.ToArray();
-    }
-}
+        public List<UINodeInfo> nodes = new List<UINodeInfo>();
 
-[System.Serializable]
-public class UINodeInfo
-{
-    public Transform transform;
-    public string tag = "Node Name";
-    public string type = string.Empty;
+        public UINodeInfo[] getNodes()
+        {
+            return nodes.ToArray();
+        }
+    }
+
+    [System.Serializable]
+    public class UINodeInfo
+    {
+        public Transform transform;
+        public string tag = "Node Name";
+        public string type = string.Empty;
+    }
 }

@@ -1,3 +1,10 @@
 {
     "editor.snippetSuggestions": "bottom"
+    "files.exclude": {
+        "Resources": true,
+        "ResourcesAsset": true,
+        "ResourcesWork": true,
+        "Scenes": true,
+        "Plugins": true
+    }
 }

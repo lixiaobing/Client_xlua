@@ -186,8 +186,6 @@ GameObject:
   - component: {fileID: 2187984702034858994}
   - component: {fileID: 6831767804994945147}
   - component: {fileID: 8448060914632654718}
-  - component: {fileID: 8371107259008318236}
-  - component: {fileID: 2842294913593308194}
   m_Layer: 5
   m_Name: Button_Server
   m_TagString: Untagged
@@ -304,65 +302,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1413444929924903429}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffd98fe7a0f92dc4abee7ad7242462cd, type: 3}
+  m_Script: {fileID: 11500000, guid: d4f79230e88d21546b4a5fb8ba7ef4f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8371107259008318236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1413444929924903429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c962a6c4b6a7f645a9de43663b467cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_listeners:
-    initialListenerList: []
-    useDefaultListeners: 1
-  isEnvironmentAware: 1
-  isStaticObject: 0
-  m_positionOffsetData:
-    KeepMe: 0
-    positionOffset: {x: 0, y: 0, z: 0}
-  m_posOffsetData: {fileID: 0}
-  listenerMask: 1
---- !u!114 &2842294913593308194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1413444929924903429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20c253f26110f0442a857d50fcccee39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerList: 
-  useOtherObject: 0
-  actionOnEventType: 0
-  curveInterpolation: 4
-  enableActionOnEvent: 0
-  data:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: ccf5668094b7a8e4ba37dca9e1c39906,
-      type: 2}
-  useCallbacks: 0
-  Callbacks: []
-  playingId: 0
-  soundEmitterObject: {fileID: 0}
-  transitionDuration: 0
-  eventIdInternal: 0
-  valueGuidInternal: 
-  m_callbackDataInternal: {fileID: 0}
-  MultiPositionType: 1
-  multiPositionTypeLabel: 0
-  LargeModePositions: []
-  multiPositionArray: []
 --- !u!1 &1526629221795179266
 GameObject:
   m_ObjectHideFlags: 0
@@ -1249,8 +1191,8 @@ GameObject:
   - component: {fileID: 6049960750192981668}
   - component: {fileID: 978629410366125129}
   - component: {fileID: 1043672320886326273}
-  - component: {fileID: 8130761469278704422}
   - component: {fileID: 279574591793253446}
+  - component: {fileID: 8175785794170639186}
   m_Layer: 5
   m_Name: LoginWindow
   m_TagString: Untagged
@@ -1317,43 +1259,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8130761469278704422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6049960750192981671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79065698679759d4da92f9e0f3613239, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nodes:
-  - transform: {fileID: 5605384489093804981}
-    tag: AccountBoard
-    type: UnityEngine.GameObject
-  - transform: {fileID: 8852230220637364622}
-    tag: AccountInput
-    type: UnityEngine.UI.InputField
-  - transform: {fileID: 6001814825581417687}
-    tag: PasswordInput
-    type: UnityEngine.UI.InputField
-  - transform: {fileID: 2825188340366422303}
-    tag: ContinueTips
-    type: UnityEngine.UI.Text
-  - transform: {fileID: 1952368450450126768}
-    tag: Button_Server
-    type: UnityEngine.UI.Button
-  - transform: {fileID: 5908017637572328432}
-    tag: Button_Server_Text
-    type: UnityEngine.UI.Text
-  - transform: {fileID: 176956201115634937}
-    tag: ServerBoard
-    type: UnityEngine.GameObject
-  - transform: {fileID: 6161301046498307245}
-    tag: ServerList
-    type: ScrollPoolGrid
 --- !u!114 &279574591793253446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1397,6 +1302,43 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8175785794170639186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6049960750192981671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24bb6d55dd3c1a34ea2c6db034730872, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodes:
+  - transform: {fileID: 5605384489093804981}
+    tag: AccountBoard
+    type: UnityEngine.GameObject
+  - transform: {fileID: 8852230220637364622}
+    tag: AccountInput
+    type: UnityEngine.UI.InputField
+  - transform: {fileID: 6001814825581417687}
+    tag: PasswordInput
+    type: UnityEngine.UI.InputField
+  - transform: {fileID: 2825188340366422303}
+    tag: ContinueTips
+    type: UnityEngine.UI.Text
+  - transform: {fileID: 1952368450450126768}
+    tag: Button_Server
+    type: UnityEngine.UI.Button
+  - transform: {fileID: 5908017637572328432}
+    tag: Button_Server_Text
+    type: UnityEngine.UI.Text
+  - transform: {fileID: 176956201115634937}
+    tag: ServerBoard
+    type: UnityEngine.GameObject
+  - transform: {fileID: 6161301046498307245}
+    tag: ServerList
+    type: ScrollPoolGrid
 --- !u!1 &6170772159242214211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1812,7 +1754,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7583384090261641318}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ca4d931f783ee54ca2fa1655eaed964, type: 3}
+  m_Script: {fileID: 11500000, guid: a31546912920e934ea2aaa1d30661f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fontStyle: 3
@@ -1983,7 +1925,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7825958836258816008}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ca4d931f783ee54ca2fa1655eaed964, type: 3}
+  m_Script: {fileID: 11500000, guid: a31546912920e934ea2aaa1d30661f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fontStyle: 3
@@ -2078,7 +2020,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8009601933036778558}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ca4d931f783ee54ca2fa1655eaed964, type: 3}
+  m_Script: {fileID: 11500000, guid: a31546912920e934ea2aaa1d30661f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fontStyle: 6

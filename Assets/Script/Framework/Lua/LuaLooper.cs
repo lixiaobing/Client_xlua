@@ -49,21 +49,9 @@ namespace Framework
 
         void OnDestroy()
         {
-            if (UpdateEvent != null)
-            {
-                UpdateEvent.Dispose();
-                UpdateEvent = null;
-            }
-            if (LateUpdateEvent != null)
-            {
-                LateUpdateEvent.Dispose();
-                LateUpdateEvent = null;
-            }
-            if (FixedUpdateEvent != null)
-            {
-                FixedUpdateEvent.Dispose();
-                FixedUpdateEvent = null;
-            }
+            UpdateEvent = null;
+            LateUpdateEvent = null;
+            FixedUpdateEvent = null;
         }
     }
 

@@ -1,4 +1,4 @@
---local breakSocketHandle,debugXpCall = require("LuaDebug")("localhost",7003)
+local breakSocketHandle,debugXpCall = require("LuaDebug")("localhost",7003)
 
 function main()
     print("Game Start!")
@@ -32,20 +32,19 @@ function loadRequire()
     uiBoot:SetLabel("正在进入游戏...")
 
 	StartCoroutine(function()
-		local index = 1;
+		local index = 0
 		for idx, mod in ipairs(requireList) do
 			local ret, msg = pcall(require, mod)
 
-            print(mod)
             if not ret then
 				LogError(string.format("load require failed: %s\n%s", mod, msg))
 			end
 			
-			index = index + 1;
+			index = index + 1
 			uiBoot:SetProgress(index/total)
-
+			Log(mod.."----"..index)
 			if index%5==0 then
-				Yield(0)
+				Yield(1)
 			end
 		end
 
@@ -75,7 +74,7 @@ function loadRequire()
 		Log("load require complete!")
 		UIConfig.init()
 
-		GameAsset.LoadSceneSingle("UI_Main", function()
+		GameAsset.LoadSceneSingle("Main", function()
             Log("enter game!")
             UIManager.openWindow("LoginWindow", function()
                 GameObject.Destroy(BootScreen.Instance.gameObject)

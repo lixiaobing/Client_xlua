@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,22 @@ namespace Framework
 {
     public class LuaCoroutine : MonoBehaviour
     {
-        private void Start()
+        public void YieldAndCallback(object to_yield, Action callback)
         {
+            StartCoroutine(CoBody(to_yield, callback));
+        }
 
+        private IEnumerator CoBody(object to_yield, Action callback)
+        {
+            if (to_yield is IEnumerator)
+            {
+                yield return StartCoroutine((IEnumerator)to_yield);
+            }
+            else
+            {
+                yield return to_yield;
+            }
+            callback();
         }
     }
 
