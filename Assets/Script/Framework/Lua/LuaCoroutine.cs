@@ -6,27 +6,35 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using XLua;
+using XLua.Cast;
 
 namespace Framework
 {
     public class LuaCoroutine : MonoBehaviour
     {
-        public void YieldAndCallback(object to_yield, Action callback)
+        public void YieldShell(object o, Action callback)
         {
-            StartCoroutine(CoBody(to_yield, callback));
+            StartCoroutine(CoBody(o, callback));
         }
 
-        private IEnumerator CoBody(object to_yield, Action callback)
+        private IEnumerator CoBody(object o, Action callback)
         {
-            if (to_yield is IEnumerator)
+            if (o is IEnumerator)
             {
-                yield return StartCoroutine((IEnumerator)to_yield);
+                yield return StartCoroutine((IEnumerator)o);
             }
             else
             {
-                yield return to_yield;
+                yield return o;
             }
             callback();
+        }
+    }
+
+    public class XIEnumerator : Any<IEnumerator>
+    {
+        public XIEnumerator(IEnumerator i) : base(i)
+        {
         }
     }
 

@@ -352,14 +352,15 @@ function UIManager.doCreateWindow(obj, set, data, onComplete)
     --实例化Window Prefab
     local winobj = GameObject.Instantiate(obj)
     local canvas = winobj:GetComponent(typeof(Canvas))
-    if not canvas then
+    if canvas:IsNull() then
         canvas = winobj:AddComponent(typeof(Canvas))
     end
-    if not winobj:GetComponent(typeof(GraphicRaycaster)) then
+    local graphic = winobj:GetComponent(typeof(GraphicRaycaster))
+    if graphic:IsNull() then
         winobj:AddComponent(typeof(GraphicRaycaster))
     end        
     local canvasGroup = winobj:GetComponent(typeof(CanvasGroup))
-    if not canvasGroup then
+    if canvasGroup:IsNull() then
         canvasGroup = winobj:AddComponent(typeof(CanvasGroup))
     end
 

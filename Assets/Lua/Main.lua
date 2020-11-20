@@ -44,7 +44,7 @@ function loadRequire()
 			uiBoot:SetProgress(index/total)
 			Log(mod.."----"..index)
 			if index%5==0 then
-				Yield(1)
+				Yield(0)
 			end
 		end
 
