@@ -8,6 +8,8 @@
 
 
 using System;
+using System.Collections.Generic;
+using Pathfinding.Util;
 using UnityEditor;
 using UnityEditor.Experimental.SceneManagement;
 using UnityEditor.UIElements;
@@ -24,6 +26,9 @@ namespace GameEditor
 		private static readonly char[] SearchSplit = {' '};
 		private UIEditor _owner;
 		private VisualElement _bindingComponentsRoot;
+		private bool _clearFlag;
+		private UIItem _curUiItem;
+		private GameObject _curGameObject;
 
 		private readonly ComponentViewBase[] _components =
 			new ComponentViewBase[(int) UIEditor.ComponentAsset.ComponentCount];
@@ -43,8 +48,10 @@ namespace GameEditor
 
 				var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(stage.prefabAssetPath);
 				var item = UIContainer.AddItem(prefab);
+				_curUiItem = item;
 				AddUiItem(item);
 			};
+			UIEditor.SetActive(_addButton, false);
 
 			var componentsRoot = panel.Q<VisualElement>("Components");
 			for (int i = 0; i < (int) UIEditor.ComponentAsset.ComponentCount; i++)
@@ -96,9 +103,18 @@ namespace GameEditor
 			{
 				UIContainer.RemoveItem(itemData);
 				UIEditor.SetActive(item, false);
+				if (itemData == _curUiItem)
+				{
+					_curUiItem = null;
+					UpdateComponentsView(null, null);
+				}
 			};
 			var openBtn = item.Q<Button>("Open");
-			openBtn.clicked += () => { AssetDatabase.OpenAsset(itemData.Prefab); };
+			openBtn.clicked += () =>
+			{
+				_curUiItem = itemData;
+				AssetDatabase.OpenAsset(itemData.Prefab);
+			};
 
 			_scrollView.Add(item);
 		}
@@ -128,15 +144,31 @@ namespace GameEditor
 						break;
 					}
 				}
-				
+
 				UIEditor.SetActive(child, isContains);
 			}
 		}
 
-		private void UpdateComponentsView(UIItem itemData, UIItem.NodeItem nodeItem)
+		private void UpdateComponentsView(UIItem itemData, GameObject gameObject)
 		{
+			if (itemData == null)
+			{
+				for (int i = 0; i < _components.Length; i++)
+				{
+					_components[i].SetActive(false);
+				}
+
+				return;
+			}
+
+			var nodeItem = UIContainer.NodeItem(_curUiItem, gameObject);
 			if (nodeItem == null)
 			{
+				for (int i = 0; i < _components.Length; i++)
+				{
+					_components[i].SetActive(false);
+				}
+
 				return;
 			}
 
@@ -172,8 +204,9 @@ namespace GameEditor
 			{
 				foreach (var com in components)
 				{
-					((ComponentViewBase)com.userData).SetActive(false);
+					((ComponentViewBase) com.userData).SetActive(false);
 				}
+
 				return;
 			}
 
@@ -189,11 +222,14 @@ namespace GameEditor
 							{
 								continue;
 							}
-							((ComponentViewBase)cv.userData).SetActive(false);
+
+							((ComponentViewBase) cv.userData).SetActive(false);
 							break;
 						}
+
 						continue;
 					}
+
 					VisualElement comView = null;
 					foreach (var cv in components)
 					{
@@ -201,6 +237,7 @@ namespace GameEditor
 						{
 							continue;
 						}
+
 						comView = cv;
 						break;
 					}
@@ -209,10 +246,12 @@ namespace GameEditor
 					{
 						foreach (var cv in components)
 						{
-							if (UIEditor.IsActive(cv))
+							if (UIEditor.IsActive(cv)
+							    || ((ComponentViewBase) cv.userData).ComponentType != comData.ComponentType)
 							{
 								continue;
 							}
+
 							comView = cv;
 							break;
 						}
@@ -227,7 +266,7 @@ namespace GameEditor
 					}
 					else
 					{
-						var com = (ComponentViewBase)comView.userData;
+						var com = (ComponentViewBase) comView.userData;
 						com.SetComView(itemData, comData);
 						UIEditor.SetActive(comView, true);
 					}
@@ -240,29 +279,52 @@ namespace GameEditor
 			var stage = PrefabStageUtility.GetCurrentPrefabStage();
 			if (stage == null)
 			{
+				if (!_clearFlag)
+				{
+					return;
+				}
+
+				_clearFlag = false;
 				UIEditor.SetActive(_addButton, false);
+				UpdateBindingComponentsView(null);
+				UpdateComponentsView(null, null);
 				return;
 			}
 
-			var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(stage.prefabAssetPath);
-			var itemData = UIContainer.GetUiItem(prefab);
-			
-			UpdateBindingComponentsView(itemData);
-			
-			if (itemData == null)
+			_clearFlag = true;
+
+			var prefabAssetPath = stage.prefabAssetPath;
+			var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabAssetPath);
+			var curUiItem = UIContainer.GetUiItem(prefab);
+
+			UpdateBindingComponentsView(_curUiItem);
+			UIEditor.SetActive(_addButton, curUiItem == null || _curUiItem != curUiItem);
+			_curUiItem = curUiItem;
+			if (_curUiItem != null)
 			{
-				UIEditor.SetActive(_addButton, true);
-				return;
+				_curUiItem.Open();
 			}
 
-			UIEditor.SetActive(_addButton, false);
-			if (Selection.activeGameObject == null)
+			if (_curUiItem == null)
 			{
-				return;
-			}
+				if (Selection.activeGameObject == _curGameObject)
+				{
+					return;
+				}
 
-			var components = UIContainer.GetComponents(itemData, Selection.activeGameObject);
-			UpdateComponentsView(itemData, components);
+				_curGameObject = Selection.activeGameObject;
+				UpdateComponentsView(_curUiItem, _curGameObject);	
+			}
+			else
+			{
+				if (Selection.activeGameObject == _curGameObject && !_curUiItem.IsRefreshData)
+				{
+					return;
+				}
+				_curUiItem.ClearRefreshDataFlag();
+				_curGameObject = Selection.activeGameObject;
+				UpdateComponentsView(_curUiItem, _curGameObject);
+			}
 		}
 	}
 }

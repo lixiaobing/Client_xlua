@@ -29,8 +29,8 @@ namespace GameEditor
 		{
 			Node = node;
 			_comField = node.Q<ObjectField>();
-			_comField.SetEnabled(false);
 			_comField.objectType = typeof(Object);
+			_comField.SetEnabled(false);
 			_isBinding = node.Q<Toggle>("IsBinding");
 			_isBinding.RegisterValueChangedCallback(evt =>
 			{
@@ -59,6 +59,7 @@ namespace GameEditor
 		{
 			_itemData = itemData;
 			_comData = comData;
+			_comField.SetValueWithoutNotify(null);
 			_comField.SetValueWithoutNotify(comData.Component);
 			_isBinding.SetValueWithoutNotify(comData.IsBinding);
 			if (string.IsNullOrEmpty(comData.AliasName))

@@ -14,11 +14,14 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Object = UnityEngine.Object;
 
 namespace GameEditor
 {
 	public static class GameEditorUtils
 	{
+		private static readonly char[] TrimGameObjectPath = {'/'};
+
 		public static string GetScriptPath<T>(T script)
 		{
 			MonoScript ms;
@@ -42,7 +45,7 @@ namespace GameEditor
 			var p = GetScriptPath(script);
 			return Path.GetDirectoryName(p);
 		}
-		
+
 		public static System.Diagnostics.Process CreateShellExProcess(string cmd, string args, string workingDir = "")
 		{
 			var pStartInfo = new System.Diagnostics.ProcessStartInfo(cmd);
@@ -73,8 +76,8 @@ namespace GameEditor
 		{
 			return File.Exists(path) || Directory.Exists(path);
 		}
-		
-		public static void EnsurePath(string path, bool isCreateFile=false)
+
+		public static void EnsurePath(string path, bool isCreateFile = false)
 		{
 			if (IsExist(path))
 			{
@@ -101,7 +104,7 @@ namespace GameEditor
 			FileUtil.DeleteFileOrDirectory(path);
 		}
 
-		public static void CopyFileOrDirectory(string src, string dst, bool isDeleteDst=false)
+		public static void CopyFileOrDirectory(string src, string dst, bool isDeleteDst = false)
 		{
 			if (!IsExist(src))
 			{
@@ -114,9 +117,10 @@ namespace GameEditor
 			{
 				FileUtil.DeleteFileOrDirectory(dst);
 			}
+
 			FileUtil.CopyFileOrDirectory(src, dst);
 		}
-		
+
 		public interface IWalkDirectory
 		{
 			string SearchPattern { get; }
@@ -135,7 +139,7 @@ namespace GameEditor
 				Debug.LogError($"{file}");
 			}
 		}
-		
+
 		public static string Md5(string filePath)
 		{
 			if (!IsExist(filePath))
@@ -146,19 +150,20 @@ namespace GameEditor
 
 			return Md5(File.ReadAllBytes(filePath));
 		}
-		
+
 		public static string Md5(byte[] contents)
 		{
 			var md5 = MD5.Create();
-			var byteNew =  md5.ComputeHash(contents);
+			var byteNew = md5.ComputeHash(contents);
 			var sb = new StringBuilder();
 			foreach (byte b in byteNew)
 			{
 				sb.Append(b.ToString("x2"));
 			}
+
 			return sb.ToString();
 		}
-		
+
 		public static void DefaultGui(VisualElement container, SerializedObject serializedObject, bool hideScript)
 		{
 			var property = serializedObject.GetIterator();
@@ -179,6 +184,7 @@ namespace GameEditor
 				{
 					field.SetEnabled(false);
 				}
+
 				field.Bind(serializedObject);
 				container.Add(field);
 			} while (property.NextVisible(false));
@@ -188,6 +194,24 @@ namespace GameEditor
 		{
 			EnsurePath(p);
 			File.WriteAllText(p, content);
+		}
+
+		public static long GetLocalIdentity(Object go)
+		{
+			return (long) GlobalObjectId.GetGlobalObjectIdSlow(go).targetObjectId;
+		}
+
+		public static string GetGameObjectPath(Transform transform, Transform end = null)
+		{
+			var path = string.Empty;
+			var n = transform;
+			while (n != null && n != end)
+			{
+				path = $"{n.name}/{path}";
+				n = n.parent;
+			}
+
+			return path.TrimEnd(TrimGameObjectPath);
 		}
 	}
 }
