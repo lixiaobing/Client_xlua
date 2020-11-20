@@ -273,7 +273,7 @@ public class AssetManager : MonoBehaviour
 
     public T GetSetting<T>()
     {
-        string name = typeof(T).ToString();
+        string name = typeof(T).Name;
         T set;
         if (settings.ContainsKey(name))
         {
