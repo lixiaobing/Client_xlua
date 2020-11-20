@@ -25,7 +25,7 @@ namespace GameEditor
 		private readonly ScrollView _scrollView;
 		private static readonly char[] SearchSplit = {' '};
 		private UIEditor _owner;
-		private VisualElement _bindingComponentsRoot;
+		private readonly VisualElement _bindingComponentsRoot;
 		private bool _clearFlag;
 		private UIItem _curUiItem;
 		private GameObject _curGameObject;
