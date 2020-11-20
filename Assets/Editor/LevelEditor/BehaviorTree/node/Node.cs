@@ -344,10 +344,10 @@ namespace hjcd.level.BehaviorTree
 
 
 
-        public  ScriptableObject ToScriptableObject()
+        public  NodeConfig ToScriptableObject()
         {
             System.Type type = this.GetType();
-            ScriptableObject nodeConfig = ScriptableObject.CreateInstance(type.Name + "Config");
+            dynamic nodeConfig = ScriptableObject.CreateInstance(type.Name + "Config");
             if (nodeConfig == null)
             {
                 Debug.LogError("Class " + type.Name + "Config" + " not found");

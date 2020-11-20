@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BehaviorTree xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <name>未命名10000791</name>
+  <hideFlags>None</hideFlags>
+  <id>1000079</id>
+  <debug>false</debug>
+  <variables />
+  <nodes>
+    <Node xsi:type="Root">
+      <name />
+      <hideFlags>None</hideFlags>
+      <uuid>5486259631260881616</uuid>
+      <links />
+      <windowPosition>
+        <x>200</x>
+        <y>200</y>
+      </windowPosition>
+      <mark />
+      <scale>1</scale>
+    </Node>
+  </nodes>
+</BehaviorTree>

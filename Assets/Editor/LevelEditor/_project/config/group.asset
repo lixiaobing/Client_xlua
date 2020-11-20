@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: group
   m_EditorClassIdentifier: 
   globalGroupId: 6
-  globalBehaviorTreeId: 1000079
+  globalBehaviorTreeId: 1000080
   groups:
   - id: -1
     name: "\u9884\u5236\u5206\u7EC4"
@@ -112,4 +112,7 @@ MonoBehaviour:
     groupId: 1
   - id: 1000078
     name: "\u672A\u547D\u540D1000078"
+    groupId: -1
+  - id: 1000079
+    name: "\u672A\u547D\u540D10000791"
     groupId: -1
