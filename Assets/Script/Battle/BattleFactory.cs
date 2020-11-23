@@ -20,9 +20,9 @@ namespace Battle
 		private static readonly Pool<ILogicEntity>[] EntityPools =
 		{
 			/*EntityType.HeroController*/new Pool<ILogicEntity>(
-				() => new LogicHeroController(), entity => entity.Dispose()), 
+				() => new LogicHeroEntity(), entity => entity.Dispose()), 
 			/*EntityType.MonsterController*/new Pool<ILogicEntity>(
-				() => new LogicMonsterController(), entity => entity.Dispose()),
+				() => new LogicMonsterEntity(), entity => entity.Dispose()),
 			/*EntityType.Gate*/new Pool<ILogicEntity>(
 				() => new LogicGateEntity(), entity => entity.Dispose()),
 			/*EntityType.Console*/new Pool<ILogicEntity>(

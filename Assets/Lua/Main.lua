@@ -23,7 +23,6 @@ function loadRequire()
     end
 
 	local total = #requireList
-
     -- local managers = require("manager/ManagerLoader")
 	-- total = total + managers.total
 

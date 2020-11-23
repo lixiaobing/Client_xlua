@@ -10,224 +10,222 @@
 using System;
 using System.Collections.Generic;
 
-namespace Dal
+
+public class Pool<T> : IDispose
 {
-	public class Pool<T> : IDispose
-	{
-		private Func<T> _new;
-		private Action<T> _delete;
-		private readonly Dictionary<T, bool> _using = new Dictionary<T, bool>();
-		private readonly List<T> _free = new List<T>();
+    private Func<T> _new;
+    private Action<T> _delete;
+    private readonly Dictionary<T, bool> _using = new Dictionary<T, bool>();
+    private readonly List<T> _free = new List<T>();
 
-		private Pool()
-		{
-		}
+    private Pool()
+    {
+    }
 
-		public Pool(Func<T> newFunc, Action<T> deleteFunc)
-		{
-			_new = newFunc;
-			_delete = deleteFunc;
-		}
+    public Pool(Func<T> newFunc, Action<T> deleteFunc)
+    {
+        _new = newFunc;
+        _delete = deleteFunc;
+    }
 
-		public T New()
-		{
-			T obj;
-			if (_free.Count > 0)
-			{
-				int last = _free.Count - 1;
-				obj = _free[last];
-				_free.RemoveAt(last);
-			}
-			else
-			{
-				obj = _new();
-			}
+    public T New()
+    {
+        T obj;
+        if (_free.Count > 0)
+        {
+            int last = _free.Count - 1;
+            obj = _free[last];
+            _free.RemoveAt(last);
+        }
+        else
+        {
+            obj = _new();
+        }
 
-			_using.Add(obj, true);
-			return obj;
-		}
+        _using.Add(obj, true);
+        return obj;
+    }
 
-		public void Delete(T obj)
-		{
-			if (_using.ContainsKey(obj))
-			{
-				_delete(obj);
-				_using.Remove(obj);
-				_free.Add(obj);
-			}
-			else
-			{
-				UnityEngine.Debug.LogErrorFormat($"didn't get from pool or released -> type:{typeof(T)}");
-			}
-		}
+    public void Delete(T obj)
+    {
+        if (_using.ContainsKey(obj))
+        {
+            _delete(obj);
+            _using.Remove(obj);
+            _free.Add(obj);
+        }
+        else
+        {
+            UnityEngine.Debug.LogErrorFormat($"didn't get from pool or released -> type:{typeof(T)}");
+        }
+    }
 
-		public void Dispose()
-		{
-			foreach (var pair in _using)
-			{
-				_delete(pair.Key);
-			}
+    public void Dispose()
+    {
+        foreach (var pair in _using)
+        {
+            _delete(pair.Key);
+        }
 
-			_using.Clear();
+        _using.Clear();
 
-			foreach (var obj in _free)
-			{
-				_delete(obj);
-			}
+        foreach (var obj in _free)
+        {
+            _delete(obj);
+        }
 
-			_free.Clear();
-		}
+        _free.Clear();
+    }
 
-		public void Destroy()
-		{
-			_using.Clear();
-			_free.Clear();
-			_new = null;
-			_delete = null;
-		}
-	}
-	
-	public class PoolProvideCreator<T> : IDispose
-	{
-		private Func<T> _new;
-		private readonly Dictionary<T, bool> _using = new Dictionary<T, bool>();
-		private readonly List<T> _free = new List<T>();
+    public void Destroy()
+    {
+        _using.Clear();
+        _free.Clear();
+        _new = null;
+        _delete = null;
+    }
+}
 
-		private PoolProvideCreator()
-		{
-		}
+public class PoolProvideCreator<T> : IDispose
+{
+    private Func<T> _new;
+    private readonly Dictionary<T, bool> _using = new Dictionary<T, bool>();
+    private readonly List<T> _free = new List<T>();
 
-		public PoolProvideCreator(Func<T> newFunc)
-		{
-			_new = newFunc;
-		}
+    private PoolProvideCreator()
+    {
+    }
 
-		public T New()
-		{
-			T obj;
-			if (_free.Count > 0)
-			{
-				int last = _free.Count - 1;
-				obj = _free[last];
-				_free.RemoveAt(last);
-			}
-			else
-			{
-				obj = _new();
-			}
+    public PoolProvideCreator(Func<T> newFunc)
+    {
+        _new = newFunc;
+    }
 
-			_using.Add(obj, true);
-			return obj;
-		}
+    public T New()
+    {
+        T obj;
+        if (_free.Count > 0)
+        {
+            int last = _free.Count - 1;
+            obj = _free[last];
+            _free.RemoveAt(last);
+        }
+        else
+        {
+            obj = _new();
+        }
 
-		public void Delete(T obj)
-		{
-			if (_using.ContainsKey(obj))
-			{
-				_using.Remove(obj);
-				_free.Add(obj);
-			}
-			else
-			{
-				UnityEngine.Debug.LogErrorFormat($"didn't get from pool or released -> type:{typeof(T)}");
-			}
-		}
-		
-		public void Dispose()
-		{
-			_using.Clear();
-			_free.Clear();
-		}
-		
-		public void Destroy()
-		{
-			_using.Clear();
-			_free.Clear();
-			_new = null;
-		}
-	}
-	
-	public interface IProvider<T>
-	{
-		T New();
-		void Delete(T obj);
-	}
-	
-	public class PoolWithProvider<T> : IDispose
-	{
-		private readonly Dictionary<T, bool> _using = new Dictionary<T, bool>();
-		private readonly List<T> _free = new List<T>();
-		private IProvider<T> _provider;
+        _using.Add(obj, true);
+        return obj;
+    }
 
-		private PoolWithProvider()
-		{
-		}
+    public void Delete(T obj)
+    {
+        if (_using.ContainsKey(obj))
+        {
+            _using.Remove(obj);
+            _free.Add(obj);
+        }
+        else
+        {
+            UnityEngine.Debug.LogErrorFormat($"didn't get from pool or released -> type:{typeof(T)}");
+        }
+    }
 
-		public PoolWithProvider(IProvider<T> provider)
-		{
-			_provider = provider;
-		}
+    public void Dispose()
+    {
+        _using.Clear();
+        _free.Clear();
+    }
 
-		public void SetProvider(IProvider<T> provider)
-		{
-			if (_provider == null)
-			{
-				_provider = provider;
-				return;
-			}
+    public void Destroy()
+    {
+        _using.Clear();
+        _free.Clear();
+        _new = null;
+    }
+}
 
-			Dispose();
-			_provider = provider;
-		}
+public interface IProvider<T>
+{
+    T New();
+    void Delete(T obj);
+}
 
-		public T New()
-		{
-			T obj;
-			if (_free.Count > 0)
-			{
-				int last = _free.Count - 1;
-				obj = _free[last];
-				_free.RemoveAt(last);
-			}
-			else
-			{
-				obj = _provider.New();
-			}
+public class PoolWithProvider<T> : IDispose
+{
+    private readonly Dictionary<T, bool> _using = new Dictionary<T, bool>();
+    private readonly List<T> _free = new List<T>();
+    private IProvider<T> _provider;
 
-			_using.Add(obj, true);
-			return obj;
-		}
+    private PoolWithProvider()
+    {
+    }
 
-		public void Delete(T obj)
-		{
-			if (_using.ContainsKey(obj))
-			{
-				_provider.Delete(obj);
-				_using.Remove(obj);
-				_free.Add(obj);
-			}
-			else
-			{
-				UnityEngine.Debug.LogErrorFormat($"didn't get from pool or released -> type:{typeof(T)}");
-			}
-		}
+    public PoolWithProvider(IProvider<T> provider)
+    {
+        _provider = provider;
+    }
 
-		public void Dispose()
-		{
-			foreach (var pair in _using)
-			{
-				_provider.Delete(pair.Key);
-			}
+    public void SetProvider(IProvider<T> provider)
+    {
+        if (_provider == null)
+        {
+            _provider = provider;
+            return;
+        }
 
-			_using.Clear();
+        Dispose();
+        _provider = provider;
+    }
 
-			foreach (var obj in _free)
-			{
-				_provider.Delete(obj);
-			}
+    public T New()
+    {
+        T obj;
+        if (_free.Count > 0)
+        {
+            int last = _free.Count - 1;
+            obj = _free[last];
+            _free.RemoveAt(last);
+        }
+        else
+        {
+            obj = _provider.New();
+        }
 
-			_free.Clear();
-			_provider = null;
-		}
-	}
+        _using.Add(obj, true);
+        return obj;
+    }
+
+    public void Delete(T obj)
+    {
+        if (_using.ContainsKey(obj))
+        {
+            _provider.Delete(obj);
+            _using.Remove(obj);
+            _free.Add(obj);
+        }
+        else
+        {
+            UnityEngine.Debug.LogErrorFormat($"didn't get from pool or released -> type:{typeof(T)}");
+        }
+    }
+
+    public void Dispose()
+    {
+        foreach (var pair in _using)
+        {
+            _provider.Delete(pair.Key);
+        }
+
+        _using.Clear();
+
+        foreach (var obj in _free)
+        {
+            _provider.Delete(obj);
+        }
+
+        _free.Clear();
+        _provider = null;
+    }
 }

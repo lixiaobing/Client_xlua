@@ -7,10 +7,7 @@
 ** ************************************* */
 
 
-namespace Dal
+public interface IDispose
 {
-    public interface IDispose
-    {
-        void Dispose();
-    }
+    void Dispose();
 }

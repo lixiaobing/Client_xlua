@@ -1,7 +1,7 @@
 ﻿/* ****************************************
 *******************************************
 * author : kaka
-* create time : 2020-11-12 14:54:22
+* create time : 2020-11-12 14:20:55
 * description : 
 *******************************************
 ** ************************************* */
@@ -9,13 +9,22 @@
 
 namespace Battle
 {
-	public class LogicMonsterController : ILogicEntity
+	public enum EntityType
 	{
-		public EntityType EntityType => EntityType.MonsterController;
-
-		public void Dispose()
-		{
-			throw new System.NotImplementedException();
-		}
+		Hero,
+		Monster,
+		Gate,
+		Console,
+		Trigger,
+		BattleArea,
+		Obstacle,
+		Bullet,
+		BulletScreen,
+		Trap,
+		AirWall,
+		Area,
+		Stronghold,
+		DropItem,
+		Summon,
 	}
 }
