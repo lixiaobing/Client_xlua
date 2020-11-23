@@ -9,6 +9,6 @@ namespace hjcd.level.BehaviorTree
 
     public class ActionConfig : NodeConfig
     {
-        
+
     }
 }

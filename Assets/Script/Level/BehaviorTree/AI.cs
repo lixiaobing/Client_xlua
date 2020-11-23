@@ -23,6 +23,14 @@ namespace hjcd.level.BehaviorTree
             ai.OnUpdate(Time.deltaTime);
         }
 
+        /// <summary>
+        /// 待机动画
+        /// </summary>
+        public void PlayIdle() { 
+        
+        
+        }
+
 
     }
     ////////////////////////////////////////////////
@@ -92,6 +100,18 @@ namespace hjcd.level.BehaviorTree
                 return 0;
             }
         }
+
+
+        public float GetValue(Variable variable)
+        {
+            if (variable.share) {  //关卡共享变量
+                return 0;
+            }
+
+            return this.GetValue(variable.name);
+        }
+
+
         /// <summary>
         /// 改变变量值
         /// </summary>

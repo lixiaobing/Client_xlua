@@ -7,6 +7,6 @@ namespace hjcd.level.BehaviorTree
     {
         public string child;
         //权重
-        public float weight = 10;
+        public int weight = 10;
     }
 }

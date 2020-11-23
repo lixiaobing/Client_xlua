@@ -25,7 +25,7 @@ namespace hjcd.level.BehaviorTree
 /*        private static Color focusColor = new Color(0x64/0xFF, 0x95/0xFF, 0xED/0xFF);*/
         public string child;
         //权重
-        public float weight = 10; 
+        public int weight = 10; 
         //点击区域
         private Rect[] rects     = new Rect[] { new Rect(), new Rect() , new Rect() };
         private Vector3[] points = new Vector3[] { new Vector3(), new Vector3(), new Vector3(), new Vector3() };

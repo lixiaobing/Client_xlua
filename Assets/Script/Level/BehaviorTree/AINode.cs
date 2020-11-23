@@ -9,8 +9,19 @@ namespace hjcd.level.BehaviorTree
 {
 
 
-    //节点状态
-    public enum ExcuteState
+
+ //节点基础类型
+public enum BaseType
+{
+	Root     = 0,
+	Action = 1,
+	Conditional = 2,
+	Composites = 3,	
+	Decorator = 4,
+}
+
+//节点状态
+public enum ExcuteState
     {
         Excute_Read = 1,
         Excute_Progress,
@@ -27,6 +38,17 @@ namespace hjcd.level.BehaviorTree
 
     public class AINode
     {
+
+
+        private static System.Random random = new System.Random(DateTime.Now.Millisecond);
+
+        public static System.Random Random {
+
+            get {
+                return random;
+            }
+        }
+
         public NodeConfig config;
 
         public AI ai;
@@ -44,6 +66,11 @@ namespace hjcd.level.BehaviorTree
         public float deltaTime;
         public NodeState nodeState = NodeState.Wait;
         public int childIndex;
+
+
+        
+        //条件节点
+        public List<AIConditional> childCondtionNodes;
         public AINode()
         {
             this.executeCount = 0;
@@ -53,6 +80,11 @@ namespace hjcd.level.BehaviorTree
             //节点状态
             this.nodeState = NodeState.Wait;
             this.childIndex = 1;
+        }
+
+        public virtual BaseType GetBaseType() {
+            Debug.LogError("Need override GetBaseType");
+            return BaseType.Action;
         }
 
         public void Reset()
@@ -79,6 +111,12 @@ namespace hjcd.level.BehaviorTree
             }
         }
 
+
+        public TestHero SelectTarget() {
+            return null;
+        }
+
+
         public NodeState GetNodeState() {
 
             return NodeState.Wait;
@@ -94,7 +132,12 @@ namespace hjcd.level.BehaviorTree
             {
                 var node = this.ai.GetNode(link.child);
                 if (node != null) {
+                    node.parentNode = this;
                     childs.Add(node);
+                    if (node.GetBaseType() == BaseType.Conditional) {
+                        childCondtionNodes.Add(node as AIConditional);
+                    }
+                
                 }
             }
         }
@@ -180,7 +223,7 @@ namespace hjcd.level.BehaviorTree
             return null;
         }
 
-        public void NextChild() { 
+        public virtual void NextChild() { 
         
         }
 
@@ -199,12 +242,12 @@ namespace hjcd.level.BehaviorTree
 
 
 
-        public void OnExitImpl()
+        public virtual void OnExitImpl()
         {
 
 
         }
-        public void OnEnterImpl()
+        public virtual void OnEnterImpl()
         {
 
 

@@ -24,7 +24,7 @@ namespace hjcd.level.BehaviorTree
             //權重
             foreach(Link link in links)
             { 
-                link.weight = Utils.FloatField(link.child.Substring(0, 5),link.weight); 
+                link.weight = Utils.IntField(link.child.Substring(0, 5),link.weight); 
             }
             EditorGUILayout.EndVertical();
         }
