@@ -9,7 +9,6 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
-using UnityEditor.Experimental.SceneManagement;
 using UnityEngine;
 
 namespace GameEditor
@@ -116,7 +115,7 @@ namespace GameEditor
 			}
 			var item = CreateInstance<UIItem>();
 			item.Init(prefab);
-			var p = GenItemPath(item.Path);
+			var p = GenItemPath(item.PrefabPath);
 			AssetDatabase.CreateAsset(item, p);
 			_instance.Items.Add(item);
 			EditorUtility.SetDirty(_instance);

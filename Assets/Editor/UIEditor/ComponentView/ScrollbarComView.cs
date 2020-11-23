@@ -7,6 +7,7 @@
 ** ************************************* */
 
 
+using System;
 using UnityEngine.UIElements;
 
 namespace GameEditor
@@ -17,6 +18,20 @@ namespace GameEditor
 
 		public ScrollbarComView(VisualElement node) : base(node)
 		{
+		}
+		
+		private static string BindingComponent(UIBindingSystem.BindingParameter bindingParameters)
+		{
+			if (bindingParameters.IsMulti)
+			{
+				return $"{bindingParameters.NewLinePrefix}---@type UnityEngine.UI.Scrollbar{GameEditorUtils.NewLine}" +
+				       $"{bindingParameters.NewLinePrefix}self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}:GetComponent(typeof(Scrollbar))";
+			}
+			else
+			{
+				return $"{bindingParameters.NewLinePrefix}---@type UnityEngine.UI.Scrollbar{GameEditorUtils.NewLine}" +
+				       $"{bindingParameters.NewLinePrefix}self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}:Find('{bindingParameters.NodeData.OwnerPath}'):GetComponent(typeof(Scrollbar))";
+			}
 		}
 	}
 }

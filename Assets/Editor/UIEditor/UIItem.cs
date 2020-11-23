@@ -51,10 +51,28 @@ namespace GameEditor
 					return false;
 				}
 			}
+
+			public int BindingCount
+			{
+				get
+				{
+					int count = 0;
+					foreach (var com in Components)
+					{
+						if (com.IsBinding)
+						{
+							count++;
+						}
+					}
+
+					return count;
+				}
+			}
 		}
 
 		public string Md5;
-		public string Path;
+		public string PrefabPath;
+		public string ScriptPath;
 		public long LocalId;
 		public string NameLower;
 		public GameObject Prefab;
@@ -69,9 +87,10 @@ namespace GameEditor
 		{
 			item.Prefab = prefab;
 			item.NameLower = prefab.name.ToLower();
-			item.Path = AssetDatabase.GetAssetPath(prefab);
+			item.PrefabPath = AssetDatabase.GetAssetPath(prefab);
 			item.Md5 = md5;
 			item.LocalId = GameEditorUtils.GetLocalIdentity(prefab);
+			item.ScriptPath = $"Assets/Lua/ui/window/{prefab.name}.lua";
 			item.ParseComponents();
 		}
 		
@@ -79,9 +98,10 @@ namespace GameEditor
 		{
 			item.Prefab = prefab;
 			item.NameLower = prefab.name.ToLower();
-			item.Path = AssetDatabase.GetAssetPath(prefab);
-			item.Md5 = GameEditorUtils.Md5(item.Path);
+			item.PrefabPath = AssetDatabase.GetAssetPath(prefab);
+			item.Md5 = GameEditorUtils.Md5(item.PrefabPath);
 			item.LocalId = GameEditorUtils.GetLocalIdentity(prefab);
+			item.ScriptPath = $"Assets/Lua/ui/window/{prefab.name}.lua";
 			item.ParseComponents();
 		}
 
@@ -204,7 +224,8 @@ namespace GameEditor
 		private static void SyncItemData(UIItem oldData, UIItem newData)
 		{
 			oldData.Md5 = newData.Md5;
-			oldData.Path = newData.Path;
+			oldData.PrefabPath = newData.PrefabPath;
+			oldData.ScriptPath = newData.ScriptPath;
 			oldData.LocalId = newData.LocalId;
 			oldData.NameLower = newData.NameLower;
 			oldData.Prefab = newData.Prefab;

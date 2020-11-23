@@ -7,6 +7,7 @@
 ** ************************************* */
 
 
+using System;
 using UnityEngine.UIElements;
 
 namespace GameEditor
@@ -17,6 +18,20 @@ namespace GameEditor
 
 		public TextComView(VisualElement node) : base(node)
 		{
+		}
+		
+		private static string BindingComponent(UIBindingSystem.BindingParameter bindingParameters)
+		{
+			if (bindingParameters.IsMulti)
+			{
+				return $"{bindingParameters.NewLinePrefix}---@type UnityEngine.UI.Text{GameEditorUtils.NewLine}" +
+				       $"{bindingParameters.NewLinePrefix}self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}:GetComponent(typeof(Text))";
+			}
+			else
+			{
+				return $"{bindingParameters.NewLinePrefix}---@type UnityEngine.UI.Text{GameEditorUtils.NewLine}" +
+				       $"{bindingParameters.NewLinePrefix}self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}:Find('{bindingParameters.NodeData.OwnerPath}'):GetComponent(typeof(Text))";
+			}
 		}
 	}
 }

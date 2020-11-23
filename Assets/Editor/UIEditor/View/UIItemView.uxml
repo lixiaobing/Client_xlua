@@ -1,8 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
     <ui:VisualElement style="flex-direction: row; flex-wrap: nowrap; align-items: stretch; justify-content: space-between;">
-        <uie:ObjectField name="Prefab" style="width: 30%;" />
-        <uie:ObjectField name="Data" style="width: 30%;" />
-        <ui:Button text="Remove" name="Remove" style="width: 15%;" />
-        <ui:Button text="Open" name="Open" style="width: 20%;" />
+        <uie:ObjectField name="Prefab" style="width: 20%;" />
+        <ui:TextField picking-mode="Ignore" label="绑定脚本路径" value="script path" text="script path" name="ScriptPath" style="width: 50%;" />
+        <ui:Button text="Remove" name="Remove" style="width: 9%;" />
+        <ui:Button text="Open" name="Open" style="width: 9%;" />
+        <ui:Button text="Binding" name="Binding" style="width: 9%;" />
     </ui:VisualElement>
 </ui:UXML>

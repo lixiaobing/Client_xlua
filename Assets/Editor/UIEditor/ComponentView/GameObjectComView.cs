@@ -7,6 +7,7 @@
 ** ************************************* */
 
 
+using System;
 using UnityEngine.UIElements;
 
 namespace GameEditor
@@ -19,8 +20,18 @@ namespace GameEditor
 		{
 		}
 
-		public void Set()
+		private static string BindingComponent(UIBindingSystem.BindingParameter bindingParameters)
 		{
+			if (bindingParameters.IsMulti)
+			{
+				return $"{bindingParameters.NewLinePrefix}---@type UnityEngine.GameObject{GameEditorUtils.NewLine}" +
+				       $"{bindingParameters.NewLinePrefix}self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}.gameObject";
+			}
+			else
+			{
+				return $"{bindingParameters.NewLinePrefix}---@type UnityEngine.GameObject{GameEditorUtils.NewLine}" +
+				       $"{bindingParameters.NewLinePrefix}self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}:Find('{bindingParameters.NodeData.OwnerPath}').gameObject";
+			}
 		}
 	}
 }
