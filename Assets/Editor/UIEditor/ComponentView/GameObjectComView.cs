@@ -24,11 +24,13 @@ namespace GameEditor
 		{
 			if (bindingParameters.IsMulti)
 			{
-				return $"self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}.gameObject";
+				return $"{bindingParameters.NewLinePrefix}---@type UnityEngine.GameObject{GameEditorUtils.NewLine}" +
+				       $"{bindingParameters.NewLinePrefix}self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}.gameObject";
 			}
 			else
 			{
-				return $"self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}:Find('{bindingParameters.NodeData.OwnerPath}').gameObject";
+				return $"{bindingParameters.NewLinePrefix}---@type UnityEngine.GameObject{GameEditorUtils.NewLine}" +
+				       $"{bindingParameters.NewLinePrefix}self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}:Find('{bindingParameters.NodeData.OwnerPath}').gameObject";
 			}
 		}
 	}

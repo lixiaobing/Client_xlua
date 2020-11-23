@@ -24,11 +24,13 @@ namespace GameEditor
 		{
 			if (bindingParameters.IsMulti)
 			{
-				return $"self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}:GetComponent(typeof(Scrollbar))";
+				return $"{bindingParameters.NewLinePrefix}---@type UnityEngine.UI.Scrollbar{GameEditorUtils.NewLine}" +
+				       $"{bindingParameters.NewLinePrefix}self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}:GetComponent(typeof(Scrollbar))";
 			}
 			else
 			{
-				return $"self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}:Find('{bindingParameters.NodeData.OwnerPath}'):GetComponent(typeof(Scrollbar))";
+				return $"{bindingParameters.NewLinePrefix}---@type UnityEngine.UI.Scrollbar{GameEditorUtils.NewLine}" +
+				       $"{bindingParameters.NewLinePrefix}self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}:Find('{bindingParameters.NodeData.OwnerPath}'):GetComponent(typeof(Scrollbar))";
 			}
 		}
 	}

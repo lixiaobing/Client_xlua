@@ -35,11 +35,13 @@ namespace GameEditor
 		{
 			if (bindingParameters.IsMulti)
 			{
-				return $"self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}";
+				return $"{bindingParameters.NewLinePrefix}---@type UnityEngine.RectTransform{GameEditorUtils.NewLine}" +
+				       $"{bindingParameters.NewLinePrefix}self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}";
 			}
 			else
 			{
-				return $"self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}:Find('{bindingParameters.NodeData.OwnerPath}')";
+				return $"{bindingParameters.NewLinePrefix}---@type UnityEngine.RectTransform{GameEditorUtils.NewLine}" +
+				       $"{bindingParameters.NewLinePrefix}self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}:Find('{bindingParameters.NodeData.OwnerPath}')";
 			}
 		}
 	}

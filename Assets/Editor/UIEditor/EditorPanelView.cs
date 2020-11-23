@@ -8,8 +8,6 @@
 
 
 using System;
-using System.Collections.Generic;
-using Pathfinding.Util;
 using UnityEditor;
 using UnityEditor.Experimental.SceneManagement;
 using UnityEditor.UIElements;
@@ -123,6 +121,8 @@ namespace GameEditor
 			bindingBtn.clicked += () =>
 			{
 				UIBindingSystem.BindingStart(itemData);
+				// EditorUtility.SetDirty(itemData);
+				AssetDatabase.Refresh();
 			};
 
 			_scrollView.Add(item);

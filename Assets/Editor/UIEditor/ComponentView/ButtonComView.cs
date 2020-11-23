@@ -16,14 +16,11 @@ namespace GameEditor
 	{
 		public override UIEditor.ComponentAsset ComponentType => UIEditor.ComponentAsset.Button;
 		private readonly TextField _eventName;
-		
+
 		public ButtonComView(VisualElement node) : base(node)
 		{
 			_eventName = node.Q<TextField>("ClickFunctionName");
-			_eventName.RegisterValueChangedCallback(evt =>
-			{
-				ComData.EventName = evt.newValue;
-			});
+			_eventName.RegisterValueChangedCallback(evt => { ComData.EventName = evt.newValue; });
 		}
 
 		protected override void SetComView()
@@ -35,11 +32,13 @@ namespace GameEditor
 		{
 			if (bindingParameters.IsMulti)
 			{
-				return $"self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}:GetComponent(typeof(Button))";
+				return $"{bindingParameters.NewLinePrefix}---@type UnityEngine.UI.Button{GameEditorUtils.NewLine}" +
+				       $"{bindingParameters.NewLinePrefix}self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}:GetComponent(typeof(Button))";
 			}
 			else
 			{
-				return $"self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}:Find('{bindingParameters.NodeData.OwnerPath}'):GetComponent(typeof(Button))";
+				return $"{bindingParameters.NewLinePrefix}---@type UnityEngine.UI.Button{GameEditorUtils.NewLine}" +
+				       $"{bindingParameters.NewLinePrefix}self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}:Find('{bindingParameters.NodeData.OwnerPath}'):GetComponent(typeof(Button))";
 			}
 		}
 	}

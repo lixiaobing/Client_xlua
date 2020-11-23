@@ -20,20 +20,31 @@ namespace GameEditor
 		{
 			public string Platform = "Lua";
 			public string NodeName;
+			public string NewLinePrefix = "\t";
 			public bool IsMulti;
 			public UIItem.NodeItem NodeData;
 			public UIItem.ComponentItem ComData;
 		}
 		
 		private const string WindowNodeName = "wndNode";
+
+		private const string BindingHeaderTemplateFormat =
+@"---@class {0}
+local {0} = DClass('{0}', BaseWindow)
+_G.{0} = {0}
+
+";
+		
+		
 		private const string BindingComponentMethodName = "BindingComponent";
 		private const string BindingElementTemplateFormat =
 @"---__BINDING_ELEMENTS_BEGIN__
 ---@自动生成代码不要修改否则覆盖!!!!!!
 ---@自动生成代码不要修改否则覆盖!!!!!!
 ---@自动生成代码不要修改否则覆盖!!!!!!
-function {0}:BindingElements(wndNode)
-{1}
+---@param {0} UnityEngine.Transform
+function {1}:BindingElements({0})
+{2}
 end
 ---__BINDING_ELEMENTS_END____";
 		private const string BindingElementPattern = 
@@ -70,8 +81,10 @@ end
 		public static void BindingStart(UIItem itemData)
 		{
 			var bindingElementContent = GenerateBindingContent(itemData);
+			var windowName = itemData.Prefab.name.FirstUpperEx();
 			var bindingContent = string.Format(BindingElementTemplateFormat,
-				itemData.Prefab.name.FirstUpperEx(),
+				WindowNodeName,
+				windowName,
 				bindingElementContent);
 			if (GameEditorUtils.ReadText(itemData.ScriptPath, out var oldContent))
 			{
@@ -83,7 +96,8 @@ end
 			}
 			else
 			{
-				GameEditorUtils.Write(itemData.ScriptPath, bindingElementContent, Encoding.UTF8);
+				var header = string.Format(BindingHeaderTemplateFormat, windowName);
+				GameEditorUtils.Write(itemData.ScriptPath, header + bindingContent, Encoding.UTF8);
 			}
 		}
 
@@ -107,7 +121,8 @@ end
 				else
 				{
 					var nodeName = $"temp{node.LocalId}";
-					content = $"{content}\tlocal {nodeName} = {WindowNodeName}:Find('{node.OwnerPath}'){GameEditorUtils.NewLine}";
+					content = $"{content}\t---@type UnityEngine.Transform{GameEditorUtils.NewLine}" +
+					          $"\tlocal {nodeName} = {WindowNodeName}:Find('{node.OwnerPath}'){GameEditorUtils.NewLine}";
 					BindingParameters.NodeName = nodeName;
 					BindingParameters.IsMulti = true;
 				}
@@ -126,7 +141,7 @@ end
 
 					BindingParameters.ComData = com;
 					var c = method.Invoke(null, ComponentBindingParameters) as string;
-					content = $"{content}\t{c}{GameEditorUtils.NewLine}";
+					content = $"{content}{c}{GameEditorUtils.NewLine}";
 				}
 			}
 			return content.TrimEnd();

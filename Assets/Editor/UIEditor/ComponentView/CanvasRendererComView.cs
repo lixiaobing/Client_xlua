@@ -19,16 +19,20 @@ namespace GameEditor
 		public CanvasRendererComView(VisualElement node) : base(node)
 		{
 		}
-		
+
 		private static string BindingComponent(UIBindingSystem.BindingParameter bindingParameters)
 		{
 			if (bindingParameters.IsMulti)
 			{
-				return $"self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}:GetComponent(typeof(CanvasRenderer))";
+				return
+					$"{bindingParameters.NewLinePrefix}---@type UnityEngine.CanvasRenderer{GameEditorUtils.NewLine}" +
+					$"{bindingParameters.NewLinePrefix}self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}:GetComponent(typeof(CanvasRenderer))";
 			}
 			else
 			{
-				return $"self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}:Find('{bindingParameters.NodeData.OwnerPath}'):GetComponent(typeof(CanvasRenderer))";
+				return
+					$"{bindingParameters.NewLinePrefix}---@type UnityEngine.CanvasRenderer{GameEditorUtils.NewLine}" +
+					$"{bindingParameters.NewLinePrefix}self.{bindingParameters.ComData.AliasName} = {bindingParameters.NodeName}:Find('{bindingParameters.NodeData.OwnerPath}'):GetComponent(typeof(CanvasRenderer))";
 			}
 		}
 	}

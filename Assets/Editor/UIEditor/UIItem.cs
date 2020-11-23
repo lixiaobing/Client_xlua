@@ -90,7 +90,7 @@ namespace GameEditor
 			item.PrefabPath = AssetDatabase.GetAssetPath(prefab);
 			item.Md5 = md5;
 			item.LocalId = GameEditorUtils.GetLocalIdentity(prefab);
-			item.ScriptPath = $"Assets/Lua/ui/{prefab.name}.lua";
+			item.ScriptPath = $"Assets/Lua/ui/window/{prefab.name}.lua";
 			item.ParseComponents();
 		}
 		
@@ -101,7 +101,7 @@ namespace GameEditor
 			item.PrefabPath = AssetDatabase.GetAssetPath(prefab);
 			item.Md5 = GameEditorUtils.Md5(item.PrefabPath);
 			item.LocalId = GameEditorUtils.GetLocalIdentity(prefab);
-			item.ScriptPath = $"Assets/Lua/ui/{prefab.name}.lua";
+			item.ScriptPath = $"Assets/Lua/ui/window/{prefab.name}.lua";
 			item.ParseComponents();
 		}
 
