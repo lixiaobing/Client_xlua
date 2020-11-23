@@ -21,5 +21,10 @@ namespace World
         {
             Instance = this;
         }
+
+        public void Create(string sName)
+        {
+
+        }
     }
 }
